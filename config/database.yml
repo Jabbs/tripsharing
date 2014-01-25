@@ -1,0 +1,10 @@
+development:
+  adapter: postgresql
+  database: travelwithstrangers_development
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: travelwithstrangers_test
+  host: localhost
+
