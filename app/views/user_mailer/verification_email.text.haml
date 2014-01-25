@@ -1,0 +1,5 @@
+Hello #{@user.full_name},
+
+To verify your TravelWithStrangers account please click the following link:
+
+= link_to "#{user_verification_url(@user, @user.verification_token)}", user_verification_url(@user, @user.verification_token)

@@ -1,0 +1,49 @@
+.container
+  %br
+  %br
+  %br
+  .row
+    .span8.offset2
+      .well
+        .row
+          .span4.login_border
+            .center
+              %h3.big.no-top-margin Login To Civic ArtWorks
+              %br
+              %br
+              = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook"
+              %br
+              %br
+              \--or--
+              %br
+              %br
+              = image_tag("caw_logo_square_12_x_12.png", style: "padding-right:4px; padding-bottom:4px;")
+              Civic ArtWorks account:
+              %br
+              %br
+              = form_tag do
+                = render 'shared/error_messages', object: @session_user
+                = text_field_tag :email, params[:email], class: "span3", placeholder: "Email", autocomplete: :off
+                %br
+                = password_field_tag :password, params[:password], class: "span3", placeholder: "Password", autocomplete: :off
+                %br
+                %br
+                = submit_tag 'Login', class: "btn btn-info", style: "margin-top:4px;"
+                %br
+                %br
+                = link_to "Forgot Password?", new_password_reset_path
+                %br
+                %br
+          .span3
+            .center
+              %h3.big.no-top-margin.blue Create Account
+              = render 'users/form'
+              .small
+                By creating a Civic ArtWorks account I agree to the
+                = link_to "terms of use", terms_path
+                and
+                = link_to 'privacy policy', privacy_path
+  %br
+  %br
+  %br
+  %br

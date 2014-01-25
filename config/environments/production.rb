@@ -1,5 +1,32 @@
 Travelwithstrangers::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+    
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => ENV['STAGING'].present? ? "[CAW ERROR STAGING] " : "[CAW ERROR PRODUCTION] ",
+      :sender_address => %{"civic artworks" <noreply@civicartworks.com>},
+      :exception_recipients => %w{petejabbour1@gmail.com}
+    }
+  
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+  
+  # Send out mailers when .delivery is invoked
+  config.action_mailer.perform_deliveries = true
+  
+  # Gmail mailer configuration
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => ENV['STAGING'].present? ? 'www.civicartworks-staging.herokuapp.com' : 'www.civicartworks.com',
+    :user_name            => ENV['GMAIL_USERNAME'],
+    :password             => ENV['GMAIL_PASSWORD'],
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+    
+  # Set the default host option for mailer
+  config.action_mailer.default_url_options = { :host => ENV['STAGING'].present? ? 'civicartworks-staging.herokuapp.com' : 'www.civicartworks.com' }
 
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -43,7 +70,7 @@ Travelwithstrangers::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = ENV['CLOUDFRONT_DOMAIN']
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )

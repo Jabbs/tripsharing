@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Travelwithstrangers</title>
+  <title><%= content_for?(:title) ? yield(:title) : t('application.root.title') %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('application.root.description') %>">
+  <!-- <link rel="image_src" href="<%= content_for?(:image_path) ? yield(:image_path) : image_path('caw_ -->logo_square_420.png') %>"/> -->
+
+  <%= render 'layouts/shim' %>
+  <%= render 'layouts/google_analytics' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-
-<%= yield %>
-
+  <%= render 'shared/facebook_script' %>
+  <%= render 'layouts/header' %>
+  <%= render 'shared/flash', flash: flash %>
+  
+  <%= yield %>
+  	
+  <%= render 'layouts/footer' %>
 </body>
 </html>

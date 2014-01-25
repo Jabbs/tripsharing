@@ -1,0 +1,9 @@
+%tr
+  %td
+    Hello #{@user.full_name},
+%tr
+  %td{style: "padding-top:20px"}
+    To verify your TravelWithStrangers account please click the following link:
+%tr
+  %td{style: "padding-top:20px"}
+    = link_to "#{user_verification_url(@user, @user.verification_token)}", user_verification_url(@user, @user.verification_token)

@@ -1,0 +1,30 @@
+class VerificationsController < ApplicationController
+  def show
+    if User.find_by_verification_token(params[:id].to_s)
+      @user = User.find_by_verification_token(params[:id].to_s)
+      @user.update_attribute(:verified, true)
+      sign_in @user unless current_user
+      redirect_to get_started_path, notice: "Your account has been verified."
+    else
+      redirect_to root_path, notice: "There was a problem verifying your account. Please contact support@travelwithstrangers.com 
+                                     for more details."
+    end
+  end
+  
+  def unsubscribe
+    if @user = User.find_by_verification_token(params[:unsubscribe_id].to_s)
+      @user.update_attribute(:subscribed, false)
+      redirect_to unsubscribed_path
+    else
+      redirect_to root_path, notice: "There was a problem unsubscribing your email. Please contact support@travelwithstrangers.com 
+                                     for more details."
+    end
+  end
+  
+  def resend
+    @user = User.find(params[:user_id])
+    @user.send_verification_email
+    redirect_to @user, notice: "A verification email has been sent. Please click on the link to verify your account.
+                                Check your spam folder if you are still having issues or contact our support team."
+  end
+end

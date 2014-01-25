@@ -1,0 +1,28 @@
+.row
+  .span12
+    .center.small{ style: "padding-top:3px; margin-bottom:8px;"}
+      © #{t('application.root.name')} Inc. 2014
+- if action_name == "home"
+  .row
+    .span12
+      .center
+        .fb-like{"data-href" => "", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
+.row
+  .span12
+    .center
+      = link_to "About", about_path
+      %br
+      = link_to "Press", press_path
+      %br
+      = mail_to "", "Contact Us", target: "_blank"
+      %br
+      = link_to "Terms", terms_path
+      %br
+      = link_to "Privacy Policy", privacy_path
+      %br
+      = link_to "", target: "_blank" do
+        %i.icon-facebook.big.right-margin
+      = link_to "", target: "_blank" do
+        %i.icon-twitter.big.right-margin
+      = link_to "", target: "_blank" do
+        %i.icon-pinterest.big

@@ -1,0 +1,32 @@
+%footer
+  .container
+    .visible-phone
+      = render 'layouts/footer_phone'
+    .hidden-phone
+      .row
+        .span2
+          .small{ style: "padding-top:3px; margin-bottom:8px;"}
+            © #{t('application.root.name')} Inc. 2013
+          - if action_name == "home"
+            .fb-like{"data-href" => "http://www.civicartworks.com/", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
+        .span10
+          %ul
+            %li.title Legal Stuff
+            %li= link_to "Terms of Use", terms_path
+            %li= link_to "Privacy Policy", privacy_path
+          %ul
+            %li.title Company
+            %li= link_to "About", about_path
+            %li= link_to "Press", press_path
+          %ul
+            %li.title Support
+            %li= mail_to "", "Contact Us", target: "_blank"
+          %ul
+            %li.title Connect
+            %li
+              = link_to "", target: "_blank" do
+                %i.icon-facebook.big.right-margin
+              = link_to "", target: "_blank" do
+                %i.icon-twitter.big.right-margin
+              = link_to "", target: "_blank" do
+                %i.icon-pinterest.big
