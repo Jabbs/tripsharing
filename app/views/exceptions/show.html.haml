@@ -1,0 +1,10 @@
+- content_for :title do
+  = t('application.root.title_with_tag_line', tag_line: "#{@rescue_response}")
+.row{ style: "margin-top:40px;"}
+  .span8.offset2
+    .center
+      %h1= details[:name]
+      %p= details[:message]
+      %br
+      %br
+      = link_to "Back to home", root_path
