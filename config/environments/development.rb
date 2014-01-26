@@ -1,4 +1,4 @@
-Tripfloat::Application.configure do
+Tripsharing::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Send out mailers when .delivery is invoked

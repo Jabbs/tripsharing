@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ApplicationHelper
   
-  APP_DOMAIN = 'www.tripfloat.com'
+  APP_DOMAIN = 'www.trip-sharing.com'
 
   def ensure_domain
     if (Rails.env.production? && request.env['HTTP_HOST'] != APP_DOMAIN) && ENV['STAGING'].nil?

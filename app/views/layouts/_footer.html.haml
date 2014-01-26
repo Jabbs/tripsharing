@@ -8,9 +8,9 @@
           .small{ style: "padding-top:3px; margin-bottom:8px;"}
             © #{t('application.root.name')} 2014
           - if action_name == "home"
-            .fb-like{"data-href" => "http://www.tripfloat.com/", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
+            .fb-like{"data-href" => "http://www.trip-sharing.com/", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
             - share_url = 
-            %a.twitter-share-button{"data-counturl" => request.url, "data-text" => "Plan a trip with people you don't know. Check this out!", "data-url" => request.url, "data-via" => "TripFloat", href: "https://twitter.com/share"} Tweet
+            %a.twitter-share-button{"data-counturl" => request.url, "data-text" => "Plan a trip with people you don't know. Check this out!", "data-url" => request.url, "data-via" => "Trip_Sharing", href: "https://twitter.com/share"} Tweet
         .span10
           %ul
             %li.title Legal Stuff

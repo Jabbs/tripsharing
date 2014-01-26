@@ -15,7 +15,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Tripfloat
+module Tripsharing
   class Application < Rails::Application
     # see http://robots.thoughtbot.com/content-compression-with-rack-deflater/ for reference
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
