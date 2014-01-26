@@ -1,8 +1,14 @@
-#opaque-background
 #home-background
   .container
-    .row{style: "margin-top:140px;"}
+    .row
       .span4.offset1
+        %h1.white
+          .salmon.inline
+            TripFloat
+          = image_tag "airplane.png", style: "position:relative; left:-5px; top:-3px;"
+        %br
+        %br
+        %br
         .center
           .no-height
             .div{style: "position:relative; left: 70px; top: -50px;"}
@@ -29,7 +35,14 @@
             .div{style: "position:relative; right: 70px; top: 245px;"}
               = image_tag "http://graph.facebook.com/69901513/picture?type=square", class: "image"
           = image_tag "globe-icon-planes-250.png"
-      .span4.offset1
-        .well
-          %h1 TripFloat
+          
+      .span5.offset1
+        .signup-well
+          %h2 Signup for our beta release!
+          = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign up with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook"
           %p Experience the world, meet new people!
+    .row{style: "margin-top:100px;"}
+      .span4.offset1
+
+
+  = render 'layouts/footer'

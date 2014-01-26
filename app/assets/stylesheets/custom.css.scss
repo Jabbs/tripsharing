@@ -4,7 +4,7 @@ $linkColor: #686868;
 
 /* MIXINS */
 
-@mixin rounded_border {
+@mixin rounded_borders {
 	 -webkit-border-radius: 5px;
 	    -moz-border-radius: 5px;
 	         border-radius: 5px;
@@ -77,7 +77,9 @@ $body_grey: #4a4a4a;
 body {
   color: $body_grey;
   background: lighten($grey, 10%);
+  font-family: 'Nunito', sans-serif;
 }
+h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
 h1 { color: $dark_blue; }
 .zero-height { height: 0px; }
 .inline { display: inline; }
@@ -128,6 +130,10 @@ h1 { color: $dark_blue; }
   filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 
+.white-shadow {
+  text-shadow: 3px 4px $white;
+}
+
 #home-background { 
   background-image: url("vietnam1.jpg");
   height: 800px;
@@ -143,7 +149,7 @@ h1 { color: $dark_blue; }
   width:56px;
 }
 
-#opaque-background {
+.opaque-background-turquoise {
   position:fixed;
   z-index:3;
   height: 60px;
@@ -151,10 +157,40 @@ h1 { color: $dark_blue; }
   background-color:rgb(91,209,149);
   background-color:rgba(91,209,149,0.4);
 }
+.opaque-background-black {
+  background-color:rgb(0,0,0);
+  background-color:rgba(0,0,0,0.4);
+}
+
+.signup-well {
+  background-color:rgb(91,209,149);
+  background-color:rgba(91,209,149,0.2);
+  color: white;
+  padding: 16px;
+   -webkit-border-bottom-left-radius: 5px;
+	    -moz-border-bottom-left-radius: 5px;
+	         border-bottom-left-radius: 5px;
+   -webkit-border-bottom-right-radius: 5px;
+	    -moz-border-bottom-right-radius: 5px;
+	         border-bottom-right-radius: 5px;
+}
+
+.btn-facebook {
+  background: $fb_color;
+  color: white;
+  text-shadow: none;
+  box-shadow: none;
+  &:hover {
+    background: darken($fb_color, 10%);
+    color: white;
+  }
+}
 
 /* footer */
 
 footer {
+  margin-top:60px;
+  height:260px;
   background: $grey-dark;
   padding-top: 10px;
   padding-bottom: 10px;

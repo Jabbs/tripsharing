@@ -1,0 +1,17 @@
+- if !ENV['STAGING'].present? || Rails.env.development?
+  - content_for :title do
+    = t('application.root.title_with_tag_line', tag_line: "Password Reset")
+  - content_for :description do
+    This is the password resets page. Enter your email address associated with your account to retrieve a new password.
+.container
+  .div{ style: "margin-top:130px; margin-bottom: 300px;"}
+    = form_tag password_resets_path, :method => :post do
+      .row
+        .span6.offset3
+          .well
+            .center
+              %h3.big Enter your email:
+              = text_field_tag :email, params[:email], class: "span3", placeholder: "Email", autocomplete: :off
+              %br
+              %br
+              = submit_tag 'Reset My Password', class: "btn", disable_with: 'Submitting...'

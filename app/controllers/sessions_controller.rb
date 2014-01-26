@@ -6,12 +6,10 @@ class SessionsController < ApplicationController
 
   def create
     if params[:provider] == "facebook"
-      session.delete(:return_to)
-      session[:return_to] = request.referrer if request.referrer && request.referrer.split('/').last != "login"
       @session_user = User.from_omniauth(env["omniauth.auth"])
       logger.debug "request.referer: #{request.referer}"
       sign_in @session_user
-      redirect_back_or @session_user
+      redirect_back_or root_path
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)
       if @session_user && @session_user.authenticate(params[:password].to_s)
