@@ -39,8 +39,8 @@ class User < ActiveRecord::Base
       user.gender = auth.extra.raw_info.gender
       user.newsletter = true
       user.password = SecureRandom.urlsafe_base64
-      logger.debug "AUTH: #{auth}"
-      user.build_address if user.new_record?
+      logger.debug "%%%%%%%%%%% AUTH: #{auth}"
+      logger.debug "%%%%%%%%%%% PHOTO???: #{auth.extra}"
       user.save!
     end
   end

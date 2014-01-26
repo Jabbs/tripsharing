@@ -3,9 +3,12 @@
     .row
       .span4.offset1
         %h1.white
-          .salmon.inline
+          .no-height
+            = image_tag "cloud.png", style: "position:relative; left:55px; top:-20px;"
+          .salmon.inline{style: "position:relative; z-index:3;"}
             TripFloat
-          = image_tag "airplane.png", style: "position:relative; left:-5px; top:-3px;"
+          = image_tag "airplane.png", style: "position:relative; left:58px; top:7px;"
+        %br
         %br
         %br
         %br
@@ -39,7 +42,7 @@
       .span5.offset1
         .signup-well
           %h2 Signup for our beta release!
-          = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign up with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook"
+          = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign up with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
           %p Experience the world, meet new people!
     .row{style: "margin-top:100px;"}
       .span4.offset1

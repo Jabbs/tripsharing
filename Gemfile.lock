@@ -136,6 +136,10 @@ GEM
     jwt (0.1.11)
       multi_json (>= 1.5)
     kgio (2.8.1)
+    koala (1.8.0)
+      addressable
+      faraday
+      multi_json
     launchy (2.4.2)
       addressable (~> 2.3)
     less (2.4.0)
@@ -340,6 +344,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails (= 2.0.2)
   jquery-ui-rails
+  koala (~> 1.8.0rc1)
   launchy
   less-rails-bootstrap
   letter_opener
