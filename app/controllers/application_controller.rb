@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  if Rails.env.production? # && ENV['STAGING'] == "true"
+  if Rails.env.production? && ENV['STAGING'] == "true"
     http_basic_authenticate_with :name => "pj", :password => "pj"
   end
   before_filter :ensure_domain

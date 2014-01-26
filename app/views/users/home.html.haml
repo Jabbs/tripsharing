@@ -18,34 +18,54 @@
               = image_tag "questionmark.png", class: "image questionmark"
           .no-height
             .div{style: "position:relative; right: 70px; top: -50px;"}
-              = image_tag "http://graph.facebook.com/69901513/picture?type=square", class: "image"
+              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/274444_17602270_1994920605_q.jpg", class: "image"
           .no-height
             .div{style: "position:relative; right: 150px; top:35px;"}
               = image_tag "questionmark.png", class: "image questionmark"
           .no-height
             .div{style: "position:relative; right: 150px; top:155px;"}
-              = image_tag "http://graph.facebook.com/69901513/picture?type=square", class: "image"
+              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/211861_54800471_499027771_q.jpg", class: "image"
           .no-height
             .div{style: "position:relative; left: 150px; top:35px;"}
-              = image_tag "http://graph.facebook.com/69901513/picture?type=square", class: "image"
+              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/273198_1051999955_113368810_q.jpg", class: "image"
           .no-height
             .div{style: "position:relative; left: 150px; top:155px;"}
-              = image_tag "questionmark.png", class: "image questionmark"
+              - if current_user
+                = image_tag current_user.fb_image, class: "image questionmark"
+              - else
+                = image_tag "questionmark.png", class: "image questionmark"
           .no-height
             .div{style: "position:relative; left: 70px; top: 245px;"}
-              = image_tag "http://graph.facebook.com/69901513/picture?type=square", class: "image"
+              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/1076206_69901513_1031630042_q.jpg", class: "image"
           .no-height
             .div{style: "position:relative; right: 70px; top: 245px;"}
-              = image_tag "http://graph.facebook.com/69901513/picture?type=square", class: "image"
+              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t5/41761_16808695_5273_q.jpg", class: "image"
           = image_tag "globe-icon-planes-250.png"
           
       .span5.offset1
         .signup-well
-          %h2 Signup for our beta release!
-          = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign up with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
-          %p Share a trip with travelers you don't know. Take a chance and create an experience that will last a lifetime!
-    .row{style: "margin-top:100px;"}
-      .span4.offset1
+          - if current_user
+            %h3 
+              Congratulations #{current_user.first_name}, on joining our community!
+            %h3 We'll let you know when you can start traveling with other randos!
+            %br
+            = link_to "sign out", signout_path, method: :delete
+          - else
+            %h2.center Take a trip with people you don't know!
+            %hr
+            %h4.grey-dark
+              = image_tag "one.png"
+              Search travel groups
+            %h4.grey-dark
+              = image_tag "two.png"
+              Join groups with mutual friends
+            %h4.grey-dark
+              = image_tag "three.png"
+              Travel and meet!
+            %hr
+            %p.black{style: "line-height: 200%;"}
+              = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign up with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
+              to stay notified of our beta release!
 
 
   = render 'layouts/footer'

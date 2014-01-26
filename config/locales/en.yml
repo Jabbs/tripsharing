@@ -6,8 +6,8 @@ en:
     root:
       name: "TripSharing"
       twitter_name: "Trip_Sharing"
-      title: "Experiences Bring People Together | TripSharing"
-      description: "Share a trip with travelers you don't know. Take a chance and create an experience that will last a lifetime!"
+      title: "Travel And Meet New People | TripSharing"
+      description: "Take a trip with people you don't know. Create an experience that will last a lifetime. Sign up for our beta release!"
       title_with_tag_line: "%{tag_line} | TripSharing"
   exception:
     show:

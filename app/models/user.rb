@@ -45,6 +45,26 @@ class User < ActiveRecord::Base
     end
   end
   
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+    block_given? ? yield(@facebook) : @facebook
+  rescue Koala::Facebook::APIError => e
+    logger.info e.to_s
+    nil # or consider a custom null object
+  end
+  
+  def facebook_friends
+    facebook { |fb| fb.get_connection("me", "friends") }
+  end
+  
+  def facebook_friends_photos_rand5
+    x = []
+    5.times do
+      x << self.facebook.get_picture(self.facebook_friends.shuffle.first['id'])
+    end
+    x
+  end
+  
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

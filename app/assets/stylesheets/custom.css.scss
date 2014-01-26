@@ -15,11 +15,12 @@ $linkColor: #686868;
 $white: #ffffff;
 $salmon: #D27D66;
 $turquoise: #5BD195;
+$turquoise_dark: #4CAF7D;
 $orange: rgb(251,185,11);
 $orange2: #ffcc11;
 $orange3: #ffc414;
 $blue: rgb(23, 54, 93);
-$grey_dark: rgb(108, 109, 109);
+$grey_dark: #686868;
 $grey_light: rgb(213, 215, 214);
 // Others:
 $green: #7CC75C;
@@ -164,7 +165,7 @@ h1 { color: $dark_blue; }
 
 .signup-well {
   background-color:rgb(91,209,149);
-  background-color:rgba(91,209,149,0.2);
+  background-color:rgba(91,209,149,0.5);
   color: white;
   padding: 16px;
    -webkit-border-bottom-left-radius: 5px;
@@ -189,36 +190,25 @@ h1 { color: $dark_blue; }
 /* footer */
 
 footer {
-  margin-top:150px;
+  margin-top:252px;
   height:340px;
   background: $grey-dark;
   padding-top: 10px;
   padding-bottom: 10px;
   color: $grey;
-  a {
-    color: $grey;
-    &:hover { 
-      background-color: inherit;
-			color: black;
-			text-decoration: none;
-    }
+  a {color: $salmon;}
+  a:hover {
+    color: $salmon;
+    text-decoration:underline;
   }
   small { 
     float: left; 
   }
-  ul {
-    float: right;
-    list-style: none;
-		margin-left: 50px;
-		width: 145px;
-    li {
-      margin-left: 10px;
-    }
-		.title {
-			margin-bottom: 4px;
-			font-weight: bold;
-		}
-  }
+	.title {
+	  font-size: 150%;
+		margin-bottom: 4px;
+		font-weight: bold;
+	}
 }
 
 /* shared/error_messages */
