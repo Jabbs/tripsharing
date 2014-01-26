@@ -16,8 +16,6 @@ class User < ActiveRecord::Base
   after_commit :send_verification_email, on: :create
   
   # validations
-  validates :first_name
-  validates :last_name
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => /@/
   validates :password, presence: true, on: :create

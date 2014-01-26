@@ -1,10 +1,10 @@
 development:
   adapter: postgresql
-  database: travelwithstrangers_development
+  database: tripfloat_development
   host: localhost
 
 test:
   adapter: postgresql
-  database: travelwithstrangers_test
+  database: tripfloat_test
   host: localhost
 

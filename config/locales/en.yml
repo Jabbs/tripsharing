@@ -4,11 +4,11 @@
 en:
   application:
     root:
-      name: "TravelWithStrangers"
-      twitter_name: "TravelWithStrangers"
-      title: "Experiences Bring People Together | TravelWithStrangers"
+      name: "TripFloat"
+      twitter_name: "TripFloat"
+      title: "Experiences Bring People Together | TripFloat"
       description: "Plan a trip with people you don't know. Dare to explore the world and meet new people along the way!"
-      title_with_tag_line: "%{tag_line} | TravelWithStrangers"
+      title_with_tag_line: "%{tag_line} | TripFloat"
   exception:
     show:
       not_found:

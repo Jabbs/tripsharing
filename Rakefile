@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Travelwithstrangers::Application.load_tasks
+Tripfloat::Application.load_tasks

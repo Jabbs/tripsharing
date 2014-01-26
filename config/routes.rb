@@ -1,5 +1,5 @@
 require 'sidekiq/web'
-Travelwithstrangers::Application.routes.draw do
+Tripfloat::Application.routes.draw do
   # facebook omniauth
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')

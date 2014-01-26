@@ -6,7 +6,7 @@ class VerificationsController < ApplicationController
       sign_in @user unless current_user
       redirect_to get_started_path, notice: "Your account has been verified."
     else
-      redirect_to root_path, notice: "There was a problem verifying your account. Please contact support@travelwithstrangers.com 
+      redirect_to root_path, notice: "There was a problem verifying your account. Please contact support@tripfloat.com 
                                      for more details."
     end
   end
@@ -16,7 +16,7 @@ class VerificationsController < ApplicationController
       @user.update_attribute(:subscribed, false)
       redirect_to unsubscribed_path
     else
-      redirect_to root_path, notice: "There was a problem unsubscribing your email. Please contact support@travelwithstrangers.com 
+      redirect_to root_path, notice: "There was a problem unsubscribing your email. Please contact support@tripfloat.com 
                                      for more details."
     end
   end
