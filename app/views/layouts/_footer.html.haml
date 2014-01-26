@@ -1,25 +1,25 @@
 %footer.opaque-background-black
   .container
-    .visible-phone
-      = render 'layouts/footer_phone'
-    .hidden-phone
-      .row
-        .span2
-          .small{ style: "padding-top:3px; margin-bottom:8px;"}
-            © #{t('application.root.name')} 2014
-            %br
-          - if action_name == "home"
-            .fb-like{"data-href" => "http://www.trip-sharing.com/", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
-            %br
-            %a.twitter-share-button{"data-counturl" => request.url, "data-text" => "Plan a trip with people you don't know. Check this out!", "data-url" => request.url, "data-via" => "Trip_Sharing", href: "https://twitter.com/share"} Tweet
-        .span4
-          .title About
-          %p Travel is an experience. An experience you will remember for the rest of your life and can bring you close to the people you shared your trip with. Sometimes you get the opportunity to meet new people while you share these experiences. TripFloat was built to allow you to meet new people through the experience of traveling together. Make your next trip more than a destination and take a journey with new people, you just might create a bond you never expected!
-        .span4.pull-right
-          .title Connect with us
-          = link_to "https://twitter.com/Trip_Sharing", target: "_blank" do
-            @Trip_Sharing
+    / .visible-phone
+    /   = render 'layouts/footer_phone'
+    / .hidden-phone
+    .row
+      .span2
+        .small{ style: "padding-top:3px; margin-bottom:8px;"}
+          © #{t('application.root.name')} 2014
           %br
-          = mail_to "info@trip-sharing.com", "info@trip-sharing.com", target: "_blank"
+        - if action_name == "home"
+          .fb-like{"data-href" => "http://www.trip-sharing.com/", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
+          %br
+          %a.twitter-share-button{"data-counturl" => request.url, "data-text" => "Plan a trip with people you don't know. Check this out!", "data-url" => request.url, "data-via" => "Trip_Sharing", href: "https://twitter.com/share"} Tweet
+      .span4
+        .title About
+        %p Travel is an experience. An experience you will remember for the rest of your life and can bring you close to the people you shared your trip with. Sometimes you get the opportunity to meet new people while you share these experiences. TripFloat was built to allow you to meet new people through the experience of traveling together. Make your next trip more than a destination and take a journey with new people, you just might create a bond you never expected!
+      .span4.pull-right
+        .title Connect with us
+        = link_to "https://twitter.com/Trip_Sharing", target: "_blank" do
+          @Trip_Sharing
+        %br
+        = mail_to "info@trip-sharing.com", "info@trip-sharing.com", target: "_blank"
 
 
