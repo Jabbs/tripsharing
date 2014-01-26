@@ -3,8 +3,8 @@ Tripfloat::Application.configure do
     
   config.middleware.use ExceptionNotification::Rack,
     :email => {
-      :email_prefix => ENV['STAGING'].present? ? "[CAW ERROR STAGING] " : "[CAW ERROR PRODUCTION] ",
-      :sender_address => %{"civic artworks" <noreply@civicartworks.com>},
+      :email_prefix => ENV['STAGING'].present? ? "[TRIPFLOAT ERROR STAGING] " : "[TRIPFLOAT ERROR PRODUCTION] ",
+      :sender_address => %{"tripfloat" <noreply@tripfloat.com>},
       :exception_recipients => %w{petejabbour1@gmail.com}
     }
   
@@ -19,14 +19,14 @@ Tripfloat::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => ENV['STAGING'].present? ? 'www.civicartworks-staging.herokuapp.com' : 'www.civicartworks.com',
+    :domain               => ENV['STAGING'].present? ? 'www.tripfloat-staging.herokuapp.com' : 'www.tripfloat.com',
     :user_name            => ENV['GMAIL_USERNAME'],
     :password             => ENV['GMAIL_PASSWORD'],
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
     
   # Set the default host option for mailer
-  config.action_mailer.default_url_options = { :host => ENV['STAGING'].present? ? 'civicartworks-staging.herokuapp.com' : 'www.civicartworks.com' }
+  config.action_mailer.default_url_options = { :host => ENV['STAGING'].present? ? 'tripfloat-staging.herokuapp.com' : 'www.tripfloat.com' }
 
   # Code is not reloaded between requests
   config.cache_classes = true

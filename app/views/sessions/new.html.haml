@@ -8,7 +8,7 @@
         .row
           .span4.login_border
             .center
-              %h3.big.no-top-margin Login To Civic ArtWorks
+              %h3.big.no-top-margin Login To TripFloat
               %br
               %br
               = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook"
@@ -17,8 +17,7 @@
               \--or--
               %br
               %br
-              = image_tag("caw_logo_square_12_x_12.png", style: "padding-right:4px; padding-bottom:4px;")
-              Civic ArtWorks account:
+              TripFloat account:
               %br
               %br
               = form_tag do
@@ -39,7 +38,7 @@
               %h3.big.no-top-margin.blue Create Account
               = render 'users/form'
               .small
-                By creating a Civic ArtWorks account I agree to the
+                By creating a TripFloat account I agree to the
                 = link_to "terms of use", terms_path
                 and
                 = link_to 'privacy policy', privacy_path

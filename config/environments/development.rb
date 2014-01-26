@@ -1,12 +1,5 @@
 Tripfloat::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  
-  # config.middleware.use ExceptionNotification::Rack,
-  #   :email => {
-  #     :email_prefix => ENV['STAGING'].present? ? "[CAW ERROR STAGING] " : "[CAW ERROR PRODUCTION] ",
-  #     :sender_address => %{"civic artworks" <noreply@civicartworks.com>},
-  #     :exception_recipients => %w{petejabbour1@gmail.com}
-  #   }
 
   # Send out mailers when .delivery is invoked
   config.action_mailer.perform_deliveries = true
