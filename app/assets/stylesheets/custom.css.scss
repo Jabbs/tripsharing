@@ -13,6 +13,7 @@ $linkColor: #686868;
 /* Colors, Misc */
 
 $white: #ffffff;
+$black: #000000;
 $salmon: #D27D66;
 $turquoise: #5BD195;
 $turquoise_dark: #4CAF7D;
@@ -45,7 +46,7 @@ $body_grey: #4a4a4a;
 	    -moz-border-radius: 5px;
 	         border-radius: 5px;
 }
-.salmon {color: $salmon;}
+.salmon { color: $salmon; a { color: $salmon; }}
 .turquoise {color: $turquoise;}
 .white {color: white;}
 .green {color: $green;}
@@ -91,7 +92,7 @@ h1 { color: $dark_blue; }
 .heavy {font-size: 130%;}
 .smaller {font-size: 90%;line-height: 130%;}
 .small {font-size: 80%;line-height: 120%;}
-.tiny {font-size: 70%;line-height: 120%;}
+.tiny {font-size: 50%;line-height: 120%;}
 .no-right-margin { margin-right: 0px; }
 .no-left-margin { margin-left: 0px; }
 .no-top-margin { margin-top: 0px; }
@@ -131,7 +132,30 @@ h1 { color: $dark_blue; }
   filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 
-#logo {color: $salmon;}
+#logo {color: $salmon; font-size:200%; line-height:.3em; position:relative; top:7px;}
+#logo:hover {text-decoration:none;}
+
+#image-dropdown {
+  position:relative; 
+  right: 16px;
+  &:hover {cursor: pointer;}
+}
+#dropdown {
+  position:relative;
+  display: none;
+  width:125px;
+  box-shadow: 4px 4px 2px #888888;
+  margin-top:3px;
+  ul {
+    background: $white;
+    color: $black;
+    padding:0px;
+    li {
+      text-align: right;
+      padding: 0px 5px;
+    }
+  }
+}
 
 .white-shadow {
   text-shadow: 3px 4px $white;
@@ -170,6 +194,18 @@ h1 { color: $dark_blue; }
   background-color:rgba(91,209,149,0.5);
   color: white;
   padding: 16px;
+   -webkit-border-bottom-left-radius: 5px;
+	    -moz-border-bottom-left-radius: 5px;
+	         border-bottom-left-radius: 5px;
+   -webkit-border-bottom-right-radius: 5px;
+	    -moz-border-bottom-right-radius: 5px;
+	         border-bottom-right-radius: 5px;
+}
+.dashboard-well {
+  background-color:rgb(91,209,149);
+  background-color:rgba(91,209,149,0.5);
+  padding-top:10px;
+  color: white;
    -webkit-border-bottom-left-radius: 5px;
 	    -moz-border-bottom-left-radius: 5px;
 	         border-bottom-left-radius: 5px;

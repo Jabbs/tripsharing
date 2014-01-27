@@ -1,56 +1,49 @@
 #home-background
   .container
-    .row
-      .span4.offset1
-        %h1.white
-          .no-height
-            = image_tag "cloud.png", style: "position:relative; right:18px; top:-18px;"
-          .salmon.inline{style: "position:relative; z-index:3;"}
-            = link_to "TripSharing", root_url, title: "TripSharing", id: "logo"
-          = image_tag "airplane.png", style: "position:relative; left:80px; top:28px;"
-        %br
-        %br
-        %br
-        %br
-        .center
-          .no-height
-            .div{style: "position:relative; left: 70px; top: -50px;"}
-              = image_tag "questionmark.png", class: "image questionmark"
-          .no-height
-            .div{style: "position:relative; right: 70px; top: -50px;"}
-              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/274444_17602270_1994920605_q.jpg", class: "image"
-          .no-height
-            .div{style: "position:relative; right: 150px; top:35px;"}
-              = image_tag "questionmark.png", class: "image questionmark"
-          .no-height
-            .div{style: "position:relative; right: 150px; top:155px;"}
-              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/211861_54800471_499027771_q.jpg", class: "image"
-          .no-height
-            .div{style: "position:relative; left: 150px; top:35px;"}
-              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/273198_1051999955_113368810_q.jpg", class: "image"
-          .no-height
-            .div{style: "position:relative; left: 150px; top:155px;"}
-              - if current_user
-                = image_tag current_user.fb_image, class: "image questionmark"
-              - else
+    - if current_user
+      = render 'dashboard'
+    - else
+      .row
+        .span4.offset1
+          %h1.white
+            .no-height
+              = image_tag "cloud.png", style: "position:relative; right:18px; top:-18px;"
+            .salmon.inline{style: "position:relative; z-index:3;"}
+              = link_to "TripSharing", root_url
+            = image_tag "airplane.png", style: "position:relative; left:80px; top:28px;"
+          %br
+          %br
+          %br
+          %br
+          .center
+            .no-height
+              .div{style: "position:relative; left: 70px; top: -50px;"}
                 = image_tag "questionmark.png", class: "image questionmark"
-          .no-height
-            .div{style: "position:relative; left: 70px; top: 245px;"}
-              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/1076206_69901513_1031630042_q.jpg", class: "image"
-          .no-height
-            .div{style: "position:relative; right: 70px; top: 245px;"}
-              = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t5/41761_16808695_5273_q.jpg", class: "image"
-          = image_tag "globe-icon-planes-250.png"
+            .no-height
+              .div{style: "position:relative; right: 70px; top: -50px;"}
+                = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/274444_17602270_1994920605_q.jpg", class: "image"
+            .no-height
+              .div{style: "position:relative; right: 150px; top:35px;"}
+                = image_tag "questionmark.png", class: "image questionmark"
+            .no-height
+              .div{style: "position:relative; right: 150px; top:155px;"}
+                = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/211861_54800471_499027771_q.jpg", class: "image"
+            .no-height
+              .div{style: "position:relative; left: 150px; top:35px;"}
+                = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/273198_1051999955_113368810_q.jpg", class: "image"
+            .no-height
+              .div{style: "position:relative; left: 150px; top:155px;"}
+                = image_tag "questionmark.png", class: "image questionmark"
+            .no-height
+              .div{style: "position:relative; left: 70px; top: 245px;"}
+                = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/1076206_69901513_1031630042_q.jpg", class: "image"
+            .no-height
+              .div{style: "position:relative; right: 70px; top: 245px;"}
+                = image_tag "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t5/41761_16808695_5273_q.jpg", class: "image"
+            = image_tag "globe-icon-planes-250.png"
           
-      .span5.offset1
-        .signup-well
-          - if current_user
-            %h3 
-              Congratulations #{current_user.first_name}, on joining our community!
-            %h3 We'll let you know when you can start traveling with other randos!
-            %br
-            = link_to "sign out", signout_path, method: :delete, style: "position:relative; z-index:10;"
-          - else
+        .span5.offset1
+          .signup-well
             %h2.center Take a trip with people you don't know!
             %hr
             %h4.grey-dark
