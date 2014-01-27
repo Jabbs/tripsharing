@@ -4,10 +4,36 @@
 @media (min-width: 980px) and (max-width: 1199px) {}
  
 /* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {}
+@media (min-width: 768px) and (max-width: 979px) {
+  
+}
  
 /* Landscape phone to portrait tablet */
-@media (max-width: 767px) {}
+@media (max-width: 767px) {
+  #logo_main {
+    padding:15px;
+  }
+  .signup-well {
+    margin-top: 80px;
+    border-radius: 0px;
+    h4,p {text-align:center;}
+  }
+  footer {
+    margin-top:0px;
+  }
+}
  
 /* Landscape phones and down */
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+  #logo_main {
+    padding:15px;
+  }
+  .signup-well {
+    margin-top: 80px;
+    border-radius: 0px;
+  }
+  footer {
+    margin-top:0px;
+    height:auto;
+  }
+}
