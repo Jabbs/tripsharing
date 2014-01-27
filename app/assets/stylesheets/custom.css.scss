@@ -76,9 +76,9 @@ $body_grey: #4a4a4a;
 }
 
 /* Universal */
+html,body { background: transparent }
 body {
   color: $body_grey;
-  background: lighten($grey, 10%);
   font-family: 'Nunito', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
@@ -162,8 +162,9 @@ h1 { color: $dark_blue; }
 }
 
 #home-background { 
-  background-image: url("vietnam1.jpg");
+  background: url("vietnam1.jpg") no-repeat center center;
   height: 990px;
+
 }
 .image {
   border: 3px solid $white;
@@ -190,8 +191,7 @@ h1 { color: $dark_blue; }
 }
 
 .signup-well {
-  background-color:rgb(91,209,149);
-  background-color:rgba(91,209,149,0.5);
+  background-color: $white;
   color: white;
   padding: 16px;
    -webkit-border-bottom-left-radius: 5px;
@@ -203,7 +203,7 @@ h1 { color: $dark_blue; }
 }
 .dashboard-well {
   background-color:rgb(91,209,149);
-  background-color:rgba(91,209,149,0.5);
+  background-color:rgba(91,209,149,0.6);
   padding-top:10px;
   color: white;
    -webkit-border-bottom-left-radius: 5px;
