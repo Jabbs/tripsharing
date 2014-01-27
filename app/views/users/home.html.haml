@@ -49,7 +49,7 @@
               Congratulations #{current_user.first_name}, on joining our community!
             %h3 We'll let you know when you can start traveling with other randos!
             %br
-            = link_to "sign out", signout_path, method: :delete
+            = link_to "sign out", signout_path, method: :delete, style: "position:relative; z-index:10;"
           - else
             %h2.center Take a trip with people you don't know!
             %hr
