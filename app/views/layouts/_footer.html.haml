@@ -9,7 +9,7 @@
           © #{t('application.root.name')} 2014
           %br
         - if action_name == "home"
-          .fb-like{"data-href" => "http://www.trip-sharing.com/", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
+          .fb-like{"data-href" => "#{t('application.root.fb_url')}", "data-layout" => "button_count", "data-action" => "like", "data-send" => "false", "data-show-faces" => "false", "data-width" => "220"}
           %br
           %a.twitter-share-button{"data-counturl" => "http://www.trip-sharing.com/", "data-text" => "Plan a trip with people you don't know. Check this out!", "data-url" => "http://www.trip-sharing.com/", "data-via" => "Trip_Sharing", href: "https://twitter.com/share"} Tweet
       .span4

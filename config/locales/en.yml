@@ -5,6 +5,7 @@ en:
   application:
     root:
       name: "TripSharing"
+      fb_url: "https://www.facebook.com/pages/tripsharing/215864905272760"
       twitter_name: "Trip_Sharing"
       title: "Travel And Meet New People | TripSharing"
       description: "Take a trip with people you don't know. Create an experience that will last a lifetime. Sign up for our beta release!"
