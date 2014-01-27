@@ -7,7 +7,10 @@
           = link_to "TripSharing<span class='white tiny'>beta</span>".html_safe, root_url, id: "logo"
         .span2.offset6
           .right
-            = image_tag current_user.fb_image, size: "30x30", id: "image-dropdown"
+            - if current_user.fb_image
+              = image_tag current_user.fb_image, size: "30x30", id: "image-dropdown"
+            - else
+              = image_tag "blank_avatar.jpg", size: "30x30", id: "image-dropdown"
             .no-height
               #dropdown
                 %ul.unstyled
