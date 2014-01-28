@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.fb_image_random_5
+    self.pluck(:fb_image).shuffle.first(5)
+  end
+  
   def facebook
     @facebook ||= Koala::Facebook::API.new(oauth_token)
     block_given? ? yield(@facebook) : @facebook
