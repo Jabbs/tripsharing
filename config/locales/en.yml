@@ -9,6 +9,7 @@ en:
       twitter_name: "Trip_Sharing"
       title: "Travel And Meet New People | TripSharing"
       description: "Take a trip with people you don't know. Create an experience that will last a lifetime. Sign up for our beta release!"
+      long_description: "Travel is an experience you will always remember and it can bring you close to those who traveled with you. Sometimes you get the opportunity to share a trip with people you don't know. It opens you up to meeting truly unique, interesting, and lovely people. TripSharing was built to allow you to meet new people through the experience of traveling together. Make your next trip more than a destination and take a journey with new people, you might create a bond you never expected!"
       title_with_tag_line: "%{tag_line} | TripSharing"
   exception:
     show:
