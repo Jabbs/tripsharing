@@ -1,21 +1,22 @@
 .row
-  .span12
+  .span12.no-margin-large-desktop
     .dashboard-well
       .row
         .span4
-          = link_to image_tag("globe-icon-30.jpeg"), root_url, style: "margin-left:5px;"
-          = link_to "TripSharing<span class='white tiny'>beta</span>".html_safe, root_url, id: "logo"
+          #logo-tablet
+            = link_to image_tag("globe-icon-30.jpeg"), root_url, style: "margin-left:5px;"
+            = link_to "TripSharing<span class='white tiny'>beta</span>".html_safe, root_url, id: "logo"
         .span2.offset6
           .right
-            - if current_user.fb_image
-              = image_tag current_user.fb_image, size: "30x30", id: "image-dropdown"
-            - else
-              = image_tag "blank_avatar.jpg", size: "30x30", id: "image-dropdown"
-            .no-height
-              #dropdown
-                %ul.unstyled
-                  %li= link_to "sign out", signout_path, method: :delete
-      %br
+            #image-avatar
+              - if current_user.fb_image
+                = image_tag current_user.fb_image, size: "30x30", id: "image-dropdown"
+              - else
+                = image_tag "blank_avatar.jpg", size: "30x30", id: "image-dropdown"
+              / .no-height
+              /   #dropdown
+              /     %ul.unstyled
+              /       %li= link_to "sign out", signout_path, method: :delete
       %br
       %br
       .row
@@ -24,6 +25,10 @@
             %h2.center Thank you for your interest, please check back with us soon!
       %br
       %br
-.div{style: "margin-bottom:104px;"}
+      .row
+        .span12
+          .right
+            = link_to "sign out", signout_path, method: :delete, style: "position:relative; right:2%; top:-2%", class: "btn"
+      %div{style: "height:10px;"}
 
       

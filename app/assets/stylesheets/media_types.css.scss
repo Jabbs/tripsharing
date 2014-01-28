@@ -1,5 +1,12 @@
 /* Large desktop */
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+  #image-dropdown {
+    right:15%;
+  }
+  .no-margin-large-desktop {
+    margin:0px;
+  }
+}
 
 @media (min-width: 980px) and (max-width: 1199px) {}
  
@@ -10,6 +17,22 @@
  
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
+  .dashboard-well {
+    padding: 20px;
+    padding-bottom:0px;
+  }
+  #image-dropdown {
+    right:4px;
+    top:-40px;
+  }
+  #logo-tablet {
+    position:relative;
+    top:-10px;
+  }
+  #dropdown {
+    right:3%;
+    top:-40px;
+  }
   #logo_main {
     padding:15px;
   }
