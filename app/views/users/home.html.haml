@@ -48,10 +48,11 @@
           = link_to "dashboard", dashboard_path
           to get started.
       - else
-        .center
-          = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
-        %p.black.center
+        = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
+        %p.black.inline
           to get started!
+        %hr
+        %p.small.black #{t('application.root.name')} does not post on your Facebook timeline or share your information with third parties.
 
 
   
