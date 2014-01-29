@@ -27,7 +27,8 @@
                   %ul.dropdown-menu
                     %li
                       %a{:href => dashboard_path}
-                        Dashboard
+                        %i.icon-search{ style: "margin-right:.2em;"}
+                        Browse Trips
                     - if current_user.admin?
                       %li
                         %a{href: ""}
@@ -39,8 +40,8 @@
           %ul.nav.pull-right.hidden-desktop
             %li
               %a{:href => dashboard_path}
-                %i.icon-user{ style: "margin-right:.3em;"}
-                Dashboard
+                %i.icon-search{ style: "margin-right:.2em;"}
+                Browse Trips
             - if admin_user?
               %li
                 %a{href: ""}
