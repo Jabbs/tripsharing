@@ -1,61 +1,57 @@
-#home-background
-  .container
-    - if current_user
-      = render 'dashboard'
-    - else
-      .row
-        .span4.offset1
-          %h1.white#logo_main
-            .no-height
-              = image_tag "cloud.png", style: "position:relative; right:18px; top:-18px;"
-            .salmon.inline{style: "position:relative; z-index:3;"}
-              = link_to "TripSharing", root_url
-            = image_tag "airplane.png", style: "position:relative; left:80px; top:28px;"
-          %br
-          %br
-          %br
-          %br
-          .center
-            .no-height
-              .div{style: "position:relative; left: 70px; top: -50px;"}
-                = image_tag "questionmark.png", class: "image questionmark"
-            .no-height
-              .div{style: "position:relative; right: 70px; top: -50px;"}
-                = image_tag @fb_images_rand_5[0], class: "image"
-            .no-height
-              .div{style: "position:relative; right: 150px; top:35px;"}
-                = image_tag "questionmark.png", class: "image questionmark"
-            .no-height
-              .div{style: "position:relative; right: 150px; top:155px;"}
-                = image_tag @fb_images_rand_5[1], class: "image"
-            .no-height
-              .div{style: "position:relative; left: 150px; top:35px;"}
-                = image_tag @fb_images_rand_5[2], class: "image"
-            .no-height
-              .div{style: "position:relative; left: 150px; top:155px;"}
-                = image_tag "questionmark.png", class: "image questionmark"
-            .no-height
-              .div{style: "position:relative; left: 70px; top: 245px;"}
-                = image_tag @fb_images_rand_5[3], class: "image"
-            .no-height
-              .div{style: "position:relative; right: 70px; top: 245px;"}
-                = image_tag @fb_images_rand_5[4], class: "image"
-            = image_tag "globe-icon-planes-250.png"
-          
-        .span5.offset1
-          .signup-well
-            %h2.center.turquoise Take a trip with people you don't know!
-            %hr
-            %h4.grey-dark
-              1. Choose your destination
-            %h4.grey-dark
-              2. Join interesting groups
-            %h4.grey-dark
-              3. Travel and meet!
-            %hr
-            %p.black{style: "line-height: 200%;"}
-              = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign up with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
-              to stay notified of our beta release!
+.row
+  .span4.offset1
+    %br
+    %br
+    %br
+    %br
+    .center
+      .no-height
+        .div{style: "position:relative; left: 70px; top: -50px;"}
+          = image_tag "questionmark.png", class: "image questionmark"
+      .no-height
+        .div{style: "position:relative; right: 70px; top: -50px;"}
+          = image_tag @fb_images_rand_5[0], class: "image"
+      .no-height
+        .div{style: "position:relative; right: 150px; top:35px;"}
+          = image_tag "questionmark.png", class: "image questionmark"
+      .no-height
+        .div{style: "position:relative; right: 150px; top:155px;"}
+          = image_tag @fb_images_rand_5[1], class: "image"
+      .no-height
+        .div{style: "position:relative; left: 150px; top:35px;"}
+          = image_tag @fb_images_rand_5[2], class: "image"
+      .no-height
+        .div{style: "position:relative; left: 150px; top:155px;"}
+          = image_tag "questionmark.png", class: "image questionmark"
+      .no-height
+        .div{style: "position:relative; left: 70px; top: 245px;"}
+          = image_tag @fb_images_rand_5[3], class: "image"
+      .no-height
+        .div{style: "position:relative; right: 70px; top: 245px;"}
+          = image_tag @fb_images_rand_5[4], class: "image"
+      = image_tag "globe-icon-planes-250.png"
+    
+  .span5.offset1
+    .signup-well
+      %h2.center.black Take a trip with people you don't know!
+      %hr
+      %h4.grey-dark
+        1. Choose your destination
+      %h4.grey-dark
+        2. Join interesting groups
+      %h4.grey-dark
+        3. Travel and meet!
+      %hr
+      - if current_user
+        %p.black.center
+          You're signed up. Welcome to the community! Checkout your
+          = link_to "dashboard", dashboard_path
+          to get started.
+      - else
+        .center
+          = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"
+        %p.black.center
+          to join our growing community!
 
 
-  = render 'layouts/footer'
+  

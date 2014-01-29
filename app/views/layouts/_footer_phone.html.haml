@@ -1,8 +1,5 @@
-.row
-  .span12
-    .center.small{ style: "padding-top:3px; margin-bottom:8px;"}
-      © #{t('application.root.name')} Inc. 2014
 - if action_name == "home"
+  %br
   .row
     .span12
       .center
@@ -12,6 +9,7 @@
       .center
         .div{style: "padding-left:30px;"}
           %a.twitter-share-button{"data-counturl" => "http://www.trip-sharing.com/", "data-text" => "Plan a trip with people you don't know. Check this out!", "data-url" => "http://www.trip-sharing.com/", "data-via" => "Trip_Sharing", href: "https://twitter.com/share"} Tweet
+  %br
 .row
   .span12
     .center
@@ -22,3 +20,7 @@
         @Trip_Sharing
       %br
       = mail_to "info@trip-sharing.com", "info@trip-sharing.com", target: "_blank"
+.row
+  .span12
+    .center.small{ style: "padding-top:3px;"}
+      © #{t('application.root.name')} Inc. 2014

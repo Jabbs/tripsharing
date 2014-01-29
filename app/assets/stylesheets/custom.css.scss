@@ -137,34 +137,8 @@ h1 { color: $dark_blue; }
   filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 
-#logo {color: $salmon; font-size:200%; line-height:.3em; position:relative; top:7px;}
-#logo:hover {text-decoration:none;}
-
-#image-dropdown {
-  position:relative; 
-  right: 16px;
-//  &:hover {cursor: pointer;}
-}
-#dropdown {
-  position:relative;
-  display: none;
-  width:125px;
-  box-shadow: 4px 4px 2px #888888;
-  margin-top:3px;
-  ul {
-    background: $white;
-    color: $black;
-    padding:0px;
-    li {
-      text-align: right;
-      padding: 0px 5px;
-    }
-  }
-}
-
-.white-shadow {
-  text-shadow: 3px 4px $white;
-}
+// OVERRIDES
+.alert { border-radius: 0;}
 
 #home-background { 
   background: url("vietnam1.jpg") no-repeat center center;
@@ -198,6 +172,9 @@ h1 { color: $dark_blue; }
   background-color: $white;
   color: white;
   padding: 16px;
+  border-left: 1px solid $black;
+  border-bottom: 1px solid $black;
+  border-right: 1px solid $black;
    -webkit-border-bottom-left-radius: 5px;
 	    -moz-border-bottom-left-radius: 5px;
 	         border-bottom-left-radius: 5px;
@@ -206,16 +183,11 @@ h1 { color: $dark_blue; }
 	         border-bottom-right-radius: 5px;
 }
 .dashboard-well {
-  background-color:rgb(91,209,149);
-  background-color:rgba(91,209,149,0.6);
+  background: $white;
   padding-top:10px;
+  margin-top:4em;
   color: white;
-   -webkit-border-bottom-left-radius: 5px;
-	    -moz-border-bottom-left-radius: 5px;
-	         border-bottom-left-radius: 5px;
-   -webkit-border-bottom-right-radius: 5px;
-	    -moz-border-bottom-right-radius: 5px;
-	         border-bottom-right-radius: 5px;
+  @include rounded_borders;
 }
 
 .btn-facebook {
@@ -227,6 +199,37 @@ h1 { color: $dark_blue; }
     background: darken($fb_color, 10%);
     color: white;
   }
+}
+
+/* header */
+.navbar, .navbar-inner {margin:0px; border-radius:0;background: transparent; border:none; box-shadow:none;}
+.navbar-inverse .navbar-inner {
+  margin:0px;
+  height:49px;
+  border-bottom: 1px solid black;
+  background-image: none;
+  background-color: white;
+  border:none;
+  li a {
+    text-shadow: none;
+    &:hover { color: $turquoise;}
+  }
+}
+.navbar .nav > li > a {
+  b.caret { border-top-color: black !important;border-bottom-color: black !important; }
+  &:hover { color: black; }
+}
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+  background-image:none;
+  background: white;
+}
+.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: transparent !important; }
+#logo {color: $salmon; font-size:200%; line-height:.3em; position:relative; top:7px;}
+#logo:hover {text-decoration:none;}
+#image-dropdown {
+  position:relative; 
+  right: 16px;
+//  &:hover {cursor: pointer;}
 }
 
 /* footer */

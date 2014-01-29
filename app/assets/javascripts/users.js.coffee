@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  
-  
-  $("#image-dropdown").click ->
-    $("#dropdown").toggle()
+  # 
+  # $("#image-dropdown").click ->
+  #   $("#dropdown").toggle()

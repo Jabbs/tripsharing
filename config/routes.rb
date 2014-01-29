@@ -20,6 +20,7 @@ Tripsharing::Application.routes.draw do
   match '/unsubscribe', to: "verifications#unsubscribe", via: :get
   match '/unsubscribed', to: "static_pages#unsubscribed", via: :get
   match '/home', to: "users#home", via: :get
+  match '/dashboard', to: "users#dashboard", via: :get
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
