@@ -1,5 +1,8 @@
 require 'sidekiq/web'
 Tripsharing::Application.routes.draw do
+  resources :trips
+
+
   # facebook omniauth
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')

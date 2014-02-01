@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140126075501) do
+ActiveRecord::Schema.define(:version => 20140131152349) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -34,6 +34,52 @@ ActiveRecord::Schema.define(:version => 20140126075501) do
 
   add_index "image_attachments", ["image_attachable_id"], :name => "index_image_attachments_on_image_attachable_id"
   add_index "image_attachments", ["image_attachable_type"], :name => "index_image_attachments_on_image_attachable_type"
+
+  create_table "locations", :force => true do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "country"
+    t.string   "state"
+    t.string   "zip"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "locationable_id"
+    t.string   "locationable_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "locations", ["country"], :name => "index_locations_on_country"
+  add_index "locations", ["locationable_id", "locationable_type"], :name => "index_locations_on_locationable_id_and_locationable_type"
+
+  create_table "trip_applications", :force => true do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.string   "status",       :default => "pending"
+    t.text     "introduction"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "trip_applications", ["status"], :name => "index_trip_applications_on_status"
+  add_index "trip_applications", ["trip_id"], :name => "index_trip_applications_on_trip_id"
+  add_index "trip_applications", ["user_id"], :name => "index_trip_applications_on_user_id"
+
+  create_table "trips", :force => true do |t|
+    t.string   "name"
+    t.datetime "expires_at"
+    t.string   "age_min"
+    t.string   "age_max"
+    t.string   "group_size"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "slug"
+  end
+
+  add_index "trips", ["name"], :name => "index_trips_on_name"
+  add_index "trips", ["slug"], :name => "index_trips_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                     :null => false

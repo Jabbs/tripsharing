@@ -23,7 +23,7 @@ module SessionsHelper
   def signed_in_user
     unless current_user
       store_location
-      redirect_to login_url, alert: "Please log in first."
+      redirect_to root_url, alert: "Please sign in first."
     end
   end
   
