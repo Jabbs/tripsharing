@@ -26,10 +26,14 @@
                     %b.caret
                   %ul.dropdown-menu
                     %li
-                      %a{:href => dashboard_path}
+                      %a{:href => trips_path}
                         %i.icon-search{ style: "margin-right:.2em;"}
                         Browse Trips
                     - if current_user.admin?
+                      %li
+                        %a{href: new_trip_path}
+                          %i.icon-plane{ style: "margin-right:.3em;"}
+                          New Trip
                       %li
                         %a{href: ""}
                           Admin Panel
@@ -39,10 +43,14 @@
                         Logout
           %ul.nav.pull-right.hidden-desktop
             %li
-              %a{:href => dashboard_path}
+              %a{:href => trips_path}
                 %i.icon-search{ style: "margin-right:.2em;"}
                 Browse Trips
             - if admin_user?
+              %li
+                %a{href: new_trip_path}
+                  %i.icon-plane{ style: "margin-right:.3em;"}
+                  New Trip
               %li
                 %a{href: ""}
                   Admin Panel

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_secure_password
   
   # associations
+  has_many :trips
   
   # callbacks
   before_create { generate_token(:auth_token) }

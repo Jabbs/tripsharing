@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131152349) do
+ActiveRecord::Schema.define(:version => 20140201222531) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -73,13 +73,17 @@ ActiveRecord::Schema.define(:version => 20140131152349) do
     t.string   "age_max"
     t.string   "group_size"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "slug"
+    t.boolean  "active",      :default => false
+    t.integer  "view_count",  :default => 0
+    t.integer  "user_id"
   end
 
   add_index "trips", ["name"], :name => "index_trips_on_name"
   add_index "trips", ["slug"], :name => "index_trips_on_slug"
+  add_index "trips", ["user_id"], :name => "index_trips_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                     :null => false

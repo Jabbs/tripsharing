@@ -44,8 +44,8 @@
       %hr
       - if current_user
         %p.black.center
-          You're signed up. Welcome to the community! Checkout your
-          = link_to "dashboard", dashboard_path
+          You're signed up. Welcome to the community! Checkout the
+          = link_to "TripShares", trips_path
           to get started.
       - else
         = link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in"

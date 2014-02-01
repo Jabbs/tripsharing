@@ -1,0 +1,9 @@
+%fieldset.image-box
+  .row
+    .span6.small-left-margin
+      - if f.object.new_record?
+        = f.file_field :image, class: "span4", style: "margin-left: 0px;"
+      - else
+        = image_tag(f.object.image.url(:small)).to_s
+      = f.hidden_field :_destroy
+      = link_to "<i class='icon-remove-circle'></i> remove".html_safe, '#', class: 'remove_fields'
