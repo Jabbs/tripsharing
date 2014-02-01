@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   belongs_to :locationable, polymorphic: true
   
   geocoded_by :full_address
-  acts_as_gmappable :process_geocoding => false
+  # acts_as_gmappable :process_geocoding => false
   
   after_validation :geocode, :if => :address_changed?
   
