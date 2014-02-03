@@ -13,6 +13,10 @@ class Trip < ActiveRecord::Base
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
   
+  def city_state
+    self.location.city_state
+  end
+  
   def add_view_count
     self.view_count += 1
     save!

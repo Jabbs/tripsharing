@@ -3,6 +3,9 @@
     .dashboard-well
       .row
         .span10.offset1
-          .well{style: "color: black;"}
-            %h2.center.grey No TripShares currently available. Please check back with us soon!
+          - if @trips.any?
+            = render "trips/trips"
+          - else
+            .well{style: "color: black;"}
+              %h2.center.grey No TripShares currently available. Please check back with us soon!
 

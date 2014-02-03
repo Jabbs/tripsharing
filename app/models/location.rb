@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address1, :address2, :address3, :city, :country, :state, :zip, :latitude,
+  attr_accessible :address1, :address2, :city, :country, :state, :zip, :latitude,
                   :longitude, :display_on_map
   belongs_to :locationable, polymorphic: true
   
@@ -17,7 +17,7 @@ class Location < ActiveRecord::Base
   }
   
   def address_changed?
-    attrs = %w(address1 address2 address3 city state zip country)
+    attrs = %w(address1 address2 city state zip country)
     attrs.any?{|a| send "#{a}_changed?"}
   end
   
@@ -29,6 +29,10 @@ class Location < ActiveRecord::Base
         "#{self.city}, #{self.country}"
       end
     end
+  end
+  
+  def city_state
+    "#{city}, #{state}"
   end
   
   def city_state?
@@ -48,11 +52,11 @@ class Location < ActiveRecord::Base
   end
   
   def full_address
-    "#{address1}, #{address2}, #{address3}, #{city}, #{state}, #{zip}, #{country}"
+    "#{address1}, #{address2}, #{city}, #{state}, #{zip}, #{country}"
   end
   
   def gmaps4rails_address
   # describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-    "#{address1}, #{address2}, #{address3}, #{city}, #{state}, #{zip}, #{country}"
+    "#{address1}, #{address2}, #{city}, #{state}, #{zip}, #{country}"
   end
 end

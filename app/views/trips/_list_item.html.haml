@@ -1,0 +1,25 @@
+.well.trip-well.active.pointer
+  - if trip.inactive?
+    .no-height
+      .trip-status.grey-background
+        .center
+          INACTIVE
+  / - else
+  /   .no-height
+  /     .trip-status.green-background
+  /       .center
+  /         LIVE DISCUSSION
+    
+  - if trip.image_attachments.any?
+    = image_tag(trip.image_attachments.first.image.url(:medium)).to_s
+  - else
+    = image_tag("globe-icon-planes-250.png")
+      
+  %h4
+    = link_to "#{truncate(trip.name, length: 50)}", trip_path(trip)
+  .icons
+    .black
+      %i.icon-map-marker.padding-for-map-marker 
+      = trip.location.country
+      %br
+

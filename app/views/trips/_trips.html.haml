@@ -1,0 +1,13 @@
+.row
+  - @trips.each do |trip|
+    - if admin_user?
+      .span3
+        = render 'trips/list_item', trip: trip
+    - elsif trip.active?
+      .span3
+        = render 'trips/list_item', trip: trip
+  / .span3
+  /   = render 'trips/plainfield'
+.row
+  .span12
+    = will_paginate @trips

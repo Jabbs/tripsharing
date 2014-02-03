@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'friendly_id'
 gem 'client_side_validations'
 gem 'geocoder'
+gem "continents", "~> 0.0.4"
 gem 'gmaps4rails'
 gem 'validates_timeliness', '~> 3.0'
 gem "carrierwave"
