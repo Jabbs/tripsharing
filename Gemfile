@@ -13,7 +13,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'will_paginate', '3.0.3'
 gem "rinku", "~> 1.7.3"
-gem 'figaro'
+gem 'figaro', '~> 1.0.0'
 gem 'friendly_id'
 gem 'client_side_validations'
 gem 'geocoder'
