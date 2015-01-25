@@ -1,0 +1,19 @@
+<div id="home-background3">
+	<div class="container">
+		<div class="row">
+		  <div class="span12 no-margin-large-desktop">
+		    <div class="dashboard-well">
+		      <div class="row">
+		        <div class="span10 offset1">
+							<% @interests.each do |interest| %>
+								<%= link_to user_interest_path(current_user.id, interest.id), class: "btn #{interest.has_it? ? "btn-success" : ""}", id: "identifier-#{interest.id}", method: :put, remote: true do %>
+									<%= Interest::IDENTIFIERS[interest.identifier] %>
+								<% end %>								
+							<% end %>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>

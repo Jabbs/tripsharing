@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140201222531) do
+ActiveRecord::Schema.define(:version => 20150125192733) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(:version => 20140201222531) do
 
   add_index "image_attachments", ["image_attachable_id"], :name => "index_image_attachments_on_image_attachable_id"
   add_index "image_attachments", ["image_attachable_type"], :name => "index_image_attachments_on_image_attachable_type"
+
+  create_table "interests", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "identifier"
+    t.boolean  "has_it",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "interests", ["identifier"], :name => "index_interests_on_identifier"
+  add_index "interests", ["user_id"], :name => "index_interests_on_user_id"
 
   create_table "locations", :force => true do |t|
     t.string   "address1"

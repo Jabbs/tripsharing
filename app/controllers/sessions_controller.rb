@@ -9,12 +9,12 @@ class SessionsController < ApplicationController
       @session_user = User.from_omniauth(env["omniauth.auth"])
       logger.debug "request.referer: #{request.referer}"
       sign_in @session_user
-      redirect_back_or trips_path
+      redirect_back_or user_interests_path(current_user)
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)
       if @session_user && @session_user.authenticate(params[:password].to_s)
         sign_in @session_user
-        redirect_back_or trips_path
+        redirect_back_or user_interests_path(current_user)
       else
         @user = User.new
         @session_user = User.new

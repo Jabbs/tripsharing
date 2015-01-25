@@ -163,11 +163,29 @@ a.gp-link {
 	text-align: center;
 }
 .slogan-text.mid {
-	padding-top: 180px;
+	text-shadow: 1px 1px black;
+	padding-top: 160px;
 }
 .slogan-text.bottom {
 	padding-top: 600px;
+	text-shadow: 1px 1px black;
 	padding-bottom: 40px;
+}
+
+.btn-start {
+	background: $turquoise;
+	padding: 10px;
+	display: inline;
+	font-size: 300%;
+	width: 200px;
+	@include rounded_borders;
+	border: 6px solid $white;
+	color: $white;
+	&:hover {
+		cursor: pointer;
+		color: lighten($turquoise, 20%);
+		border: 6px solid lighten($turquoise, 20%);
+	}
 }
 
 #home-background { 

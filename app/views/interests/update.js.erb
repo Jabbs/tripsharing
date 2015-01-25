@@ -1,0 +1,6 @@
+<% x = "#identifier-" + @interest.id.to_s %>
+<% if @interest.has_it? %>
+	$("<%= x %>").addClass('btn-success');
+<% else %>
+	$("<%= x %>").removeClass('btn-success');
+<% end %>

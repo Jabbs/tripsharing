@@ -10,11 +10,13 @@ class User < ActiveRecord::Base
   
   # associations
   has_many :trips
+  has_many :interests, dependent: :destroy
   
   # callbacks
   before_create { generate_token(:auth_token) }
   before_save :correct_case_of_inputs
   # after_commit :send_verification_email, on: :create
+  after_commit :build_interests
   
   # validations
   validates :email, presence: true, uniqueness: true
@@ -48,6 +50,12 @@ class User < ActiveRecord::Base
   
   def self.fb_image_random_5
     self.pluck(:fb_image).shuffle.first(5)
+  end
+  
+  def build_interests
+    Interest::IDENTIFIERS.each do |identifier|
+      self.interests.create!(identifier: identifier[0])
+    end
   end
   
   def facebook
