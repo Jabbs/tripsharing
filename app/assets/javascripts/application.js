@@ -18,3 +18,13 @@
 //= require bootstrap
 //= require rails.validations
 //= require_tree .
+
+
+$('document').ready(function() {
+	$('#go-to-top').click(function () {
+	    $(window.opera ? 'html' : 'html, body').animate({
+	        scrollTop: 0
+	    }, 1000); // scroll takes 1 second
+	});
+});
+

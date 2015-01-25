@@ -141,9 +141,58 @@ h4 { line-height: 1.2em; }
 // OVERRIDES
 .alert { border-radius: 0;}
 
+.send-to-front {
+	position: relative;
+	z-index: 1;
+}
+
+a.tw-link {
+	color: $body_grey;
+	text-decoration: none;
+	&:hover {color: darken($body_grey, 5%); text-decoration: none;}
+}
+a.gp-link {
+	color: $body_grey;
+	text-decoration: none;
+	&:hover {color: darken($body_grey, 5%); text-decoration: none;}
+}
+
+.slogan-text {
+	color: $white;
+	font-size: 400%;
+	text-align: center;
+}
+.slogan-text.mid {
+	padding-top: 180px;
+}
+.slogan-text.bottom {
+	padding-top: 600px;
+	padding-bottom: 40px;
+}
+
 #home-background { 
-  background: url("vietnam1.jpg") no-repeat center center;
-//  height: 990px;
+  background: url("home/vietnam1.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 1000px;
+}
+#home-background2 { 
+  background-color: $turquoise_dark;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 600px;
+}
+#home-background3 { 
+  background: url("home/bogota_columbia.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 1000px;
 }
 .image {
   border: 3px solid $white;
@@ -237,10 +286,9 @@ h4 { line-height: 1.2em; }
 /* footer */
 
 footer {
-  margin-top:252px;
-  height:340px;
-  background: $grey-dark;
-  padding-top: 10px;
+  height:240px;
+  background: $salmon;
+  padding-top: 30px;
   padding-bottom: 10px;
   color: $grey;
   a {color: $salmon;}

@@ -1,0 +1,22 @@
+<div id="home-background3">
+	<div class="container">
+		<div class="row">
+		  <div class="span12 no-margin-large-desktop">
+		    <div class="dashboard-well">
+		      <div class="row">
+		        <div class="span10 offset1">
+		          <% if @trips.any? %>
+		            <%= render "trips/trips" %>
+		          <% else %>
+		            <div class="well" style="color: black;">
+		              <h2 class="center grey">No travel is currently available. Please check back with us soon!</h2>
+		            </div>
+		          <% end %>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,28 @@
+<footer>
+	<div class="container">
+		<div class="visible-phone"><%= render 'layouts/footer_phone' %></div>
+		<div class="hidden-phone">
+			<div class="row">
+				<div class="span4">
+					<div class="fb-like" data-href="https://www.facebook.com/trip.sharing.1" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="240"></div>
+					<br>
+					<br>
+					<small>© <%= t('application.root.name') %> 2015</small>
+				</div>
+				<div class="span4">
+					
+				</div>
+				<div class="span3 pull-right">
+					<div class="title">Connect with us:</div>
+					<%= link_to "https://twitter.com/Trip_Sharing", target: "_blank", class: "bigger tw-link" do %>
+						<i class="fa fa-twitter"></i>
+					<% end %>
+					<a href="mailto:info@trip-sharing.com" target="_blank" class="bigger gp-link">
+						<i class="fa fa-envelope"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+

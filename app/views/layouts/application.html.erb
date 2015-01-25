@@ -12,20 +12,23 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/olark' %>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=202675899939324&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
   <%= render 'shared/social_media_script' %>
   <%= render 'layouts/header' %>
-  <%= render 'shared/flash', flash: flash %>
-
-  <div id="home-background">
-    <div class="container">
-      <%= yield %>
-    </div>
-    <%= render 'layouts/footer' %>
-  </div>
+  <%= render 'shared/flash', flash: flash %>  
+  <%= yield %>
+	<%= render 'layouts/footer' %>
   
 </body>
 </html>
