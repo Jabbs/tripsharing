@@ -53,8 +53,10 @@ class User < ActiveRecord::Base
   end
   
   def build_interests
-    Interest::IDENTIFIERS.each do |identifier|
-      self.interests.create!(identifier: identifier[0])
+    Interest::IDS.each do |identifier_group|
+      identifier_group[1].each do |identifier|
+        self.interests.create!(identifier: identifier, category: identifier_group[0])
+      end
     end
   end
   

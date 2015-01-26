@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     # @pete_rand5 = @pete.facebook_friends_photos_rand5
   end
   
+  def profile
+    
+  end
+  
   def browse
     
   end

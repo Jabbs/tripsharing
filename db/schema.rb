@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20150125192733) do
     t.integer  "user_id"
     t.string   "identifier"
     t.boolean  "has_it",     :default => false
+    t.string   "category"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end

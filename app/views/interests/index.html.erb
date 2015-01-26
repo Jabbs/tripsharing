@@ -1,19 +1,71 @@
-<div id="home-background3">
+<div id="home-background3" style="min-height:0px;">
 	<div class="container">
-		<div class="row">
-		  <div class="span12 no-margin-large-desktop">
-		    <div class="dashboard-well">
-		      <div class="row">
-		        <div class="span10 offset1">
-							<% @interests.each do |interest| %>
-								<%= link_to user_interest_path(current_user.id, interest.id), class: "btn #{interest.has_it? ? "btn-success" : ""}", id: "identifier-#{interest.id}", method: :put, remote: true do %>
-									<%= Interest::IDENTIFIERS[interest.identifier] %>
-								<% end %>								
-							<% end %>
-		        </div>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+		<br>
+		<br>
+    <div class="well darken">
+      <div class="row">
+				<div class="span3">
+          <%= image_tag current_user.fb_image, class: "image" %>
+					<ul class="unstyled">
+						<li><%= current_user.full_name %></li>
+						<li><i class='fa fa-map-marker' style='padding-right:1px;padding-left:2px;'></i> <%= current_user.try(:fb_location) %></li>
+						<li><i class='fa fa-plane'></i> <%= pluralize(current_user.trips.count, 'trip') %></li>
+					</ul>
+					<br>
+					<div class="right">
+						<h2 class="choice active"><span class="pull-left">1.</span>Interests</h2>
+
+						<h2 class="choice inactive"><span class="pull-left">2.</span>Profile</h2>
+
+						<h2 class="choice inactive"><span class="pull-left">3.</span>JOIN!</h2>
+					</div>
+				</div>
+        <div class="span8">
+					<br>
+					<div class="well">
+						<h3 class="salmon no-margin"><i class="fa fa-group"></i> Group Dynamics <small>Who would you like to travel with?</small></h3>
+						<% @interests_group.each do |interest| %>
+							<%= render 'button', interest: interest %>
+						<% end %>
+						<hr class="hr-top-bottom">
+						<h3 class="salmon no-margin"><i class="fa fa-globe"></i> Location <small>Where would you like to travel?</small></h3>
+						<% @interests_location.each do |interest| %>
+							<%= render 'button', interest: interest %>
+						<% end %>
+						<hr class="hr-top-bottom">
+						<h3 class="salmon no-margin"><i class="fa fa-clock-o"></i> Duration <small>For how long would you travel?</small></h3>
+						<% @interests_duration.each do |interest| %>
+							<%= render 'button', interest: interest %>
+						<% end %>
+						<hr class="hr-top-bottom">
+						<h3 class="salmon no-margin"><i class="fa fa-sun-o"></i> Time of Year <small>When is the ideal time to depart?</small></h3>
+						<% @interests_time.each do |interest| %>
+							<%= render 'button', interest: interest %>
+						<% end %>
+						<hr class="hr-top-bottom">
+						<h3 class="salmon no-margin"><i class="fa fa-plane"></i> General  <small>What else do you enjoy?</small></h3>
+						<% @interests_general.each do |interest| %>
+							<%= render 'button', interest: interest %>
+						<% end %>
+						<hr class="hr-top-bottom">
+					</div>
+        </div>
+      </div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="span3">
+
+				</div>
+				<div class="span8">
+					<%= link_to "CONTINUE <i class='fa fa-arrow-right'></i>".html_safe, user_profile_path(current_user), class: "btn btn-lg btn-info" %>
+				</div>
+			</div>
+			<br>
+			<br>
+    </div>
+
 	</div>
+	<br>
+	<br>
 </div>

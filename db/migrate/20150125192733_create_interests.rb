@@ -4,6 +4,7 @@ class CreateInterests < ActiveRecord::Migration
       t.integer :user_id
       t.string :identifier
       t.boolean :has_it, default: false
+      t.string :category
 
       t.timestamps
     end

@@ -48,6 +48,7 @@ $body_grey: #4a4a4a;
 }
 .salmon { color: $salmon; a { color: $salmon; }}
 .turquoise {color: $turquoise;}
+.turquoise_dark {color: $turquoise_dark;}
 .white {color: white;}
 .green {color: $green;}
 .green-dark {color: darken($green, 10%);}
@@ -99,6 +100,7 @@ h4 { line-height: 1.2em; }
 .smaller {font-size: 90%;line-height: 130%;}
 .small {font-size: 80%;line-height: 120%;}
 .tiny {font-size: 50%;line-height: 120%;}
+.hr-top-bottom {margin-top:20px;margin-bottom:15px;}
 .no-right-margin { margin-right: 0px; }
 .no-left-margin { margin-left: 0px; }
 .no-top-margin { margin-top: 0px; }
@@ -126,6 +128,7 @@ h4 { line-height: 1.2em; }
 .no-bottom-padding { padding-bottom: 0px;}
 .no-padding {padding:0px;}
 .well {background: white;}
+.well.darken {background: lighten($grey_light, 15%);}
 .shadow {box-shadow: 3px 3px 2px #888888;}
 .span1minus30 { width: 30px; }
 .span5plus20 {width: 400px;}
@@ -147,14 +150,28 @@ h4 { line-height: 1.2em; }
 }
 
 a.tw-link {
-	color: $body_grey;
+	color: $grey;
 	text-decoration: none;
-	&:hover {color: darken($body_grey, 5%); text-decoration: none;}
+	&:hover {color: darken($grey, 5%); text-decoration: none;}
 }
 a.gp-link {
-	color: $body_grey;
+	color: $grey;
 	text-decoration: none;
-	&:hover {color: darken($body_grey, 5%); text-decoration: none;}
+	&:hover {color: darken($grey, 5%); text-decoration: none;}
+}
+
+h2.choice {
+	padding-left:10px;
+	padding-right:10px;
+	margin-top:0px;
+	margin-bottom:10px;
+}
+h2.choice.active {
+	color: $white;
+	background: $salmon;
+}
+h2.choice.inactive {
+	color: $grey;
 }
 
 .slogan-text {
@@ -252,9 +269,9 @@ a.gp-link {
 }
 .dashboard-well {
   background: $white;
-  padding-top:60px;
+  padding-top:40px;
   padding-bottom:40px;
-  margin-top:4em;
+  margin-top:2em;
   color: white;
   @include rounded_borders;
 }
