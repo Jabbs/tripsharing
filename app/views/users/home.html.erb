@@ -66,8 +66,8 @@
 		      <hr/>
 		      <% if current_user %>
 		        <p class="black center">
-		          You're signed up. Welcome to the community! Checkout the
-		          <%= link_to "TripShares", trips_path %>
+		          You're signed up. Welcome to the community! Checkout your
+		          <%= link_to "profile", user_profile_path(current_user) %>
 		          to get started.
 		        </p>
 		      <% else %>

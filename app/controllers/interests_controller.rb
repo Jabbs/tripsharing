@@ -3,7 +3,7 @@ class InterestsController < ApplicationController
   before_filter :correct_user
   
   def index
-    @interests_location = current_user.interests.where(category: "Location").order(:id)
+    @interests_location = current_user.interests.where(category: "Destination").order(:id)
     @interests_duration = current_user.interests.where(category: "Duration").order(:id)
     @interests_time = current_user.interests.where(category: "Time of Year").order(:id)
     @interests_group = current_user.interests.where(category: "Group Dynamics").order(:id)

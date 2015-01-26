@@ -161,16 +161,20 @@ a.gp-link {
 }
 
 h2.choice {
-	padding-left:10px;
-	padding-right:10px;
+	padding: 5px 10px;
 	margin-top:0px;
 	margin-bottom:10px;
+	@include rounded_borders;
 }
 h2.choice.active {
+	border: 1px solid black;
 	color: $white;
 	background: $salmon;
 }
 h2.choice.inactive {
+	color: $grey;
+}
+h2.choice.inactive a {
 	color: $grey;
 }
 

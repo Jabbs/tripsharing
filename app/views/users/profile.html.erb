@@ -1,0 +1,47 @@
+<div id="home-background3" style="min-height:0px;">
+	<div class="container">
+		<br>
+		<br>
+    <div class="well darken">
+      <div class="row">
+				<div class="span3">
+          <%= image_tag current_user.fb_image, class: "image" %>
+					<ul class="unstyled">
+						<li><%= current_user.full_name %></li>
+						<li><i class='fa fa-map-marker' style='padding-right:1px;padding-left:2px;'></i> <%= current_user.try(:fb_location) %></li>
+						<li><i class='fa fa-plane'></i> <%= pluralize(current_user.trips.count, 'trip') %></li>
+					</ul>
+					<br>
+					<div class="right">
+						<h2 class="choice inactive"><span class="pull-left"><i class='fa fa-check'></i></span><%= link_to 'Interests', user_interests_path(current_user) %></h2>
+
+						<h2 class="choice active"><span class="pull-left">2.</span>Profile</h2>
+
+						<h2 class="choice inactive"><span class="pull-left">3.</span>JOIN!</h2>
+					</div>
+				</div>
+        <div class="span8">
+					<br>
+					<div class="well">
+						
+					</div>
+        </div>
+      </div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="span3">
+
+				</div>
+				<div class="span8">
+					<%= link_to "CONTINUE <i class='fa fa-arrow-right'></i>".html_safe, user_profile_path(current_user), class: "btn btn-lg btn-info" %>
+				</div>
+			</div>
+			<br>
+			<br>
+    </div>
+
+	</div>
+	<br>
+	<br>
+</div>
