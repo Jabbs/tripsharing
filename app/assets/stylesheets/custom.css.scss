@@ -208,7 +208,14 @@ h2.choice.inactive a {
 		border: 6px solid lighten($turquoise, 20%);
 	}
 }
-
+#page {display: none;}
+#spinner {
+	background: url("spinner.gif") no-repeat scroll center center #FFF;
+	position: absolute;
+	z-index: 20;
+	height: 100%;
+	width: 100%;
+}
 #home-background { 
   background: url("home/vietnam1.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;

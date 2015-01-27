@@ -26,5 +26,9 @@ $('document').ready(function() {
 	        scrollTop: 0
 	    }, 1000); // scroll takes 1 second
 	});
+	
 });
-
+$(window).load(function(){
+	$('#spinner').hide();
+	$('#page').show();
+});
