@@ -22,7 +22,7 @@
 				</div>
         <div class="span8">
 					<br>
-					<div class="well">
+					<div class="well" style="padding-bottom:40px;">
 						<h3 class="salmon no-margin"><i class="fa fa-group"></i> Group Dynamics <small>Who would you like to travel with?</small></h3>
 						<% @interests_group.each do |interest| %>
 							<%= render 'button', interest: interest %>
@@ -47,7 +47,7 @@
 						<% @interests_general.each do |interest| %>
 							<%= render 'button', interest: interest %>
 						<% end %>
-						<hr class="hr-top-bottom">
+
 					</div>
         </div>
       </div>

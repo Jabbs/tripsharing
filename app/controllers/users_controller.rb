@@ -10,7 +10,20 @@ class UsersController < ApplicationController
   end
   
   def profile
+    @user = User.find(params[:user_id])
+  end
+  
+  def join
     
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      redirect_to user_join_path(current_user)
+    else
+      redirect_to user_profile_path(current_user), alert: "We encountered an error."
+    end
   end
   
   def browse
@@ -20,7 +33,8 @@ class UsersController < ApplicationController
   private
   
     def correct_user
-      @user = User.find(params[:user_id])
+      params[:user_id]? id = params[:user_id] : id = params[:id]
+      @user = User.find(id)
       redirect_to root_path unless current_user?(@user) || current_user.admin?
     end
     

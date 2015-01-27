@@ -19,6 +19,7 @@ Tripsharing::Application.routes.draw do
     match '/resend_verification', to: "verifications#resend", via: :get
     resources :interests
     get 'profile'
+    get 'join'
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   match '/unsubscribe', to: "verifications#unsubscribe", via: :get

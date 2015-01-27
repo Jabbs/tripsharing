@@ -100,7 +100,7 @@ h4 { line-height: 1.2em; }
 .smaller {font-size: 90%;line-height: 130%;}
 .small {font-size: 80%;line-height: 120%;}
 .tiny {font-size: 50%;line-height: 120%;}
-.hr-top-bottom {margin-top:20px;margin-bottom:15px;}
+.hr-top-bottom {margin-top:40px;margin-bottom:15px;}
 .no-right-margin { margin-right: 0px; }
 .no-left-margin { margin-left: 0px; }
 .no-top-margin { margin-top: 0px; }
@@ -167,7 +167,6 @@ h2.choice {
 	@include rounded_borders;
 }
 h2.choice.active {
-	border: 1px solid black;
 	color: $white;
 	background: $salmon;
 }
