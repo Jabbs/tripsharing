@@ -10,13 +10,13 @@
 			      <h1 class="center black" style="font-size: 200%;">Matching travelers from all over the world into group trips</h1>
 			      <hr/>
 			      <h4 class="grey-dark">
-			        1. Select your travel and group interests
+			        1. Set your travel interests
 			      </h4>
 			      <h4 class="grey-dark">
-			        2. Match with travelers of similar interests
+			        2. Browse trips
 			      </h4>
 			      <h4 class="grey-dark">
-			        3. Meet, Travel, and ENJOY the adventure!
+			        3. Meet new friends and ENJOY the adventure!
 			      </h4>
 			      <hr/>
 			      <% if current_user %>
@@ -38,16 +38,35 @@
 			</div>
 		</div>
 	</div>
-	<div id="home-background2" style="padding-top:300px;">
-
+	<div id="home-background2">
 		<div class="row">
+			<div class="span3 offset1">
+				<div class="no-height" style="position:relative; top:20px; left:50px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/map.jpg" %>
+					<% end %>
+				</div>
+			</div>
+			<div class="span3 offset2">
+
+			</div>
+			<div class="span3">
+
+			</div>
+		</div>
+		<div class="row" style="margin-top:200px;">
 			<div class="span5 offset1">
 				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
 					<div class="box">
-						<h4>Select travel interests</h4>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
+						<h4>Set your travel interests</h4>
+							<p>
+								I want to travel with other <span class="salmon">singles near my hometown</span>
+								to <span class="salmon">Hanoi, Vietnam</span>
+								for <span class="salmon">a full week</span>
+								this <span class="salmon">spring.</span>
+								I'm interested in <span class="salmon">exploring the city</span>, <span class="salmon">backpacking</span>,
+								<span class="salmon">food/wine</span>, and <span class="salmon">drinking with locals</span>.
+							</p>
 					</div>
 				<% end %>
 			</div>
@@ -71,28 +90,31 @@
 				<% end %>
 			</div>
 		</div>
-		<% 10.times do |n| %>
-			<div class="row">
-				<div class="span5 offset7">
+		
+		<div class="row">
+			<div class="span3 offset4">
+				<div class="no-height" style="position:relative; top:20px; left:-50px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/drink.jpeg" %>
+					<% end %>
+				</div>
+			</div>
+			<div class="span5">
+				<% 10.times do |n| %>
 					<div class="center">
 						<%= scroll_reveal animation: "enter wait 1.#{n}s", class: "inline"  do %>
 							<i class="fa fa-circle white" style="margin-bottom:10px;"></i>
 						<% end %>
 					</div>
-				</div>
+				<% end %>
 			</div>
-		<% end %>
+		</div>
+		
 		<div class="row" style="margin-top:40px;">
 			<div class="span5 offset1">
 				<div class="right">
 					<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
-
-						<div class="no-height">
-							<%= image_tag "polaroid_blank.png", class: "img-responsive" %>
-						</div>
-
-						<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive slight-tilt-img" %>
-
+						<%= image_tag "screen2.png", class: "img-responsive" %>
 					<% end %>
 				</div>
 			</div>
@@ -113,34 +135,49 @@
 			<div class="span5">
 				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
 					<div class="box">
-						<h4>Match with other travelers</h4>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
+						<h4>Browse trips</h4>
+						<p>
+							I'd like to find an <span class="salmon">inexpensive $</span> trip
+							with a group of <span class="salmon">6 to 10</span>
+							travelers who share at least 
+							<span class="salmon">5 facebook <i class="fa fa-facebook"></i> friends</span> with me.
+						</p>
 					</div>
 				<% end %>
 			</div>
 		</div>
-		<div style="min-height:180px;"></div>
-		<% 10.times do |n| %>
-			<div class="row">
-				<div class="span5 offset1">
+
+		
+		<div class="row">
+			<div class="span5 offset1">
+				<% 10.times do |n| %>
 					<div class="center">
 						<%= scroll_reveal animation: "enter wait 1.#{n}s", class: "inline"  do %>
 							<i class="fa fa-circle white" style="margin-bottom:10px;"></i>
 						<% end %>
 					</div>
+				<% end %>
+			</div>
+			<div class="span3 offset2">
+				<div class="no-height" style="position:relative; top:30px; left:140px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/lighthouse.jpeg" %>
+					<% end %>
 				</div>
 			</div>
-		<% end %>
+		</div>
+		
 		<div class="row" style="margin-top:20px;">
 			<div class="span5 offset1">
 				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
 					<div class="box">
-						<h4>Select your travel and group interests</h4>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
+						<h4>Meet new friends and ENJOY the adventure!</h4>
+						<p>
+							We shared a trip to <span class="salmon">Cartagena, Colombia</span> for
+							8 days. Many of us created a bond through the wonderful experiences we had.
+							<span class="salmon">13 of us friends</span>
+							still keep in touch and share stories of the good times!
+						</p>
 					</div>
 				<% end %>
 			</div>
@@ -160,26 +197,38 @@
 			</div>
 			<div class="span5">
 				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
-					<%= image_tag "screen.png", class: "img-responsive" %>
+					<div class="no-height">
+						<%= image_tag "polaroid_blank.png", class: "img-responsive" %>
+					</div>
+					<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive slight-tilt-img" %>
 				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<div class="no-height" style="position:relative; top:30px; left:140px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/suitcase.jpeg" %>
+					<% end %>
+				</div>
 			</div>
 		</div>
 		<div style="min-height:300px;"></div>
 		
-		
-		
 	</div>
 	<div id="home-background3">
 		<%= scroll_reveal animation: 'enter top and move 50px over 2s' do %>
-			<div class="slogan-text mid">
-				Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people.
+			<div class="slogan-text">
+				"Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people."
 			</div>
 		<% end %>
-		<div class="slogan-text bottom">
+		<!-- <div class="slogan-text bottom">
 			Make your trip more than a destination and take a chance with new people, you might create a bond you never expected!
-		</div>
-		<div class="center">
-			<button class="btn btn-default btn-lg" id="go-to-top">START</button>
+		</div> -->
+		<div class="row" style="margin-top:30px;">
+			<div class="center">
+				<button class="btn btn-info btn-lg" id="go-to-top">I'M READ TO JOIN!</button>
+			</div>
 		</div>
 	</div>
 </div>

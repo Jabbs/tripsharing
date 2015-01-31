@@ -21,6 +21,7 @@ $orange: rgb(251,185,11);
 $orange2: #ffcc11;
 $orange3: #ffc414;
 $blue: rgb(23, 54, 93);
+$blue_green: #6DD0CE;
 $grey_dark: #686868;
 $grey_light: rgb(213, 215, 214);
 // Others:
@@ -239,7 +240,9 @@ h2.choice.inactive a {
 	min-height: 800px;
 }
 #home-background2 {
-  background-color: $turquoise;
+	padding-top:40px;
+	padding-bottom:80px;
+  background-color: $blue_green;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -252,7 +255,8 @@ h2.choice.inactive a {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	min-height: 1000px;
+	min-height: 800px;
+	padding-top:360px;
 }
 
 .slight-tilt-img {
@@ -271,6 +275,10 @@ h2.choice.inactive a {
 	border: 3px solid white;
 	background: white;
 	@include rounded_borders;
+	p {
+		font-size:120%;
+		line-height:160%;
+	}
 }
 .image {
   border: 3px solid $white;
