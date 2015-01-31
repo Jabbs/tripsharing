@@ -16,11 +16,13 @@
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require bootstrap
+//= require scrollReveal
 //= require rails.validations
 //= require_tree .
 
 
 $('document').ready(function() {
+	
 	$('#go-to-top').click(function () {
 	    $(window.opera ? 'html' : 'html, body').animate({
 	        scrollTop: 0
@@ -36,6 +38,6 @@ $('document').ready(function() {
 			window.setTimeout(swapSpinner, 1000);
 		});
 	};
-	
+	window.scrollReveal = new scrollReveal();
 });
 

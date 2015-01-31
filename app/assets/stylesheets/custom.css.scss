@@ -149,6 +149,11 @@ h4 { line-height: 1.2em; }
 	z-index: 1;
 }
 
+a.fb-link {
+	color: $grey;
+	text-decoration: none;
+	&:hover {color: darken($grey, 5%); text-decoration: none;}
+}
 a.tw-link {
 	color: $grey;
 	text-decoration: none;
@@ -231,10 +236,10 @@ h2.choice.inactive a {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	min-height: 1000px;
+	min-height: 800px;
 }
-#home-background2 { 
-  background-color: $turquoise_dark;
+#home-background2 {
+  background-color: $turquoise;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -248,6 +253,23 @@ h2.choice.inactive a {
 	-o-background-size: cover;
 	background-size: cover;
 	min-height: 1000px;
+}
+.slight-tilt-img {
+	position: relative;
+	top:71px;
+	left:75px;
+	-ms-transform: rotate(-5.3deg); /* IE 9 */
+  -webkit-transform: rotate(-5.3deg); /* Chrome, Safari, Opera */
+  transform: rotate(-5.3deg);
+}
+.box {
+	padding: 40px 20px;
+	h4 {font-size: 200%;}
+	ul {margin-left:10px;}
+	ul li {font-size: 150%; line-height: 150%;}
+	border: 3px solid white;
+	background: white;
+	@include rounded_borders;
 }
 .image {
   border: 3px solid $white;

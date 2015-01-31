@@ -2,58 +2,14 @@
 	<div id="home-background">
 		<div class="container">
 			<div class="row">
-			  <div class="span4 offset1">
-			    <br/>
-			    <br/>
-			    <br/>
-			    <br/>
-			    <div class="center">
-			      <div class="no-height">
-			        <div class="div" style="position:relative; left: 70px; top: -50px;">
-			          <%= image_tag "questionmark.png", class: "image questionmark" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; right: 70px; top: -50px;">
-			          <%= image_tag @fb_images_rand_5[0], class: "image" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; right: 150px; top:35px;">
-			          <%= image_tag "questionmark.png", class: "image questionmark" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; right: 150px; top:155px;">
-			          <%= image_tag @fb_images_rand_5[1], class: "image" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; left: 150px; top:35px;">
-			          <%= image_tag @fb_images_rand_5[2], class: "image" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; left: 150px; top:155px;">
-			          <%= image_tag "questionmark.png", class: "image questionmark" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; left: 70px; top: 245px;">
-			          <%= image_tag @fb_images_rand_5[3], class: "image" %>
-			        </div>
-			      </div>
-			      <div class="no-height">
-			        <div class="div" style="position:relative; right: 70px; top: 245px;">
-			          <%= image_tag @fb_images_rand_5[4], class: "image" %>
-			        </div>
-			      </div>
-			      <%= image_tag "globe-icon-planes-250.png" %>
-			    </div>
+			  <div class="span4 offset1" style="padding-top:80px;">
+					<%= scroll_reveal animation: 'enter after 2s and move 50px over 1s' do %>
+						<%= render 'layouts/globe_faces' %>
+					<% end %>
 			  </div>
 			  <div class="span5 offset1">
 			    <div class="signup-well">
-			      <h2 class="center black">Matching travelers from all over the world into group trips</h2>
+			      <h1 class="center black" style="font-size: 200%;">Matching travelers from all over the world into group trips</h1>
 			      <hr/>
 			      <h4 class="grey-dark">
 			        1. Select your travel and group interests
@@ -84,13 +40,58 @@
 			</div>
 		</div>
 	</div>
+	<div id="home-background2" style="padding-top:100px;">
 
-	<div id="home-background2">
-		<div class="slogan-text mid">
-			Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people.
+		<div class="row">
+			<div class="span5 offset1">
+				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Select your travel and group interests</h4>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+					</div>
+				<% end %>
+			</div>
+			<div class="span5 offset1">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<%= image_tag "screen.png", class: "img-responsive" %>
+				<% end %>
+			</div>
 		</div>
+		<div style="min-height:300px;"></div>
+		<div class="row">
+			<div class="span5 offset1">
+				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+					
+					<div class="no-height">
+						<%= image_tag "polaroid_blank.png", class: "img-responsive" %>
+					</div>
+					
+					<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive slight-tilt-img" %>
+
+				<% end %>
+			</div>
+			<div class="span5 offset1">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Select your travel and group interests</h4>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div style="min-height:300px;"></div>
+		
 	</div>
 	<div id="home-background3">
+		<%= scroll_reveal animation: 'enter top and move 50px over 2s' do %>
+			<div class="slogan-text mid">
+				Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people.
+			</div>
+		<% end %>
 		<div class="slogan-text bottom">
 			Make your trip more than a destination and take a chance with new people, you might create a bond you never expected!
 		</div>
