@@ -1,100 +1,101 @@
-
-<div id="home-background">
-	<div class="container">
-		<div class="row">
-		  <div class="span4 offset1">
-		    <br/>
-		    <br/>
-		    <br/>
-		    <br/>
-		    <div class="center">
-		      <div class="no-height">
-		        <div class="div" style="position:relative; left: 70px; top: -50px;">
-		          <%= image_tag "questionmark.png", class: "image questionmark" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; right: 70px; top: -50px;">
-		          <%= image_tag @fb_images_rand_5[0], class: "image" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; right: 150px; top:35px;">
-		          <%= image_tag "questionmark.png", class: "image questionmark" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; right: 150px; top:155px;">
-		          <%= image_tag @fb_images_rand_5[1], class: "image" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; left: 150px; top:35px;">
-		          <%= image_tag @fb_images_rand_5[2], class: "image" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; left: 150px; top:155px;">
-		          <%= image_tag "questionmark.png", class: "image questionmark" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; left: 70px; top: 245px;">
-		          <%= image_tag @fb_images_rand_5[3], class: "image" %>
-		        </div>
-		      </div>
-		      <div class="no-height">
-		        <div class="div" style="position:relative; right: 70px; top: 245px;">
-		          <%= image_tag @fb_images_rand_5[4], class: "image" %>
-		        </div>
-		      </div>
-		      <%= image_tag "globe-icon-planes-250.png" %>
-		    </div>
-		  </div>
-		  <div class="span5 offset1">
-		    <div class="signup-well">
-		      <h2 class="center black">Matching travelers from all over the world into group trips</h2>
-		      <hr/>
-		      <h4 class="grey-dark">
-		        1. Select your travel and group interests
-		      </h4>
-		      <h4 class="grey-dark">
-		        2. Match with travelers of similar interests
-		      </h4>
-		      <h4 class="grey-dark">
-		        3. Meet, Travel, and ENJOY the adventure!
-		      </h4>
-		      <hr/>
-		      <% if current_user %>
-		        <p class="black center">
-		          You're signed up. Welcome to the community! Checkout your
-		          <%= link_to "profile", user_profile_path(current_user) %>
-		          to get started.
-		        </p>
-		      <% else %>
-		        <%= link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in" %>
-		        <p class="black inline">
-		          to get started!
-		        </p>
-		        <hr/>
-		        <p class="small black"><%= t('application.root.name') %> does not post on your Facebook timeline or share your information with third parties.</p>
-		      <% end %>
-		    </div>
-		  </div>
+<div id="home">
+	<div id="home-background">
+		<div class="container">
+			<div class="row">
+			  <div class="span4 offset1">
+			    <br/>
+			    <br/>
+			    <br/>
+			    <br/>
+			    <div class="center">
+			      <div class="no-height">
+			        <div class="div" style="position:relative; left: 70px; top: -50px;">
+			          <%= image_tag "questionmark.png", class: "image questionmark" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; right: 70px; top: -50px;">
+			          <%= image_tag @fb_images_rand_5[0], class: "image" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; right: 150px; top:35px;">
+			          <%= image_tag "questionmark.png", class: "image questionmark" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; right: 150px; top:155px;">
+			          <%= image_tag @fb_images_rand_5[1], class: "image" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; left: 150px; top:35px;">
+			          <%= image_tag @fb_images_rand_5[2], class: "image" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; left: 150px; top:155px;">
+			          <%= image_tag "questionmark.png", class: "image questionmark" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; left: 70px; top: 245px;">
+			          <%= image_tag @fb_images_rand_5[3], class: "image" %>
+			        </div>
+			      </div>
+			      <div class="no-height">
+			        <div class="div" style="position:relative; right: 70px; top: 245px;">
+			          <%= image_tag @fb_images_rand_5[4], class: "image" %>
+			        </div>
+			      </div>
+			      <%= image_tag "globe-icon-planes-250.png" %>
+			    </div>
+			  </div>
+			  <div class="span5 offset1">
+			    <div class="signup-well">
+			      <h2 class="center black">Matching travelers from all over the world into group trips</h2>
+			      <hr/>
+			      <h4 class="grey-dark">
+			        1. Select your travel and group interests
+			      </h4>
+			      <h4 class="grey-dark">
+			        2. Match with travelers of similar interests
+			      </h4>
+			      <h4 class="grey-dark">
+			        3. Meet, Travel, and ENJOY the adventure!
+			      </h4>
+			      <hr/>
+			      <% if current_user %>
+			        <p class="black center">
+			          You're signed up. Welcome to the community! Checkout your
+			          <%= link_to "profile", user_profile_path(current_user) %>
+			          to get started.
+			        </p>
+			      <% else %>
+			        <%= link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in" %>
+			        <p class="black inline">
+			          to get started!
+			        </p>
+			        <hr/>
+			        <p class="small black"><%= t('application.root.name') %> does not post on your Facebook timeline or share your information with third parties.</p>
+			      <% end %>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div id="home-background2">
-	<div class="slogan-text mid">
-		Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people.
+	<div id="home-background2">
+		<div class="slogan-text mid">
+			Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people.
+		</div>
 	</div>
-</div>
-<div id="home-background3">
-	<div class="slogan-text bottom">
-		Make your trip more than a destination and take a chance with new people, you might create a bond you never expected!
-	</div>
-	<div class="center">
-		<button class="btn btn-default btn-lg" id="go-to-top">START</button>
+	<div id="home-background3">
+		<div class="slogan-text bottom">
+			Make your trip more than a destination and take a chance with new people, you might create a bond you never expected!
+		</div>
+		<div class="center">
+			<button class="btn btn-default btn-lg" id="go-to-top">START</button>
+		</div>
 	</div>
 </div>

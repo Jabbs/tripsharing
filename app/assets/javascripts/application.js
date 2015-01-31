@@ -27,8 +27,15 @@ $('document').ready(function() {
 	    }, 1000); // scroll takes 1 second
 	});
 	
+	var page = document.getElementById('page-users-home');
+	if (page != null) {
+		$(window).load(function(){
+			function swapSpinner() {
+				$('#spinner').hide();
+			}	
+			window.setTimeout(swapSpinner, 1000);
+		});
+	};
+	
 });
-$(window).load(function(){
-	$('#spinner').hide();
-	$('#page').show();
-});
+
