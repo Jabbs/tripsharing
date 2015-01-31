@@ -3,9 +3,7 @@
 		<div class="container">
 			<div class="row">
 			  <div class="span4 offset1" style="padding-top:80px;">
-					<%= scroll_reveal animation: 'enter after 2s and move 50px over 1s' do %>
-						<%= render 'layouts/globe_faces' %>
-					<% end %>
+					<%= render 'layouts/globe_faces' %>
 			  </div>
 			  <div class="span5 offset1">
 			    <div class="signup-well">
@@ -40,9 +38,102 @@
 			</div>
 		</div>
 	</div>
-	<div id="home-background2" style="padding-top:100px;">
+	<div id="home-background2" style="padding-top:300px;">
 
 		<div class="row">
+			<div class="span5 offset1">
+				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Select travel interests</h4>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+					</div>
+				<% end %>
+			</div>
+			<div class="span1" style="padding-top:160px;">
+				<div class="center">
+					<%= scroll_reveal animation: 'enter wait 1.1s', class: "inline"  do %>
+						<i class="fa fa-circle white"></i>
+					<% end %>
+
+					<%= scroll_reveal animation: 'enter wait 1.2s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+					<%= scroll_reveal animation: 'enter wait 1.3s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+				</div>
+			</div>
+			<div class="span5">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<%= image_tag "screen.png", class: "img-responsive" %>
+				<% end %>
+			</div>
+		</div>
+		<% 10.times do |n| %>
+			<div class="row">
+				<div class="span5 offset7">
+					<div class="center">
+						<%= scroll_reveal animation: "enter wait 1.#{n}s", class: "inline"  do %>
+							<i class="fa fa-circle white" style="margin-bottom:10px;"></i>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<div class="row" style="margin-top:40px;">
+			<div class="span5 offset1">
+				<div class="right">
+					<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+
+						<div class="no-height">
+							<%= image_tag "polaroid_blank.png", class: "img-responsive" %>
+						</div>
+
+						<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive slight-tilt-img" %>
+
+					<% end %>
+				</div>
+			</div>
+			<div class="span1" style="padding-top:160px;">
+				<div class="center">
+					<%= scroll_reveal animation: 'enter wait 1.4s', class: "inline"  do %>
+						<i class="fa fa-circle white"></i>
+					<% end %>
+
+					<%= scroll_reveal animation: 'enter wait 1.3s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+					<%= scroll_reveal animation: 'enter wait 1.2s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+				</div>
+			</div>
+			<div class="span5">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Match with other travelers</h4>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+							<p> <%= Faker::Lorem.paragraph %></p>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div style="min-height:180px;"></div>
+		<% 10.times do |n| %>
+			<div class="row">
+				<div class="span5 offset1">
+					<div class="center">
+						<%= scroll_reveal animation: "enter wait 1.#{n}s", class: "inline"  do %>
+							<i class="fa fa-circle white" style="margin-bottom:10px;"></i>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<div class="row" style="margin-top:20px;">
 			<div class="span5 offset1">
 				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
 					<div class="box">
@@ -53,37 +144,29 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="span5 offset1">
+			<div class="span1" style="padding-top:160px;">
+				<div class="center">
+					<%= scroll_reveal animation: 'enter wait 1.1s', class: "inline"  do %>
+						<i class="fa fa-circle white"></i>
+					<% end %>
+
+					<%= scroll_reveal animation: 'enter wait 1.2s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+					<%= scroll_reveal animation: 'enter wait 1.3s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+				</div>
+			</div>
+			<div class="span5">
 				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
 					<%= image_tag "screen.png", class: "img-responsive" %>
 				<% end %>
 			</div>
 		</div>
 		<div style="min-height:300px;"></div>
-		<div class="row">
-			<div class="span5 offset1">
-				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
-					
-					<div class="no-height">
-						<%= image_tag "polaroid_blank.png", class: "img-responsive" %>
-					</div>
-					
-					<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive slight-tilt-img" %>
-
-				<% end %>
-			</div>
-			<div class="span5 offset1">
-				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
-					<div class="box">
-						<h4>Select your travel and group interests</h4>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
-							<p> <%= Faker::Lorem.paragraph %></p>
-					</div>
-				<% end %>
-			</div>
-		</div>
-		<div style="min-height:300px;"></div>
+		
+		
 		
 	</div>
 	<div id="home-background3">

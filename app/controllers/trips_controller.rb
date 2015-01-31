@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:index, :show]
-  before_filter :admin_user, except: [:index, :show]
+  before_filter :admin_user
   before_filter :redirect_inactive_trip, only: [:show]
   
   def index
@@ -42,7 +42,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(params[:trip])
     @trip.user = current_user
     if @trip.save
-      redirect_to @trip, notice: "Your trip has been created!"
+      redirect_to trips_path, notice: "Your trip has been created!"
     else
       render 'new'
     end
