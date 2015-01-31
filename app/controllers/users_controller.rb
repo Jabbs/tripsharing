@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, except: [:home]
-  before_filter :correct_user, except: [:home]
+  before_filter :correct_user, except: [:home, :index]
+  before_filter :admin_user, only: [:index]
   before_filter :check_complete_interests, only: [:profile]
   
   def home
@@ -11,6 +12,10 @@ class UsersController < ApplicationController
   
   def profile
     @user = User.find(params[:user_id])
+  end
+  
+  def index
+    @users = User.all
   end
   
   def join
@@ -31,7 +36,10 @@ class UsersController < ApplicationController
   end
   
   private
-  
+    def admin_user
+      redirect_to root_path unless current_user.admin?
+    end
+    
     def correct_user
       params[:user_id]? id = params[:user_id] : id = params[:id]
       @user = User.find(id)

@@ -1,0 +1,42 @@
+<div id="home-background3" style="min-height:0px;">
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<div class="well">
+					<table>
+						<thead>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Gender</th>
+							<th>Birthyear</th>
+							<th>Hometown</th>
+							<th>FB url</th>
+							<th>Tagline</th>
+							<th>Bio</th>
+							<th>Interests</th>
+						</thead>
+						<tbody>
+							<% @users.each do |user| %>
+								<tr>
+									<td><%= user.id %></td>
+									<td><%= user.full_name %></td>
+									<td><%= user.email %></td>
+									<td><%= user.gender %></td>
+									<td><%= user.birth_year %></td>
+									<td><%= user.fb_hometown %></td>
+									<td><%= link_to "FB url", user.fb_url, target: "_blank" %></td>
+									<td><%= user.tag_line %></td>
+									<td><%= user.bio %></td>
+									<td><%= user.interests.where(has_it: true).size %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
