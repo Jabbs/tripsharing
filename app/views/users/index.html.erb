@@ -11,6 +11,7 @@
 			<div class="well">
 				<table>
 					<thead>
+						<th>Created</th>
 						<th>ID</th>
 						<th>Name</th>
 						<th>Email</th>
@@ -25,6 +26,7 @@
 					<tbody>
 						<% @users.each do |user| %>
 							<tr>
+								<td><%= user.created_at.strftime("%m/%e/%y %l:%M%P") %></td>
 								<td><%= user.id %></td>
 								<td><%= link_to "#{user.full_name}", user %></td>
 								<td><%= user.email %></td>
