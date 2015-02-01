@@ -35,7 +35,8 @@ $('document').ready(function() {
 			function swapSpinner() {
 				$('#spinner').hide();
 			}	
-			window.setTimeout(swapSpinner, 1000);
+			swapSpinner()
+			// window.setTimeout(swapSpinner, 1000);
 		});
 	};
 	window.scrollReveal = new scrollReveal();
