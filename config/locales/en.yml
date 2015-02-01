@@ -7,8 +7,8 @@ en:
       name: "TripSharing"
       fb_url: "https://www.facebook.com/trip.sharing.1"
       twitter_name: "Trip_Sharing"
-      title: "Travel And Meet New People | TripSharing"
-      description: "Matching travelers from all over the world. Create an experience that will last a lifetime. Sign up for our beta release!"
+      title: "Plan travel and meet new people | TripSharing"
+      description: "Plan travel and meet new people who share similar interests and friends. Create an experience that will last a lifetime. Join our growing community of adventurers!"
       long_description: "Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people. Make your trip more than a destination and take a chance with new people, you might create a bond you never expected!"
       title_with_tag_line: "%{tag_line} | TripSharing"
   exception:

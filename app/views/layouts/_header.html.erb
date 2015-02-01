@@ -14,12 +14,6 @@
           </div>
         </div>
         <div class="nav-collapse" id="head-nav">
-          <!-- %ul.nav.pull-left
-          -->
-          <!--   %li= link_to "Projects", ""
-          -->
-          <!--   %li= link_to "Campaigns", ""
-          -->
           <ul class="nav pull-right">
             <% if current_user %>
               <ul class="nav pull-right visible-desktop">
@@ -33,31 +27,7 @@
                     <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <li>
-                      <a href="<%= user_profile_path(current_user) %>">
-                        <i class="icon-user" style="margin-right:.3em;margin-left:.1em;"></i>
-												Profile
-                      </a>
-                    </li>
-                    <% if current_user.admin? %>
-                      <li>
-                        <a href="<%= new_trip_path %>">
-                          <i class="icon-plane" style="margin-right:.3em;"></i>
-                          New Trip
-                        </a>
-                      </li>
-                      <li>
-                        <a>
-                          Admin Panel
-                        </a>
-                      </li>
-                    <% end %>
-                    <li>
-                      <a data-method="delete" href="<%= logout_path %>" rel="nofollow">
-                        <i class="icon-signout" method="delete" style="margin-right:.2em; margin-left:.1em;"></i>
-                        Logout
-                      </a>
-                    </li>
+										<%= render 'layouts/header_nav_list' %>
                   </ul>
                 </li>
               </ul>
@@ -65,31 +35,7 @@
           </ul>
 					<% if current_user %>
 						<ul class="nav pull-right hidden-desktop">
-	            <li>
-	              <a href="<%= user_profile_path(current_user) %>">
-	                <i class="icon-user" style="margin-right:.3em;margin-left:.1em;"></i>
-	                Profile
-	              </a>
-	            </li>
-	            <% if admin_user? %>
-	              <li>
-	                <a href="<%= new_trip_path %>">
-	                  <i class="icon-plane" style="margin-right:.3em;"></i>
-	                  New Trip
-	                </a>
-	              </li>
-	              <li>
-	                <a>
-	                  Admin Panel
-	                </a>
-	              </li>
-	            <% end %>
-	            <li>
-	              <a data-method="delete" href="<%= logout_path %>" rel="nofollow">
-	                <i class="icon-signout" method="delete" style="margin-right:.3em;"></i>
-	                Logout
-	              </a>
-	            </li>
+							<%= render 'layouts/header_nav_list' %>
 	          </ul>
 					<% end %>
         </div>

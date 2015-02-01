@@ -226,7 +226,7 @@ h2.choice.inactive a {
 #page {display: none;}
 #spinner {
 	background: url("spinner.gif") no-repeat scroll center center #FFF;
-	position: absolute;
+	position: fixed;
 	z-index: 20;
 	height: 100%;
 	width: 100%;
