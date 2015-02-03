@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
   
   def join
-    
   end
   
   def update

@@ -35,7 +35,7 @@ gem 'exception_notification'
 gem 'newrelic_rpm'
 gem 'omniauth-facebook'
 gem "placeholder-gem"
-gem "koala", "~> 1.8.0rc1"
+gem "koala", "~> 1.11.0rc"
 gem "scrollreveal-rails"
 
 group :development, :test do
