@@ -260,12 +260,13 @@ h2.choice.inactive a {
 .focus:before {
   content: "";
   position: fixed;
+	top: -40px;
   left: 0;
   right: 0;
   z-index: -1;
   
   display: block;
-  background-image: url("home/hongkong_victoria_peak.jpeg");
+  background-image: url("home/vietnam1.jpg");
   min-height: 800px;
   
   -webkit-filter: blur(5px);
@@ -364,6 +365,8 @@ h2.choice.inactive a {
 /* header */
 .navbar, .navbar-inner {margin:0px; border-radius:0;background: transparent; border:none; box-shadow:none;}
 .navbar-inverse .navbar-inner {
+	position:relative;
+	z-index:1;
   margin:0px;
   height:49px;
   border-bottom: 1px solid black;
