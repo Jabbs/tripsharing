@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
       user.fb_hometown = auth.extra.raw_info.hometown.name if auth.extra.raw_info.hometown
       user.fb_image = auth.info.image
       user.fb_url = auth.info.urls.Facebook
+      user.fb_locale = auth.extra.raw_info.locale
+      user.fb_timezone = auth.extra.raw_info.timezone
+      user.fb_updated_time = auth.extra.raw_info.updated_time
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.email = auth.info.email
@@ -43,7 +46,6 @@ class User < ActiveRecord::Base
       user.newsletter = true
       user.password = SecureRandom.urlsafe_base64
       logger.debug "%%%%%%%%%%% AUTH: #{auth}"
-      logger.debug "%%%%%%%%%%% PHOTO???: #{auth.extra}"
       user.save!
     end
   end

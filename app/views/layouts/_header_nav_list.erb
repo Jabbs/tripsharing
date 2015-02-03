@@ -1,5 +1,5 @@
 <li>
-  <a href="<%= user_profile_path(current_user) %>">
+  <a href="<%= user_interests_path(current_user) %>">
     <i class="icon-user" style="margin-right:.3em;margin-left:.1em;"></i>
     Profile
   </a>
@@ -17,15 +17,10 @@
       Users
     </a>
   </li>
-  <li>
-    <a>
-      Admin Panel
-    </a>
-  </li>
 <% end %>
 <li>
   <a data-method="delete" href="<%= logout_path %>" rel="nofollow">
     <i class="icon-signout" method="delete" style="margin-right:.3em;"></i>
-    Logout
+    Log Out
   </a>
 </li>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150126024509) do
+ActiveRecord::Schema.define(:version => 20150203000056) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -130,6 +130,11 @@ ActiveRecord::Schema.define(:version => 20150126024509) do
     t.string   "provider"
     t.string   "tag_line"
     t.text     "bio"
+    t.datetime "welcome_sent_at"
+    t.string   "occupation"
+    t.string   "fb_locale"
+    t.string   "fb_timezone"
+    t.string   "fb_updated_time"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
