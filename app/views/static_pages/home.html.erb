@@ -2,43 +2,30 @@
 	<div id="home-background">
 		<div class="container">
 			<div class="row">
+				<!--
 			  <div class="span5" style="padding-top:80px;">
 					<%= render 'layouts/globe_faces' %>
 			  </div>
-			  <div class="span5 offset1">
-			    <div class="signup-well">
-			      <h1 class="center black" style="font-size: 200%;">Matching travelers from all over the world into group trips</h1>
+				-->
+			  <div class="span10 offset1">
+			    <div class="signup-well" style="padding-top:30px;">
+			      <div class="center" style="font-size: 200%;">
+							<%= link_to image_tag("globe-icon-planes-100.png"), root_url, style: "margin-left:5px;", id: "globe" %>
+	            <%= link_to "TripSharing<span class='blue tiny'>beta</span>".html_safe, root_url, id: "logo" %>
+						</div>
+						<h1 class="center black" style="font-size: 170%; margin-bottom:10px;">
+							Matching travelers from all over the world into group trips...
+						</h1>
 			      <hr/>
-			      <h4 class="grey-dark">
-			        1. Set your travel interests
-			      </h4>
-			      <h4 class="grey-dark">
-			        2. Browse trips
-			      </h4>
-			      <h4 class="grey-dark">
-			        3. Plan travel, meet new friends, ENJOY!
-			      </h4>
+						<%= render 'signin' %>
 			      <hr/>
-			      <% if current_user %>
-			        <p class="black center">
-			          You're signed up. Welcome to the community! Checkout your
-			          <%= link_to "profile", user_profile_path(current_user) %>
-			          to get started.
-			        </p>
-			      <% else %>
-			        <%= link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in" %>
-			        <p class="black inline">
-			          to get started!
-			        </p>
-			        <hr/>
-			        <p class="small black"><%= t('application.root.name') %> does not post on your Facebook timeline or share your information with third parties.</p>
-			      <% end %>
+						
 			    </div>
 			  </div>
 			</div>
 		</div>
 	</div>
-	<div id="home-background2">
+	<div id="home-background3">
 		<div class="row">
 			<div class="span3 offset1">
 				<div class="no-height" style="position:relative; top:20px; left:50px;">
@@ -58,7 +45,7 @@
 			<div class="span5 offset1">
 				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
 					<div class="box">
-						<h4>Set your travel interests</h4>
+						<h4>Pick travel interests.</h4>
 							<p>
 								I want to travel with other <span class="salmon">singles near my hometown</span>
 								to <span class="salmon">Hanoi, Vietnam</span>
@@ -70,7 +57,7 @@
 					</div>
 				<% end %>
 			</div>
-			<div class="span1" style="padding-top:160px;">
+			<div class="span1" style="padding-top:120px;">
 				<div class="center">
 					<%= scroll_reveal animation: 'enter wait 1.1s', class: "inline"  do %>
 						<i class="fa fa-circle white"></i>
@@ -118,7 +105,7 @@
 					<% end %>
 				</div>
 			</div>
-			<div class="span1" style="padding-top:160px;">
+			<div class="span1" style="padding-top:100px;">
 				<div class="center">
 					<%= scroll_reveal animation: 'enter wait 1.4s', class: "inline"  do %>
 						<i class="fa fa-circle white"></i>
@@ -135,12 +122,12 @@
 			<div class="span5">
 				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
 					<div class="box">
-						<h4>Browse trips</h4>
+						<h4>Apply for trips.</h4>
 						<p>
-							I'd like to find an <span class="salmon">inexpensive $</span> trip
+							I'd like to find an <span class="salmon">inexpensive</span> trip
 							with a group of <span class="salmon">6 to 10</span>
-							travelers who share at least 
-							<span class="salmon">5 facebook <i class="fa fa-facebook"></i> friends</span> with me.
+							travelers who share 
+							<span class="salmon">facebook friends</span> with me.
 						</p>
 					</div>
 				<% end %>
@@ -171,7 +158,7 @@
 			<div class="span5 offset1">
 				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
 					<div class="box">
-						<h4>Plan travel, meet new friends, ENJOY!</h4>
+						<h4>Meet new friends. Enjoy the adventure!</h4>
 						<p>
 							We shared a trip to <span class="salmon">Cartagena, Colombia</span> for
 							8 days. Many of us created a bond through the wonderful experiences we had.
@@ -216,7 +203,7 @@
 		<div style="min-height:300px;"></div>
 		
 	</div>
-	<div id="home-background3">
+	<div id="home-background4">
 		<div style="min-height:360px;"></div>
 		<%= scroll_reveal animation: 'enter top and move 50px over 2s' do %>
 			<div class="slogan-text">

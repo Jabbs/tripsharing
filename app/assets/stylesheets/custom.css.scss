@@ -100,7 +100,7 @@ h4 { line-height: 1.2em; }
 .heavy {font-size: 130%;}
 .smaller {font-size: 90%;line-height: 130%;}
 .small {font-size: 80%;line-height: 120%;}
-.tiny {font-size: 50%;line-height: 120%;}
+.tiny {font-size: 30%;line-height: 120%;}
 .hr-top-bottom {margin-top:40px;margin-bottom:15px;}
 .no-right-margin { margin-right: 0px; }
 .no-left-margin { margin-left: 0px; }
@@ -240,6 +240,18 @@ h2.choice.inactive a {
 	min-height: 800px;
 }
 #home-background2 {
+	padding-top:5px;
+	padding-bottom:5px;
+	background: black;
+	opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 100px;
+}
+#home-background3 {
 	padding-top:40px;
 	padding-bottom:80px;
   background-color: $blue_green;
@@ -249,7 +261,7 @@ h2.choice.inactive a {
 	background-size: cover;
 	min-height: 600px;
 }
-#home-background3 { 
+#home-background4 { 
   background: url("home/bogota_columbia.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

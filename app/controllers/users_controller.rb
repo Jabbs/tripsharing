@@ -1,14 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, except: [:home]
-  before_filter :correct_user, except: [:home, :index]
+  before_filter :signed_in_user
+  before_filter :correct_user, except: [:index]
   before_filter :admin_user, only: [:index]
   before_filter :check_complete_interests, only: [:profile]
-  
-  def home
-    @fb_images_rand_5 = User.fb_image_random_5
-    # @pete = User.find_by_email("petejabbour1@gmail.com")
-    # @pete_rand5 = @pete.facebook_friends_photos_rand5
-  end
   
   def profile
     @user = User.find(params[:user_id])

@@ -4,13 +4,7 @@
    <div class="well darken">
      <div class="row">
 			<div class="span3">
-         <%= image_tag current_user.fb_image, class: "image" %>
-				<ul class="unstyled">
-					<li><%= current_user.full_name %></li>
-					<li><i class='fa fa-map-marker' style='padding-right:1px;padding-left:2px;'></i> <%= current_user.try(:fb_location) %></li>
-					<li><i class='fa fa-plane'></i> <%= pluralize(current_user.trips.count, 'trip') %></li>
-				</ul>
-				<br>
+
 				<div class="right">
 					<h2 class="choice active"><span class="pull-left">1.</span>Interests</h2>
 

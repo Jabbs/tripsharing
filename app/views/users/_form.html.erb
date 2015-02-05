@@ -1,0 +1,26 @@
+<%= form_for @user, :url => { controller: 'users', :action => :create, :new_petition_id => params[:new_petition_id] } do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.select :birth_year, 1961..1995, prompt: "birth year" %>
+  <%= f.text_field :email, autocomplete: :off, placeholder: "E-mail" %>
+  <%= f.fields_for :address do |builder| %>
+    <%= builder.text_field :zip, autocomplete: :off, placeholder: "Zip Code" %>
+  <% end %>
+  <hr style="margin-top:5px;margin-bottom:5px;"/>
+  <label>Make a Password:</label>
+  <%= f.password_field :password, autocomplete: :off %>
+  <br/>
+  <div class="div" style="margin-left:20px;">
+    <label class="checkbox">
+      <div class="left">
+        Civic ArtWorks Newsletter
+        <%= f.check_box :newsletter, checked: true %>
+      </div>
+    </label>
+  </div>
+  <div class="namey">
+    <h4>Leave this field blank to prevent spam:</h4>
+    <%= text_field_tag :namey %>
+    <br/>
+  </div>
+  <%= f.submit "Create Account", disable_with: 'Submitting...', class: "btn btn-success", style: "margin-top:10px;" %>
+<% end %>
