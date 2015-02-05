@@ -29,7 +29,7 @@ $('document').ready(function() {
 	    }, 1000); // scroll takes 1 second
 	});
 	
-	var page = document.getElementById('page-users-home');
+	var page = document.getElementById('page-static_pages-home');
 	if (page != null) {
 		$(window).load(function(){
 			function swapSpinner() {

@@ -1,11 +1,13 @@
-<div class="row">
-	<div class="center" style="margin-top:20px;margin-bottom:20px;">
-		<%= link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in" %>
-		<p style="margin-top:20px;" class="small black">We don't post on your Facebook timeline or share your information with third parties.</p>
+<div class="row" style="margin-top:20px;margin-bottom:20px;">
+	<div class="span4">
+		<span class="pull-right" >
+			<p style="margin-top:20px;" class="small black">We don't post on your Facebook timeline or share your information with third parties.</p>
+			<%= link_to "<i class='icon-facebook' style='padding-right:5px;'></i> Sign in with Facebook".html_safe, "/auth/facebook", class: "btn btn-facebook", id: "sign_in" %>
+		</span>
 	</div>
-	<!--
+
 	<div class="span4">
 		<%= render 'users/form' %>
 	</div>
-	-->
+
 </div>

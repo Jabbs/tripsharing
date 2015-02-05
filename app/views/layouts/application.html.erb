@@ -25,7 +25,7 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
   <%= render 'shared/social_media_script' %>
-	<% if controller_name == 'users' && action_name == 'home' %>
+	<% if controller_name == 'static_pages' && action_name == 'home' %>
 		<div id="spinner"></div>
 	<% end %>
 	<% unless controller_name == 'static_pages' %>
