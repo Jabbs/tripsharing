@@ -43,7 +43,7 @@ class InterestsController < ApplicationController
   private
   
     def correct_user
-      @user = User.find(params[:user_id])
+      @user = User.friendly.find(params[:user_id])
       redirect_to root_path unless current_user?(@user) || current_user.admin?
     end
 end

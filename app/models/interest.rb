@@ -1,5 +1,4 @@
 class Interest < ActiveRecord::Base
-  attr_accessible :identifier, :user_id, :category
   
   belongs_to :user
   

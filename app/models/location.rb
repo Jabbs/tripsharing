@@ -1,6 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address1, :address2, :city, :country, :state, :zip, :latitude,
-                  :longitude, :display_on_map
+
   belongs_to :locationable, polymorphic: true
   
   geocoded_by :full_address

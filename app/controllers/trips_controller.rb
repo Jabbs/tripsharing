@@ -30,7 +30,7 @@ class TripsController < ApplicationController
   
   def update
     @trip = Trip.find(params[:id])
-    if @trip.update_attributes(params[:trip])
+    if @trip.update_attributes(trip_params)
       @trip.save!
       redirect_to @trip, notice: 'Trip was successfully updated.'
     else
@@ -39,7 +39,7 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(params[:trip])
+    @trip = Trip.new(trip_params)
     @trip.user = current_user
     if @trip.save
       redirect_to trips_path, notice: "Your trip has been created!"
@@ -56,6 +56,14 @@ class TripsController < ApplicationController
   end
   
   private
+    
+    def trip_params
+      params.require(:idea).permit(:age_max, :age_min, :description, :expires_at, :group_size, :name, :active, 
+                                   image_attachments_attributes: [:image, :description],
+                                   location_attributes: [:address1, :address2, :city, :country, 
+                                   :state, :zip, :latitude, :longitude, :display_on_map])
+    end
+  
     def admin_user
       redirect_to root_path unless current_user.admin?
     end

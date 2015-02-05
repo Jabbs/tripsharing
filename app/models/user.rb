@@ -1,11 +1,6 @@
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: [:slugged, :history]
-  attr_accessible :admin, :auth_token, :birth_year, :email, :fb_hometown, :fb_image, :fb_location, 
-                  :fb_url, :first_name, :gender, :last_name, :last_sign_in_at, :last_sign_in_ip, :newsletter, 
-                  :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, 
-                  :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
-                  :verification_token, :verified, :bio, :tag_line
   has_secure_password
   
   # associations
