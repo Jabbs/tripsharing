@@ -3,10 +3,10 @@
   %br
   %br
   .row
-    .span8.offset2
+    .col-md-8.col-md-offset-2
       .well
         .row
-          .span4.login_border
+          .col-md-4.login_border
             .center
               %h3.big.no-top-margin Login To TripSharing
               %br
@@ -22,9 +22,9 @@
               %br
               = form_tag do
                 = render 'shared/error_messages', object: @session_user
-                = text_field_tag :email, params[:email], class: "span3", placeholder: "Email", autocomplete: :off
+                = text_field_tag :email, params[:email], class: "col-md-3", placeholder: "Email", autocomplete: :off
                 %br
-                = password_field_tag :password, params[:password], class: "span3", placeholder: "Password", autocomplete: :off
+                = password_field_tag :password, params[:password], class: "col-md-3", placeholder: "Password", autocomplete: :off
                 %br
                 %br
                 = submit_tag 'Login', class: "btn btn-info", style: "margin-top:4px;"
@@ -33,7 +33,7 @@
                 = link_to "Forgot Password?", new_password_reset_path
                 %br
                 %br
-          .span3
+          .col-md-3
             .center
               %h3.big.no-top-margin.blue Create Account
               = render 'users/form'

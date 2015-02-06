@@ -86,7 +86,6 @@ html,body {
 }
 body {
   color: $body_grey;
-  font-family: 'Nunito', sans-serif;
 }
 h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
 h1 { color: $dark_blue; }
@@ -404,6 +403,7 @@ h2.choice.inactive a {
 }
 .nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: transparent !important; }
 #logo {color: $salmon; font-size:200%; line-height:.3em; position:relative; top:7px;}
+#logo {font-family: 'Crafty Girls';}
 #logo:hover {text-decoration:none;}
 #image-dropdown {
   position:relative; 
