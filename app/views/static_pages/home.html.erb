@@ -4,19 +4,38 @@
 			<div class="row">
 
 			  <div class="col-md-10 col-md-offset-1">
-			    <div class="signup-well" style="padding-top:30px;">
+			    <div class="signup-well">
+						<div class="pull-right">
+
+								<button type="button" class="btn btn-default">Log In</button>
+
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="center">
+									<%= link_to "about" %>
+									&#183;
+									<%= link_to "https://www.facebook.com/trip.sharing.1", target: "_blank", class: "fb-link" do %>
+										<i class="fa fa-facebook"></i>
+									<% end %>
+									&#183;
+									<%= link_to "https://twitter.com/Trip_Sharing", target: "_blank", class: "tw-link" do %>
+										<i class="fa fa-twitter"></i>
+									<% end %>
+								</div>
+							</div>
+						</div>
 			      <div class="center" style="font-size: 200%;">
 							<%= link_to image_tag("globe-icon-planes-100.png"), root_url, style: "margin-left:5px;", id: "globe" %>
 	            <%= link_to "TripSharing<span class='blue tiny'>beta</span>".html_safe, root_url, id: "logo" %>
 						</div>
-						<h1 class="center black" style="font-size: 150%; margin-bottom:10px;">
+						<h1 class="center black" style="font-size: 150%; margin-bottom:10px; margin-top:0px;">
 							<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
 								Match. Meet. Travel...
 							<% end %>
 						</h1>
-			      <hr/>
+
 						<%= render 'survey' %>
-			      <hr/>
 						
 			    </div>
 			  </div>

@@ -47,6 +47,15 @@ $body_grey: #4a4a4a;
 	    -moz-border-radius: 5px;
 	         border-radius: 5px;
 }
+@mixin add_transition {
+	-o-transition:.4s;
+  -ms-transition:.4s;
+  -moz-transition:.4s;
+  -webkit-transition:.4s;
+  /* ...and now for the proper property */
+  transition:.4s;
+}
+
 .salmon { color: $salmon; a { color: $salmon; }}
 .turquoise {color: $turquoise;}
 .turquoise_dark {color: $turquoise_dark;}
@@ -236,7 +245,7 @@ h2.choice.inactive a {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	min-height: 800px;
+	min-height: 700px;
 }
 #home-background2 {
 	padding-top:5px;
@@ -344,12 +353,14 @@ h2.choice.inactive a {
 }
 
 .signup-well {
+	font-weight:200;
   background-color: $white;
-  color: white;
-  padding: 16px;
+  padding: 6px 16px 16px 16px;
   border-left: 1px solid $black;
   border-bottom: 1px solid $black;
   border-right: 1px solid $black;
+	a {color: lighten($grey_dark, 25%);}
+	a:hover {color: black; @include add_transition; text-decoration:none;}
    -webkit-border-bottom-left-radius: 5px;
 	    -moz-border-bottom-left-radius: 5px;
 	         border-bottom-left-radius: 5px;

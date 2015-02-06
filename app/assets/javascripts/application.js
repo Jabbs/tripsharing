@@ -36,9 +36,9 @@ $('document').ready(function() {
 				$('#spinner').hide();
 			}	
 			swapSpinner()
-			$(".add-geocomplete").geocomplete({
-				
-			});
+			
+			// http://ubilabs.github.io/geocomplete/
+			$(".add-geocomplete").geocomplete();
 			// window.setTimeout(swapSpinner, 1000);
 		});
 	};
