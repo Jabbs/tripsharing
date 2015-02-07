@@ -1,5 +1,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  
+  resources :surveys, only: [:create]
   resources :trips
 
   # facebook omniauth

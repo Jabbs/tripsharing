@@ -1,19 +1,18 @@
-<section>
+<section id='survey_form'>
+	<br>
   <div class="row">
 		<div class="col-md-12">
-			<form action="#" class="form-inline lead-big" role="form">
+			<%= form_tag '/surveys', class: "form-inline lead-big", remote: true do %>
 		    <div class="form-group">
 		      <label for="country">Take me to </label>
-		      <input type="text" class="add-geocomplete" id="country" placeholder="a destination" style="width:370px;">
+		      <input type="text" class="add-geocomplete" name="destination" id="country" autofocus placeholder="a destination" style="width:370px;" required>
 		      with
-
-		      <input type="number" id="companion-number" placeholder="?" value="0" style="width:60px;">
+					
+		      <input type="number" name="companion_count" id="companion-number" placeholder="?" value="0" style="width:60px;">
 		      travel companions
 					<br>
 		      <label for="month">in</label>
-		      <select id="month">
-						<option value="1">January</option>
-						<option value="2">February</option>
+		      <select id="month" name="month">
 		        <option value="3" selected>March</option>
 		        <option value="4">April</option>
 		        <option value="5">May</option>
@@ -27,13 +26,19 @@
 		      </select>
 
 		      <label for="hometown"> departing from </label>
-					<input type="text" class="add-geocomplete" id="hometown" placeholder="my hometown" style="width:460px;" required>
+					<input name="hometown" type="text" class="add-geocomplete" id="hometown" placeholder="my hometown" style="width:460px;" required>
 					.
 		    </div>
 				<br>
 				<br>
+				<br>
+				<div class="blankey" style="display:none;">
+			    <h4>Leave this field blank to prevent spam:</h4>
+			    <%= text_field_tag :blankey %>
+			    <br/>
+			  </div>
 		    <div class="pull-right"><button type="submit" class="btn btn-default btn-lg submit"> CONTINUE </button></div>
-		   </form>
+		   <% end %>
 		</div>
   </div>
 </section>

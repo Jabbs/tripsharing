@@ -1,0 +1,5 @@
+$("#survey_form").hide();
+$("#tagline").hide();
+$("#signup").fadeIn(400);
+$("#tagline2").append("<i class='fa fa-map-marker turquoise_dark'></i> <span class='turquoise_dark' style='text-decoration:underline'><%= @survey.destination.split(',').first %></span>, good choice. Now a bit about you...");
+$("#tagline2").fadeIn(400);

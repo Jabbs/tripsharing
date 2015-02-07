@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destination: MyString
+  companion_count: 1
+  month: MyString
+  hometown: MyString
+
+two:
+  destination: MyString
+  companion_count: 1
+  month: MyString
+  hometown: MyString

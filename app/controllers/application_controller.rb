@@ -15,4 +15,15 @@ class ApplicationController < ActionController::Base
       redirect_to "http://#{APP_DOMAIN}", :status => 301
     end
   end
+  
+  def create_survey_from_user
+    if current_user && cookies[:survey_id]
+      @survey = Survey.find(cookies[:survey_id])
+      if @survey
+        @survey.user = current_user
+        @survey.save
+      end
+    end
+  end
+  
 end

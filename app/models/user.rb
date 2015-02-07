@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # associations
   has_many :trips
   has_many :interests, dependent: :destroy
+  has_many :surveys
   
   # callbacks
   before_create { generate_token(:auth_token) }
@@ -16,8 +17,9 @@ class User < ActiveRecord::Base
   # validations
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => /@/
-  validates :password, presence: true, on: :create
+  validates :password, presence: true, on: :create, :length => { :minimum => 5 }
   # validates_date :birthday, allow_blank: true
+      
   
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize.tap do |user|
@@ -36,6 +38,7 @@ class User < ActiveRecord::Base
       user.last_name = auth.info.last_name
       user.email = auth.info.email
       user.birth_year = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y').year if auth.extra.raw_info.birthday
+      user.birthday = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y') if auth.extra.raw_info.birthday
       user.verified = auth.info.verified
       user.gender = auth.extra.raw_info.gender
       user.newsletter = true

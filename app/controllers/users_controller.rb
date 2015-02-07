@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user
-  before_filter :correct_user, except: [:index]
+  before_filter :signed_in_user, except: [:create]
+  before_filter :correct_user, except: [:index, :create]
   before_filter :admin_user, only: [:index]
   before_filter :check_complete_interests, only: [:profile]
   
@@ -13,6 +13,19 @@ class UsersController < ApplicationController
   end
   
   def join
+  end
+  
+  def create
+    raise ActionController::RoutingError.new('Not Found') if !params[:blankey].blank?
+    @user = User.new(user_params)
+
+    if @user.save
+      sign_in @user
+      create_survey_from_user
+      redirect_to user_interests_path(@user)
+    else
+      render 'static_pages/home'
+    end
   end
   
   def update
@@ -33,9 +46,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:admin, :auth_token, :birth_year, :email, :fb_hometown, :fb_image, :fb_location, 
                       :fb_url, :first_name, :gender, :last_name, :last_sign_in_at, :last_sign_in_ip, :newsletter, 
-                      :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, 
+                      :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, :password,
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
-                      :verification_token, :verified, :bio, :tag_line)
+                      :verification_token, :verified, :bio, :tag_line, :welcome_sent_at, :occupation,
+                      :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown)
     end
     
     def admin_user

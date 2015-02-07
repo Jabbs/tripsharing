@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       @session_user = User.from_omniauth(env["omniauth.auth"])
       logger.debug "request.referer: #{request.referer}"
       sign_in @session_user
+      create_survey_from_user
       redirect_back_or user_interests_path(current_user)
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)
@@ -19,14 +20,14 @@ class SessionsController < ApplicationController
         @user = User.new
         @session_user = User.new
         @session_user.errors.add(:email, "or password invalid")
-        render 'new'
+        redirect_to home_path, alert: "Invalid email or password."
       end
     end
   end
 
   def destroy
     cookies.delete(:auth_token)
-    redirect_to root_path, notice: 'You are now signed out'
+    redirect_to root_path
   end
 
 end

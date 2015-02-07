@@ -1,26 +1,58 @@
-<%= form_for @user, :url => { controller: 'users', :action => :create, :new_petition_id => params[:new_petition_id] } do |f| %>
-  <%= render "shared/error_messages", object: f.object %>
-  <%= f.select :birth_year, 1961..1995, prompt: "birth year" %>
-  <%= f.text_field :email, autocomplete: :off, placeholder: "E-mail" %>
-  <%= f.fields_for :address do |builder| %>
-    <%= builder.text_field :zip, autocomplete: :off, placeholder: "Zip Code" %>
-  <% end %>
-  <hr style="margin-top:5px;margin-bottom:5px;"/>
-  <label>Make a Password:</label>
-  <%= f.password_field :password, autocomplete: :off %>
-  <br/>
-  <div class="div" style="margin-left:20px;">
-    <label class="checkbox">
-      <div class="left">
-        Civic ArtWorks Newsletter
-        <%= f.check_box :newsletter, checked: true %>
-      </div>
-    </label>
-  </div>
-  <div class="namey">
+<%= form_for @user, :url => { controller: 'users', :action => :create } do |f| %>
+	<%= render "shared/error_messages", object: f.object %>
+	<div class="row">
+		<div class="col-md-6">
+			<lable>First name</lable>
+			<br>
+			<input name="user[first_name]" type="text" autocomplete="off" placeholder="First name" style="width:100%;" required>
+		</div>
+		<div class="col-md-6">						
+			<lable>Last name</lable>
+			<br>
+			<input name="user[last_name]" type="text" autocomplete="off" placeholder="Last name" style="width:100%;" required>
+		</div>
+	</div>
+	<div class="row" style="margin-top:10px;">
+		<div class="col-md-6">
+			<lable>Gender</lable>
+			<br>
+			<select name="user[gender]" style="width:100%;" required>
+				<option value="default">Select Gender</option>
+				<option value="female">Female</option>
+				<option value="male">Male</option>
+        <option value="other">Other</option>
+      </select>
+		</div>
+		<div class="col-md-6">
+			<lable>Birthday</lable>
+			<br>
+			<input type="date" name="user[birthday]" max="1997-12-31" style="width:100%;" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<label>Hometown</label>
+			<input name="user[hometown]" type="text" class="add-geocomplete" id="hometown" placeholder="My hometown" value="<%= @survey.try(:hometown) %>" style="width:100%;" required>
+		</div>
+	</div>
+	<div class="row" style="margin-top:10px;">
+		<div class="col-md-12">
+			<lable>Email</lable>
+			<br>
+			<input type="email" style="width:100%;" autocomplete="off" name="user[email]" placeholder="Email" required>
+		</div>
+	</div>
+	<div class="row" style="margin-top:10px;">
+		<div class="col-md-12">
+			<label>Make a Password:</label>
+			<br>
+			<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password">
+		</div>
+	</div>
+	<div class="blankey" style="display:none;">
     <h4>Leave this field blank to prevent spam:</h4>
-    <%= text_field_tag :namey %>
+    <%= text_field_tag :blankey %>
     <br/>
   </div>
-  <%= f.submit "Create Account", disable_with: 'Submitting...', class: "btn btn-success", style: "margin-top:10px;" %>
-<% end %>
+  <%= f.submit "Create Account", disable_with: 'Submitting...', class: "btn btn-success", style: "margin-top:20px;" %>
+ <% end %>
