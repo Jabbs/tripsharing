@@ -1,0 +1,35 @@
+<!-- begin #sidebar -->
+<div id="sidebar" class="sidebar">
+	<!-- begin sidebar scrollbar -->
+	<div data-scrollbar="true" data-height="100%">
+		<!-- begin sidebar user -->
+		<ul class="nav">
+		  <li class="nav-profile">
+				<div class="image">
+					<%= image_tag current_user.fb_image, size: "30x30", id: "image-dropdown" %>
+				</div>
+				<div class="info">
+					<%= current_user.full_name %>
+					<span>
+						<small>
+							<span style="color:white;"><%= current_user.hometown %></span>
+		    		</small>
+		    	</span>
+				</div>
+			</li>
+		</ul>
+		<!-- end sidebar user -->
+		<!-- begin sidebar nav -->
+		<ul class="nav" style="margin:0px;padding:0px;">
+			<li class="nav-header">Navigation</li>
+			<% @trips.each do |trip| %>
+        <li style="background:white; border:1px solid black;">
+          <%= link_to trip.name, trip %>
+        </li>
+			<% end %>
+		</ul>
+		<!-- end sidebar nav -->
+	</div>
+	<!-- end sidebar scrollbar -->
+</div>
+<!-- end #sidebar -->

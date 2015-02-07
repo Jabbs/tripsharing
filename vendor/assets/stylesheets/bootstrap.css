@@ -6497,22 +6497,22 @@ button.close {
   }
 }
 @media (max-width: 767px) {
-  .hidden-xs {
+  .col-md-12xs {
     display: none !important;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .hidden-sm {
+  .col-md-12sm {
     display: none !important;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  .hidden-md {
+  .col-md-12md {
     display: none !important;
   }
 }
 @media (min-width: 1200px) {
-  .hidden-lg {
+  .col-md-12lg {
     display: none !important;
   }
 }
@@ -6559,7 +6559,7 @@ button.close {
   }
 }
 @media print {
-  .hidden-print {
+  .col-md-12print {
     display: none !important;
   }
 }

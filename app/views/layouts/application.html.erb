@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title><%= content_for?(:title) ? yield(:title) : t('application.root.title') %></title>
+	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('application.root.description') %>">
   <link rel="image_src" href="<%= content_for?(:image_path) ? yield(:image_path) : image_path('globe-icon-planes-250.png') %>"/>
@@ -37,7 +38,9 @@
 	<% end %>
 	<%= render 'shared/flash', flash: flash %>
 	<div id="page-<%= controller_name %>-<%= action_name %>">
+		
 	  <%= yield %>
+	
 		<%= render 'layouts/footer' %>
 	</div>
 </body>

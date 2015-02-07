@@ -1,30 +1,32 @@
-<div id="home-background3">
-	<div class="container">
-		<div class="row">
-		  <div class="span12 no-margin-large-desktop">
-		    <div class="dashboard-well">
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1">
-							<div class="input-append">
-							  <input class="col-md-8" id="appendedInputButtons" type="text" style="margin-top:4px; margin-right:10px;">
-							  <button class="btn btn-sm" type="button">Search</button>
-							</div>
+<div class="container-fluid">
+	<div class="row" style="background:grey;">
+		<div class="col-md-3" style="padding-left:0px;">
+			<%= render "layouts/sidebar" %>
+		</div>
+	  <div class="col-md-9">
+	    <div class="dashboard-well">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="input-append">
+						  <input class="col-md-8" id="appendedInputButtons" type="text" style="margin-top:4px; margin-right:10px;">
+						  <button class="btn btn-sm" type="button">Search</button>
 						</div>
 					</div>
-		      <div class="row">
-		        <div class="col-md-10 col-md-offset-1">
-		          <% if @trips.any? %>
-		            <%= render "trips/trips" %>
-		          <% else %>
-		            <div class="well" style="color: black;">
-		              <h2 class="center grey">No travel is currently available. Please check back with us soon!</h2>
-		            </div>
-		          <% end %>
-		        </div>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+				</div>
+	      <div class="row">
+	        <div class="col-md-10 col-md-offset-1">
+	          <% if @trips.any? %>
+	            <%= render "trips/trips" %>
+	          <% else %>
+	            <div class="well" style="color: black;">
+	              <h2 class="center grey">No travel is currently available. Please check back with us soon!</h2>
+	            </div>
+	          <% end %>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </div>
+
 

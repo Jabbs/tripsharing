@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   
   # static pages
-  match '/about', to: 'static_pages#about', via: :get
-  match '/how_it_works', to: 'static_pages#how_it_works', via: :get
-  match '/privacy', to: 'static_pages#privacy', via: :get
-  match '/terms', to: 'static_pages#terms', via: :get
-  match '/press', to: 'static_pages#press', via: :get
+  # match '/about', to: 'static_pages#about', via: :get
+  # match '/how_it_works', to: 'static_pages#how_it_works', via: :get
+  # match '/privacy', to: 'static_pages#privacy', via: :get
+  # match '/terms', to: 'static_pages#terms', via: :get
+  # match '/press', to: 'static_pages#press', via: :get
   
   resources :users do
     resources :verifications, only: [:show]
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :interests
     get 'profile'
     get 'join'
+    resources :trips
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   match '/unsubscribe', to: "verifications#unsubscribe", via: :get

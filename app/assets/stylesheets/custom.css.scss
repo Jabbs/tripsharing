@@ -140,7 +140,7 @@ h4 { line-height: 1.2em; }
 .span1minus30 { width: 30px; }
 .span5plus20 {width: 400px;}
 .no-height {height: 0px;}
-.hidden-input {display:none;}
+.col-md-12input {display:none;}
 .namey {display:none;}
 .transparent {
   opacity:0.4;
@@ -414,9 +414,10 @@ a.btn-facebook {
   background: white;
 }
 .nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: transparent !important; }
-#logo {color: $salmon; font-size:200%; line-height:.3em; position:relative; top:7px;}
-#logo {font-family: 'Crafty Girls';}
+#logo {color: $salmon; font-size:200%; line-height:.3em; font-family: 'Crafty Girls', Arial;}
 #logo:hover {text-decoration:none;}
+#logo {position:relative; top:14px;}
+#globe {position:relative;top:7px;}
 #image-dropdown {
   position:relative; 
   right: 16px;
