@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">Password reset</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<%= form_tag password_resets_path, method: :post do %>
+				<label style="margin:0px;">Enter your email</label>
+				<br>
+				<%= text_field_tag :email, params[:email], style: "width:100%; margin-top:0px;", placeholder: "Email", autocomplete: :off %>
+				<br>
+				<%= submit_tag 'Reset My Password', class: "btn btn-default", style: "margin-top:10px; margin-bottom:20px;", disable_with: 'Submitting...' %>
+			<% end %>
+
+		</div>
+		
+	</div>
+</div>

@@ -1,12 +1,34 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   
-  # config.middleware.use ExceptionNotification::Rack,
-  # :email => {
-  #   :email_prefix => ENV['STAGING'].present? ? "[ERROR STAGING] " : "[ERROR PRODUCTION] ",
-  #   :sender_address => %{"TripSharing" <noreply@trip-sharing.com>},
-  #   :exception_recipients => %w{info@trip-sharing.com}
-  # }
+  unless ENV['STAGING'].present?
+    config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[TripSharing ERROR] ",
+      :sender_address => %{"TripSharing" <noreply@trip-sharing.com>},
+      :exception_recipients => %w{info@trip-sharing.com}
+    }
+  end
+  
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+  
+  # Send out mailers when .delivery is invoked
+  config.action_mailer.perform_deliveries = true
+  
+  # Gmail mailer configuration
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => ENV['STAGING'].present? ? 'www.tripsharing-staging.herokuapp.com' : 'www.trip-sharing.com',
+    :user_name            => ENV['GMAIL_USERNAME'],
+    :password             => ENV['GMAIL_PASSWORD'],
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+    
+  # Set the default host option for mailer
+  config.action_mailer.default_url_options = { :host => ENV['STAGING'].present? ? 'tripsharing-staging.herokuapp.com' : 'www.trip-sharing.com' }
   
   # Code is not reloaded between requests.
   config.cache_classes = true

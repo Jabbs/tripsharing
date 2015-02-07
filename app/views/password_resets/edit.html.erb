@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="div" style="margin-top:150px;margin-bottom:260px;">
+		<div class="well">
+			<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+				<%= render 'shared/error_messages', object: @user %>
+	      <div class="row">
+	        <div class="col-md-12">
+	          <h2 class="center">Reset Password</h2>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-md-6 col-md-offset-3">
+	          <hr/>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-md-9 col-md-offset-3">
+	          <div class="row">
+	            <div class="col-md-3">
+	              <label>Password:</label>
+	            </div>
+	            <div class="col-md-6">
+	              <%= f.password_field :password %>
+	            </div>
+	          </div>
+	          <div class="row">
+	            <div class="col-md-3">
+	              <label>Password Confirmation:</label>
+	            </div>
+	            <div class="col-md-6">
+	              <%= f.password_field :password_confirmation %>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-md-6 col-md-offset-3">
+	          <hr/>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-md-6 col-md-offset-3">
+	        	<%= f.submit 'Update Password', class: "btn btn-info", disable_with: 'Submitting...' %>
+	        </div>
+	      </div>
+	    <% end %>
+		</div>
+  </div>
+</div>

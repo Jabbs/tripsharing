@@ -152,6 +152,7 @@ h4 { line-height: 1.2em; }
 .modal-body label { font-weight:200; }
 #signup {display: none;}
 #tagline2 {display: none;}
+#passreset-modal-content {display: none;}
 
 .send-to-front {
 	position: relative;
@@ -390,7 +391,7 @@ a.btn-facebook {
 
 /* header */
 .navbar, .navbar-inner {margin:0px; border-radius:0;background: transparent; border:none; box-shadow:none;}
-.navbar-inverse .navbar-inner {
+.navbar {
 	position:relative;
 	z-index:1;
   margin:0px;
@@ -429,7 +430,7 @@ footer {
   left: 0;
   right: 0;
   z-index: 0;
-  height:240px;
+  height:180px;
   background: $salmon;
   padding-top: 30px;
   padding-bottom: 10px;

@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">Log in</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+		<div class="col-md-6">
+			<div class="center">
+				<a href="/auth/facebook" id="sign_in" class="btn btn-facebook" style="margin-top:50px;margin-bottom:10px; padding-left:20px;padding-right:20px;">
+					<i class='fa fa-facebook' style="padding-right:4px;"></i> Sign in with Facebook
+				</a>
+			</div>
+			<p class="small center">We never post to Facebook.</p>
+		</div>
+		
+		<div class="col-md-6" style="border-left:1px solid black;">
+			<%= form_tag '/login' do %>
+        <%= render 'shared/error_messages', object: @session_user %>
+				<label style="margin-bottom:2px;">Email</label>
+				<br>
+        <%= text_field_tag :email, params[:email], placeholder: "Email", autocomplete: :off, style: "margin-bottom:10px; width:100%;" %>
+        <br/>
+				<label style="margin-bottom:2px;">Password</label>
+				<br>
+        <%= password_field_tag :password, params[:password], placeholder: "Password", autocomplete: :off, style: "width:100%" %>
+        <br/>
+        <%= submit_tag 'Login', class: "btn btn-info", style: "margin-top:10px;" %>
+        <p class="small" style="font-weight:200;margin-top:5px;"><%= link_to "Forgot Password?", "#", id: "passreset-link" %></p>
+      <% end %>
+		</div>
+		
+	</div>
+</div>
