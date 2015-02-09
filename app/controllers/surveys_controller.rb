@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   def create
     raise ActionController::RoutingError.new('Not Found') if !params[:blanky].blank?
     @survey = Survey.new(companion_count: params[:companion_count], destination: params[:destination],
-                        month: params[:month], hometown: params[:hometown])
+                        month: params[:month], hometown: params[:hometown], companion_type: params[:companion_type])
     
     if @survey.save
       cookies[:survey_id] = @survey.id

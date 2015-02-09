@@ -1,27 +1,43 @@
 <!-- begin #sidebar -->
-<div id="sidebar" class="sidebar">
-	<!-- begin sidebar scrollbar -->
-	<div data-scrollbar="true" data-height="100%">
-		<div class="row">
-			<div class="col-sm-3">
-				<%= image_tag "blank_avatar.jpg", size: "60x60" %>
-			</div>
-			<div class="col-sm-6">
-				<%= current_user.full_name %>
-				<%= current_user.fb_location %>
-			</div>
+<div class="sidebar">
+	<div class="row" style="padding-left:20px;padding-top:10px;">
+		<div class="col-md-12">
+			Show trips departing from: <br>
+			<select id="radius" name="radius" style="margin-bottom:5px;">
+        <option value="1" selected>within 5 miles of</option>
+        <option value="2">within 10 miles of</option>
+        <option value="3">within 25 miles of</option>
+        <option value="4">within 50 miles of</option>
+        <option value="5">within 100 miles of</option>
+      </select>
+			<br>
+			<span class="turquoise_dark"><i class="fa fa-map-marker"></i> <%= current_user.fb_location %></span>
+			<small><%= link_to "change", current_user %></small>
+			<br>
+			<button type="submit" class="btn btn-default btn-sm" style="padding:0px 6px;margin-top:3px;"> search </button>
 		</div>
-		<!-- begin sidebar nav -->
-		<ul class="nav" style="margin:0px;padding:0px;">
-			<li class="nav-header">Navigation</li>
-			<% @trips.each do |trip| %>
-        <li style="background:white; border:1px solid black;">
-          <%= link_to trip.name, trip %>
-        </li>
-			<% end %>
-		</ul>
-		<!-- end sidebar nav -->
 	</div>
-	<!-- end sidebar scrollbar -->
+	<hr>
+	<div class="row" style="margin-bottom:5px;margin-top:10px;">
+		<div class="col-md-6">
+			<h2 style="position:relative; top:8px;">MY TRIPS:</h2>
+		</div>
+		<div class="col-md-6">
+			<a href="/trips/new" class="btn btn-info btn-sm pull-right" style="margin-right:5px; padding:3px 6px" href="#" role="button">New Trip</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="list-unstyled">
+				<% @my_trips.each do |trip| %>
+					<%= render "trips/sidebar_list_item", trip: trip %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>WATCHING TRIPS:</h2>
+		</div>
+	</div>
 </div>
-<!-- end #sidebar -->

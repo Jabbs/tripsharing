@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 			  <div class="col-md-10 col-md-offset-1">
-					<div class="no-height"><%= image_tag "world_map.jpg", style: "position:relative; top:36px; right:-1px;" %></div>
+					<div class="no-height"><div class="center"><%= image_tag "world_map.jpg", style: "position:relative; top:36px; right:-1px;", class: "visible-lg-block" %></div></div>
 			    <div class="signup-well">
 						<div class="pull-right">
 							<!-- Button trigger modal -->
@@ -27,19 +27,23 @@
 								</div>
 							</div>
 						</div>
-			      <div class="center" style="font-size: 200%; margin-top:30px;">
-							<%= image_tag("globe-icon-planes-100.png", style: "margin-left:5px;", id: "globe") %>
-	            <span id="logo">TripSharing<span class='blue tiny'>beta</span></span>
+						<div class="world_background">
+							<div class="center" style="font-size: 200%; margin-top:30px;">
+								<%= image_tag("globe-icon-planes-100.png", style: "margin-left:5px;", id: "globe") %>
+		            <span id="logo">TripSharing<span class='blue tiny'>beta</span></span>
+							</div>
+							<h1 id="tagline" class="center black" style="font-size: 150%; margin-bottom:80px; margin-top:20px; position:relative; z-index:2;">
+								<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+									Match. Meet. Travel...
+								<% end %>
+							</h1>
+							<h1 id="tagline2" class="center black" style="font-size: 150%; margin-bottom:80px; margin-top:20px; position:relative; z-index:2;">
+							</h1>
 						</div>
-						<h1 id="tagline" class="center black" style="font-size: 150%; margin-bottom:80px; margin-top:20px; position:relative; z-index:2;">
-							<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
-								Match. Meet. Travel...
-							<% end %>
-						</h1>
-						<h1 id="tagline2" class="center black" style="font-size: 150%; margin-bottom:20px; margin-top:20px; position:relative; z-index:2;">
-						</h1>
 
-						<%= render 'static_pages/survey' %>
+						<div id="survey" style="border 1px solid black;">
+							<%= render 'static_pages/survey' %>
+						</div>
 						
 						<div id="signup">
 							<%= render 'sessions/signup' %>

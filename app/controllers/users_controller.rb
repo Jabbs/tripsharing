@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :check_complete_interests, only: [:profile]
   
   def profile
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
   end
   
   def index
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to user_join_path(current_user)
     else
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     
     def correct_user
       params[:user_id]? id = params[:user_id] : id = params[:id]
-      @user = User.find(id)
+      @user = User.friendly.find(id)
       redirect_to root_path unless current_user?(@user) || current_user.admin?
     end
     

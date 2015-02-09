@@ -5,13 +5,19 @@
 			<%= form_tag '/surveys', class: "form-inline lead-big", remote: true do %>
 		    <div class="form-group">
 		      <label for="country">Take me to </label>
-		      <input type="text" class="add-geocomplete" name="destination" id="country" autofocus placeholder="a destination" style="width:370px;" required>
+		      <input type="text" class="add-geocomplete" name="destination" id="country" autofocus placeholder="a destination" style="width:400px;" required>
 		      with
-					
-		      <input type="number" name="companion_count" id="companion-number" placeholder="?" value="0" style="width:60px;">
-		      travel companions
+		      <select id="companion_type" name="companion_type">
+					  <option value="1" selected>another traveler</option>
+		        <option value="2">2-5 travelers</option>
+		        <option value="3">6-10 travelers</option>
+		        <option value="4">another couple</option>
+		        <option value="5">2-5 couples</option>
+		        <option value="6">another family</option>
+		      </select>
+
 					<br>
-		      <label for="month">in</label>
+		      in
 		      <select id="month" name="month">
 		        <option value="3" selected>March</option>
 		        <option value="4">April</option>

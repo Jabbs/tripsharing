@@ -5,6 +5,7 @@ class TripsController < ApplicationController
   
   def index
     @trips = Trip.order("created_at ASC").paginate(page: params[:page], per_page: 12)
+    @my_trips = current_user.trips
   end
   
   def new
