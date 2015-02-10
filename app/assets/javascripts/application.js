@@ -20,6 +20,11 @@
 
 $('document').ready(function() {
 	
+	$(".sidebar_list_item").click(function() {
+		var url = $(this).find("a").attr('href')
+		if (url) {window.location = url};
+	});
+	
 	$("#passreset-link").click(function() {
 		$("#login-modal-content").hide();
 		$("#passreset-modal-content").fadeIn(400); 

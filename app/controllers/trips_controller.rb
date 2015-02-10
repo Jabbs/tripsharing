@@ -14,9 +14,10 @@ class TripsController < ApplicationController
   end
   
   def show
-    @trip = Trip.find(params[:id])
+    @my_trips = current_user.trips
+    @trip = Trip.friendly.find(params[:id])
     
-    if request.path != trip_path(@trip)
+    if request.path != trip_path(@trip) && request.path != user_trip_path(current_user, @trip)
       redirect_to @trip, status: :moved_permanently
     end
     @trip.add_view_count unless current_user?(@trip.user) || admin_user?
@@ -26,7 +27,7 @@ class TripsController < ApplicationController
   end
   
   def edit
-    @trip = Trip.find(params[:id])
+    @trip = Trip.friendly.find(params[:id])
   end
   
   def update
@@ -70,7 +71,7 @@ class TripsController < ApplicationController
     end
     
     def redirect_inactive_trip
-      @trip = Trip.find(params[:id])
+      @trip = Trip.friendly.find(params[:id])
       redirect_to root_path, alert: "The trip you tried to visit is not active." if @trip.inactive? && !admin_user?
       rescue ActiveRecord::RecordNotFound
         redirect_to root_path, alert: "The trip you attempted to view is no longer available."

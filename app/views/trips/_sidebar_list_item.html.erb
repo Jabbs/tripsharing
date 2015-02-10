@@ -1,6 +1,6 @@
 <li class="sidebar_list_item">
 	<h3>
-		<%= link_to trip.name, trip %>
+		<%= link_to trip.name, [current_user, trip] %>
 		<% if trip.inactive? %>
 			<small>(inactive)</small>
 		<% end %>
