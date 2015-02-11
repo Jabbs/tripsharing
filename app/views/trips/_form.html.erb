@@ -13,7 +13,7 @@
   <br/>
   <label>Group Size:</label>
   <br/>
-  <%= f.select :group_size, ('1'..'30').to_a %>
+  <%= f.select :group_max, ('1'..'30').to_a %>
   <br/>
   <br/>
   <label>Description</label>
@@ -23,7 +23,7 @@
   <br/>
   <label>Location:</label>
   <br/>
-  <%= f.fields_for :location do |builder| %>
+  <%= f.fields_for :locations do |builder| %>
     <%= builder.text_field :address1, placeholder: "Street Address 1" %>
     <br/>
     <%= builder.text_field :address2, placeholder: "Street Address 2" %>
@@ -48,7 +48,7 @@
   <hr/>
   <label>Active:</label>
   <br/>
-  <%= f.select :active, [true, false], {prompt: "--select--"} %>
+  <%= f.select :state, Trip::STATES, {prompt: "--select--"} %>
   <hr/>
   <% action_name == 'edit' ? submit_text = "Update Trip" : submit_text = "Create Trip" %>
   <%= f.submit "#{submit_text}", disable_with: 'Submitting...', class: "btn" %>

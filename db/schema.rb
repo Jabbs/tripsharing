@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209134337) do
+ActiveRecord::Schema.define(version: 20150211140834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150209134337) do
 
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
-  create_table "trip_applications", force: true do |t|
+  create_table "trip_users", force: true do |t|
     t.integer  "trip_id"
     t.integer  "user_id"
     t.string   "status",       default: "pending"
@@ -90,23 +90,29 @@ ActiveRecord::Schema.define(version: 20150209134337) do
     t.datetime "updated_at",                       null: false
   end
 
-  add_index "trip_applications", ["status"], name: "index_trip_applications_on_status", using: :btree
-  add_index "trip_applications", ["trip_id"], name: "index_trip_applications_on_trip_id", using: :btree
-  add_index "trip_applications", ["user_id"], name: "index_trip_applications_on_user_id", using: :btree
+  add_index "trip_users", ["status"], name: "index_trip_users_on_status", using: :btree
+  add_index "trip_users", ["trip_id"], name: "index_trip_users_on_trip_id", using: :btree
+  add_index "trip_users", ["user_id"], name: "index_trip_users_on_user_id", using: :btree
 
   create_table "trips", force: true do |t|
     t.string   "name"
     t.datetime "expires_at"
     t.string   "age_min"
     t.string   "age_max"
-    t.string   "group_size"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "slug"
-    t.boolean  "active",      default: false
-    t.integer  "view_count",  default: 0
+    t.integer  "view_count",              default: 0
     t.integer  "user_id"
+    t.integer  "group_min"
+    t.integer  "group_max"
+    t.string   "state",                   default: "pending"
+    t.boolean  "initialized_with_signup", default: false
+    t.string   "audience",                default: "public"
+    t.integer  "duration_in_days"
+    t.string   "price_dollars_low"
+    t.string   "price_dollars_high"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree

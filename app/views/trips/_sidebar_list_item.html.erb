@@ -1,11 +1,12 @@
 <li class="sidebar_list_item">
-	<h3>
-		<%= link_to trip.name, [current_user, trip] %>
-		<% if trip.inactive? %>
-			<small>(inactive)</small>
-		<% end %>
-	</h3>
-	<%= trip.expires_at.strftime("%m/%e/%y %l:%M%P") %>
-	|
-	<i class="fa fa-group"></i> 0/<%= trip.group_size %> onboard
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				<%= link_to trip.name, [current_user, trip] %>
+				<% if trip.inactive? %>
+					<small>(inactive)</small>
+				<% end %>
+			</h3>
+		</div>
+	</div>
 </li>

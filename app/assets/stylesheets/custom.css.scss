@@ -391,6 +391,7 @@ a.btn-facebook {
 }
 
 .sidebar {
+	padding-top:10px;
 	border-right: 3px solid $grey_light;
 	outline: 1px solid $grey_dark;
 	min-height:600px;
@@ -398,7 +399,7 @@ a.btn-facebook {
 	hr {border-top: 1px solid $grey_dark;margin:15px 0 5px 0;}
 }
 .sidebar_list_item {
-	padding:10px;
+	padding:5px 10px;
 	background: $grey;
 	border: 1px solid white;
 	border-right: none;

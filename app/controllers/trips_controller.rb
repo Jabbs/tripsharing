@@ -10,7 +10,6 @@ class TripsController < ApplicationController
   
   def new
     @trip = Trip.new
-    @trip.build_location
   end
   
   def show
