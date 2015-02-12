@@ -22,7 +22,10 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       create_survey_from_user
-      redirect_to user_interests_path(@user)
+      unless current_user.trips.any?
+        Trip.create_from_survey(current_user, current_user.survey) if current_user.survey
+      end
+      redirect_back_or user_trips_path(current_user)
     else
       render 'static_pages/home'
     end

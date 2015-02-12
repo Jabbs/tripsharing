@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # associations
   has_many :trips
   has_many :interests, dependent: :destroy
-  has_many :surveys
+  has_one :survey
   
   # callbacks
   before_create { generate_token(:auth_token) }

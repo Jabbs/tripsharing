@@ -10,6 +10,9 @@ class SessionsController < ApplicationController
       logger.debug "request.referer: #{request.referer}"
       sign_in @session_user
       create_survey_from_user
+      unless current_user.trips.any?
+        Trip.create_from_survey(current_user, current_user.survey) if current_user.survey
+      end
       redirect_back_or user_trips_path(current_user)
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)

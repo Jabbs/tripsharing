@@ -153,6 +153,12 @@ h4 { line-height: 1.2em; }
 #signup {display: none;}
 #tagline2 {display: none;}
 #passreset-modal-content {display: none;}
+.nav > li.dropdown.active.open > a, 
+.nav > li.dropdown.active.open > ul.dropdown-menu a:hover,
+.nav > li.dropdown.open > a, 
+.nav > li.dropdown.open > ul.dropdown-menu a:hover,
+.nav > li.dropdown:hover > a
+{ background-color: inherit; }
 
 .send-to-front {
 	position: relative;

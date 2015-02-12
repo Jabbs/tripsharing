@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211140834) do
+ActiveRecord::Schema.define(version: 20150212142606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150211140834) do
     t.string   "locationable_type"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "unparsed"
   end
 
   add_index "locations", ["country"], name: "index_locations_on_country", using: :btree
@@ -113,6 +114,11 @@ ActiveRecord::Schema.define(version: 20150211140834) do
     t.integer  "duration_in_days"
     t.string   "price_dollars_low"
     t.string   "price_dollars_high"
+    t.datetime "departs_at"
+    t.integer  "no_couples",              default: 0
+    t.integer  "no_singles",              default: 0
+    t.integer  "no_families",             default: 0
+    t.string   "group_dynamics"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree

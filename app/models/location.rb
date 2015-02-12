@@ -6,9 +6,7 @@ class Location < ActiveRecord::Base
   # acts_as_gmappable :process_geocoding => false
   
   after_validation :geocode, :if => :address_changed?
-  
-  validates :country, presence: true
-  
+    
   scope :trips, ->() { where(locationable_type: 'Trip') }
   scope :with_coordinates, ->() {
     where("latitude IS NOT NULL")
@@ -16,7 +14,7 @@ class Location < ActiveRecord::Base
   }
   
   def address_changed?
-    attrs = %w(address1 address2 city state zip country)
+    attrs = %w(unparsed address1 address2 city state zip country)
     attrs.any?{|a| send "#{a}_changed?"}
   end
   
@@ -51,7 +49,11 @@ class Location < ActiveRecord::Base
   end
   
   def full_address
-    "#{address1}, #{address2}, #{city}, #{state}, #{zip}, #{country}"
+    if self.unparsed?
+      self.unparsed
+    else
+      "#{address1}, #{address2}, #{city}, #{state}, #{zip}, #{country}"
+    end
   end
   
   def gmaps4rails_address
