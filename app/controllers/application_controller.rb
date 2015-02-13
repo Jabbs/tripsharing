@@ -19,8 +19,10 @@ class ApplicationController < ActionController::Base
   def create_survey_from_user
     if current_user && cookies[:survey_id]
       @survey = Survey.find(cookies[:survey_id])
-      if @survey
+      if @survey && !current_user.survey.present?
         @survey.user = current_user
+        current_user.send_to_first_trip = true
+        current_user.save
         @survey.save
       end
     end

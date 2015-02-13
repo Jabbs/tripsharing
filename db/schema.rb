@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212142606) do
+ActiveRecord::Schema.define(version: 20150213142644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150212142606) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "companion_type"
+    t.string   "organizer_type"
   end
 
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
@@ -165,6 +166,7 @@ ActiveRecord::Schema.define(version: 20150212142606) do
     t.string   "fb_updated_time"
     t.date     "birthday"
     t.string   "hometown"
+    t.boolean  "send_to_first_trip",     default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

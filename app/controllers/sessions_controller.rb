@@ -13,7 +13,13 @@ class SessionsController < ApplicationController
       unless current_user.trips.any?
         Trip.create_from_survey(current_user, current_user.survey) if current_user.survey
       end
-      redirect_back_or user_trips_path(current_user)
+      if current_user.trips.any? && current_user.send_to_first_trip == true
+        current_user.send_to_first_trip == false
+        current_user.save
+        redirect_to current_user.trips.first
+      else
+        redirect_back_or user_trips_path(current_user)
+      end
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)
       if @session_user && @session_user.authenticate(params[:password].to_s)

@@ -5,16 +5,18 @@
 			  <div class="col-md-10 col-md-offset-1">
 					<div class="no-height"><div class="center"><%= image_tag "world_map.jpg", style: "position:relative; top:36px; right:-1px;", class: "visible-lg-block" %></div></div>
 			    <div class="signup-well">
+
 						<div class="pull-right">
 							<!-- Button trigger modal -->
 							<div class="no-height">
+								<%= link_to "sign up", "#", style: "position:relative;z-index:5;left:-5px;", id: "signuplink" %>
 								<button type="button" id="login-link" class="btn btn-default" data-toggle="modal" data-target="#signinModal" style="position:relative;z-index:5;">
 								  Log In
 								</button>
 							</div>
 							<%= render "sessions/signin_modal" %>
 						</div>
-						<div class="row">
+						<div class="row" style="margin-top:3px;">
 							<div class="col-md-12">
 								<div class="center">
 									<%= link_to "https://www.facebook.com/trip.sharing.1", target: "_blank", class: "fb-link" do %>

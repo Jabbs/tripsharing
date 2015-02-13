@@ -71,7 +71,7 @@ class TripsController < ApplicationController
     
     def redirect_inactive_trip
       @trip = Trip.friendly.find(params[:id])
-      redirect_to root_path, alert: "The trip you tried to visit is not active." if @trip.inactive? && !admin_user?
+      redirect_to root_path, alert: "The trip you tried to visit is not active." if @trip.inactive? && !admin_user? && !current_user?(@trip.user)
       rescue ActiveRecord::RecordNotFound
         redirect_to root_path, alert: "The trip you attempted to view is no longer available."
     end

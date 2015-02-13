@@ -4,20 +4,23 @@
 		<div class="col-md-12">
 			<%= form_tag '/surveys', class: "form-inline lead-big", remote: true do %>
 		    <div class="form-group">
-		      <label for="country">Take me to </label>
-		      <input type="text" class="add-geocomplete" name="destination" id="country" autofocus placeholder="a destination" style="width:400px;" required>
-		      with
-		      <select id="companion_type" name="companion_type">
-					  <option value="1" selected>another traveler</option>
-		        <option value="2">2-5 travelers</option>
-		        <option value="3">6-10 travelers</option>
-		        <option value="4">another couple</option>
-		        <option value="5">2-5 couples</option>
-		        <option value="6">another family</option>
+					<select id="organizer_type" name="organizer_type">
+					  <option value="1" selected>I'm</option>
+		        <option value="2">We're</option>
 		      </select>
-
+		      <label for="country">traveling to </label>
+		      <input type="text" class="add-geocomplete" name="destination" id="country" autofocus placeholder="a destination" style="width:520px;" required>
 					<br>
-		      in
+		      and looking for
+		      <select id="companion_type" name="companion_type">
+					  <option value="1" selected>another travel companion</option>
+		        <option value="2">2-5 travel companions</option>
+		        <option value="3">6-10 travel companions</option>
+		        <option value="4">another traveling couple</option>
+		        <option value="5">2-5 traveling couples</option>
+		        <option value="6">another traveling family</option>
+		      </select>
+		      to join in
 		      <select id="month" name="month">
 		        <option value="3/1/15" selected>March</option>
 		        <option value="4/1/15">April</option>
@@ -30,9 +33,6 @@
 						<option value="11">November</option>
 						<option value="12">December</option>
 		      </select>
-
-		      <label for="hometown"> departing from </label>
-					<input name="hometown" type="text" class="add-geocomplete" id="hometown" placeholder="my location" style="width:430px;" required>
 					.
 		    </div>
 				<br>

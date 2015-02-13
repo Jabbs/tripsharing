@@ -20,6 +20,14 @@
 
 $('document').ready(function() {
 	
+	$('#signuplink').click(function() {
+		$("#survey_form").hide();
+		$("#tagline").hide();
+		$("#signup").fadeIn(400);
+		$("#tagline2").append("Signup to find your ideal traveling group...");
+		$("#tagline2").fadeIn(400);
+	});
+	
 	$('#myTab a').click(function (e) {
 	  e.preventDefault()
 	  $(this).tab('show')
