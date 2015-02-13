@@ -17,6 +17,9 @@ class Trip < ActiveRecord::Base
     trip = Trip.new(user_id: user.id)
     trip.initialized_with_signup = true
     trip.departs_at = Date.strptime(survey.month,'%m/%d/%Y')
+    # concat a name
+    trip.name = survey.hometown.split(',').first + " to " + survey.destination.split(',').first
+    
     case survey.companion_type
     when "1"
       trip.group_max = 2

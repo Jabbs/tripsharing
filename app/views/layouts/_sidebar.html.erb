@@ -24,15 +24,15 @@
 	</div>
 	<hr>
 	<div class="row" style="margin-bottom:5px;margin-top:10px;">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<h2 style="position:relative; top:6px;">MY TRIPS:</h2>
-		</div>
-		<div class="col-md-6">
-			<a href="/trips/new" class="btn btn-info btn-sm pull-right" style="margin-right:5px; padding:3px 6px" href="#" role="button">Start New Trip</a>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
+			<% unless @my_trips.any? %>
+				<em style="margin-left:10px;">none</em>
+			<% end %>
 			<ul class="list-unstyled">
 				<% @my_trips.each do |trip| %>
 					<%= render "trips/sidebar_list_item", trip: trip %>

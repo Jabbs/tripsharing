@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:index, :show]
-  before_filter :admin_user
+  before_filter :admin_user, except: [:index, :show]
   before_filter :redirect_inactive_trip, only: [:show]
   
   def index

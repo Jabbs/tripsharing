@@ -20,6 +20,11 @@
 
 $('document').ready(function() {
 	
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+	
 	$(".sidebar_list_item").click(function() {
 		var url = $(this).find("a").attr('href')
 		if (url) {window.location = url};
