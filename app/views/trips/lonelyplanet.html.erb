@@ -1,0 +1,13 @@
+<div class="container-fluid">
+	<h1><%= @lp_trips.size %> Trips</h1>
+	<% @lp_trips.each do |trip| %>
+		<div class="row">
+			<div class="col-md-12">
+				<h3><%= trip["title"] %> <small>- <%= trip["author"] %></small></h3>
+				<p><%= link_to trip["url"], trip["url"], target: "_blank" %></p>
+				<%= trip["content"].html_safe %>
+			</div>
+		</div>
+		<hr>
+	<% end %>
+</div>

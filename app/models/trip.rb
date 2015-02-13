@@ -13,6 +13,25 @@ class Trip < ActiveRecord::Base
   
   STATES = ["pending", "active"]
   
+  def self.get_lonelyplanet_trips
+    lp_trips = []
+    url = "https://www.lonelyplanet.com/thorntree/forums/travel-companions.atom"
+    xml = Nokogiri::XML(open(url))
+
+    xml.search('entry').each do |entry|
+      lp_entry = {}
+    	lp_entry["id"] = entry.search('id').text
+    	lp_entry["published"] = entry.search('published').text
+    	lp_entry["updated"] = entry.search('updated').text
+    	lp_entry["url"] = entry.search('url').text
+    	lp_entry["title"] = entry.search('title').text
+    	lp_entry["content"] = entry.search('content').text
+    	lp_entry["author"] = entry.search('author').search('name').text
+    	lp_trips << lp_entry
+    end
+    lp_trips
+  end
+  
   def self.create_from_survey(user, survey)
     trip = Trip.new(user_id: user.id)
     trip.initialized_with_signup = true

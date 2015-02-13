@@ -365,6 +365,7 @@ DEPENDENCIES
   koala (~> 1.11.0rc)
   letter_opener
   mini_magick
+  nokogiri
   omniauth-facebook
   pg
   placeholder-gem

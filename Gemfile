@@ -35,6 +35,7 @@ gem 'sidekiq-status'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'activeresource'
 gem 'thin'
+gem 'nokogiri'
 
 gem "koala", "~> 1.11.0rc"
 gem "scrollreveal-rails"

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   resources :surveys, only: [:create]
   resources :trips
+  match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
 
   # facebook omniauth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
