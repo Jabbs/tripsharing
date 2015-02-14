@@ -52,6 +52,11 @@ class User < ActiveRecord::Base
     self.pluck(:fb_image).shuffle.first(5)
   end
   
+  def age
+    now = Time.now.utc.to_date
+    now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
+  
   def build_interests
     Interest::IDS.each do |identifier_group|
       identifier_group[1].each do |identifier|

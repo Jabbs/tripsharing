@@ -409,7 +409,15 @@ a.btn-facebook {
     color: white;
   }
 }
-
+.trip-content {
+	background:white;
+	min-height:300px;
+	border: 1px solid $grey;
+	border-top:none;
+}
+.tab-pane {
+	padding:20px;
+}
 .sidebar {
 	padding-top:10px;
 	border-right: 3px solid $grey_light;

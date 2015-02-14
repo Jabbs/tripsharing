@@ -44,12 +44,18 @@ class Trip < ActiveRecord::Base
     when "3"
       trip.group_max = 10
     when "4"
-      trip.group_max = 4
+      trip.group_max = 20
     when "5"
-      trip.group_max = 10
+      trip.group_max = 4
     when "6"
       trip.group_max = 10
+    when "7"
+      trip.group_max = 10
     end
+    trip.age_min = user.age - 5
+    trip.age_min = 18 if trip.age_min < 18
+    trip.age_max = user.age + 5
+    
     x = ["adventure", "experience", "exploit", "trip", "undertaking", "venture", "getaway", "happening", "destination"]
     y = ["friends", "companions", "buddies"]
     # concat a name

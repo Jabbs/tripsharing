@@ -1,7 +1,24 @@
 <div class="container-fluid" style="background:#EFEDE2;min-height:600px;">
-	<div class="row">
-		<div class="col-md-8">
-			<h1><%= @trip.name %></h1>
+	<div class="row" style="margin-top:20px;margin-bottom:40px;">
+		<div class="col-md-6" style="padding-left: 28px;">
+			<h1 style="font-size:140%;margin-top:0px;margin-bottom:5px;"><%= @trip.name %></h1>
+			<div class="row">
+				<div class="col-md-6">
+					<ul class="list-unstyled">
+						<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:2px;"></i> starts in <%= time_ago_in_words(@trip.departs_at) %></li>
+						<li><i class="fa fa-group"></i> <%= pluralize(@trip.try(:group_max), "traveler") %> (ages <%= @trip.try(:age_min) %>-<%= @trip.try(:age_max) %>)</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<ul class="list-unstyled">
+						<li>Est. cost: <%= number_to_currency(@trip.try(:price_dollars_low)) %>-<%= number_to_currency(@trip.try(:price_dollars_high)) %></li>
+						<li>Duration: <%= pluralize(@trip.duration_in_days, "day") %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<%= link_to "ASK TO JOIN", trips_path, class: "btn btn-success pull-right" %>
 		</div>
 		<div class="col-md-4">
 		<iframe width="100%" height="120" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location=41.8781%2C-87.6298&key=AIzaSyBby0kQu2u3emDsxyB6MITJnkNqzC5T9pg"></iframe>
@@ -9,27 +26,32 @@
 	</div>
 	<div class="row">
 		<div class="col-md-8">
-			<div role="tabpanel" style="margin-left:1px;">
+			<div role="tabpanel">
 
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
-			    <li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
-			    <li role="presentation"><a href="#travelers" aria-controls="travelers" role="tab" data-toggle="tab">Travelers</a></li>
-			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+					<!--  
+					<li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
+					<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+			    -->
+					<li role="presentation"><a href="#travelers" aria-controls="travelers" role="tab" data-toggle="tab">Travelers</a></li>
 			  </ul>
 
 			  <!-- Tab panes -->
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="description">description...</div>
+			  <div class="tab-content trip-content">
+			    <div role="tabpanel" class="tab-pane active" id="description"><%= @trip.try(:description) %></div>
+					<!--
 			    <div role="tabpanel" class="tab-pane" id="activities">activities...</div>
-			    <div role="tabpanel" class="tab-pane" id="travelers">travelers...</div>
-			    <div role="tabpanel" class="tab-pane" id="messages">messages...</div>
+					<div role="tabpanel" class="tab-pane" id="messages">messages...</div>
+					-->
+					<div role="tabpanel" class="tab-pane" id="travelers">travelers...</div>
+			    
 			  </div>
 			</div>
 	  </div>
 		<div class="col-md-4">
-			
+			<h3 style="margin-top:0px;">Share this trip:</h3>
 		</div>
 	</div>
 </div>
