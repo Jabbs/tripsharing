@@ -19,7 +19,8 @@
 			<span class="turquoise_dark"><i class="fa fa-map-marker"></i> <%= current_user.fb_location %></span>
 			<small><%= link_to "change", current_user %></small>
 			<br>
-			<button type="submit" class="btn btn-default btn-sm" style="padding:2px 8px;margin-top:6px;margin-bottom:10px;"> search </button>
+			<%= link_to "search", trips_path, class: "btn btn-default btn-sm", style: "padding:2px 8px;margin-top:6px;margin-bottom:10px;" %>
+
 		</div>
 	</div>
 	<hr>

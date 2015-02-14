@@ -12,6 +12,7 @@ $linkColor: #686868;
 
 /* Colors, Misc */
 
+$beige: #EFEDE2;
 $white: #ffffff;
 $black: #000000;
 $salmon: #D27D66;
@@ -56,6 +57,7 @@ $body_grey: #4a4a4a;
   transition:.4s;
 }
 
+.beige { color: $beige;}
 .salmon { color: $salmon; a { color: $salmon; }}
 .turquoise {color: $turquoise;}
 .turquoise_dark {color: $turquoise_dark;}
@@ -246,8 +248,18 @@ h2.choice.inactive a {
 	height: 100%;
 	width: 100%;
 }
+.dash-background {
+	min-height:600px;
+	padding-right:0px;
+	padding-left:0px;
+	background: url("home/288412.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 #home-background { 
-  background: url("home/hongkong_victoria_peak.jpeg") no-repeat center center fixed;
+  background: url("home/288412.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -363,10 +375,12 @@ h2.choice.inactive a {
 .signup-well {
 	font-weight:200;
   background-color: $white;
+//	opacity: 1; // Leave this as 1
+//  background-color: rgba(0,0,0,0.6);
   padding: 8px 16px 16px 16px;
-  border-left: 1px solid $black;
-  border-bottom: 1px solid $black;
-  border-right: 1px solid $black;
+  border-left: 1px solid $grey;
+  border-bottom: 1px solid $grey;
+  border-right: 1px solid $grey;
 	a {color: lighten($grey_dark, 25%);}
 	a:hover {color: black; @include add_transition; text-decoration:none;}
    -webkit-border-bottom-left-radius: 5px;
@@ -406,19 +420,20 @@ a.btn-facebook {
 }
 .sidebar_list_item {
 	padding:5px 10px;
+	&:hover { background: darken($beige, 4%); cursor: pointer; }
+	h3 {
+		margin:0px; 
+		font-size:100%;
+	}
+	h3 a {
+		&:hover { text-decoration: none;}
+	}
+}
+.sidebar_list_item.active {
 	background: $grey;
 	border: 1px solid white;
 	border-right: none;
 	border-left: none;
-	&:hover { background: darken($grey, 4%); cursor: pointer; }
-	h3 {
-		margin:0px; 
-		font-size:140%;
-	}
-	h3 a {
-		color: white;
-		&:hover {color: white; text-decoration: none;}
-	}
 }
 
 /* header */
@@ -465,6 +480,8 @@ footer {
   z-index: 0;
   height:180px;
   background: $salmon;
+//	opacity: 1; // Leave this as 1
+//  background-color: rgba(0,0,0,0.6);
   padding-top: 30px;
   padding-bottom: 10px;
   color: $grey;

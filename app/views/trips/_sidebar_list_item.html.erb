@@ -1,11 +1,11 @@
-<li class="sidebar_list_item">
+<% if @trip %>
+	<% trip.id == @trip.id ? list_item_class = "active" : list_item_class = "" %>
+<% end %>
+<li class="sidebar_list_item <%= list_item_class %>">
 	<div class="row">
 		<div class="col-md-12">
 			<h3>
-				<%= link_to trip.name, [current_user, trip] %>
-				<% if trip.inactive? %>
-					<small>(inactive)</small>
-				<% end %>
+				<%= link_to trip.locations.first.unparsed.split(',').first, [current_user, trip] %>
 			</h3>
 		</div>
 	</div>

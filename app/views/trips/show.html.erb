@@ -1,29 +1,35 @@
-<div class="container-fluid">
-	<div class="row" style="background:#EFEDE2;">
-		<div class="col-md-3" style="padding-left:0px;;padding-right:1px;">
-			<%= render "layouts/sidebar" %>
+<div class="container-fluid" style="background:#EFEDE2;min-height:600px;">
+	<div class="row">
+		<div class="col-md-8">
+			<h1><%= @trip.name %></h1>
 		</div>
-	  <div class="col-md-9" style="min-height:500px;padding-right:0px;padding-left:0px;background:white">
-			<iframe width="100%" height="120" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location=41.8781%2C-87.6298&key=AIzaSyBby0kQu2u3emDsxyB6MITJnkNqzC5T9pg"></iframe>
+		<div class="col-md-4">
+		<iframe width="100%" height="120" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location=41.8781%2C-87.6298&key=AIzaSyBby0kQu2u3emDsxyB6MITJnkNqzC5T9pg"></iframe>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
 			<div role="tabpanel" style="margin-left:1px;">
 
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+			    <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+			    <li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
+			    <li role="presentation"><a href="#travelers" aria-controls="travelers" role="tab" data-toggle="tab">Travelers</a></li>
 			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
 			  </ul>
 
 			  <!-- Tab panes -->
 			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-			    <div role="tabpanel" class="tab-pane" id="profile">...</div>
-			    <div role="tabpanel" class="tab-pane" id="messages">..afdsfds.</div>
-			    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+			    <div role="tabpanel" class="tab-pane active" id="description">description...</div>
+			    <div role="tabpanel" class="tab-pane" id="activities">activities...</div>
+			    <div role="tabpanel" class="tab-pane" id="travelers">travelers...</div>
+			    <div role="tabpanel" class="tab-pane" id="messages">messages...</div>
 			  </div>
-
 			</div>
 	  </div>
+		<div class="col-md-4">
+			
+		</div>
 	</div>
 </div>

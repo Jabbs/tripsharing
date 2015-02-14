@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
     # @pete_rand5 = @pete.facebook_friends_photos_rand5
     @session_user = User.new
     @user = User.new
+    redirect_to trips_path if current_user
   end
   
   def about
