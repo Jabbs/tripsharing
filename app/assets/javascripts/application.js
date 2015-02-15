@@ -60,12 +60,12 @@ $('document').ready(function() {
 				$('#spinner').hide();
 			}	
 			swapSpinner()
-			
-			// http://ubilabs.github.io/geocomplete/
-			$(".add-geocomplete").geocomplete();
-			// window.setTimeout(swapSpinner, 1000);
 		});
 	};
+	
+	// http://ubilabs.github.io/geocomplete/
+	$(".add-geocomplete").geocomplete();
+	
 	window.scrollReveal = new scrollReveal();
 });
 

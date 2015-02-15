@@ -1,45 +1,63 @@
 <%= form_for @trip do |f| %>
   <%= render "shared/error_messages", object: f.object %>
-  <label>Trip Name:</label>
-  <br/>
-  <%= f.text_field :name, class: "col-md-6", autocomplete: :off %>
-  <br/>
-  <br/>
-  <label>Age Range:</label>
-  <br/>
-  <%= f.select :age_min, ('18'..'65').to_a, {prompt: "-- age min --"} %>
-  <%= f.select :age_max, ('18'..'65').to_a, {prompt: "-- age max --"} %>
-  <br/>
-  <br/>
-  <label>Group Size:</label>
-  <br/>
-  <%= f.select :group_max, ('1'..'30').to_a %>
-  <br/>
-  <br/>
-  <label>Description</label>
-  <br/>
-  <%= f.text_area :description, placeholder: "Description...", class: "col-md-6", rows: 7, autocomplete: :off %>
-  <br/>
-  <br/>
-  <label>Location:</label>
-  <br/>
-  <%= f.fields_for :locations do |builder| %>
-    <%= builder.text_field :unparsed, placeholder: "a location", class: "add-geocomplete" %>
-  <% end %>
-  <br/>
+	<div class="row">
+		<label class="col-md-2 right">Status:</label>
+		<%= f.select :state, Trip::STATES_ARRAY, {prompt: "--select--"} %>
+	</div>
+	<div class="row">
+		<label class="col-md-2 right">Ages:</label>
+		<%= f.select :age_min, ('18'..'65').to_a, {prompt: "--min--"} %>
+		to
+	  <%= f.select :age_max, ('18'..'65').to_a, {prompt: "--max--"} %>
+	</div>
+	<div class="row">
+		<label class="col-md-2 right">Group:</label>
+	  <%= f.select :group_max, ('1'..'30').to_a %>
+		traveler(s)
+	</div>
+	<hr>
+	<div class="row">
+		<label class="col-md-2 right">Duration:</label>
+		<%= f.select :duration_in_days, 1..30 %>
+		day(s)
+	</div>
+	<div class="row" style="margin-bottom:10px;">
+		<label class="col-md-2 right">Departing:</label>
+		<%= f.date_field :departs_at %>
+	</div>
+	<div class="row">
+		<label class="col-md-2 right">Cost est:</label>
+		<%= f.number_field :price_dollars_low, style: "width:60px;" %>
+		to
+	  <%= f.number_field :price_dollars_high, style: "width:60px;"  %>
+		<%= f.select :currency, Trip::CURRENCIES %>
+	</div>
+	<hr/>
+	<div class="row">
+		<label class="col-md-2 right">Trip Name:</label>
+	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
+	</div>
+	<div class="row" style="margin-top:5px;margin-bottom:20px;">
+		<label class="col-md-2 right">Description:</label>
+	  <%= f.text_area :description, placeholder: "Description...", class: "col-md-9", rows: 7, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB;" %>
+	</div>
+	<hr/>
+	<div class="row" styel="margin-bottom:10px;">
+		<div class="col-md-2 right">
+			<label class="col-md-2 right">Location(s):</label>
+		</div>
+		<div class="col-md-9" style="padding:0px;">
+			<%= image_tag "world_map.jpg", width: "448px"; %>
+		</div>
+	</div>
+	<div class="row" style="margin-top:20px;">
+		
+	  <%= f.fields_for :locations do |builder| %>
+	    <%= builder.text_field :unparsed, placeholder: "where to?", class: "add-geocomplete col-md-9 col-md-offset-2", style: "padding-left:3px;" %>
+	  <% end %>
+	</div>
+
   <hr/>
-  <%= f.fields_for :image_attachments do |builder| %>
-    <%= render 'shared/image_attachment_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "<i class='icon-picture'></i> Attach new image +".html_safe, f, :image_attachments %>
-  <hr/>
-  <label>Active:</label>
-  <br/>
-  <%= f.select :state, Trip::STATES, {prompt: "--select--"} %>
-  <hr/>
-  <% action_name == 'edit' ? submit_text = "Update Trip" : submit_text = "Create Trip" %>
-  <%= f.submit "#{submit_text}", disable_with: 'Submitting...', class: "btn" %>
-  <% if admin_user? && !@trip.new_record? %>
-    <%= link_to "Remove This Trip", trip_path(@trip), method: :delete, confirm: "Are you sure you want to remove this?", class: "btn btn-danger" %>
-  <% end %>
+  <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-info" %>
+
 <% end %>

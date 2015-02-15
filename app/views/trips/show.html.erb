@@ -1,30 +1,35 @@
 <div class="container-fluid" style="background:#EFEDE2;min-height:600px;">
-	<div class="row" style="margin-top:20px;margin-bottom:40px;">
+	<div class="row" style="margin-top:20px;margin-bottom:0px;">
 		<div class="col-md-6" style="padding-left: 28px;">
-			<h1 style="font-size:140%;margin-top:0px;margin-bottom:5px;"><%= @trip.name %></h1>
+			<h1 style="font-size:140%;margin-top:0px;margin-bottom:5px;min-height:50px;"><%= @trip.name %></h1>
 			<div class="row">
-				<div class="col-md-6">
-					<ul class="list-unstyled">
+				<div class="col-md-8">
+					<ul class="list-unstyled" style="margin:0px;">
 						<li>
 							<i class="fa fa-plane" style="margin-left:2px;margin-right:5px;"></i>
-							<% if @trip.active? %>
-								<%= Trip::STATES[@trip.state] %>
+							<% if @trip.public? %>
+								<%= Trip::STATES[@trip.state] %> (ages <%= @trip.try(:age_min) %>-<%= @trip.try(:age_max) %>)
+							<% elsif @trip.private? %>
+								private trip
 							<% end %>
 						</li>
 						<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:5px;"></i> starts in <%= time_ago_in_words(@trip.departs_at) %></li>
-						<li><i class="fa fa-group" style="margin-right:3px;"></i> <%= pluralize(@trip.try(:group_max), "traveler") %> (ages <%= @trip.try(:age_min) %>-<%= @trip.try(:age_max) %>)</li>
 					</ul>
 				</div>
-				<div class="col-md-6">
-					<ul class="list-unstyled">
-						<li>Est cost:
-							<% if @trip.price_dollars_low %>
-								<%= number_to_currency(@trip.try(:price_dollars_low)) %>-<%= number_to_currency(@trip.try(:price_dollars_high)) %>
-							<% else %>
-								n/a
-							<% end %>
-						
-						</li>
+				<div class="col-md-4">
+					<ul class="list-unstyled" style="margin:0px;">
+						<% if @trip.price_info? %>
+							<li>
+								Est cost:
+								<% if @trip.price_dollars_low %>
+									<%= @trip.try(:price_dollars_low) %>-<%= @trip.try(:price_dollars_high) %>
+									<%= @trip.try(:currency) %>
+								<% else %>
+									n/a
+								<% end %>
+							
+							</li>
+						<% end %>
 						<li>Duration: 
 							<% if @trip.duration_in_days %>
 								<%= pluralize(@trip.duration_in_days, "day") %>
@@ -32,6 +37,13 @@
 								n/a
 							<% end %>
 						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="list-unstyled" style="padding:0px;">
+						<li><i class="fa fa-map-marker" style="margin-left:4px;margin-right:6px;"></i> <%= @trip.locations.first.unparsed %></li>
 					</ul>
 				</div>
 			</div>
@@ -44,7 +56,9 @@
 			<%= render "trips/trip_edit_modal" %>
 		</div>
 		<div class="col-md-4">
-		<iframe width="100%" height="120" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/streetview?location=41.8781%2C-87.6298&key=AIzaSyBby0kQu2u3emDsxyB6MITJnkNqzC5T9pg"></iframe>
+		
+			<iframe width="100%" height="200" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?zoom=10&center=<%= @trip.locations.first.latitude %>%2C<%= @trip.locations.first.longitude %>&key=AIzaSyBby0kQu2u3emDsxyB6MITJnkNqzC5T9pg"></iframe>
+		
 		</div>
 	</div>
 	<div class="row">
@@ -65,10 +79,13 @@
 			  <!-- Tab panes -->
 			  <div class="tab-content trip-content">
 			    <div role="tabpanel" class="tab-pane active" id="description">
-						<% if @trip.description %>
+						<% if @trip.description.present? %>
 							<%= @trip.try(:description) %>
 						<% else %>
-							<p><span class="grey">Fill me out...</span></p>
+							<div class="center grey">
+								<i class="fa fa-file-text-o" style="font-size:1000%; margin-top:20px;"></i>
+								<h3>Description Not Available</h3>
+							</div>
 						<% end %>	
 						
 					</div>
@@ -108,22 +125,24 @@
 			</div>
 	  </div>
 		<div class="col-md-4">
-			<h3 style="margin-top:0px;">Share this trip:</h3>
-			<% share_url = request.url.split('?').first %>
-			<% share_text = "#{@trip.departs_at.strftime('%B %Y')} TripSharing group to #{@trip.locations.first.unparsed.split(',').first}!" %>
-			<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>
-			<% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
-			
-			<%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", style: 'text-decoration: none;', target: "_blank" do %>
-		    <%= image_tag("social_icons/email_circle_color-38.png") %>
-		  <% end %>
-		  <%= link_to fb_link, target: "_blank", style: 'text-decoration: none;' do %>
-		    <%= image_tag("social_icons/facebook_circle_color-38.png") %>
-		  <% end %>
-		  <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
-		    <%= image_tag("social_icons/twitter_circle_color-38.png") %>
-		  <% end %>
-			<div class="fb-like" data-href="<%= share_url %>" data-layout="button_count" data-send="false" data-show-faces="false" data-width="220"></div>
+			<% if @trip.public? %>
+				<h3 style="margin-top:40px;">Share this trip:</h3>
+				<% share_url = request.url.split('?').first %>
+				<% share_text = "#{@trip.departs_at.strftime('%B %Y')} TripSharing group to #{@trip.locations.first.unparsed.split(',').first}!" %>
+				<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>
+				<% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
+
+				<%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", style: 'text-decoration: none;', target: "_blank" do %>
+			    <%= image_tag("social_icons/email_circle_color-38.png") %>
+			  <% end %>
+			  <%= link_to fb_link, target: "_blank", style: 'text-decoration: none;' do %>
+			    <%= image_tag("social_icons/facebook_circle_color-38.png") %>
+			  <% end %>
+			  <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
+			    <%= image_tag("social_icons/twitter_circle_color-38.png") %>
+			  <% end %>
+				<div class="fb-like" data-href="<%= share_url %>" data-layout="button_count" data-send="false" data-show-faces="false" data-width="220"></div>
+			<% end %>
 			
 		</div>
 	</div>

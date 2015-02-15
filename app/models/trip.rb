@@ -11,7 +11,9 @@ class Trip < ActiveRecord::Base
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
   
-  STATES = {"1" => "accepting travelers", "2" => "private", "3" => "inactive", "4" => "complete"}
+  STATES = {"1" => "accepting travelers", "2" => "private", "3" => "inactive", "4" => "complete", "5" => "in progress"}
+  STATES_ARRAY = [["seeking travel companions", "1"],["private trip", "2"]]
+  CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   
   def self.get_lonelyplanet_trips
     lp_trips = []
@@ -81,11 +83,23 @@ class Trip < ActiveRecord::Base
     self.state == "1" || "2" ? true : false
   end
   
+  def public?
+    self.state == "1" ? true : false
+  end
+  
   def private?
     self.state == "2" ? true : false
   end
   
   def inactive?
     self.state == "3" ? true : false
+  end
+  
+  def price_info?
+    if self.price_dollars_low.present? && self.price_dollars_high.present?  && self.currency.present? 
+      true
+    else
+      false
+    end
   end
 end

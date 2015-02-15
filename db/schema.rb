@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215133031) do
+ActiveRecord::Schema.define(version: 20150215145811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150215133031) do
     t.integer  "no_families",             default: 0
     t.string   "group_dynamics"
     t.string   "state",                   default: "1"
+    t.string   "currency",                default: "USD"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
