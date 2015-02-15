@@ -11,7 +11,7 @@ class Trip < ActiveRecord::Base
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
   
-  STATES = ["pending", "active"]
+  STATES = {"1" => "accepting travelers", "2" => "private", "3" => "inactive", "4" => "complete"}
   
   def self.get_lonelyplanet_trips
     lp_trips = []
@@ -59,7 +59,7 @@ class Trip < ActiveRecord::Base
     x = ["adventure", "experience", "exploit", "trip", "undertaking", "venture", "getaway", "happening", "destination"]
     y = ["friends", "companions", "buddies"]
     # concat a name
-    trip.name = survey.month + " traveling #{y.shuffle.first} group #{x.shuffle.first} to " + survey.destination.split(',').first
+    trip.name = survey.month + " traveling #{x.shuffle.first} to " + survey.destination.split(',').first
     trip.save!
     trip.locations.create(unparsed: survey.destination)
   end
@@ -73,11 +73,19 @@ class Trip < ActiveRecord::Base
     save!
   end
   
+  def complete?
+    self.state == "4" ? true : false
+  end
+  
   def active?
-    self.state == "active" ? true : false
+    self.state == "1" || "2" ? true : false
+  end
+  
+  def private?
+    self.state == "2" ? true : false
   end
   
   def inactive?
-    self.state == "active" ? false : true
+    self.state == "3" ? true : false
   end
 end

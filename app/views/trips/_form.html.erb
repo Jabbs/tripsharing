@@ -24,20 +24,7 @@
   <label>Location:</label>
   <br/>
   <%= f.fields_for :locations do |builder| %>
-    <%= builder.text_field :address1, placeholder: "Street Address 1" %>
-    <br/>
-    <%= builder.text_field :address2, placeholder: "Street Address 2" %>
-    <br/>
-    <%= builder.text_field :city, placeholder: "City" %>
-    <%= builder.text_field :state, placeholder: "State" %>
-    <%= builder.text_field :zip, placeholder: "Zip" %>
-    <br/>
-    <% request.location.country == "United States" ? country = "United States of America" : country = "" %>
-    <% if action_name == "edit" || action_name == "update" %>
-      <%= builder.select :country, Ravibhim::Continents::COUNTRIES, { prompt: "--select country--" } %>
-    <% else %>
-      <%= builder.select :country, Ravibhim::Continents::COUNTRIES, { prompt: "--select country--", selected: country } %>
-    <% end %>
+    <%= builder.text_field :unparsed, placeholder: "a location", class: "add-geocomplete" %>
   <% end %>
   <br/>
   <hr/>
