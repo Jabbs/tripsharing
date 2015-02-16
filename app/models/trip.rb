@@ -58,10 +58,10 @@ class Trip < ActiveRecord::Base
     trip.age_min = 18 if trip.age_min < 18
     trip.age_max = user.age + 5
     
-    x = ["adventure", "experience", "exploit", "trip", "undertaking", "venture", "getaway", "happening", "destination"]
+    x = ["adventure", "exploit", "venture", "getaway"]
     y = ["friends", "companions", "buddies"]
     # concat a name
-    trip.name = survey.month + " traveling #{x.shuffle.first} to " + survey.destination.split(',').first
+    trip.name = survey.month + " travel #{x.shuffle.first} to " + survey.destination.split(',').first
     trip.save!
     trip.locations.create(unparsed: survey.destination)
   end

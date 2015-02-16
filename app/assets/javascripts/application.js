@@ -24,7 +24,8 @@ $('document').ready(function() {
 		$("#survey_form").hide();
 		$("#tagline").hide();
 		$("#signup").fadeIn(400);
-		$("#tagline2").append("Signup to find your ideal traveling group...");
+		$("#tagline2").empty();
+		$("#tagline2").append("Signup and get matched with your ideal traveling group trip...");
 		$("#tagline2").fadeIn(400);
 	});
 	

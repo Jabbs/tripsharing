@@ -154,7 +154,23 @@ h4 { line-height: 1.2em; }
 .alert { border-radius: 0; margin-bottom: 0px;}
 .modal-body label { font-weight:200; }
 #signup {display: none;}
-#tagline2 {display: none;}
+#tagline {
+	font-family: 'Crafty Girls';
+	font-size: 240%; 
+	margin-bottom: 80px; 
+	margin-top: 30px; 
+	position: relative; 
+	z-index: 2;
+}
+#tagline2 {
+	font-family: 'Crafty Girls';
+	font-size: 240%; 
+	margin-bottom: 80px; 
+	margin-top: 30px; 
+	position: relative; 
+	z-index: 2;
+	display: none;
+}
 #passreset-modal-content {display: none;}
 .nav > li.dropdown.active.open > a, 
 .nav > li.dropdown.active.open > ul.dropdown-menu a:hover,
@@ -470,7 +486,7 @@ a.btn-facebook {
   background: white;
 }
 .nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{ background-color: transparent !important; }
-#logo {color: $salmon; font-size:200%; line-height:.3em; font-family: 'Crafty Girls', Arial;}
+#logo {color: $salmon; font-size:200%; line-height:.3em; font-family: 'Crafty Girls';}
 #logo:hover {text-decoration:none;}
 #logo {position:relative; top:14px;}
 #globe {position:relative;top:7px;}

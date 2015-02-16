@@ -17,7 +17,7 @@
 					</ul>
 				</div>
 				<div class="col-md-4">
-					<ul class="list-unstyled" style="margin:0px;">
+					<ul class="list-unstyled right" style="margin:0px;">
 						<% if @trip.price_info? %>
 							<li>
 								Est cost:
@@ -68,8 +68,8 @@
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
-					<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
 					<!--  
+					<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
 					<li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
 					<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
 			    -->
@@ -89,6 +89,7 @@
 						<% end %>	
 						
 					</div>
+					<!--
 					<div role="tabpanel" class="tab-pane" id="itinerary">
 						<% @trip.locations.each do |location| %>
 							<div class="row">
@@ -103,7 +104,6 @@
 							</div>
 						<% end %>
 					</div>
-					<!--
 			    <div role="tabpanel" class="tab-pane" id="activities">activities...</div>
 					<div role="tabpanel" class="tab-pane" id="messages">messages...</div>
 					-->

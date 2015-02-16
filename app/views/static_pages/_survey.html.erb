@@ -1,28 +1,26 @@
 <section id='survey_form'>
 	<br>
-  <div class="row">
-		<div class="col-md-12">
-			<%= form_tag '/surveys', class: "form-inline lead-big", remote: true do %>
+	<%= form_tag '/surveys', class: "form-inline lead-big", remote: true do %>
+	  <div class="row">
+			<div class="col-md-10 col-md-offset-1">
 		    <div class="form-group">
 					<select id="organizer_type" name="organizer_type">
 					  <option value="1" selected>I'm</option>
 		        <option value="2">We're</option>
 		      </select>
 		      traveling to
-		      <input type="text" class="add-geocomplete" name="destination" id="country" autofocus placeholder="a destination" style="width:520px;" required>
-					<br>
-		      and looking for
-		      <select id="companion_type" name="companion_type">
-					  <option value="1" selected>another travel companion</option>
-		        <option value="2">2-5 travel companions</option>
-		        <option value="3">6-10 travel companions</option>
-						<option value="4">11+ travel companions</option>
-		        <option value="5">another traveling couple</option>
-		        <option value="6">2-5 traveling couples</option>
-		        <option value="7">another traveling family</option>
+					<select id="destination" name="destination">
+					  <option value="Europe" selected>Europe</option>
+						<option value="Africa">Africa</option>
+						<option value="East Asia and the Pacific">East Asia and the Pacific</option>
+						<option value="South Asia">South Asia</option>
+						<option value="Middle East">Middle East</option>
+						<option value="N. America">N. America</option>
+						<option value="S. America">S. America</option>
+						<option value="Central America">Central America</option>
 		      </select>
-		      to join in
-		      <select id="month" name="month">
+		      in
+					<select id="month" name="month">
 		        <option value="March 2015" selected>March</option>
 		        <option value="April 2015">April</option>
 		        <option value="May 2015">May</option>
@@ -34,7 +32,17 @@
 						<option value="November 2015">November</option>
 						<option value="December 2015">December</option>
 		      </select>
-					.
+					and looking for
+		      <select id="companion_type" name="companion_type">
+					  <option value="1" selected>a travel companion</option>
+		        <option value="2">2-5 travel companions</option>
+		        <option value="3">6-10 travel companions</option>
+						<option value="4">11+ travel companions</option>
+		        <option value="5">a traveling couple</option>
+		        <option value="6">2-5 traveling couples</option>
+		        <option value="7">a traveling family</option>
+						<option value="8">no one</option>
+		      </select>
 		    </div>
 				<br>
 				<br>
@@ -44,8 +52,12 @@
 			    <%= text_field_tag :blankey %>
 			    <br/>
 			  </div>
-		    <div class="pull-right"><button type="submit" class="btn btn-default btn-lg submit"> CONTINUE </button></div>
-		   <% end %>
+			</div>
+	  </div>
+		<div class="row">
+			<div class="col-md-12">
+				 <div class="pull-right"><button type="submit" class="btn btn-default btn-lg submit"> CONTINUE </button></div>
+			</div>
 		</div>
-  </div>
+	<% end %>
 </section>

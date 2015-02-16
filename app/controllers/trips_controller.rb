@@ -26,12 +26,6 @@ class TripsController < ApplicationController
     end
     @trip.add_view_count unless current_user?(@trip.user) || admin_user?
     
-    @locations = @trip.locations
-    @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
-      marker.lat location.latitude
-      marker.lng location.longitude
-    end
-    
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: "The trip you attempted to view is no longer available."
   end
@@ -44,7 +38,7 @@ class TripsController < ApplicationController
     @trip = Trip.friendly.find(params[:id])
     if @trip.update_attributes(trip_params)
       @trip.save!
-      redirect_to @trip, notice: 'Trip successfully updated.'
+      redirect_to [current_user, @trip], notice: 'Trip successfully updated.'
     else
       render action: "edit"
     end

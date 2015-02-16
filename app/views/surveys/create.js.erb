@@ -1,5 +1,5 @@
 $("#survey_form").hide();
 $("#tagline").hide();
 $("#signup").fadeIn(400);
-$("#tagline2").append("Signup to meet other travelers going to <span class='turquoise_dark' style='text-decoration:underline'><%= @survey.destination.split(',').first %> <i class='fa fa-plane turquoise_dark'></i></span>");
+$("#tagline2").append("Signup to finish planning your group trip<br>to <i class='fa fa-map-marker turquoise_dark'></i> <span class='turquoise_dark' style='text-decoration:underline'><%= @survey.destination %></span>");
 $("#tagline2").fadeIn(400);
