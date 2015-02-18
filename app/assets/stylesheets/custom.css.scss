@@ -150,6 +150,13 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
+.modal-open .modal,.btn:focus{
+    outline:none!important;
+}
+.modal-open .modal,a:focus{
+	outline:none!important;
+	text-decoration:none;
+}
 .modal {z-index:5;}
 .alert { border-radius: 0; margin-bottom: 0px;}
 .modal-body label { font-weight:200; }
@@ -157,7 +164,7 @@ h4 { line-height: 1.2em; }
 #tagline {
 	font-family: 'Crafty Girls';
 	font-size: 240%; 
-	margin-bottom: 80px; 
+	margin-bottom: 20px; 
 	margin-top: 30px; 
 	position: relative; 
 	z-index: 2;
@@ -165,7 +172,7 @@ h4 { line-height: 1.2em; }
 #tagline2 {
 	font-family: 'Crafty Girls';
 	font-size: 240%; 
-	margin-bottom: 80px; 
+	margin-bottom: 20px; 
 	margin-top: 30px; 
 	position: relative; 
 	z-index: 2;
@@ -178,6 +185,15 @@ h4 { line-height: 1.2em; }
 .nav > li.dropdown.open > ul.dropdown-menu a:hover,
 .nav > li.dropdown:hover > a
 { background-color: inherit; }
+
+a.add-description {
+	color: $grey;
+	&:hover {
+		color: $grey_dark;
+		text-decoration:none;
+	}
+	h3:hover {text-decoration:none;}
+}
 
 .send-to-front {
 	position: relative;

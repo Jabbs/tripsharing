@@ -66,7 +66,7 @@ class TripsController < ApplicationController
     def trip_params
       params.require(:trip).permit(:age_max, :age_min, :description, :expires_at, :group_min, :group_max, :name, :active, :state,
                                    :duration_in_days, :price_dollars_low, :price_dollars_high, :departs_at, :currency, :group_dynamics,
-                                   image_attachments_attributes: [:image, :description],
+                                   :region, image_attachments_attributes: [:image, :description],
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
     end

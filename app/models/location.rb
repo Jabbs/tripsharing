@@ -5,7 +5,8 @@ class Location < ActiveRecord::Base
   geocoded_by :full_address
   # acts_as_gmappable :process_geocoding => false
   
-  after_validation :geocode, :if => :address_changed?
+  # uncomment to geocode
+  # after_validation :geocode, :if => :address_changed?
     
   scope :trips, ->() { where(locationable_type: 'Trip') }
   scope :with_coordinates, ->() {

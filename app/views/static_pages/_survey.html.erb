@@ -10,14 +10,9 @@
 		      </select>
 		      traveling to
 					<select id="destination" name="destination">
-					  <option value="Europe" selected>Europe</option>
-						<option value="Africa">Africa</option>
-						<option value="East Asia and the Pacific">East Asia and the Pacific</option>
-						<option value="South Asia">South Asia</option>
-						<option value="Middle East">Middle East</option>
-						<option value="N. America">N. America</option>
-						<option value="S. America">S. America</option>
-						<option value="Central America">Central America</option>
+						<% Trip::REGIONS.each do |region| %>
+							<option value="<%= region %>"><%= region %></option>
+						<% end %>
 		      </select>
 		      in
 					<select id="month" name="month">
@@ -43,6 +38,7 @@
 		        <option value="7">a traveling family</option>
 						<option value="8">no one</option>
 		      </select>
+					.
 		    </div>
 				<br>
 				<br>

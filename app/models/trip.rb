@@ -14,6 +14,8 @@ class Trip < ActiveRecord::Base
   STATES = {"1" => "accepting travelers", "2" => "private", "3" => "inactive", "4" => "complete", "5" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "1"],["private trip", "2"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
+  REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
+                "S. America", "Central America"]
   
   def self.get_lonelyplanet_trips
     lp_trips = []
@@ -57,7 +59,7 @@ class Trip < ActiveRecord::Base
     trip.age_min = user.age - 5
     trip.age_min = 18 if trip.age_min < 18
     trip.age_max = user.age + 5
-    
+    trip.region = survey.destination
     x = ["adventure", "exploit", "venture", "getaway"]
     y = ["friends", "companions", "buddies"]
     # concat a name

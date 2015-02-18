@@ -44,17 +44,16 @@
 	<hr/>
 	<div class="row" styel="margin-bottom:10px;">
 		<div class="col-md-2 right">
-			<label class="col-md-2 right">Location(s):</label>
+			<label class="col-md-2 right">Region:</label>
 		</div>
 		<div class="col-md-9" style="padding:0px;">
 			<%= image_tag "world_map.jpg", width: "448px"; %>
 		</div>
 	</div>
 	<div class="row" style="margin-top:20px;">
-		
-	  <%= f.fields_for :locations do |builder| %>
-	    <%= builder.text_field :unparsed, placeholder: "where to?", class: "add-geocomplete col-md-9 col-md-offset-2", style: "padding-left:3px;" %>
-	  <% end %>
+		<div class="col-md-9 col-md-offset-2" style="padding:0px;">
+			<%= f.select :region, Trip::REGIONS %>
+		</div>
 	</div>
 
   <hr/>

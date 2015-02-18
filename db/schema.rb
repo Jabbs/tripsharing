@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215145811) do
+ActiveRecord::Schema.define(version: 20150218134521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,9 +121,11 @@ ActiveRecord::Schema.define(version: 20150215145811) do
     t.string   "group_dynamics"
     t.string   "state",                   default: "1"
     t.string   "currency",                default: "USD"
+    t.string   "region"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
+  add_index "trips", ["region"], name: "index_trips_on_region", using: :btree
   add_index "trips", ["slug"], name: "index_trips_on_slug", using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
