@@ -1,0 +1,15 @@
+<%= form_for @new_trip do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+	<div class="row">
+		<label class="col-md-2 right">Trip Name:</label>
+	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
+	</div>
+	<div class="row" style="margin-top:10px;">
+		<label class="col-md-2 right">Region:</label>
+	  <%= f.select :region, Trip::REGIONS %>
+	</div>
+
+	<hr/>
+  <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-danger" %>
+
+<% end %>

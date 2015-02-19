@@ -1,3 +1,4 @@
+<%= render "trips/trip_edit_modal" %>
 <div class="container-fluid">
 	<div class="row" style="margin-top:20px;margin-bottom:0px;">
 		<div class="col-md-8" style="padding-left: 28px;">
@@ -13,7 +14,11 @@
 								private trip
 							<% end %>
 						</li>
-						<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:5px;"></i> starts in <%= time_ago_in_words(@trip.departs_at) %></li>
+						<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:5px;"></i>
+							<% if @trip.departs_at %>
+								starts in <%= time_ago_in_words(@trip.departs_at) %>
+							<% end %>
+						</li>
 						<% if @trip.price_info? %>
 							<li>
 								<i class="fa fa-dollar" style="margin-left:4px;margin-right:7px;"></i>
@@ -49,8 +54,6 @@
 				</div>
 			</div>
 		</div>
-
-		<%= render "trips/trip_edit_modal" %>
 		<div class="col-md-4">
 			<div class="center">
 				<%= image_tag "regions/europe.png", size: "200x200" %>
@@ -135,7 +138,7 @@
 			<% if @trip.public? %>
 				<h3 style="margin-top:40px;">Share this trip:</h3>
 				<% share_url = request.url.split('?').first %>
-				<% share_text = "#{@trip.departs_at.strftime('%B %Y')} TripSharing group to #{@trip.locations.first.unparsed.split(',').first}!" %>
+				<% share_text = "#{@trip.name}" %>
 				<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>
 				<% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
 

@@ -1,20 +1,27 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:index, :show]
   before_filter :admin_user, only: [:lonelyplanet]
-  before_filter :correct_user, only: [:edit, :update]
+  before_filter :correct_user, only: [:edit, :update, :details, :travel_companions]
   before_filter :redirect_inactive_trip, only: [:show]
+  before_filter :redirect_incomplete_trip, only: [:show]
   
   def lonelyplanet
     @lp_trips = Trip.get_lonelyplanet_trips
   end
   
+  def details
+    @remove_start_trip_button = true
+    @trip = Trip.friendly.find(params[:trip_id])
+  end
+  
+  def travel_companions
+    @remove_start_trip_button = true
+    @trip = Trip.friendly.find(params[:trip_id])
+  end
+  
   def index
     @trips = Trip.order("created_at ASC").paginate(page: params[:page], per_page: 12)
     @my_trips = current_user.trips
-  end
-  
-  def new
-    @trip = Trip.new
   end
   
   def show
@@ -49,7 +56,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     if @trip.save
-      redirect_to trips_path, notice: "Your trip has been created!"
+      redirect_to trip_travel_companions_path(@trip)
     else
       render 'new'
     end
@@ -77,7 +84,8 @@ class TripsController < ApplicationController
     end
     
     def correct_user
-      @trip = Trip.friendly.find(params[:id])
+      params[:trip_id]? id = params[:trip_id] : id = params[:id]
+      @trip = Trip.friendly.find(id)
       redirect_to root_path unless current_user == @trip.user
     end
     
@@ -86,5 +94,10 @@ class TripsController < ApplicationController
       redirect_to root_path, alert: "The trip you tried to visit is not active." if @trip.inactive? && !admin_user? && !current_user?(@trip.user)
       rescue ActiveRecord::RecordNotFound
         redirect_to root_path, alert: "The trip you attempted to view is no longer available."
+    end
+    
+    def redirect_incomplete_trip
+      @trip = Trip.friendly.find(params[:id])
+      redirect_to trip_details_path(@trip) if @trip.incomplete?
     end
 end

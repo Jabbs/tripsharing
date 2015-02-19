@@ -12,8 +12,8 @@ class Trip < ActiveRecord::Base
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
   
-  STATES = {"1" => "accepting travelers", "2" => "private", "3" => "inactive", "4" => "complete", "5" => "in progress"}
-  STATES_ARRAY = [["seeking travel companions", "1"],["private trip", "2"]]
+  STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
+  STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
                 "S. America", "Central America"]
@@ -78,24 +78,28 @@ class Trip < ActiveRecord::Base
     save!
   end
   
-  def complete?
-    self.state == "4" ? true : false
-  end
-  
-  def active?
-    self.state == "1" || "2" ? true : false
-  end
-  
-  def public?
+  def incomplete?
     self.state == "1" ? true : false
   end
   
-  def private?
+  def complete?
+    self.state == "5" ? true : false
+  end
+  
+  def active?
+    self.state == "2" || "3" ? true : false
+  end
+  
+  def public?
     self.state == "2" ? true : false
   end
   
-  def inactive?
+  def private?
     self.state == "3" ? true : false
+  end
+  
+  def inactive?
+    self.state == "4" ? true : false
   end
   
   def price_info?

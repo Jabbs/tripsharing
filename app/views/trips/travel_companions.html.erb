@@ -1,0 +1,57 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="well build-trip-well">
+				<div class="row">
+					<div class="col-md-4"style="padding:0px;">
+						<h1>Trip Create</h1>
+					</div>
+					<div class="col-md-2" style="padding:0px;">
+						<div class="trip-category active">
+							<i class="fa fa-group"></i>
+							<br>
+							Travel Companions
+						</div>
+					</div>
+					<div class="col-md-2"style="padding:0px;">
+						<div class="trip-category">
+							<i class="fa fa-plane"></i>
+							<br>
+							About Your Trip
+						</div>
+					</div>
+					<div class="col-md-2"style="padding:0px;">
+						<div class="trip-category">
+							<i class="fa fa-user"></i>
+							<br>
+							About You
+						</div>
+					</div>
+				</div>
+				<hr class="thick">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="well" style="min-height:500px;">
+							<div class="center"><%= image_tag "regions/europe.png", size: "200x200" %></div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<h3>Let's start with the dynamics of your travel group!</h3>
+						<hr>
+						<% Trip::STATES_ARRAY.each do |state| %>
+							<div class="radio">
+							  <label>
+									<% state[1] == "2" ? is_checked = "checked" : is_checked = "" %>
+							    <input type="radio" name="optionsRadios" id="optionsRadios1" value="<%= state[1] %>" <%= is_checked %>>
+							    <%= state[0] %>
+							  </label>
+							</div>
+						<% end %>
+						<hr>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

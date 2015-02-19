@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     http_basic_authenticate_with :name => "pj", :password => "pj"
   end
   before_filter :ensure_domain
+  before_filter :instantiate_new_trip
   protect_from_forgery
   include SessionsHelper
   include ApplicationHelper
@@ -27,6 +28,10 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+  
+  def instantiate_new_trip
+    @new_trip = Trip.new(user_id: current_user.id) if current_user
   end
   
 end

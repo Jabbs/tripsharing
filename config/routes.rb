@@ -2,7 +2,10 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   
   resources :surveys, only: [:create]
-  resources :trips
+  resources :trips do
+    get 'details'
+    get 'travel_companions'
+  end
   match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
 
   # facebook omniauth
