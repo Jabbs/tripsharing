@@ -98,7 +98,8 @@ body {
 }
 #main {
 	min-height:600px;
-	background:#EFEDE2;
+	background:$beige;
+//	background: url("plane_beige.png") 
 }
 h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
 h1 { color: $dark_blue; }
@@ -363,7 +364,11 @@ h2.choice.inactive a {
   right: 0;
   z-index: 0;
 }
-
+.duddo {
+	font-size: 1000%;
+	color: #E4E3D8;
+	margin: 50px;
+}
 .build-trip-well {
 	padding-top:0px;
 	box-shadow: 5px 5px 2px #888888;
