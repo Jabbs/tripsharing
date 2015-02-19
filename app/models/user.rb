@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
       user.birthday = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y') if auth.extra.raw_info.birthday
       user.verified = auth.info.verified
       user.gender = auth.extra.raw_info.gender
+      if auth.extra.raw_info.work
+        auth.extra.raw_info.work.each do |employer|
+          user.occupation = employer.position.name unless employer.end_date.present?
+        end
+      end
       user.newsletter = true
       user.password = SecureRandom.urlsafe_base64
       logger.debug "%%%%%%%%%%% AUTH: #{auth}"

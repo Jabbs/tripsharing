@@ -1,6 +1,19 @@
 <%= form_for @trip do |f| %>
   <%= render "shared/error_messages", object: f.object %>
 	<div class="row">
+		<label class="col-md-2 right">Trip Name:</label>
+	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
+	</div>
+	<div class="row" style="margin-top:10px;">
+		<label class="col-md-2 right">Region:</label>
+	  <%= f.select :region, Trip::REGIONS %>
+	</div>
+	<div class="row" style="margin-top:5px;margin-bottom:20px;">
+		<label class="col-md-2 right">Description:</label>
+	  <%= f.text_area :description, placeholder: "Description...", class: "col-md-9", rows: 7, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB;" %>
+	</div>
+	<hr>
+	<div class="row">
 		<label class="col-md-2 right">Status:</label>
 		<%= f.select :state, Trip::STATES_ARRAY, {prompt: "--select--"} %>
 	</div>
@@ -33,30 +46,6 @@
 		<%= f.select :currency, Trip::CURRENCIES %>
 	</div>
 	<hr/>
-	<div class="row">
-		<label class="col-md-2 right">Trip Name:</label>
-	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
-	</div>
-	<div class="row" style="margin-top:5px;margin-bottom:20px;">
-		<label class="col-md-2 right">Description:</label>
-	  <%= f.text_area :description, placeholder: "Description...", class: "col-md-9", rows: 7, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB;" %>
-	</div>
-	<hr/>
-	<div class="row" styel="margin-bottom:10px;">
-		<div class="col-md-2 right">
-			<label class="col-md-2 right">Region:</label>
-		</div>
-		<div class="col-md-9" style="padding:0px;">
-			<%= image_tag "world_map.jpg", width: "448px"; %>
-		</div>
-	</div>
-	<div class="row" style="margin-top:20px;">
-		<div class="col-md-9 col-md-offset-2" style="padding:0px;">
-			<%= f.select :region, Trip::REGIONS %>
-		</div>
-	</div>
-
-  <hr/>
-  <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-info" %>
+  <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-danger" %>
 
 <% end %>

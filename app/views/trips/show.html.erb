@@ -1,7 +1,7 @@
-<div class="container-fluid" style="background:#EFEDE2;min-height:600px;">
+<div class="container-fluid">
 	<div class="row" style="margin-top:20px;margin-bottom:0px;">
 		<div class="col-md-8" style="padding-left: 28px;">
-			<h1 style="font-size:140%;margin-top:0px;margin-bottom:15px;"><%= @trip.name %></h1>
+			<h1 style="font-size:140%;margin-top:0px;"><%= @trip.name %></h1>
 			<div class="row">
 				<div class="col-md-8">
 					<ul class="list-unstyled" style="margin:0px;">
@@ -14,13 +14,9 @@
 							<% end %>
 						</li>
 						<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:5px;"></i> starts in <%= time_ago_in_words(@trip.departs_at) %></li>
-					</ul>
-				</div>
-				<div class="col-md-4">
-					<ul class="list-unstyled right" style="margin:0px;">
 						<% if @trip.price_info? %>
 							<li>
-								Est cost:
+								<i class="fa fa-dollar" style="margin-left:4px;margin-right:7px;"></i>
 								<% if @trip.price_dollars_low %>
 									<%= @trip.try(:price_dollars_low) %>-<%= @trip.try(:price_dollars_high) %>
 									<%= @trip.try(:currency) %>
@@ -30,20 +26,25 @@
 							
 							</li>
 						<% end %>
-						<li>Duration: 
+						<li>
+							<i class="fa fa-sun-o" style="margin-left:1px;margin-right:4px;"></i>
 							<% if @trip.duration_in_days %>
 								<%= pluralize(@trip.duration_in_days, "day") %>
+								trip
 							<% else %>
 								n/a
 							<% end %>
 						</li>
 					</ul>
 				</div>
+				<div class="col-md-4">
+
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="list-unstyled" style="padding:0px;">
-						<li><i class="fa fa-map-marker" style="margin-left:4px;margin-right:6px;"></i> <%= @trip.region %></li>
+						<li><i class="fa fa-map-marker" style="margin-left:4px;margin-right:7px;"></i> <%= @trip.region %></li>
 					</ul>
 				</div>
 			</div>
@@ -151,10 +152,18 @@
 			<% end %>
 			<% if current_user && current_user == @trip.user %>
 				<h3>Tools</h3>
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal">
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal" data-backdrop="static">
 				 EDIT TRIP
 				</button>
 			<% end %>
 		</div>
 	</div>
+	<div class="row" style="margin-bottom:15px;">
+		<div class="col-md-8">
+			<div class="pull-right">
+				<em>posted on <%= @trip.created_at.strftime("%B %e, %Y") %></em>
+			</div>
+		</div>
+	</div>
+
 </div>

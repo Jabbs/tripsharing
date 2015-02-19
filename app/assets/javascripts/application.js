@@ -20,13 +20,19 @@
 
 $('document').ready(function() {
 	
-	$('#signuplink').click(function() {
+	$('.signuplink').click(function() {
 		$("#survey_form").hide();
 		$("#tagline").hide();
 		$("#signup").fadeIn(400);
 		$("#tagline2").empty();
-		$("#tagline2").append("Signup to browse or get matched with<br>other travelers who want to share an adventure...");
+		$("#tagline2").append("Signup to join a trip or start your own!");
 		$("#tagline2").fadeIn(400);
+	});
+	$('.cancelsignuplink').click(function() {
+		$("#survey_form").fadeIn(400);
+		$("#tagline").fadeIn(400);
+		$("#signup").hide();
+		$("#tagline2").empty();
 	});
 	
 	$('#myTab a').click(function (e) {

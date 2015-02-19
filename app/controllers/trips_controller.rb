@@ -36,9 +36,10 @@ class TripsController < ApplicationController
   
   def update
     @trip = Trip.friendly.find(params[:id])
+    @trip.slug = nil
     if @trip.update_attributes(trip_params)
       @trip.save!
-      redirect_to [current_user, @trip], notice: 'Trip successfully updated.'
+      redirect_to @trip, notice: 'Trip successfully updated.'
     else
       render action: "edit"
     end

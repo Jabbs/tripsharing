@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :interests
     get 'profile'
     get 'join'
-    resources :trips
+    # resources :trips
   end
   resources :password_resets, only: [:new, :create, :edit, :update]
   match '/unsubscribe', to: "verifications#unsubscribe", via: :get

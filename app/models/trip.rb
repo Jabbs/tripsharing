@@ -2,8 +2,9 @@ class Trip < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
                     
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 250 }
   validates :user_id, presence: true
+  validates :description, length: { maximum: 5000 }
   
   belongs_to :user
   has_many :locations, as: :locationable, dependent: :destroy

@@ -96,6 +96,10 @@ html,body {
 body {
   color: $body_grey;
 }
+#main {
+	min-height:600px;
+	background:#EFEDE2;
+}
 h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
 h1 { color: $dark_blue; }
 h4 { line-height: 1.2em; }
@@ -150,6 +154,7 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
+.alert {}
 .modal-open .modal,.btn:focus{
     outline:none!important;
 }
@@ -338,12 +343,12 @@ h2.choice.inactive a {
   z-index: -1;
   
   display: block;
-	background: url("home/bogota_columbia.jpg") no-repeat center center fixed;
+	background: url("home/288412.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-  min-height: 800px;
+  min-height: 1200px;
   
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -478,7 +483,7 @@ a.btn-facebook {
 }
 
 /* header */
-.navbar, .navbar-inner {margin:0px; border-radius:0;background: transparent; border:none; box-shadow:none;}
+.navbar, .navbar-inner {margin:0px; border-radius:0;background: white; border:none; box-shadow:none;}
 .navbar {
 	position:relative;
 	z-index:1;
@@ -519,8 +524,8 @@ footer {
   left: 0;
   right: 0;
   z-index: 0;
-  height:180px;
-  background: $salmon;
+  height:240px;
+	background: url("tiles/noise_salmon.jpg");
 //	opacity: 1; // Leave this as 1
 //  background-color: rgba(0,0,0,0.6);
   padding-top: 30px;
