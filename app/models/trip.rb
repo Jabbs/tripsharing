@@ -18,6 +18,28 @@ class Trip < ActiveRecord::Base
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
                 "S. America", "Central America"]
+  INTERESTS = [
+    ["Cultural immersion", "1"],
+    ["Exploring the city", "2"],
+    ["Partying / Clubbing", "3"],
+    ["Sports", "4"],
+    ["Backpacking", "5"],
+    ["Bicycling", "6"],
+    ["Overland and Safari", "7"],
+    ["Mountaineering", "8"],
+    ["Sailing / Boating", "9"],
+    ["Scuba / Snorkelling", "10"],
+    ["Skiing", "11"],
+    ["Trekking / Hiking", "12"],
+    ["Business / Networking", "13"],
+    ["Volunteering", "14"],
+    ["Wildlife / Ecology", "15"],
+    ["Food / Wine", "16"],
+    ["Drinking with locals", "17"],
+    ["Relaxing", "18"],
+    ["Museums", "19"],
+    ["Beaches", "20"]
+  ]
   
   def self.get_lonelyplanet_trips
     lp_trips = []

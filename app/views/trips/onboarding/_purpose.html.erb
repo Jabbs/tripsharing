@@ -1,11 +1,18 @@
-<div class="radio">
-  <label>
-    <input type="radio" name="trip[private]" id="tripPrivate1" value="0" checked>
-		Seeking travel companions
-  </label>
+<div class="row">
+	<% Trip::INTERESTS.each do |interest| %>
+		<div class="col-md-6">
+			<div class="radio">
+			  <label style="padding:0px;">
+			    <input type="radio" name="interest[<%= interest[1] %>]" class="fancyradio" value="0" checked style="display:none;">
+					<span>no</span>
+			  </label>
 
-  <label style="padding-left:80px;">
-    <input type="radio" name="trip[private]" id="tripPrivate1" value="1">
-		Private trip (invite only)
-  </label>
+			  <label style="padding-left:5px;">
+			    <input type="radio" name="interest[<%= interest[1] %>]" class="fancyradio" value="1" style="display:none;">
+					<span>yes</span>
+			  </label>
+				<div class="interest"><%= interest[0] %></div>
+			</div>
+		</div>
+	<% end %>
 </div>

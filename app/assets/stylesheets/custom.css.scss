@@ -48,6 +48,11 @@ $body_grey: #4a4a4a;
 	    -moz-border-radius: 5px;
 	         border-radius: 5px;
 }
+@mixin really_rounded_border {
+	 -webkit-border-radius: 15px;
+	    -moz-border-radius: 15px;
+	         border-radius: 15px;
+}
 @mixin add_transition {
 	-o-transition:.4s;
   -ms-transition:.4s;
@@ -208,6 +213,24 @@ a.add-description {
 
 // TRIPS ONBOARDING
 #onboarding-purpose {display: none;}
+.interest {font-size: 160%;display:inline;margin-left:10px;}
+input[type="radio"].fancyradio+span {
+	padding:2px 8px;
+	margin:0px;
+	font-size: 130%;
+	color: $grey;
+	border: 1px solid transparent;
+	@include rounded_border;
+}
+input[type="radio"].fancyradio+span:hover {
+	color: $white;
+	background: $salmon;
+	@include add_transition;
+}
+input[type="radio"].fancyradio:checked+span{
+	color: $white;
+	background: $salmon;
+}
 
 a.fb-link {
 	color: $grey;
@@ -384,7 +407,7 @@ h2.choice.inactive a {
 		font-family: 'Crafty Girls';
 		padding-bottom:20px;
 	}
-	h3 {color: $salmon;}
+	h3 {color: $salmon; margin-top:0px;}
 	.trip-category {
 		color: $grey;
 		text-align: center;

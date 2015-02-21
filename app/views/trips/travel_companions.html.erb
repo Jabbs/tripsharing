@@ -37,21 +37,20 @@
 					</div>
 					<div class="col-md-8">
 						<%= form_for @trip do |f| %>
-							<h3>Who are you seeking to join you on your trip?</h3>
-							<hr>
-							<div id="onboarding-group-details" style="margin-top:40px;">
+							<div id="onboarding-group-details">
+								<h3>Who are you seeking to join you on your trip?</h3>
+								<hr>
 								<%= render 'trips/onboarding/groupdetails', f: f %>
 								<hr>
 								<a class="btn btn-default btn-lg pull-right fancy" id="onboarding-hide-group-details"> CONTINUE </a>
 							</div>
-							<div id="onboarding-purpose" style="margin-top:40px;">
+							<div id="onboarding-purpose">
+								<h3>What should they enjoy doing on your trip?</h3>
+								<hr>
 								<%= render 'trips/onboarding/purpose', f: f %>
 								<hr>
 								<button type="submit" class="btn btn-default btn-lg pull-right fancy" id="onboarding-submit-travelcompanions"> CONTINUE </button>
 							</div>
-
-							
-							
 
 						<% end %>
 						
