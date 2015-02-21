@@ -50,7 +50,7 @@ section {
 	padding-left:10px;
 }
 
-.submit.btn.btn-lg {
+.fancy.btn.btn-lg {
 	margin-left:10px;
 	font-size: 28px;
 	color: #999;
@@ -58,7 +58,7 @@ section {
 	background-color: transparent;
 	border-radius: 0;
 }
-.submit.btn.btn-lg:hover {
+.fancy.btn.btn-lg:hover {
 	color: white;
 	background-color: #4CAF7D;
 	-o-transition:.3s;

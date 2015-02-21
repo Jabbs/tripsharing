@@ -14,6 +14,7 @@ class Trip < ActiveRecord::Base
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
+  GROUP_DYNAMICS = [["any travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["traveling family(s)", "5"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
                 "S. America", "Central America"]
@@ -57,9 +58,7 @@ class Trip < ActiveRecord::Base
     when "7"
       trip.group_max = 10
     end
-    trip.age_min = user.age - 5
-    trip.age_min = 18 if trip.age_min < 18
-    trip.age_max = user.age + 5
+    trip.add_predetermined_ages
     trip.region = survey.destination
     x = ["adventure", "exploit", "venture", "getaway"]
     y = ["friends", "companions", "buddies"]
@@ -67,6 +66,12 @@ class Trip < ActiveRecord::Base
     trip.name = survey.month + " travel #{x.shuffle.first} to " + survey.destination.split(',').first
     trip.save!
     trip.locations.create(unparsed: survey.destination)
+  end
+  
+  def add_predetermined_ages
+    self.age_min = user.age - 4
+    self.age_min = 18 if self.age_min < 18
+    self.age_max = user.age + 4
   end
   
   def city_state

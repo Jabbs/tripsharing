@@ -53,12 +53,14 @@ class TripsController < ApplicationController
   end
   
   def create
+    @my_trips = current_user.trips
     @trip = Trip.new(trip_params)
     @trip.user = current_user
+    @trip.add_predetermined_ages
     if @trip.save
       redirect_to trip_travel_companions_path(@trip)
     else
-      render 'new'
+      render 'index'
     end
   end
   
@@ -74,7 +76,7 @@ class TripsController < ApplicationController
     def trip_params
       params.require(:trip).permit(:age_max, :age_min, :description, :expires_at, :group_min, :group_max, :name, :active, :state,
                                    :duration_in_days, :price_dollars_low, :price_dollars_high, :departs_at, :currency, :group_dynamics,
-                                   :region, image_attachments_attributes: [:image, :description],
+                                   :region, :private, :seeking_type, :seeking_count, image_attachments_attributes: [:image, :description],
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
     end
@@ -98,6 +100,6 @@ class TripsController < ApplicationController
     
     def redirect_incomplete_trip
       @trip = Trip.friendly.find(params[:id])
-      redirect_to trip_details_path(@trip) if @trip.incomplete?
+      redirect_to trip_travel_companions_path(@trip) if @trip.incomplete?
     end
 end

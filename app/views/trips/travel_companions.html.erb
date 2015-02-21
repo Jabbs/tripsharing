@@ -17,7 +17,7 @@
 						<div class="trip-category">
 							<i class="fa fa-plane"></i>
 							<br>
-							About Your Trip
+							Where to?
 						</div>
 					</div>
 					<div class="col-md-2"style="padding:0px;">
@@ -36,18 +36,24 @@
 						</div>
 					</div>
 					<div class="col-md-8">
-						<h3>Let's start with the dynamics of your travel group!</h3>
-						<hr>
-						<% Trip::STATES_ARRAY.each do |state| %>
-							<div class="radio">
-							  <label>
-									<% state[1] == "2" ? is_checked = "checked" : is_checked = "" %>
-							    <input type="radio" name="optionsRadios" id="optionsRadios1" value="<%= state[1] %>" <%= is_checked %>>
-							    <%= state[0] %>
-							  </label>
+						<%= form_for @trip do |f| %>
+							<h3>Who are you seeking to join you on your trip?</h3>
+							<hr>
+							<div id="onboarding-group-details" style="margin-top:40px;">
+								<%= render 'trips/onboarding/groupdetails', f: f %>
+								<hr>
+								<a class="btn btn-default btn-lg pull-right fancy" id="onboarding-hide-group-details"> CONTINUE </a>
 							</div>
+							<div id="onboarding-purpose" style="margin-top:40px;">
+								<%= render 'trips/onboarding/purpose', f: f %>
+								<hr>
+								<button type="submit" class="btn btn-default btn-lg pull-right fancy" id="onboarding-submit-travelcompanions"> CONTINUE </button>
+							</div>
+
+							
+							
+
 						<% end %>
-						<hr>
 						
 					</div>
 				</div>
