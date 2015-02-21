@@ -44,9 +44,14 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.friendly.find(params[:id])
     @trip.slug = nil
+    referrer = request.referer.split('/').last
     if @trip.update_attributes(trip_params)
       @trip.save!
-      redirect_to @trip, notice: 'Trip successfully updated.'
+      if referrer == "travel_companions"
+        redirect_to trip_details_path(@trip)
+      else
+        redirect_to @trip, notice: 'Trip successfully updated.'
+      end
     else
       render action: "edit"
     end
