@@ -31,50 +31,60 @@
 				<hr class="thick">
 				<div class="row">
 					<div class="col-md-4">
-						<div class="well" style="min-height:500px;">
+						<div class="well" style="min-height:510px;">
 							<div class="center"><%= image_tag "regions/europe.png", size: "200x200" %></div>
 						</div>
 					</div>
 					<div class="col-md-8">
-						<%= form_for @trip do |f| %>
+						<%= form_for @trip, html: {class: "form-fancy"} do |f| %>
 							<div id="onboarding-who">
-								<h3>Who would you like to join you?</h3>
-								<hr>
-								<%= render 'trips/onboarding/who', f: f %>
-								<hr>
+								<div class="onboarding-section">
+									<h3>WHO WOULD YOU LIKE TO JOIN YOU?</h3>
+									<hr style="margin-bottom:120px;">
+									<%= render 'trips/onboarding/who', f: f %>
+								</div>
+								<hr class="no-top-margin">
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-when"> CONTINUE </a>
 							</div>
 							<div id="onboarding-when">
-								<h3>When are you going? For how long?</h3>
-								<hr style="margin-bottom:0px;">
-								<%= render 'trips/onboarding/when', f: f %>
-								<hr>
+								<div class="onboarding-section">
+									<h3>WHEN ARE YOU GOING? FOR HOW LONG?</h3>
+									<hr style="margin-bottom:120px;">
+									<%= render 'trips/onboarding/when', f: f %>
+								</div>
+								<hr class="no-top-margin">
 								<a class="btn btn-default onboarding-goto-who"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-stops"> CONTINUE </a>
 							</div>
 							<div id="onboarding-stops">
-								<h3>What stops will you be making in <%= @trip.region %>?</h3>
-								<hr style="margin-bottom:0px;">
-								<%= render 'trips/onboarding/stops', f: f %>
-								<hr>
+								<div class="onboarding-section">
+									<h3>WHAT STOPS WILL YOU BE MAKING IN <%= @trip.region.upcase %>?</h3>
+									<hr style="margin-bottom:0px;">
+									<%= render 'trips/onboarding/stops', f: f %>
+								</div>
+								<hr class="no-top-margin">
 								<a class="btn btn-default onboarding-goto-when"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-purpose"> CONTINUE </a>
 							</div>
 							<div id="onboarding-purpose">
-								<h3>What activities will this trip include?</h3>
-								<hr style="margin-bottom:0px;">
-								<%= render 'trips/onboarding/purpose', f: f %>
-								<hr>
+								<div class="onboarding-section">
+									<h3>WHAT ACTIVITIES WILL THIS TRIP INCLUDE?</h3>
+									<hr style="margin-bottom:0px;">
+									<%= render 'trips/onboarding/purpose', f: f %>
+								</div>
+								<hr class="no-top-margin">
 								<a class="btn btn-default onboarding-goto-stops"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-profile"> CONTINUE </a>
 							</div>
 							<div id="onboarding-profile">
-								<h3>Now tell us a bit more about you...</h3>
-								<hr style="margin-bottom:0px;">
-								<%= render 'trips/onboarding/profile', f: f %>
-								<hr>
+								<div class="onboarding-section">
+									<h3>NOW TELL US A BIT MORE ABOUT YOU...</h3>
+									<hr style="margin-bottom:0px;">
+									<%= render 'trips/onboarding/profile', f: f %>
+								</div>
+								<hr class="no-top-margin">
 								<a class="btn btn-default onboarding-goto-purpose"> BACK </a>
-								<button type="submit" class="btn btn-default btn-lg pull-right fancy-dark" id="onboarding-submit-travelcompanions"> CONTINUE </button>
+								<button type="submit" class="btn btn-default btn-lg pull-right fancy-dark" id="onboarding-submit-travelcompanions"> SUBMIT </button>
 							</div>
 						<% end %>
 						

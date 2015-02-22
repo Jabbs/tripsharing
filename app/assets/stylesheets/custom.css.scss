@@ -216,9 +216,9 @@ a.add-description {
 #onboarding-stops, #onboarding-when {display: none;}
 .interest {font-size: 160%;display:inline;margin-left:10px;}
 input[type="radio"].fancyradio+span {
-	padding:2px 8px 4px 8px;
+	padding:0px 8px 4px 8px;
 	margin:0px;
-	font-size: 130%;
+	font-size: 125%;
 	color: $grey;
 	border: 1px solid transparent;
 	@include rounded_border;
@@ -248,6 +248,41 @@ input[type="radio"].fancyradio:checked+span{
   -webkit-transition:.3s;
   /* ...and now for the proper property */
   transition:.3s;
+}
+.form-fancy input,
+.form-fancy textarea,
+.form-fancy select {
+	height: 40px;
+	overflow: hidden;
+	line-height: 40px;
+	font-size: 160%;
+	background-color: transparent;
+	border: none;
+	border: 1px dotted;
+	vertical-align: text-bottom;
+	padding-left:10px;
+	color: $grey_dark;
+}
+.form-fancy textarea:focus,
+.form-fancy input[type="text"]:focus,
+.form-fancy input[type="password"]:focus,
+.form-fancy input[type="datetime"]:focus,
+.form-fancy input[type="datetime-local"]:focus,
+.form-fancy input[type="date"]:focus,
+.form-fancy input[type="month"]:focus,
+.form-fancy input[type="time"]:focus,
+.form-fancy input[type="week"]:focus,
+.form-fancy input[type="number"]:focus,
+.form-fancy input[type="email"]:focus,
+.form-fancy input[type="url"]:focus,
+.form-fancy input[type="search"]:focus,
+.form-fancy input[type="tel"]:focus,
+.form-fancy input[type="color"]:focus,
+.form-fancy .uneditable-input:focus {   
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: none;
+  outline: 0 none;
+	padding-left:10px;
 }
 
 a.fb-link {
@@ -418,6 +453,7 @@ h2.choice.inactive a {
 	box-shadow: 5px 5px 2px #888888;
 	margin-top:40px;
 	margin-bottom:60px;
+	label {font-size: 140%;}
 	hr.thick {margin-top:0px; border-top: 3px solid $turquoise_dark;}
 	h1 {
 		color: $salmon;
@@ -425,7 +461,7 @@ h2.choice.inactive a {
 		font-family: 'Crafty Girls';
 		padding-bottom:20px;
 	}
-	h3 {color: $salmon; margin-top:0px;}
+	h3 {color: $salmon; margin-top:10px;}
 	.trip-category {
 		color: $grey;
 		text-align: center;
@@ -436,6 +472,7 @@ h2.choice.inactive a {
 	}
 	.well {background: $beige;}
 }
+.onboarding-section { min-height: 500px; }
 
 .slight-tilt-img {
 	position: relative;

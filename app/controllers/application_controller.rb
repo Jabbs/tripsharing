@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   end
   before_filter :ensure_domain
   before_filter :instantiate_new_trip
+  # before_filter :set_airports
   protect_from_forgery
   include SessionsHelper
   include ApplicationHelper
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+  
+  def set_airports
+    @airports ||= view_context.render 'trips/airports.json'
   end
   
   def instantiate_new_trip

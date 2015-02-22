@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'details'
   end
   match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
+  match 'airports', to: 'trips#airports', via: [:get]
 
   # facebook omniauth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]

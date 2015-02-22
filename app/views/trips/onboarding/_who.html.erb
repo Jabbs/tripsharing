@@ -1,16 +1,16 @@
 <div class="row">
-	<label class="col-md-2">Seeking:</label>
+	<label class="col-md-3">Seeking:</label>
 	<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS %>
 </div>
-<div class="row">
-	<label class="col-md-2">How many?:</label>
+<div class="row top-margin">
+	<label class="col-md-3">How many?:</label>
   <%= f.select :seeking_count, ['1', '2', '3', '4', '5', '6-10', '11-15', '16+', 'none', 'tbd'] %>
 </div>
 
-<div class="row">
-	<label class="col-md-2">Ages:</label>
+<div class="row top-margin">
+	<label class="col-md-3">Ages:</label>
 	<%= f.select :age_min, ('18'..'65').to_a.unshift("any"), {prompt: "--min--"} %>
-	to
+	<span style="position:relative;top:-13px;">-- to --</span>
   <%= f.select :age_max, ('18'..'65').to_a.unshift("any"), {prompt: "--max--"} %>
 </div>
 

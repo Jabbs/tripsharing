@@ -18,6 +18,10 @@ class Trip < ActiveRecord::Base
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
                 "S. America", "Central America"]
+  DURATIONS = [["weekend", "1"], ["5-10 days", "2"], ["11-20 days", "3"], ["21-30 days", "4"], ["31+ days", "5"]]
+  DEPARTINGS = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
+               ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
+  FLEXIBILITY = [["none", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
   INTERESTS = [
     ["Cultural immersion", "1"],
     ["Exploring the city", "2"],
