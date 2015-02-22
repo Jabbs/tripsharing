@@ -4,13 +4,13 @@
 </div>
 <div class="row top-margin">
 	<label class="col-md-3">How many?:</label>
-  <%= f.select :seeking_count, ['1', '2', '3', '4', '5', '6-10', '11-15', '16+', 'none', 'tbd'] %>
+  <%= f.select :group_count, ['1', '2', '3', '4', '5', '6-10', '11-15', '16+', 'none', 'tbd'] %>
 </div>
 
 <div class="row top-margin">
 	<label class="col-md-3">Ages:</label>
-	<%= f.select :age_min, ('18'..'65').to_a.unshift("any"), {prompt: "--min--"} %>
+	<%= f.select :group_age_min, ('18'..'65').to_a.unshift("any"), {prompt: "--min--"} %>
 	<span style="position:relative;top:-13px;">-- to --</span>
-  <%= f.select :age_max, ('18'..'65').to_a.unshift("any"), {prompt: "--max--"} %>
+  <%= f.select :group_age_max, ('18'..'65').to_a.unshift("any"), {prompt: "--max--"} %>
 </div>
 

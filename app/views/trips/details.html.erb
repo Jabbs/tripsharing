@@ -44,6 +44,16 @@
 									<%= render 'trips/onboarding/who', f: f %>
 								</div>
 								<hr class="no-top-margin">
+								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-wherefrom"> CONTINUE </a>
+							</div>
+							<div id="onboarding-wherefrom">
+								<div class="onboarding-section">
+									<h3>TELL US A LITTLE MORE ABOUT YOUR TRAVEL COMPANION(S)</h3>
+									<hr style="margin-bottom:60px;">
+									<%= render 'trips/onboarding/wherefrom', f: f %>
+								</div>
+								<hr class="no-top-margin">
+								<a class="btn btn-default onboarding-goto-who"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-when"> CONTINUE </a>
 							</div>
 							<div id="onboarding-when">
@@ -53,12 +63,12 @@
 									<%= render 'trips/onboarding/when', f: f %>
 								</div>
 								<hr class="no-top-margin">
-								<a class="btn btn-default onboarding-goto-who"> BACK </a>
+								<a class="btn btn-default onboarding-goto-wherefrom"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-stops"> CONTINUE </a>
 							</div>
 							<div id="onboarding-stops">
 								<div class="onboarding-section">
-									<h3>ITINERARY: FIRST STOP...</h3>
+									<h3>ITINERARY: WHERE IS THE FIRST STOP...</h3>
 									<hr style="margin-bottom:120px;">
 									<%= render 'trips/onboarding/stops', f: f %>
 								</div>
@@ -78,8 +88,8 @@
 							</div>
 							<div id="onboarding-profile">
 								<div class="onboarding-section">
-									<h3>INTRODUCE YOURSELF TO YOUR FUTURE TRAVEL COMPANIONS...</h3>
-									<hr style="margin-bottom:0px;">
+									<h3>WHAT SHOULD YOUR FUTURE TRAVEL COMPANIONS KNOW ABOUT YOU?</h3>
+									<hr style="margin-bottom:80px;">
 									<%= render 'trips/onboarding/profile', f: f %>
 								</div>
 								<hr class="no-top-margin">

@@ -9,7 +9,7 @@
 						<li>
 							<i class="fa fa-plane" style="margin-left:2px;margin-right:5px;"></i>
 							<% if @trip.public? %>
-								<%= Trip::STATES[@trip.state] %> (ages <%= @trip.try(:age_min) %>-<%= @trip.try(:age_max) %>)
+								<%= Trip::STATES[@trip.state] %> (ages <%= @trip.try(:group_age_min) %>-<%= @trip.try(:group_age_max) %>)
 							<% elsif @trip.private? %>
 								private trip
 							<% end %>

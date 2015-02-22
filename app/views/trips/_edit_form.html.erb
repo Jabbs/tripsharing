@@ -19,13 +19,13 @@
 	</div>
 	<div class="row">
 		<label class="col-md-2 right">Ages:</label>
-		<%= f.select :age_min, ('18'..'65').to_a, {prompt: "--min--"} %>
+		<%= f.select :group_age_min, ('18'..'65').to_a, {prompt: "--min--"} %>
 		to
-	  <%= f.select :age_max, ('18'..'65').to_a, {prompt: "--max--"} %>
+	  <%= f.select :group_age_max, ('18'..'65').to_a, {prompt: "--max--"} %>
 	</div>
 	<div class="row">
 		<label class="col-md-2 right">Group:</label>
-	  <%= f.select :group_max, ('1'..'30').to_a %>
+	  <%= f.select :group_age_max, ('1'..'30').to_a %>
 		traveler(s)
 	</div>
 	<hr>

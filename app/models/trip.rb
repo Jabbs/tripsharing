@@ -21,7 +21,7 @@ class Trip < ActiveRecord::Base
   DURATIONS = [["weekend", "1"], ["4-10 days", "2"], ["11-20 days", "3"], ["21-30 days", "4"], ["31+ days", "5"]]
   DEPARTINGS = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
-  FLEXIBILITY = [["none", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
+  FLEXIBILITY = [["no", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
   INTERESTS = [
     ["Cultural immersion", "1"],
     ["Exploring the city", "2"],
@@ -70,19 +70,19 @@ class Trip < ActiveRecord::Base
     trip.departs_at = Date.strptime(survey.month,'%B %Y')
     case survey.companion_type
     when "1"
-      trip.group_max = 2
+      trip.group_age_max = 2
     when "2"
-      trip.group_max = 5
+      trip.group_age_max = 5
     when "3"
-      trip.group_max = 10
+      trip.group_age_max = 10
     when "4"
-      trip.group_max = 20
+      trip.group_age_max = 20
     when "5"
-      trip.group_max = 4
+      trip.group_age_max = 4
     when "6"
-      trip.group_max = 10
+      trip.group_age_max = 10
     when "7"
-      trip.group_max = 10
+      trip.group_age_max = 10
     end
     trip.add_predetermined_ages
     trip.region = survey.destination
@@ -95,9 +95,9 @@ class Trip < ActiveRecord::Base
   end
   
   def add_predetermined_ages
-    self.age_min = user.age - 4
-    self.age_min = 18 if self.age_min < 18
-    self.age_max = user.age + 4
+    self.group_age_min = user.age - 4
+    self.group_age_min = 18 if self.group_age_min < 18
+    self.group_age_max = user.age + 4
   end
   
   def city_state

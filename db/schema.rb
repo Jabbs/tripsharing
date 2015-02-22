@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222170556) do
+ActiveRecord::Schema.define(version: 20150222214154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,35 +99,38 @@ ActiveRecord::Schema.define(version: 20150222170556) do
   create_table "trips", force: true do |t|
     t.string   "name"
     t.datetime "expires_at"
-    t.string   "age_min"
-    t.string   "age_max"
     t.text     "description"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "slug"
-    t.integer  "view_count",              default: 0
+    t.integer  "view_count",                default: 0
     t.integer  "user_id"
-    t.integer  "group_min"
-    t.integer  "group_max"
-    t.boolean  "initialized_with_signup", default: false
-    t.string   "audience",                default: "public"
+    t.boolean  "initialized_with_signup",   default: false
+    t.string   "audience",                  default: "public"
     t.integer  "duration_in_days"
     t.string   "price_dollars_low"
     t.string   "price_dollars_high"
     t.datetime "departs_at"
     t.string   "group_dynamics"
-    t.string   "state",                   default: "1"
-    t.string   "currency",                default: "USD"
+    t.string   "state",                     default: "1"
+    t.string   "currency",                  default: "USD"
     t.string   "region"
-    t.boolean  "private",                 default: false
+    t.boolean  "private",                   default: false
     t.string   "seeking_type"
-    t.string   "seeking_count"
     t.datetime "returns_at"
     t.string   "duration"
     t.string   "time_flexibility"
     t.string   "departing_category"
     t.string   "departs_from"
     t.string   "departs_to"
+    t.string   "group_age_min",             default: "18"
+    t.string   "group_age_max"
+    t.string   "group_count"
+    t.string   "group_departing_proximity"
+    t.string   "group_relationship_status"
+    t.string   "group_drinking"
+    t.string   "group_personality"
+    t.string   "group_nationality"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
