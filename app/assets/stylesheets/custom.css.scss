@@ -212,7 +212,8 @@ a.add-description {
 }
 
 // TRIPS ONBOARDING
-#onboarding-purpose {display: none;}
+#onboarding-purpose, #onboarding-fromwhere, #onboarding-profile,
+#onboarding-stops, #onboarding-when {display: none;}
 .interest {font-size: 160%;display:inline;margin-left:10px;}
 input[type="radio"].fancyradio+span {
 	padding:2px 8px 4px 8px;
@@ -230,6 +231,23 @@ input[type="radio"].fancyradio+span:hover {
 input[type="radio"].fancyradio:checked+span{
 	color: $white;
 	background: $salmon;
+}
+.fancy-dark.btn.btn-lg {
+	font-size: 28px;
+	color: white;
+	background-color: $turquoise_dark;
+	border: 1px dotted;
+	border-radius: 0;
+}
+.fancy-dark.btn.btn-lg:hover {
+	color: white;
+	background-color: darken($turquoise_dark, 10%);
+	-o-transition:.3s;
+  -ms-transition:.3s;
+  -moz-transition:.3s;
+  -webkit-transition:.3s;
+  /* ...and now for the proper property */
+  transition:.3s;
 }
 
 a.fb-link {

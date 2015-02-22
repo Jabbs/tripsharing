@@ -13,12 +13,7 @@ class TripsController < ApplicationController
     @remove_start_trip_button = true
     @trip = Trip.friendly.find(params[:trip_id])
   end
-  
-  def travel_companions
-    @remove_start_trip_button = true
-    @trip = Trip.friendly.find(params[:trip_id])
-  end
-  
+
   def index
     @trips = Trip.order("created_at ASC").paginate(page: params[:page], per_page: 12)
     @my_trips = current_user.trips
@@ -47,7 +42,7 @@ class TripsController < ApplicationController
     referrer = request.referer.split('/').last
     if @trip.update_attributes(trip_params)
       @trip.save!
-      if referrer == "travel_companions"
+      if referrer == "details"
         redirect_to trip_details_path(@trip)
       else
         redirect_to @trip, notice: 'Trip successfully updated.'
@@ -63,7 +58,7 @@ class TripsController < ApplicationController
     @trip.user = current_user
     @trip.add_predetermined_ages
     if @trip.save
-      redirect_to trip_travel_companions_path(@trip)
+      redirect_to trip_details_path(@trip)
     else
       render 'index'
     end
@@ -105,6 +100,6 @@ class TripsController < ApplicationController
     
     def redirect_incomplete_trip
       @trip = Trip.friendly.find(params[:id])
-      redirect_to trip_travel_companions_path(@trip) if @trip.incomplete?
+      redirect_to trip_details_path(@trip) if @trip.incomplete?
     end
 end

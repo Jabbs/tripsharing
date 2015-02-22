@@ -1,0 +1,11 @@
+
+<div class="row">
+	<label class="col-md-2 right">Departing:</label>
+	<%= f.date_field :departs_at %>
+</div>
+<div class="row">
+	<label class="col-md-2 right">Duration:</label>
+	<%= f.select :duration_in_days, 1..30 %>
+	day(s)
+</div>
+

@@ -14,7 +14,7 @@ class Trip < ActiveRecord::Base
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
-  GROUP_DYNAMICS = [["any travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["traveling family(s)", "5"]]
+  GROUP_DYNAMICS = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["traveling family(s)", "5"], ["solo travel", "6"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
                 "S. America", "Central America"]
