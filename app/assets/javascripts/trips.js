@@ -19,6 +19,12 @@ $('document').ready(function() {
 	$('.onboarding-goto-purpose').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-purpose").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-profile').click(function() { hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-profile").fadeIn(fadeInSpeed); });
 
+	$(".form-fancy").on("keypress", function (e) {
+	    if (e.keyCode == 13) {
+	        return false;
+	    }
+	});
+
 });
 
 // 
