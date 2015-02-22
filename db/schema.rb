@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 20150222170556) do
     t.string   "duration"
     t.string   "time_flexibility"
     t.string   "departing_category"
+    t.string   "departs_from"
+    t.string   "departs_to"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree

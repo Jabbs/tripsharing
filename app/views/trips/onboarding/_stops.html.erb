@@ -3,7 +3,7 @@
 
 	<div class="col-md-9">
 		<div id="prefetch">
-		  <input class="typeahead" type="text" placeholder="Airport" style="width:500px;">
+		  <input class="typeahead" type="text" name="trip[departs_from]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_from %>">
 		</div>
 	</div>
 </div>
@@ -12,7 +12,7 @@
 
 	<div class="col-md-9">
 		<div id="prefetch">
-		  <input class="typeahead" type="text" placeholder="Airport" style="width:500px;">
+		  <input class="typeahead" type="text" name="trip[departs_to]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_to %>">
 		</div>
 	</div>
 </div>

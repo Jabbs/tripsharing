@@ -1,5 +1,5 @@
 $('document').ready(function() {
-	
+	// https://github.com/jbrooksuk/JSON-Airports
 	var airport_objects = [
 	  {
 	    "iata": "UTK",
