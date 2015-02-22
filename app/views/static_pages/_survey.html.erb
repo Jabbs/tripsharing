@@ -15,7 +15,7 @@
 		      traveling to
 					<select id="destination" name="destination">
 						<% Trip::REGIONS.each do |region| %>
-							<option value="<%= region %>"><%= region %></option>
+							<option value="<%= region[1] %>"><%= region[0] %></option>
 						<% end %>
 		      </select>
 		      in
@@ -33,15 +33,11 @@
 		      </select>
 					and looking for
 		      <select id="companion_type" name="companion_type">
-					  <option value="1" selected>a travel companion</option>
-		        <option value="2">2-5 travel companions</option>
-		        <option value="3">6-10 travel companions</option>
-						<option value="4">11+ travel companions</option>
-		        <option value="5">a traveling couple</option>
-		        <option value="6">2-5 traveling couples</option>
-		        <option value="7">a traveling family</option>
+						<% Trip::GROUP_DYNAMICS.each do |gd| %>
+							<option value="<%= gd[1] %>"><%= gd[0] %></option>
+						<% end %>
 		      </select>
-					.
+
 		    </div>
 				<br>
 				<br>

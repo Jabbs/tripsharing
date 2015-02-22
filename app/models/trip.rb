@@ -16,9 +16,9 @@ class Trip < ActiveRecord::Base
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
   GROUP_DYNAMICS = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["traveling family(s)", "5"], ["solo travel", "6"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
-  REGIONS = ["Europe", "Africa", "East Asia and the Pacific", "South Asia", "Middle East", "N. America",
-                "S. America", "Central America"]
-  DURATIONS = [["weekend", "1"], ["4-10 days", "2"], ["11-20 days", "3"], ["21-30 days", "4"], ["31+ days", "5"]]
+  REGIONS = [["Europe", "1"], ["Africa", "2"], ["East Asia and the Pacific", "3"], ["South Asia", "4"], ["Middle East", "5"], ["N. America", "6"],
+             ["S. America", "7"], ["Central America", "8"]]
+  DURATIONS = [["weekend", "1"], ["4-10 days", "2"], ["11-20 days", "3"], ["21-30 days", "4"], ["31+ days", "5"], ["unknown", "6"]]
   DEPARTINGS = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
   FLEXIBILITY = [["no", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
