@@ -16,7 +16,9 @@ class Trip < ActiveRecord::Base
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
   GROUP_DYNAMICS = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["traveling family(s)", "5"], ["solo travel", "6"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
-  REGIONS = [["Europe", "1"], ["Africa", "2"], ["East Asia and the Pacific", "3"], ["South Asia", "4"], ["Middle East", "5"], ["N. America", "6"],
+  REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia and the Pacific", "4" => "South Asia", "5" => "Middle East", "6" => "N. America",
+             "7" => "S. America", "8" => "Central America"}
+  REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia and the Pacific", "3"], ["South Asia", "4"], ["Middle East", "5"], ["N. America", "6"],
              ["S. America", "7"], ["Central America", "8"]]
   DURATIONS = [["weekend", "1"], ["4-10 days", "2"], ["11-20 days", "3"], ["21-30 days", "4"], ["31+ days", "5"], ["unknown", "6"]]
   DEPARTINGS = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
@@ -40,7 +42,7 @@ class Trip < ActiveRecord::Base
     ["Wildlife / Ecology", "15"],
     ["Food / Wine", "16"],
     ["Drinking with locals", "17"],
-    ["Relaxing", "18"],
+    ["Camping", "18"],
     ["Museums", "19"],
     ["Beaches", "20"]
   ]
@@ -68,22 +70,7 @@ class Trip < ActiveRecord::Base
     trip = Trip.new(user_id: user.id)
     trip.initialized_with_signup = true
     trip.departs_at = Date.strptime(survey.month,'%B %Y')
-    case survey.companion_type
-    when "1"
-      trip.group_age_max = 2
-    when "2"
-      trip.group_age_max = 5
-    when "3"
-      trip.group_age_max = 10
-    when "4"
-      trip.group_age_max = 20
-    when "5"
-      trip.group_age_max = 4
-    when "6"
-      trip.group_age_max = 10
-    when "7"
-      trip.group_age_max = 10
-    end
+    trip.group_dynamics = survey.companion_type
     trip.add_predetermined_ages
     trip.region = survey.destination
     x = ["adventure", "exploit", "venture", "getaway"]

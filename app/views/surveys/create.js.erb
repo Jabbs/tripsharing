@@ -1,5 +1,5 @@
 $("#survey_form").hide();
 $("#tagline").hide();
 $("#signup").fadeIn(400);
-$("#tagline2").append("Signup to find travel companions to<br>join you in <i class='fa fa-map-marker turquoise_dark'></i> <span class='turquoise_dark' style='text-decoration:underline'><%= @survey.destination %></span>");
+$("#tagline2").append("Signup to continue creating your<br><i class='fa fa-map-marker turquoise_dark'></i> <span class='turquoise_dark' style='text-decoration:underline'><%= Trip::REGIONS[@survey.destination] %></span> trip!");
 $("#tagline2").fadeIn(400);

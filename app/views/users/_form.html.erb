@@ -2,19 +2,19 @@
 	<%= render "shared/error_messages", object: f.object %>
 	<div class="row">
 		<div class="col-md-6">
-			<lable>First name</lable>
+			<label>First name</label>
 			<br>
 			<input name="user[first_name]" type="text" autocomplete="off" placeholder="First name" style="width:100%;" required>
 		</div>
 		<div class="col-md-6">						
-			<lable>Last name</lable>
+			<label>Last name</label>
 			<br>
 			<input name="user[last_name]" type="text" autocomplete="off" placeholder="Last name" style="width:100%;" required>
 		</div>
 	</div>
 	<div class="row" style="margin-top:10px;">
 		<div class="col-md-6">
-			<lable>Gender</lable>
+			<label>Gender</label>
 			<br>
 			<select name="user[gender]" style="width:100%;" required>
 				<option value="default">Select Gender</option>
@@ -24,7 +24,7 @@
       </select>
 		</div>
 		<div class="col-md-6">
-			<lable>Birthday</lable>
+			<label>Birthday</label>
 			<br>
 			<input type="date" name="user[birthday]" max="1997-12-31" style="width:100%;" required>
 		</div>
@@ -37,7 +37,7 @@
 	</div>
 	<div class="row" style="margin-top:10px;">
 		<div class="col-md-12">
-			<lable>Email</lable>
+			<label>Email</label>
 			<br>
 			<input type="email" style="width:100%;" autocomplete="off" name="user[email]" placeholder="Email" required>
 		</div>
@@ -46,7 +46,7 @@
 		<div class="col-md-12">
 			<label>Make a Password:</label>
 			<br>
-			<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password">
+			<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password" required>
 		</div>
 	</div>
 	<div class="blankey" style="display:none;">

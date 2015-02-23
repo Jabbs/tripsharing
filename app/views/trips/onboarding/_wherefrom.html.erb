@@ -9,7 +9,7 @@
 	</select>
 </div>
 <div class="row top-margin">
-	<label class="col-md-4">Departing from:</label>
+	<label class="col-md-4">Joining me from:</label>
   <%= f.select :group_departing_proximity, ['anywhere', 'my airport', 'my city', 'my country'],{}, {style: "width: 400px;"} %>
 </div>
 <div class="row top-margin">
@@ -17,12 +17,12 @@
   <%= f.select :group_relationship_status, ['any', 'single(s)', 'in relationship(s)', 'engaged', 'married'],{}, {style: "width: 400px;"} %>
 </div>
 <div class="row top-margin">
-	<label class="col-md-4">Drinking?:</label>
+	<label class="col-md-4">Drinks?:</label>
   <%= f.select :group_drinking, ['socially', 'heavily', 'now and then', 'not at all'],{}, {style: "width: 400px;"} %>
 </div>
 <div class="row top-margin">
 	<label class="col-md-4">Personality:</label>
-  <%= f.select :group_personality, ['any', 'vert active', 'relaxed', 'family oriented', 'party animal(s)'],{}, {style: "width: 400px;"} %>
+  <%= f.select :group_personality, ['any', 'active', 'relaxed', 'family oriented', 'party animal'],{}, {style: "width: 400px;"} %>
 </div>
 
 

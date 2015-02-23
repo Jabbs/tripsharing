@@ -14,7 +14,7 @@
 		      </select>
 		      traveling to
 					<select id="destination" name="destination">
-						<% Trip::REGIONS.each do |region| %>
+						<% Trip::REGIONS_ARRAY.each do |region| %>
 							<option value="<%= region[1] %>"><%= region[0] %></option>
 						<% end %>
 		      </select>
