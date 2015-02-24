@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         current_user.save
         redirect_to current_user.trips.first
       else
-        redirect_back_or user_trips_path(current_user)
+        redirect_to user_trips_path(current_user)
       end
     else
       render 'static_pages/home'
@@ -58,17 +58,17 @@ class UsersController < ApplicationController
                       :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, :password,
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
                       :verification_token, :verified, :bio, :tag_line, :welcome_sent_at, :occupation,
-                      :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown)
+                      :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown, :home_airport, :fb_occupation)
     end
     
     def admin_user
-      redirect_to root_path unless current_user.admin?
+      redirect_to root_path unless admin_user?
     end
     
     def correct_user
       params[:user_id]? id = params[:user_id] : id = params[:id]
       @user = User.friendly.find(id)
-      redirect_to root_path unless current_user?(@user) || current_user.admin?
+      redirect_to root_path unless current_user?(@user) || admin_user?
     end
     
     def check_complete_interests

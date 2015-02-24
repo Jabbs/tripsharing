@@ -1,17 +1,24 @@
 <div class="row top-margin">
-	<label class="col-md-3">Occupation:</label>
-	<input type="text" name="user[occupation]" placeholder="Occupation" style="width:500px;" value="<%= current_user.occupation %>">
+	<div class="col-md-3"><label>Nationality:</label></div>
+	<div class="col-md-9">
+		<select name="user[nationality]">
+			<% nationalities = [["-- select --", "0"]] + User::NATIONALITIES %>
+			<% nationalities.each do |nationality| %>
+				<% current_user.nationality == nationality[1] ? selected = "selected" : selected = "" %>
+				<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
+			<% end %>
+		</select>
+	</div>
 </div>
 <div class="row top-margin">
-	<label class="col-md-3">Interests:</label>
-	<textarea type="text" name="user[interests]" placeholder="Travel interests and hobbies..." style="width:500px;min-height:100px;" rows="40"></textarea>
+	<div class="col-md-3"><label>Occupation:</label></div>
+	<div class="col-md-9">
+		<input type="text" name="user[occupation]" placeholder="Occupation" style="width:500px;" autocomplete="off" value="<%= current_user.occupation %>">
+	</div>
 </div>
 <div class="row top-margin">
-	<label class="col-md-3">Nationality:</label>
-	<select name="user[nationality]">
-		<% User::NATIONALITIES.each do |nationality| %>
-			<% current_user.nationality == nationality[1] ? selected = "selected" : selected = "" %>
-			<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
-		<% end %>
-	</select>
+	<div class="col-md-3"><label>Reason For Trip:</label></div>
+	<div class="col-md-9">
+		<textarea type="text" name="trip[reason]" placeholder="I am planning this trip because..." style="width:500px;min-height:100px;" rows="40" autocomplete="off"><%= @trip.reason %></textarea>
+	</div>
 </div>

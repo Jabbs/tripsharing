@@ -14,15 +14,17 @@ class Trip < ActiveRecord::Base
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
-  GROUP_DYNAMICS = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["traveling family(s)", "5"], ["solo travel", "6"]]
+  GROUP_DYNAMICS = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["solo travel", "5"]]
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia and the Pacific", "4" => "South Asia", "5" => "Middle East", "6" => "N. America",
              "7" => "S. America", "8" => "Central America"}
   REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia and the Pacific", "3"], ["South Asia", "4"], ["Middle East", "5"], ["N. America", "6"],
              ["S. America", "7"], ["Central America", "8"]]
-  DURATIONS = [["weekend", "1"], ["4-10 days", "2"], ["11-20 days", "3"], ["21-30 days", "4"], ["31+ days", "5"], ["unknown", "6"]]
-  DEPARTINGS = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
+  DURATIONS = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) tolerable", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
+  DEPARTINGS_ARRAY = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
+  DEPARTINGS = {"1" => "today", "2" => "asap", "3" => "this weekend", "4" => "spring 2015", "5" => "summer 2015", "6" => "fall 2015", "7" => "winter 2015",
+                "8" => "spring 2016", "9" => "summer 2016", "10" => "fall 2016", "11" => "winter 2016"}
   FLEXIBILITY = [["no", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
   INTERESTS = [
     ["Cultural immersion", "1"],
@@ -69,16 +71,21 @@ class Trip < ActiveRecord::Base
   def self.create_from_survey(user, survey)
     trip = Trip.new(user_id: user.id)
     trip.initialized_with_signup = true
-    trip.departs_at = Date.strptime(survey.month,'%B %Y')
+    trip.departing_category = survey.month
     trip.group_dynamics = survey.companion_type
     trip.add_predetermined_ages
     trip.region = survey.destination
     x = ["adventure", "exploit", "venture", "getaway"]
     y = ["friends", "companions", "buddies"]
     # concat a name
-    trip.name = survey.month + " travel #{x.shuffle.first} to " + survey.destination.split(',').first
+    trip.name = Trip::DEPARTINGS[survey.month] + " travel #{x.shuffle.first} to " + Trip::REGIONS[survey.destination]
     trip.save!
     trip.locations.create(unparsed: survey.destination)
+  end
+  
+  def switch_to_state(state)
+    self.state = state
+    self.save
   end
   
   def add_predetermined_ages

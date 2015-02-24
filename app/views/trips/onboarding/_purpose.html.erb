@@ -3,15 +3,15 @@
 		<div class="col-md-6">
 			<div class="radio" style="margin-bottom:2px;">
 			  <label style="padding:0px;">
-			    <input type="radio" name="interest[<%= interest[1] %>]" class="fancyradio" value="0" checked style="display:none;">
+			    <input type="radio" name="interest_tags[<%= interest[1] %>]" class="fancyradio" value="0" checked style="display:none;">
 					<span>no</span>
 			  </label>
 
 			  <label style="padding-left:2px;">
-			    <input type="radio" name="interest[<%= interest[1] %>]" class="fancyradio" value="1" style="display:none;">
+			    <input type="radio" name="interest_tags[<%= interest[1] %>]" class="fancyradio" value="1" style="display:none;">
 					<span>yes</span>
 			  </label>
-				<div class="interest"><%= interest[0] %></div>
+				<div class="interest" style="position:relative; top:3px;"><%= interest[0] %></div>
 			</div>
 		</div>
 	<% end %>

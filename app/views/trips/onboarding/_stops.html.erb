@@ -1,18 +1,16 @@
 <div class="row top-margin">
-	<label class="col-md-3">Departing From:</label>
-
+	<div class="col-md-3"><label>Departing From:</label></div>
 	<div class="col-md-9">
 		<div id="prefetch">
-		  <input class="typeahead" type="text" name="trip[departs_from]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_from %>">
+		  <input class="typeahead" type="text" name="trip[departs_from]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_from %>" autocomplete="off">
 		</div>
 	</div>
 </div>
 <div class="row top-margin">
-	<label class="col-md-3">Landing In:</label>
-
+	<div class="col-md-3"><label>Landing In:</label></div>
 	<div class="col-md-9">
 		<div id="prefetch">
-		  <input class="typeahead" type="text" name="trip[departs_to]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_to %>">
+		  <input class="typeahead" type="text" name="trip[departs_to]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_to %>" autocomplete="off">
 		</div>
 	</div>
 </div>

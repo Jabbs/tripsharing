@@ -220,7 +220,7 @@ class User < ActiveRecord::Base
   # validations
   validates :email, presence: true, uniqueness: true
   validates_format_of :email, :with => /@/
-  validates :password, presence: true, on: :create, :length => { :minimum => 5 }
+  validates :password, presence: true, on: :create
   # validates_date :birthday, allow_blank: true
       
   
@@ -246,7 +246,7 @@ class User < ActiveRecord::Base
       user.gender = auth.extra.raw_info.gender
       if auth.extra.raw_info.work
         auth.extra.raw_info.work.each do |employer|
-          user.occupation = employer.position.name unless employer.end_date.present?
+          user.fb_occupation = employer.position.name unless employer.end_date.present?
         end
       end
       user.newsletter = true

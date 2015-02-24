@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222214154) do
+ActiveRecord::Schema.define(version: 20150224122827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20150222214154) do
     t.string   "group_drinking"
     t.string   "group_personality"
     t.string   "group_nationality"
+    t.string   "reason"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
@@ -181,6 +182,8 @@ ActiveRecord::Schema.define(version: 20150222214154) do
     t.boolean  "send_to_first_trip",     default: false
     t.string   "nationality"
     t.string   "looking_for"
+    t.string   "fb_occupation"
+    t.string   "home_airport"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

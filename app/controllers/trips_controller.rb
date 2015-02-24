@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:index, :show]
-  before_filter :admin_user, only: [:lonelyplanet]
-  before_filter :correct_user, only: [:edit, :update, :details, :travel_companions]
+  before_filter :admin_user, only: [:lonelyplanet, :airports]
+  before_filter :correct_user, only: [:edit, :update, :details]
   before_filter :redirect_inactive_trip, only: [:show]
   before_filter :redirect_incomplete_trip, only: [:show]
   
@@ -45,8 +45,8 @@ class TripsController < ApplicationController
     @trip.slug = nil
     referrer = request.referer.split('/').last
     if @trip.update_attributes(trip_params)
-      @trip.save!
       if referrer == "details"
+        # @trip.switch_to_state("2")
         redirect_to trip_details_path(@trip)
       else
         redirect_to @trip, notice: 'Trip successfully updated.'
@@ -83,14 +83,14 @@ class TripsController < ApplicationController
                                    :duration_in_days, :price_dollars_low, :price_dollars_high, :departs_at, :currency, :group_dynamics,
                                    :region, :private, :seeking_type, :group_count, :duration, :time_flexibility, :departs_from, :departs_to,
                                    :group_departing_proximity, :group_relationship_status, :group_drinking, :group_personality, :group_nationality,
-                                   :departing_category,
+                                   :departing_category, :reason,
                                    image_attachments_attributes: [:image, :description],
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
     end
   
     def admin_user
-      redirect_to root_path unless current_user.admin?
+      redirect_to root_path unless admin_user?
     end
     
     def correct_user

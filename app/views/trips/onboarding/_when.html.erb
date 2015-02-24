@@ -1,15 +1,21 @@
 <div class="row top-margin">
-	<label class="col-md-3">Departure date:</label>
-	<%= f.select :departing_category, Trip::DEPARTINGS, prompt: "-- select --" %>
-	<span style="position:relative;top:-13px;">-- or --</span>
-	<%= f.date_field :departs_at %>
+	<div class="col-md-3"><label>Departure date:</label></div>
+	<div class="col-md-9">
+		<%= f.select :departing_category, Trip::DEPARTINGS_ARRAY, prompt: "-- select --" %>
+		<span style="position:relative;top:-13px;">-- or --</span>
+		<%= f.date_field :departs_at %>
+	</div>
 </div>
 <div class="row top-margin">
-	<label class="col-md-3">Flexible?:</label>
-	<%= f.select :time_flexibility, Trip::FLEXIBILITY %>
+	<div class="col-md-3"><label>Flexible?:</label></div>
+	<div class="col-md-9">
+		<%= f.select :time_flexibility, Trip::FLEXIBILITY %>
+	</div>
 </div>
 <div class="row top-margin">
-	<label class="col-md-3">Duration:</label>
-	<%= f.select :duration, Trip::DURATIONS %>
+	<div class="col-md-3"><label>Duration:</label></div>
+	<div class="col-md-9">
+		<%= f.select :duration, Trip::DURATIONS %>
+	</div>
 </div>
 

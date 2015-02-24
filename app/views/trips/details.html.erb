@@ -40,30 +40,20 @@
 							<div id="onboarding-who">
 								<div class="onboarding-section">
 									<h3>WHO WOULD YOU LIKE TO JOIN YOU?</h3>
-									<hr style="margin-bottom:100px;">
+									<hr style="margin-bottom:80px;">
 									<%= render 'trips/onboarding/who', f: f %>
 								</div>
 								<hr class="no-top-margin">
-								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-wherefrom"> CONTINUE </a>
-							</div>
-							<div id="onboarding-wherefrom">
-								<div class="onboarding-section">
-									<h3>TELL US A LITTLE MORE ABOUT YOUR TRAVEL COMPANION(S)</h3>
-									<hr style="margin-bottom:60px;">
-									<%= render 'trips/onboarding/wherefrom', f: f %>
-								</div>
-								<hr class="no-top-margin">
-								<a class="btn btn-default onboarding-goto-who"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-when"> CONTINUE </a>
 							</div>
 							<div id="onboarding-when">
 								<div class="onboarding-section">
-									<h3>WHEN ARE YOU GOING? FOR HOW LONG?</h3>
-									<hr style="margin-bottom:120px;">
+									<h3>WHEN? FOR HOW LONG?</h3>
+									<hr style="margin-bottom:80px;">
 									<%= render 'trips/onboarding/when', f: f %>
 								</div>
 								<hr class="no-top-margin">
-								<a class="btn btn-default onboarding-goto-wherefrom"> BACK </a>
+								<a class="btn btn-default onboarding-goto-who"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-stops"> CONTINUE </a>
 							</div>
 							<div id="onboarding-stops">
@@ -78,17 +68,17 @@
 							</div>
 							<div id="onboarding-purpose">
 								<div class="onboarding-section">
-									<h3>PICK SOME ACTIVITIES</h3>
+									<h3>WHAT WILL YOU DO THERE?</h3>
 									<hr style="margin-bottom:0px;">
 									<%= render 'trips/onboarding/purpose', f: f %>
 								</div>
-								<hr class="no-top-margin">
+								<hr>
 								<a class="btn btn-default onboarding-goto-stops"> BACK </a>
 								<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-profile"> CONTINUE </a>
 							</div>
 							<div id="onboarding-profile">
 								<div class="onboarding-section">
-									<h3>TELL YOUR TRAVEL COMPANIONS ABOUT YOUSELF</h3>
+									<h3>TELL YOUR TRAVEL COMPANIONS ABOUT YOU</h3>
 									<hr style="margin-bottom:80px;">
 									<%= render 'trips/onboarding/profile', f: f %>
 								</div>

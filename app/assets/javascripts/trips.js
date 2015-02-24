@@ -6,7 +6,6 @@ $('document').ready(function() {
 	
 	function hideOnbardingPartials() {
 		$("#onboarding-who").hide();
-		$("#onboarding-wherefrom").hide();
 		$("#onboarding-when").hide();
 		$("#onboarding-stops").hide();
 		$("#onboarding-purpose").hide();
@@ -15,7 +14,6 @@ $('document').ready(function() {
 	};
 	var fadeInSpeed = 400;
 	$('.onboarding-goto-who').click(function() { hideOnbardingPartials(); $(".travel-companions").addClass("active"); $("#onboarding-who").fadeIn(fadeInSpeed); });
-	$('.onboarding-goto-wherefrom').click(function() { hideOnbardingPartials(); $(".travel-companions").addClass("active"); $("#onboarding-wherefrom").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-when').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-when").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-stops').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-stops").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-purpose').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-purpose").fadeIn(fadeInSpeed); });

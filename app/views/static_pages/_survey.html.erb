@@ -20,18 +20,11 @@
 		      </select>
 		      in
 					<select id="month" name="month">
-		        <option value="March 2015" selected>March</option>
-		        <option value="April 2015">April</option>
-		        <option value="May 2015">May</option>
-		        <option value="June 2015">June</option>
-		        <option value="July 2015">July</option>
-		        <option value="August2015">August</option>
-						<option value="September 2015">September</option>
-						<option value="October 2015">October</option>
-						<option value="November 2015">November</option>
-						<option value="December 2015">December</option>
+						<% Trip::DEPARTINGS_ARRAY.last(8).each do |departing| %>
+		        	<option value="<%= departing[1] %>"><%= departing[0] %></option>
+						<% end %>
 		      </select>
-					and looking for
+					&amp; looking for
 		      <select id="companion_type" name="companion_type">
 						<% Trip::GROUP_DYNAMICS.each do |gd| %>
 							<option value="<%= gd[1] %>"><%= gd[0] %></option>

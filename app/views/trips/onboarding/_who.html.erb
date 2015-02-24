@@ -1,16 +1,34 @@
 <div class="row">
-	<label class="col-md-3">Seeking:</label>
-	<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS %>
+	<div class="col-md-3"><label>Seeking:</label></div>
+	<div class="col-md-9">
+		<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS,{}, {style: "width: 310px;"} %>
+	</div>
 </div>
 <div class="row top-margin">
-	<label class="col-md-3">How many?:</label>
-  <%= f.select :group_count, ['1', '2', '3', '4', '5', '6-10', '11-15', '16+', 'none', 'tbd'] %>
+	<div class="col-md-3"><label>How many?:</label></div>
+	<div class="col-md-9">
+		<%= f.select :group_count, ['1', '2', '3', '4', '5', '6-10', '11-15', '16+', 'none', 'tbd'] %>
+	</div>
 </div>
 
 <div class="row top-margin">
-	<label class="col-md-3">Ages:</label>
-	<%= f.select :group_age_min, ('18'..'99').to_a.unshift("any"), {prompt: "--min--"} %>
-	<span style="position:relative;top:-13px;">-- to --</span>
-  <%= f.select :group_age_max, ('18'..'99').to_a.unshift("any"), {prompt: "--max--"} %>
+	<div class="col-md-3"><label>Ages:</label></div>
+	<div class="col-md-9">
+		<%= f.select :group_age_min, ('18'..'99').to_a.unshift("any"), {prompt: "--min--"} %>
+		<span style="position:relative;top:-13px;">-- to --</span>
+	  <%= f.select :group_age_max, ('18'..'99').to_a.unshift("any"), {prompt: "--max--"} %>
+	</div>
 </div>
 
+<div class="row top-margin">
+	<div class="col-md-3"><label>Nationality:</label></div>
+	<div class="col-md-9">
+		<select name="trip[group_nationality]" style="width:310px;">
+			<% nationalities = [["any", "0"]] + User::NATIONALITIES %>
+			<% nationalities.each do |nationality| %>
+				<% @trip.group_nationality == nationality[1] ? selected = "selected" : selected = "" %>
+				<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
+			<% end %>
+		</select>
+	</div>
+</div>
