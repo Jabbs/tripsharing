@@ -46,8 +46,11 @@ class TripsController < ApplicationController
     referrer = request.referer.split('/').last
     if @trip.update_attributes(trip_params)
       if referrer == "details"
-        # @trip.switch_to_state("2")
-        redirect_to trip_details_path(@trip)
+        current_user.nationality = params[:user][:nationality]
+        current_user.occupation = params[:user][:occupation]
+        current_user.save
+        @trip.switch_to_state("2")
+        redirect_to @trip
       else
         redirect_to @trip, notice: 'Trip successfully updated.'
       end
