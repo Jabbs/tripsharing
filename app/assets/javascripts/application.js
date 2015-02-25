@@ -20,6 +20,10 @@
 
 $('document').ready(function() {
 	
+	// http://parsleyjs.org/doc/index.html#validators
+	// signup form
+	$('#new_user_form').parsley();
+	
 	$('.signuplink').click(function() {
 		$("#survey_form").hide();
 		$("#tagline").hide();

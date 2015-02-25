@@ -1,4 +1,4 @@
-<%= form_for @user, :url => { controller: 'users', :action => :create } do |f| %>
+<%= form_for @user, :url => { controller: 'users', :action => :create }, html: { id: "new_user_form"} do |f| %>
 	<%= render "shared/error_messages", object: f.object %>
 	<div class="row">
 		<div class="col-md-6">
@@ -17,7 +17,7 @@
 			<label>Gender</label>
 			<br>
 			<select name="user[gender]" style="width:100%;" required>
-				<option value="default">Select Gender</option>
+				<option disabled selected>Select Gender</option>
 				<option value="female">Female</option>
 				<option value="male">Male</option>
         <option value="other">Other</option>
@@ -26,7 +26,7 @@
 		<div class="col-md-6">
 			<label>Birthday</label>
 			<br>
-			<input type="date" name="user[birthday]" max="1997-12-31" style="width:100%;" required>
+			<input type="date" name="user[birthday]" style="width:100%;" required>
 		</div>
 	</div>
 	<div class="row">

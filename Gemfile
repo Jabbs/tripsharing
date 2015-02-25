@@ -14,7 +14,6 @@ gem 'haml-rails'
 gem "rinku"
 gem 'figaro'
 gem 'friendly_id'
-# gem 'client_side_validations'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem "carrierwave"
@@ -36,7 +35,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'activeresource'
 gem 'thin'
 gem 'nokogiri'
-
 gem "koala", "~> 1.11.0rc"
 gem "scrollreveal-rails"
 gem 'autoscaler'
