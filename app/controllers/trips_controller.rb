@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :signed_in_user, except: [:index, :show]
+  before_filter :signed_in_user, except: [:show]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
   before_filter :correct_user, only: [:edit, :update, :details]
   before_filter :redirect_inactive_trip, only: [:show]

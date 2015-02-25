@@ -2,7 +2,12 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :full_name, use: [:slugged, :history]
   has_secure_password
-  
+  FACES = ["calebogden","adellecharles","pixeliris","boheme","michzen","madedigital","geeftvorm","jennyshen","alv",
+    "chloepark","lovskogen","teylorfeliz","nickcouto","jobharmsen","hollowellme","heyjoyhey","zwitscherlise","visionarty","shibu_ravi",
+    "kfriedson","edwellbrook","mikaelstaer", "gigifk", "leezlee", "calebjoyce", "karagates", "cheriana", "her_ruu",
+    "beliv", "kennedysgarage","lady_katherine","tomsturge","dingledow","hannahlikesyouu","4l3d",
+    "romanbulah","rdsaunders", "kennahasson", "leez", "katelynannsays", "aiiaiiaii", "slowspock", "websiddu",
+    "paladinstudio", "tal_hertz","knilob", "doesmostthings","maridlcrmn", "simplyand", "chloepark", "dwaldron", "chexee"]
   NATIONALITIES = [
     ["American", "1"],
     ["British", "2"],
