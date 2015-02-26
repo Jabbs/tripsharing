@@ -24,6 +24,9 @@ $('document').ready(function() {
 	// signup form
 	$('#new_user_form').parsley();
 	
+	// https://bootstrap-datepicker.readthedocs.org/en/release/
+	$('.datepicker').datepicker()
+	
 	$('.signuplink').click(function() {
 		$("#survey_form").hide();
 		$("#tagline").hide();

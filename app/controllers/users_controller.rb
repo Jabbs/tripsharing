@@ -30,10 +30,10 @@ class UsersController < ApplicationController
         current_user.save
         redirect_to current_user.trips.first
       else
-        redirect_to user_trips_path(current_user)
+        redirect_to trips_path
       end
     else
-      render 'static_pages/home'
+      redirect_to root_path, alert: "There was an issue creating your account."
     end
   end
   

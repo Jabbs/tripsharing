@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # match '/terms', to: 'static_pages#terms', via: :get
   # match '/press', to: 'static_pages#press', via: :get
   
-  resources :users do
+  resources :users, path: "/members" do
     resources :verifications, only: [:show]
     match '/resend_verification', to: "verifications#resend", via: :get
     resources :interests

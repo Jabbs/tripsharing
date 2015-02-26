@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
     "kfriedson","edwellbrook","mikaelstaer", "gigifk", "leezlee", "calebjoyce", "karagates", "cheriana", "her_ruu",
     "beliv", "kennedysgarage","lady_katherine","tomsturge","dingledow","hannahlikesyouu","4l3d",
     "romanbulah","rdsaunders", "kennahasson", "leez", "katelynannsays", "aiiaiiaii", "slowspock", "websiddu",
-    "paladinstudio", "tal_hertz","knilob", "doesmostthings","maridlcrmn", "simplyand", "chloepark", "dwaldron", "chexee"]
+    "paladinstudio", "tal_hertz","knilob", "doesmostthings","maridlcrmn", "simplyand", "chloepark", "dwaldron", "chexee",
+    "oykun", "mcercos"]
   NATIONALITIES = [
     ["American", "1"],
     ["British", "2"],

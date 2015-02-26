@@ -18,13 +18,13 @@ class SessionsController < ApplicationController
         current_user.save
         redirect_to current_user.trips.first
       else
-        redirect_to user_trips_path(current_user)
+        redirect_to trips_path
       end
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)
       if @session_user && @session_user.authenticate(params[:password].to_s)
         sign_in @session_user
-        redirect_to user_trips_path(current_user)
+        redirect_to trips_path
       else
         @user = User.new
         @session_user = User.new

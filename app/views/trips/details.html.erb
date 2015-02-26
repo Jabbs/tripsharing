@@ -4,7 +4,7 @@
 			<div class="well build-trip-well">
 				<div class="row">
 					<div class="col-md-4"style="padding:0px;">
-						<h1>Trip Create</h1>
+						<h1><%= @trip.name %></h1>
 					</div>
 					<div class="col-md-2" style="padding:0px;">
 						<div class="trip-category travel-companions active">
@@ -32,7 +32,11 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="well" style="min-height:510px;">
-							<div class="center"><%= image_tag "regions/europe.png", size: "200x200" %></div>
+							<% User::FACES.shuffle.each do |face| %>
+								<!-- 128, 73, 48, 24 -->
+								<% head =  "https://s3.amazonaws.com/uifaces/faces/twitter/" + face + "/48.jpg" %>
+								<%= image_tag(head, style: "margin-right:-5px; padding:2px;") %>
+							<% end %>
 						</div>
 					</div>
 					<div class="col-md-8">
