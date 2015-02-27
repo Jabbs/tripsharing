@@ -12,7 +12,7 @@ class CreateLocations < ActiveRecord::Migration
       t.integer :locationable_id
       t.string :locationable_type
 
-      t.timestamps
+      t.timestamps, :null => false
     end
     add_index :locations, [:locationable_id, :locationable_type]
     add_index :locations, :country

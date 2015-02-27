@@ -6,7 +6,7 @@ class CreateTripApplications < ActiveRecord::Migration
       t.string :status, default: "pending"
       t.text :introduction
 
-      t.timestamps
+      t.timestamps, :null => false
     end
     add_index :trip_applications, :trip_id
     add_index :trip_applications, :user_id

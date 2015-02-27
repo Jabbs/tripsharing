@@ -5,7 +5,7 @@ class CreateImageAttachments < ActiveRecord::Migration
       t.integer :image_attachable_id
       t.string :image
       
-      t.timestamps
+      t.timestamps, :null => false
     end
     add_index :image_attachments, :image_attachable_type
     add_index :image_attachments, :image_attachable_id

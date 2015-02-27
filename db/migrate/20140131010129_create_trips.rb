@@ -8,7 +8,7 @@ class CreateTrips < ActiveRecord::Migration
       t.string :group_size
       t.text :description
 
-      t.timestamps
+      t.timestamps, :null => false
     end
     add_index :trips, :name
   end
