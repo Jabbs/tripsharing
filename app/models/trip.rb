@@ -79,7 +79,7 @@ class Trip < ActiveRecord::Base
     y = ["friends", "companions", "buddies"]
     # concat a name
     trip.name = Trip::DEPARTINGS[survey.month] + " travel #{x.shuffle.first} to " + Trip::REGIONS[survey.destination]
-    trip.titleize
+    trip.name.titleize
     trip.save!
     trip.locations.create(unparsed: survey.destination)
   end
