@@ -478,22 +478,23 @@ h2.choice.inactive a {
 .show-trip {
 	h1 {
 		color: $turquoise_dark;
-		margin: 40px 0px 0px 20px;
+		margin: 20px 0px 10px 0px;
 		font-family: 'Crafty Girls';
-		padding-bottom:20px;
 		font-size:250%;
 	}
 	hr {border-top: 1px solid $grey;}
 }
 .comment {
+	margin-top:10px;
 	background: $white;
 	@include really_rounded_border;
 	padding: 10px 20px;
+	font-size:80%;
 }
 .dots {
-	background: $grey;
-	border: 1px dotted $turquoise_dark;
-	padding:0px 6px 0px 4px;
+	background: lighten($salmon, 20%);
+	border: 1px dotted $grey_dark;
+	padding:0px 6px 0px 6px;
 	@include rounded_borders;
 }
 
@@ -502,8 +503,8 @@ h2.choice.inactive a {
 	color: $white; 
 	@include rounded_borders; 
 	padding: 2px 6px 4px 6px;
-	margin-bottom: 5px;
 	font-size:80%;
+	line-height: 230%;
 }
 
 .slight-tilt-img {

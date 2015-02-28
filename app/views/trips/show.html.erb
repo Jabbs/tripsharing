@@ -2,26 +2,34 @@
 <div class="container-fluid">
 	<div class="show-trip">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-9">
 				
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-10 col-md-offset-1">
 						<div class="center">
 							<h1><%= @trip.name %></h1>
 						</div>
 					</div>
 				</div>
-				
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1"><hr></div>
+				</div>
+				<div class="row top-margin">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="center">
+							<% unless @trip.solo_trip? %>
+								<p class="no-margin" style="line-height:180%;">
+									<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
+								</p>
+							<% end %>
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-md-12">
 						<div class="center">
-							<% if @trip.user.fb_image %>
-		            <%= image_tag @trip.user.fb_image, class: "image" %>
-		          <% else %>
-		            <%= image_tag "blank_avatar.jpg", class: "image" %>
-		          <% end %>
 
-							<%= @trip.user.first_name %>
 						</div>
 					</div>
 				</div>
@@ -41,19 +49,26 @@
 				</div>
 				
 			</div>
-			<div class="col-md-4">
-				<% unless @trip.solo_trip? %>
-					<h3>Details:</h3>
-
-						<p class="no-bottom-margin" style="line-height:180%;">
-							<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
-						</p>
-
-				<% end %>
+			<div class="col-md-3">
+				<div class="center" style="margin-top:20px;">
+					<%= image_tag "regions/#{Trip::REGIONS[@trip.region].downcase.tr(" ", "_").delete(".").delete(",")}.png", size: "200x200" %>
+				</div>
+				
 				<% if @trip.public? %>
 					<%= render "trips/social_media" %>
 				<% end %>
-				<h3>Comments</h3>
+				<h3>Tags:</h3>
+				<% @trip.tags.each do |tag| %>
+					<div class="tag inline"><nobr><%= tag.name %></nobr></div>
+				<% end %>
+				<h3>Organizer:</h3>
+				<% if @trip.user.fb_image %>
+          <%= image_tag @trip.user.fb_image, class: "image" %>
+        <% else %>
+          <%= image_tag "blank_avatar.jpg", class: "image" %>
+        <% end %>
+				<%= @trip.user.first_name %>,
+				<em><small><%= @trip.user.occupation %></small></em>
 				<div class="comment"><%= @trip.reason %></div>
 			</div>
 		</div>
