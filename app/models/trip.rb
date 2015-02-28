@@ -17,7 +17,11 @@ class Trip < ActiveRecord::Base
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
-  GROUP_DYNAMICS = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["solo travel", "5"]]
+  GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples", "5" => "Not Seeking Companions"}
+  GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["solo travel", "5"]]
+  GROUP_SIZE_ARRAY = [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6-10", "6"], ["11-15", "7"], 
+                     ["16+", "8"], ["none", "9"], ["tbd", "10"]]
+  GROUP_SIZE = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "none", "10" => "tbd"}
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia and the Pacific", "4" => "South Asia", "5" => "Middle East", "6" => "N. America",
              "7" => "S. America", "8" => "Central America"}
@@ -38,7 +42,6 @@ class Trip < ActiveRecord::Base
                "6" => "Bicycling", "7" => "Overland and Safari", "8" => "Mountaineering", "9" => "Sailing / Boating", "10" => "Scuba / Snorkelling",
               "11" => "Skiing", "12" => "Trekking / Hiking", "13" => "Business / Networking", "14" => "Volunteering", "15" => "Wildlife / Ecology",
               "16" => "Food / Wine", "17" => "Drinking with locals", "18" => "Camping", "19" => "Museums", "20" => "Beaches",}
-  TAGS = ["purple", "monkey", "dishwasher"]
   
   def self.get_lonelyplanet_trips
     lp_trips = []
@@ -70,9 +73,8 @@ class Trip < ActiveRecord::Base
     y = ["friends", "companions", "buddies"]
     # concat a name
     trip.name = Trip::DEPARTINGS[survey.month] + " travel #{x.shuffle.first} to " + Trip::REGIONS[survey.destination]
-    trip.name.titleize
+    trip.name = trip.name.titleize
     trip.save!
-    trip.locations.create(unparsed: survey.destination)
   end
   
   def self.tagged_with(name)
@@ -112,6 +114,10 @@ class Trip < ActiveRecord::Base
   def add_view_count
     self.view_count += 1
     save!
+  end
+  
+  def solo_trip?
+    self.group_dynamics == "5" ? true : false
   end
   
   def incomplete?

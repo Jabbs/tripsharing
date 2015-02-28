@@ -475,6 +475,22 @@ h2.choice.inactive a {
 }
 .onboarding-section { min-height: 430px; }
 
+.show-trip {
+	h1 {
+		color: $turquoise_dark;
+		margin: 40px 0px 0px 20px;
+		font-family: 'Crafty Girls';
+		padding-bottom:20px;
+		font-size:250%;
+	}
+	hr {border-top: 1px solid $grey_dark;}
+}
+.comment {
+	background: $white;
+	@include really_rounded_border;
+	padding: 10px 20px;
+}
+
 .tag {
 	background: $turquoise_dark; 
 	color: $white; 

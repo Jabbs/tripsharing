@@ -2,7 +2,7 @@
 	<div class="col-md-3"><label>Nationality:</label></div>
 	<div class="col-md-9">
 		<select name="user[nationality]">
-			<% nationalities = [["-- select --", "0"]] + User::NATIONALITIES %>
+			<% nationalities = [["-- select --", "0"]] + User::NATIONALITIES_ARRAY %>
 			<% nationalities.each do |nationality| %>
 				<% current_user.nationality == nationality[1] ? selected = "selected" : selected = "" %>
 				<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>

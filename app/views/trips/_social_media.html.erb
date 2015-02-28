@@ -1,0 +1,16 @@
+<h3 style="margin-top:40px;">Share this trip:</h3>
+<% share_url = request.url.split('?').first %>
+<% share_text = "#{@trip.name}" %>
+<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>
+<% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
+
+<%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", style: 'text-decoration: none;', target: "_blank" do %>
+  <%= image_tag("social_icons/email_circle_color-38.png") %>
+<% end %>
+<%= link_to fb_link, target: "_blank", style: 'text-decoration: none;' do %>
+  <%= image_tag("social_icons/facebook_circle_color-38.png") %>
+<% end %>
+<%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
+  <%= image_tag("social_icons/twitter_circle_color-38.png") %>
+<% end %>
+<div class="fb-like" data-href="<%= share_url %>" data-layout="button_count" data-send="false" data-show-faces="false" data-width="220"></div>

@@ -1,179 +1,64 @@
 <%= render "trips/trip_edit_modal" %>
 <div class="container-fluid">
-	<div class="row" style="margin-top:20px;margin-bottom:0px;">
-		<div class="col-md-8" style="padding-left: 28px;">
-			<h1 style="font-size:140%;margin-top:0px;"><%= @trip.name %></h1>
-			<div class="row">
-				<div class="col-md-8">
-					<ul class="list-unstyled" style="margin:0px;">
-						<li>
-							<i class="fa fa-plane" style="margin-left:2px;margin-right:5px;"></i>
-							<% if @trip.public? %>
-								<%= Trip::STATES[@trip.state] %> (ages <%= @trip.try(:group_age_min) %>-<%= @trip.try(:group_age_max) %>)
-							<% elsif @trip.private? %>
-								private trip
-							<% end %>
-						</li>
-						<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:5px;"></i>
-							<% if @trip.departs_at %>
-								starts in <%= time_ago_in_words(@trip.departs_at) %>
-							<% end %>
-						</li>
-						<% if @trip.price_info? %>
-							<li>
-								<i class="fa fa-dollar" style="margin-left:4px;margin-right:7px;"></i>
-								<% if @trip.price_dollars_low %>
-									<%= @trip.try(:price_dollars_low) %>-<%= @trip.try(:price_dollars_high) %>
-									<%= @trip.try(:currency) %>
-								<% else %>
-									n/a
-								<% end %>
-							
-							</li>
-						<% end %>
-						<li>
-							<i class="fa fa-sun-o" style="margin-left:1px;margin-right:4px;"></i>
-							<% if @trip.duration_in_days %>
-								<%= pluralize(@trip.duration_in_days, "day") %>
-								trip
-							<% else %>
-								n/a
-							<% end %>
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4">
-
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="list-unstyled" style="padding:0px;">
-						<li><i class="fa fa-map-marker" style="margin-left:4px;margin-right:7px;"></i> <%= @trip.region %></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<% @trip.tags.each do |tag| %>
-						<div class="tag inline"><%= tag.name %></div>
-					<% end %>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="center">
-				<%= image_tag "regions/europe.png", size: "200x200" %>
-			</div>
-		</div>
-	</div>
-	<div class="row" style="margin-bottom:20px;">
-		<div class="col-md-8">
-			<div role="tabpanel">
-
-			  <!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
-					<!--  
-					<li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
-					<li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
-					<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-			    -->
-					<li role="presentation"><a href="#travelers" aria-controls="travelers" role="tab" data-toggle="tab">Travelers</a></li>
-			  </ul>
-
-			  <!-- Tab panes -->
-			  <div class="tab-content trip-content">
-			    <div role="tabpanel" class="tab-pane active" id="description">
-						<% if @trip.description.present? %>
-						
-							<div class="description">
-								<%= simple_format(@trip.description)%>
-							</div>
-							
-						<% elsif current_user && current_user == @trip.user %>
-							<div class="center">
-								<a href="#" data-toggle="modal" data-target="#tripEditModal" class="add-description">
-								 <i class="fa fa-plus-circle" style="font-size:1000%; margin-top:20px;"></i>
-									<h3>Add Description</h3>
-								</a>
-							</div>
-						<% else %>
-							<div class="center grey">
-								<i class="fa fa-picture-o" style="font-size:1000%; margin-top:20px;"></i>
-								<h3>No Description Available</h3>
-							</div>
-						<% end %>	
-						
-					</div>
-					<!--
-					<div role="tabpanel" class="tab-pane" id="itinerary">
-						<% @trip.locations.each do |location| %>
-							<div class="row">
-								<div class="col-md-3">
-									<i class="fa fa-plane"></i>
-									<%= @trip.departs_at %>
-								</div>
-								<div class="col-md-9">
-									Arrive at
-									<span class="turquoise_dark"><i class="fa fa-map-marker"></i> <%= location.unparsed %></span>
-								</div>
-							</div>
-						<% end %>
-					</div>
-			    <div role="tabpanel" class="tab-pane" id="activities">activities...</div>
-					<div role="tabpanel" class="tab-pane" id="messages">messages...</div>
-					-->
-					<div role="tabpanel" class="tab-pane" id="travelers">
-						<div class="row">
-							<div class="col-md-2">
-								<% if @trip.user.fb_image %>
-                  <%= image_tag @trip.user.fb_image, class: "image" %>
-                <% else %>
-                  <%= image_tag "blank_avatar.jpg", class: "image" %>
-                <% end %>
-								
-								<%= @trip.user.first_name %>
-							</div>
+	<div class="show-trip">
+		<div class="row">
+			<div class="col-md-8">
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="center">
+							<h1><%= @trip.name %></h1>
 						</div>
 					</div>
-			    
-			  </div>
-			</div>
-	  </div>
-		<div class="col-md-4">
-			<% if @trip.public? %>
-				<h3 style="margin-top:40px;">Share this trip:</h3>
-				<% share_url = request.url.split('?').first %>
-				<% share_text = "#{@trip.name}" %>
-				<% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>
-				<% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="center">
+							<% if @trip.user.fb_image %>
+		            <%= image_tag @trip.user.fb_image, class: "image" %>
+		          <% else %>
+		            <%= image_tag "blank_avatar.jpg", class: "image" %>
+		          <% end %>
 
-				<%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", style: 'text-decoration: none;', target: "_blank" do %>
-			    <%= image_tag("social_icons/email_circle_color-38.png") %>
-			  <% end %>
-			  <%= link_to fb_link, target: "_blank", style: 'text-decoration: none;' do %>
-			    <%= image_tag("social_icons/facebook_circle_color-38.png") %>
-			  <% end %>
-			  <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
-			    <%= image_tag("social_icons/twitter_circle_color-38.png") %>
-			  <% end %>
-				<div class="fb-like" data-href="<%= share_url %>" data-layout="button_count" data-send="false" data-show-faces="false" data-width="220"></div>
-			<% end %>
-			<% if current_user && current_user == @trip.user %>
-				<h3>Tools</h3>
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal" data-backdrop="static">
-				 EDIT TRIP
-				</button>
-			<% end %>
+							<%= @trip.user.first_name %>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2"><hr></div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="center">
+							<% if current_user && current_user == @trip.user %>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal" data-backdrop="static">
+								 EDIT TRIP
+								</button>
+							<% end %>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-md-4">
+				<h3>Traveler Qualifications:</h3>
+				<div class="comment">
+					<ul class="no-padding no-margin list-unstyled">
+						<% unless @trip.solo_trip? %>
+							<li><strong>gender:</strong> <%= gender_text(@trip.group_dynamics) %></li>
+						<% end %>
+						<li><strong>nationality:</strong> <%= User::NATIONALITIES[@trip.group_nationality] %></li>
+						<li><strong>age min:</strong> <%= @trip.group_age_min %></li>
+						<li><strong>age max:</strong> <%= @trip.group_age_max %></li>
+					</ul>
+				</div>
+				<% if @trip.public? %>
+					<%= render "trips/social_media" %>
+				<% end %>
+				<h3>Comments</h3>
+				<div class="comment"><%= @trip.reason %></div>
+			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-bottom:15px;">
-		<div class="col-md-8">
-			<div class="pull-right">
-				<em>posted on <%= @trip.created_at.strftime("%B %e, %Y") %></em>
-			</div>
-		</div>
-	</div>
-
 </div>

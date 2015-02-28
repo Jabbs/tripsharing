@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     raise ActionController::RoutingError.new('Not Found') if !params[:blankey].blank?
     @user = User.new(user_params)
-
+    @user.birth_year = @user.birthday.year.to_s
     if @user.save
       sign_in @user
       create_survey_from_user

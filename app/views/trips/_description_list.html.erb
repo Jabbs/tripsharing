@@ -1,0 +1,36 @@
+<ul class="list-unstyled" style="margin:0px;">
+	<li>
+		<i class="fa fa-plane" style="margin-left:2px;margin-right:5px;"></i>
+		<% if @trip.public? %>
+			<%= Trip::STATES[@trip.state] %> (ages <%= @trip.try(:group_age_min) %>-<%= @trip.try(:group_age_max) %>)
+		<% elsif @trip.private? %>
+			private trip
+		<% end %>
+	</li>
+	<li><i class="fa fa-clock-o" style="margin-left:2px;margin-right:5px;"></i>
+		<% if @trip.departs_at %>
+			starts in <%= time_ago_in_words(@trip.departs_at) %>
+		<% end %>
+	</li>
+	<% if @trip.price_info? %>
+		<li>
+			<i class="fa fa-dollar" style="margin-left:4px;margin-right:7px;"></i>
+			<% if @trip.price_dollars_low %>
+				<%= @trip.try(:price_dollars_low) %>-<%= @trip.try(:price_dollars_high) %>
+				<%= @trip.try(:currency) %>
+			<% else %>
+				n/a
+			<% end %>
+		
+		</li>
+	<% end %>
+	<li>
+		<i class="fa fa-sun-o" style="margin-left:1px;margin-right:4px;"></i>
+		<% if @trip.duration_in_days %>
+			<%= pluralize(@trip.duration_in_days, "day") %>
+			trip
+		<% else %>
+			n/a
+		<% end %>
+	</li>
+</ul>

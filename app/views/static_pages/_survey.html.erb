@@ -26,7 +26,7 @@
 		      </select>
 					&amp; looking for
 		      <select id="companion_type" name="companion_type">
-						<% Trip::GROUP_DYNAMICS.each do |gd| %>
+						<% Trip::GROUP_DYNAMICS_ARRAY.each do |gd| %>
 							<option value="<%= gd[1] %>"><%= gd[0] %></option>
 						<% end %>
 		      </select>
