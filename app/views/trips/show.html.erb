@@ -45,7 +45,7 @@
 				<% unless @trip.solo_trip? %>
 					<h3>Details:</h3>
 
-						<p class="no-bottom-margin">
+						<p class="no-bottom-margin" style="line-height:180%;">
 							<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
 						</p>
 

@@ -41,17 +41,19 @@ module TripsHelper
     if group_age_min == "any" && group_age_max == "any"
       age_text = ""
     elsif group_age_min != "any" && group_age_max != "any"
-      age_text = "ages <span class='dots'>#{group_age_min}</span> to <span class='dots'>#{group_age_max}</span>"
+      age_text = " ages <span class='dots'>#{group_age_min}</span> to <span class='dots'>#{group_age_max}</span>"
     elsif group_age_min != "any" && group_age_max == "any"
-      age_text = "above the age of <span class='dots'>#{group_age_min}</span>"
+      age_text = " above the age of <span class='dots'>#{group_age_min}</span>"
     elsif group_age_min == "any" && group_age_max != "any"
-      age_text = "under the age of <span class='dots'>#{group_age_max}</span>"
+      age_text = " under the age of <span class='dots'>#{group_age_max}</span>"
     end
     
+    status = "<span class='dots'>Seeking</span>"
+    
     if plural == true
-      return "Seeking " + group_count_text + " travelers," + " " + nationality_text + group_text + " " + age_text + "."
+      return "#{status} " + group_count_text + " travel companions," + " " + nationality_text + group_text + age_text + "."
     else
-      return "Seeking a " + nationality_text + " traveler, " + group_text + " " + age_text + "."
+      return "#{status} a " + nationality_text + " travel companion, " + group_text + age_text + "."
     end
 
   end
