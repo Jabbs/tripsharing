@@ -3,7 +3,7 @@
 	<div class="col-md-9">
 		<%= f.select :departing_category, Trip::DEPARTINGS_ARRAY, prompt: "-- select --" %>
 		<span style="position:relative;top:-13px;">-- or --</span>
-		<input class="datepicker" placeholder="mm/dd/yyyy" name="trip[departs_at]" required data-date-format="mm/dd/yyyy">
+		<input class="datepicker" placeholder="mm/dd/yyyy" name="trip[departs_at]" data-date-format="mm/dd/yyyy">
 	</div>
 </div>
 <div class="row top-margin">
