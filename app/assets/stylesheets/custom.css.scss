@@ -483,12 +483,18 @@ h2.choice.inactive a {
 		padding-bottom:20px;
 		font-size:250%;
 	}
-	hr {border-top: 1px solid $grey_dark;}
+	hr {border-top: 1px solid $grey;}
 }
 .comment {
 	background: $white;
 	@include really_rounded_border;
 	padding: 10px 20px;
+}
+.dots {
+	background: $grey;
+	border: 1px dotted $turquoise_dark;
+	padding:0px 6px 0px 4px;
+	@include rounded_borders;
 }
 
 .tag {

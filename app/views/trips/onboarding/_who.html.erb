@@ -24,8 +24,7 @@
 	<div class="col-md-3"><label>Nationality:</label></div>
 	<div class="col-md-9">
 		<select name="trip[group_nationality]" style="width:310px;">
-			<% nationalities = [["any", "0"]] + User::NATIONALITIES_ARRAY %>
-			<% nationalities.each do |nationality| %>
+			<% User::NATIONALITIES_ARRAY.each do |nationality| %>
 				<% @trip.group_nationality == nationality[1] ? selected = "selected" : selected = "" %>
 				<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
 			<% end %>

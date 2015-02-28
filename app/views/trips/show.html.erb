@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2"><hr></div>
+					<div class="col-md-10 col-md-offset-1"><hr></div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -42,17 +42,15 @@
 				
 			</div>
 			<div class="col-md-4">
-				<h3>Traveler Qualifications:</h3>
-				<div class="comment">
-					<ul class="no-padding no-margin list-unstyled">
-						<% unless @trip.solo_trip? %>
-							<li><strong>gender:</strong> <%= gender_text(@trip.group_dynamics) %></li>
-						<% end %>
-						<li><strong>nationality:</strong> <%= User::NATIONALITIES[@trip.group_nationality] %></li>
-						<li><strong>age min:</strong> <%= @trip.group_age_min %></li>
-						<li><strong>age max:</strong> <%= @trip.group_age_max %></li>
-					</ul>
-				</div>
+				<% unless @trip.solo_trip? %>
+					<h3>Group dynamics:</h3>
+
+						<p class="no-bottom-margin">
+							<%= gender_nationality_text(@trip.group_dynamics, @trip.group_nationality).html_safe %> 
+							ages <span class="dots"><%= @trip.group_age_min %></span> to <span class="dots"><%= @trip.group_age_max %></span>.
+						</p>
+
+				<% end %>
 				<% if @trip.public? %>
 					<%= render "trips/social_media" %>
 				<% end %>

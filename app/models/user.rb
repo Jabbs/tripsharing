@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   #   b = a.map { |x| "#{x[1]}"+ "monkey" + " => " + "monkey" + x[0] }
   #   find and replace "monkey" with: "
   
-  NATIONALITIES = {"1" => "American", "2" => "British", "3" => "English", "4" => "Irish", "5" => "Northern Irish", "6" => "Canadian", 
+  NATIONALITIES = {"0" => "any", "1" => "American", "2" => "British", "3" => "English", "4" => "Irish", "5" => "Northern Irish", "6" => "Canadian", 
     "7" => "Scottish", "8" => "Welsh", "9" => "Australian", "10" => "Afghan", "11" => "Albanian", "12" => "Algerian", "13" => "Andorran", 
     "14" => "Angolan", "15" => "Antiguans", "16" => "Argentinean", "17" => "Armenian", "18" => "Austrian", "19" => "Azerbaijani", "20" => "Bahamian", 
     "21" => "Bahraini", "22" => "Bangladeshi", "23" => "Barbadian", "24" => "Barbudans", "25" => "Batswana", "26" => "Belarusian", "27" => "Belgian", 
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     "185" => "Tobagonian", "186" => "Togolese", "187" => "Tongan", "188" => "Trinidadian", "189" => "Tunisian", "190" => "Turkish", "191" => "Tuvaluan", 
     "192" => "Ugandan", "193" => "Ukrainian", "194" => "Uruguayan", "195" => "Uzbekistani", "196" => "Venezuelan", "197" => "Vietnamese", "198" => "Yemenite", 
     "199" => "Zambian", "200" => "Zimbabwean"}
-  NATIONALITIES_ARRAY = [["American", "1"], ["British", "2"], ["English", "3"], ["Irish", "4"], ["Northern Irish", "5"], ["Canadian", "6"], 
+  NATIONALITIES_ARRAY = [["any", "0"], ["American", "1"], ["British", "2"], ["English", "3"], ["Irish", "4"], ["Northern Irish", "5"], ["Canadian", "6"], 
     ["Scottish", "7"], ["Welsh", "8"], ["Australian", "9"], ["Afghan", "10"], ["Albanian", "11"], ["Algerian", "12"], ["Andorran", "13"], 
     ["Angolan", "14"], ["Antiguans", "15"], ["Argentinean", "16"], ["Armenian", "17"], ["Austrian", "18"], ["Azerbaijani", "19"], 
     ["Bahamian", "20"], ["Bahraini", "21"], ["Bangladeshi", "22"], ["Barbadian", "23"], ["Barbudans", "24"], ["Batswana", "25"], 
