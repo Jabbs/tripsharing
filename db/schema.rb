@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 40
-    t.datetime "created_at"
+    t.datetime "created_at",                null: false
   end
 
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", unique: true, using: :btree
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.string   "image_attachable_type"
     t.integer  "image_attachable_id"
     t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "image_attachments", ["image_attachable_id"], name: "index_image_attachments_on_image_attachable_id", using: :btree
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.string   "identifier"
     t.boolean  "has_it",     default: false
     t.string   "category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "interests", ["identifier"], name: "index_interests_on_identifier", using: :btree
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.float    "longitude"
     t.integer  "locationable_id"
     t.string   "locationable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "unparsed"
   end
 
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.integer  "user_id"
     t.string   "month"
     t.string   "hometown"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "companion_type"
     t.string   "organizer_type"
   end
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.integer  "user_id"
     t.string   "status",       default: "pending"
     t.text     "introduction"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "trip_users", ["status"], name: "index_trip_users_on_status", using: :btree
@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.string   "name"
     t.datetime "expires_at"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "slug"
     t.integer  "view_count",                default: 0
     t.integer  "user_id"
@@ -167,8 +167,8 @@ ActiveRecord::Schema.define(version: 20150224122827) do
     t.string   "fb_image"
     t.string   "fb_url"
     t.string   "fb_location"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "tag_line"
     t.text     "bio"

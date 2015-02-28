@@ -6,7 +6,7 @@ class CreateInterests < ActiveRecord::Migration
       t.boolean :has_it, default: false
       t.string :category
 
-      t.timestamps, :null => false
+      t.timestamps null: false
     end
     add_index :interests, :user_id
     add_index :interests, :identifier

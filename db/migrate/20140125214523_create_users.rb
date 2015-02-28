@@ -29,7 +29,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :fb_url, limit: 255
       t.string :fb_location, limit: 255
 
-      t.timestamps, :null => false
+      t.timestamps null: false
     end
     add_index :users, :email
     add_index :users, :first_name

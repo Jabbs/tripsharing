@@ -7,7 +7,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.string :month, limit: 255
       t.string :hometown, limit: 255
 
-      t.timestamps, :null => false
+      t.timestamps null: false
     end
     add_index :surveys, :user_id
   end
