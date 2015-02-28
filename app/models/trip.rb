@@ -11,6 +11,9 @@ class Trip < ActiveRecord::Base
   accepts_nested_attributes_for :locations, allow_destroy: true
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
+  has_many :taggings, as: :taggable, dependent: :destroy
+  has_many :tags, through: :taggings
+  accepts_nested_attributes_for :taggings, allow_destroy: true
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
@@ -26,28 +29,16 @@ class Trip < ActiveRecord::Base
   DEPARTINGS = {"1" => "today", "2" => "asap", "3" => "this weekend", "4" => "spring 2015", "5" => "summer 2015", "6" => "fall 2015", "7" => "winter 2015",
                 "8" => "spring 2016", "9" => "summer 2016", "10" => "fall 2016", "11" => "winter 2016"}
   FLEXIBILITY = [["no", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
-  INTERESTS = [
-    ["Cultural immersion", "1"],
-    ["Exploring the city", "2"],
-    ["Partying / Clubbing", "3"],
-    ["Sports", "4"],
-    ["Backpacking", "5"],
-    ["Bicycling", "6"],
-    ["Overland and Safari", "7"],
-    ["Mountaineering", "8"],
-    ["Sailing / Boating", "9"],
-    ["Scuba / Snorkelling", "10"],
-    ["Skiing", "11"],
-    ["Trekking / Hiking", "12"],
-    ["Business / Networking", "13"],
-    ["Volunteering", "14"],
-    ["Wildlife / Ecology", "15"],
-    ["Food / Wine", "16"],
-    ["Drinking with locals", "17"],
-    ["Camping", "18"],
-    ["Museums", "19"],
-    ["Beaches", "20"]
-  ]
+  INTERESTS_ARRAY = [["Cultural immersion", "1"],["Exploring the city", "2"],["Partying / Clubbing", "3"],["Sports", "4"],
+                    ["Backpacking", "5"],["Bicycling", "6"],["Overland and Safari", "7"],["Mountaineering", "8"],["Sailing / Boating", "9"],
+                    ["Scuba / Snorkelling", "10"],["Skiing", "11"],["Trekking / Hiking", "12"],["Business / Networking", "13"],
+                    ["Volunteering", "14"],["Wildlife / Ecology", "15"],["Food / Wine", "16"],["Drinking with locals", "17"],
+                    ["Camping", "18"],["Museums", "19"],["Beaches", "20"]]
+  INTERESTS = {"1" => "Cultural immersion", "2" => "Exploring the city", "3" => "Partying / Clubbing", "4" => "Sports", "5" => "Backpacking",
+               "6" => "Bicycling", "7" => "Overland and Safari", "8" => "Mountaineering", "9" => "Sailing / Boating", "10" => "Scuba / Snorkelling",
+              "11" => "Skiing", "12" => "Trekking / Hiking", "13" => "Business / Networking", "14" => "Volunteering", "15" => "Wildlife / Ecology",
+              "16" => "Food / Wine", "17" => "Drinking with locals", "18" => "Camping", "19" => "Museums", "20" => "Beaches",}
+  TAGS = ["purple", "monkey", "dishwasher"]
   
   def self.get_lonelyplanet_trips
     lp_trips = []
@@ -82,6 +73,25 @@ class Trip < ActiveRecord::Base
     trip.name.titleize
     trip.save!
     trip.locations.create(unparsed: survey.destination)
+  end
+  
+  def self.tagged_with(name)
+    Tag.find_by_name(name).projects if Tag.find_by_name(name)
+  end
+
+  def self.tag_counts
+    Tag.select("tags.*, count(taggings.tag_id) as count").
+      joins(:taggings).group("taggings.tag_id")
+  end
+
+  def tag_list
+    tags.map(&:name).join(", ")
+  end
+
+  def tag_list=(names)
+    self.tags = names.split(",").map do |n|
+      Tag.where(name: n.strip).first_or_create!
+    end
   end
   
   def switch_to_state(state)

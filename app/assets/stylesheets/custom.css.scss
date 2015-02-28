@@ -475,6 +475,15 @@ h2.choice.inactive a {
 }
 .onboarding-section { min-height: 430px; }
 
+.tag {
+	background: $turquoise_dark; 
+	color: $white; 
+	@include rounded_borders; 
+	padding: 2px 6px 4px 6px;
+	margin-bottom: 5px;
+	font-size:80%;
+}
+
 .slight-tilt-img {
 	position: relative;
 	top:71px;

@@ -44,6 +44,7 @@ class TripsController < ApplicationController
     @trip = Trip.friendly.find(params[:id])
     @trip.slug = nil
     referrer = request.referer.split('/').last
+    create_tags
     if @trip.update_attributes(trip_params)
       if referrer == "details"
         current_user.nationality = params[:user][:nationality]
@@ -91,7 +92,22 @@ class TripsController < ApplicationController
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
     end
-  
+    
+    def create_tags
+      tag_blob = params["interest_tags"]
+      tag_blob.each do |k,v|
+        if v == "1"
+          name = Trip::INTERESTS[k].parameterize
+          if Tag.find_by_name(name)
+            t = Tag.find_by_name(name)
+          else
+            t = Tag.create!(name: name)
+          end
+          @trip.taggings.build(tag_id: t.id)
+        end
+      end
+    end
+    
     def admin_user
       redirect_to root_path unless admin_user?
     end
