@@ -43,11 +43,10 @@
 			</div>
 			<div class="col-md-4">
 				<% unless @trip.solo_trip? %>
-					<h3>Group dynamics:</h3>
+					<h3>Details:</h3>
 
 						<p class="no-bottom-margin">
-							<%= gender_nationality_text(@trip.group_dynamics, @trip.group_nationality).html_safe %> 
-							ages <span class="dots"><%= @trip.group_age_min %></span> to <span class="dots"><%= @trip.group_age_max %></span>.
+							<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
 						</p>
 
 				<% end %>

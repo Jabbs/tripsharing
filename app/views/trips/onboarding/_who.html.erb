@@ -7,7 +7,7 @@
 <div class="row top-margin">
 	<div class="col-md-3"><label>How many?:</label></div>
 	<div class="col-md-9">
-		<%= f.select :group_count, ['1', '2', '3', '4', '5', '6-10', '11-15', '16+', 'none', 'tbd'] %>
+		<%= f.select :group_count, Trip::GROUP_COUNT_ARRAY %>
 	</div>
 </div>
 
