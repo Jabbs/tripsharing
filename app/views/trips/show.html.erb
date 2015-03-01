@@ -3,7 +3,13 @@
 	<div class="show-trip">
 		<div class="row">
 			<div class="col-md-9">
-				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="center" style="margin-top:20px;">
+							<%= image_tag "regions/#{Trip::REGIONS[@trip.region].downcase.tr(" ", "_").delete(".").delete(",")}.png", size: "200x200" %>
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
 						<div class="center">
@@ -50,10 +56,6 @@
 				
 			</div>
 			<div class="col-md-3">
-				<div class="center" style="margin-top:20px;">
-					<%= image_tag "regions/#{Trip::REGIONS[@trip.region].downcase.tr(" ", "_").delete(".").delete(",")}.png", size: "200x200" %>
-				</div>
-				
 				<% if @trip.public? %>
 					<%= render "trips/social_media" %>
 				<% end %>
