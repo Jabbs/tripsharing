@@ -11,6 +11,7 @@ class PasswordResetsController < ApplicationController
   end
   
   def edit
+    @remove_start_trip_button = true
     if User.find_by_password_reset_token(params[:id].to_s)
       @user = User.find_by_password_reset_token!(params[:id].to_s)
     else
@@ -25,7 +26,6 @@ class PasswordResetsController < ApplicationController
     elsif params[:user][:password].size < 6 || params[:user][:password_confirmation].size < 6
       @user.errors.add(:password, "must be at least 6 characters") if params[:user][:password].size < 6
       @user.errors.add(:password_confirmation, "must be at least 6 characters") if params[:user][:password_confirmation].size < 6
-      logger.debug 'Hereeeeeee'
       render 'edit'
     elsif @user.update_attributes(user_params)
       sign_in @user
