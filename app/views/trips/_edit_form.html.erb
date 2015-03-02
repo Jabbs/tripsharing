@@ -1,51 +1,130 @@
 <%= form_for @trip do |f| %>
   <%= render "shared/error_messages", object: f.object %>
 	<div class="row">
-		<label class="col-md-2 right">Trip Name:</label>
-	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
+		<div class="col-md-2"><div class="right"><label>Seeking:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS_ARRAY %>
+		</div>
 	</div>
-	<div class="row" style="margin-top:10px;">
-		<label class="col-md-2 right">Region:</label>
-	  <%= f.select :region, Trip::REGIONS_ARRAY %>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>Count:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :group_count, Trip::GROUP_COUNT_ARRAY %>
+			traveler(s)
+		</div>
 	</div>
-	<div class="row" style="margin-top:5px;margin-bottom:20px;">
-		<label class="col-md-2 right">Description:</label>
-	  <%= f.text_area :description, placeholder: "Description...", class: "col-md-9", rows: 7, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB;" %>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>Nationality:</label></div></div>
+		<div class="col-md-10">
+			<select name="trip[group_nationality]">
+				<% User::NATIONALITIES_ARRAY.each do |nationality| %>
+					<% @trip.group_nationality == nationality[1] ? selected = "selected" : selected = "" %>
+					<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
+				<% end %>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>Ages:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :group_age_min, ('18'..'99').to_a, {prompt: "--min--"} %>
+			to
+		  <%= f.select :group_age_max, ('18'..'99').to_a, {prompt: "--max--"} %>
+		</div>
 	</div>
 	<hr>
 	<div class="row">
-		<label class="col-md-2 right">Status:</label>
-		<%= f.select :state, Trip::STATES_ARRAY, {prompt: "--select--"} %>
-	</div>
-	<div class="row">
-		<label class="col-md-2 right">Ages:</label>
-		<%= f.select :group_age_min, ('18'..'99').to_a, {prompt: "--min--"} %>
-		to
-	  <%= f.select :group_age_max, ('18'..'99').to_a, {prompt: "--max--"} %>
-	</div>
-	<div class="row">
-		<label class="col-md-2 right">Group:</label>
-	  <%= f.select :group_age_max, ('1'..'30').to_a %>
-		traveler(s)
-	</div>
-	<hr>
-	<div class="row">
-		<label class="col-md-2 right">Duration:</label>
-		<%= f.select :duration_in_days, 1..30 %>
-		day(s)
+		<div class="col-md-2"><div class="right"><label>When:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :departing_category, Trip::DEPARTINGS_ARRAY, prompt: "-- select --" %>
+		</div>
 	</div>
 	<div class="row" style="margin-bottom:10px;">
-		<label class="col-md-2 right">Departing:</label>
-		<%= f.date_field :departs_at %>
+		<div class="col-md-2"><div class="right"><label>Departing:</label></div></div>
+		<div class="col-md-4">
+			<input class="datepicker" id="trip_departs_at" placeholder="mm/dd/yyyy" name="trip[departs_at]" data-date-format="mm/dd/yyyy" value="<%= @trip.departs_at.strftime('%m/%d/%Y') %>">
+		</div>
+		<div class="col-md-2"><div class="right"><label>Returning:</label></div></div>
+		<div class="col-md-4">
+			<% @trip.returns_at.present? ? returns_at_value = @trip.returns_at.strftime('%m/%d/%Y') : returns_at_value = "" %>
+			<input class="datepicker" id="trip_returns_at" placeholder="mm/dd/yyyy" name="trip[returns_at]" data-date-format="mm/dd/yyyy" value="<%= returns_at_value %>">
+		</div>
 	</div>
 	<div class="row">
-		<label class="col-md-2 right">Cost est:</label>
-		<%= f.number_field :price_dollars_low, style: "width:60px;" %>
-		to
-	  <%= f.number_field :price_dollars_high, style: "width:60px;"  %>
-		<%= f.select :currency, Trip::CURRENCIES %>
+		<div class="col-md-2"><div class="right"><label>Duration:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :duration, Trip::DURATIONS %>
+		</div>
 	</div>
-	<hr/>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>Flexibility:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :time_flexibility, Trip::FLEXIBILITY %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>Cost est:</label></div></div>
+		<div class="col-md-10">
+			<%= f.number_field :price_dollars_low, style: "width:60px;" %>
+			to
+		  <%= f.number_field :price_dollars_high, style: "width:60px;"  %>
+			<%= f.select :currency, Trip::CURRENCIES %>
+		</div>
+	</div>
+	<hr>
+	<div class="row" style="margin-top:10px; margin-bottom:10px;">
+		<div class="col-md-2"><div class="right"><label>Region:</label></div></div>
+		<div class="col-md-10">
+			<%= f.select :region, Trip::REGIONS_ARRAY %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-2">
+			<label>1st stop</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>From:</label></div></div>
+		<div class="col-md-10">
+			<div class="prefetch">
+			  <input class="typeahead" type="text" name="trip[departs_from]" placeholder="Airport" style="width:400px;" value="<%= @trip.departs_from %>" autocomplete="off">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>To:</label></div></div>
+		<div class="col-md-10">
+			<div class="prefetch">
+			  <input class="typeahead" type="text" name="trip[departs_to]" placeholder="Airport" style="width:400px;" value="<%= @trip.departs_to %>" autocomplete="off">
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-2"><div class="right"><label>Trip Name:</label></div></div>
+		<div class="col-md-10">
+			<%= f.text_field :name, autocomplete: :off, style: "padding-left:3px; width:100%;" %>
+		</div>
+	</div>
+	<div class="row" style="margin-top:5px;margin-bottom:20px;">
+		<div class="col-md-2"><div class="right"><label>Description:</label></div></div>
+		<div class="col-md-10">
+			<%= f.text_area :description, placeholder: "Description...", rows: 7, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;" %>
+		</div>
+	</div>
+	<div class="row" style="margin-top:5px;margin-bottom:20px;">
+		<div class="col-md-2"><div class="right"><label>Reason for trip:</label></div></div>
+		<div class="col-md-10">
+			<%= f.text_area :reason, placeholder: "I am planning this trip because...", rows: 3, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;" %>
+		</div>
+	</div>
+	<div class="row" style="margin-top:5px;margin-bottom:20px;">
+		<div class="col-md-2"><div class="right"><label>Tags:</label></div></div>
+		<div class="col-md-10">
+			<textarea autocomplete="off" id="trip_tag_list" name="trip[tag_comma_list]" placeholder="Separated by commas (,)" rows="3" style="padding-left:3px;border-color: #DBDBDB; width:100%;"><%= @trip.tag_list %></textarea>
+		</div>
+	</div>
+	<hr>
   <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-danger" %>
 
 <% end %>

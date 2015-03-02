@@ -71,7 +71,9 @@
         <% end %>
 				<%= @trip.user.first_name %>,
 				<em><small><%= @trip.user.occupation %></small></em>
-				<div class="comment"><%= @trip.reason %></div>
+				<% if @trip.reason %>
+					<div class="comment"><%= @trip.reason %></div>
+				<% end %>
 			</div>
 		</div>
 	</div>

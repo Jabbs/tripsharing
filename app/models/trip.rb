@@ -24,11 +24,11 @@ class Trip < ActiveRecord::Base
   GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd"}
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   # http://www.maps.com/ref_map.aspx?pid=12873
-  REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia", "4" => "South Asia", "5" => "Southeast Asia", "6" => "N. Asia", "7" => "N. America",
-             "8" => "S. America", "9" => "Central America", "10" => "Australia and South Pacific", "11" => "Middle East", "12" => "Russia, Central Asia, and Transcaucasia",
+  REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia", "4" => "South Asia", "5" => "Southeast Asia", "6" => "North Asia", "7" => "N. America",
+             "8" => "S. America", "9" => "Central America", "10" => "Australia, South Pacific", "11" => "Middle East", "12" => "Russia, Central Asia, Transcaucasia",
              "13" => "Antarctica"}
-  REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia", "3"], ["South Asia", "4"], ["Southeast Asia", "5"], ["N. Asia", "6"], ["N. America", "7"],
-             ["S. America", "8"], ["Central America", "9"], ["Australia and South Pacific", "10"], ["Middle East", "11"], ["Russia, Central Asia, and Transcaucasia", "12"],
+  REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia", "3"], ["South Asia", "4"], ["Southeast Asia", "5"], ["North Asia", "6"], ["N. America", "7"],
+             ["S. America", "8"], ["Central America", "9"], ["Australia, South Pacific", "10"], ["Middle East", "11"], ["Russia, Central Asia, Transcaucasia", "12"],
              ["Antarctica", "13"]]
   DURATIONS = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) tolerable", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
   DEPARTINGS_ARRAY = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],

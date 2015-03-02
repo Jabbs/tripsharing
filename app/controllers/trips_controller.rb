@@ -44,7 +44,8 @@ class TripsController < ApplicationController
     @trip = Trip.friendly.find(params[:id])
     @trip.slug = nil
     referrer = request.referer.split('/').last
-    create_tags
+    create_tags if params["interest_tags"]
+    fix_date_month_order
     if @trip.update_attributes(trip_params)
       if referrer == "details"
         current_user.nationality = params[:user][:nationality]
@@ -87,10 +88,15 @@ class TripsController < ApplicationController
                                    :duration_in_days, :price_dollars_low, :price_dollars_high, :departs_at, :currency, :group_dynamics,
                                    :region, :private, :seeking_type, :group_count, :duration, :time_flexibility, :departs_from, :departs_to,
                                    :group_departing_proximity, :group_relationship_status, :group_drinking, :group_personality, :group_nationality,
-                                   :departing_category, :reason,
+                                   :departing_category, :reason, :returns_at,
                                    image_attachments_attributes: [:image, :description],
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
+    end
+    
+    def fix_date_month_order
+      params[:trip][:departs_at] = Date.strptime(params[:trip][:departs_at],'%m/%d/%Y') if params[:trip][:departs_at]
+      params[:trip][:returns_at] = Date.strptime(params[:trip][:returns_at],'%m/%d/%Y') if params[:trip][:returns_at]
     end
     
     def create_tags
