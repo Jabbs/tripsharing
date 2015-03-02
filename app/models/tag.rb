@@ -4,9 +4,9 @@ class Tag < ActiveRecord::Base
   
   validates :name, presence: true, uniqueness: true
   
-  before_save :strip_inputs
+  before_save :fix_inputs
   
-  def strip_inputs
-    self.name = self.name.strip.downcase
+  def fix_inputs
+    self.name = self.name.parameterize
   end
 end
