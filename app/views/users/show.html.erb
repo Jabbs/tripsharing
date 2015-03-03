@@ -1,0 +1,7 @@
+<% if @user.fb_image %>
+  <%= image_tag @user.fb_image, class: "image" %>
+<% else %>
+  <%= image_tag "blank_avatar.jpg", class: "image" %>
+<% end %>
+<%= @user.first_name %>,
+<em><small><%= @user.occupation %></small></em>

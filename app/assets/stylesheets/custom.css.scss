@@ -492,8 +492,9 @@ h2.choice.inactive a {
 	margin-top:10px;
 	background: $white;
 	@include really_rounded_border;
-	padding: 10px 20px;
+	padding: 10px 10px;
 	font-size:80%;
+	line-height: 160%;
 }
 .dots {
 	color: $white;
@@ -504,9 +505,10 @@ h2.choice.inactive a {
 }
 .trip-bar {
 	text-align:center;
-	background: black;
-	color: $white;
+	background: $grey_light;
 	padding: 4px 0px;
+	border-bottom: 1px dotted $grey_dark;
+	border-top: 1px dotted $grey_dark;
 }
 
 .tag {
