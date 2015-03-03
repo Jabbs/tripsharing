@@ -12,12 +12,8 @@
 	      <%= link_to image_tag("globe-icon-planes-30.png"), root_url, style: "position:relative; top:10px;", id: "globe" %>
 	      <%= link_to "TripSharing".html_safe, root_url, id: "logo" %>
 	    </div>
-			<% unless @remove_start_trip_button %>
-				<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-info pull-left" style="margin-top:8px;margin-left:30px;" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Start A Trip</a>
-				<%= render "trips/trip_new_modal" %>
-			<% end %>
 			
-			<a href="/trips" class="btn btn-default pull-left" style="margin-top:8px;margin-left:10px; border-color:white;" href="#" role="button"><i class="fa fa-list" style="margin-right:5px;"></i> Browse Trips</a>
+			<!--<a href="/trips" class="btn btn-default pull-left" style="margin-top:8px;margin-left:10px; border-color:white;" href="#" role="button"><i class="fa fa-list" style="margin-right:5px;"></i> Browse Trips</a> -->
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
@@ -39,13 +35,14 @@
 	          </ul>
 	        <% end %>
 	      </ul>
-				<!--
-				<% if current_user %>
-					<ul class="nav navbar-nav navbar-right hidden-phone">
-						<%= render 'layouts/header_nav_list' %>
-	        </ul>
+
+				<%= render "layouts/noticebar" %>
+				
+				<% unless @remove_start_trip_button %>
+					<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-info pull-left" style="margin-top:8px;margin-left:30px;" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Start A Trip</a>
+					<%= render "trips/trip_new_modal" %>
 				<% end %>
-				-->
+				
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
