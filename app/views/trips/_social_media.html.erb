@@ -1,4 +1,4 @@
-<h3>Share this trip:</h3>
+
 <% share_url = request.url.split('?').first %>
 <% share_text = "#{@trip.name}" %>
 <% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>

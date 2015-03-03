@@ -92,6 +92,10 @@ class Trip < ActiveRecord::Base
   def tag_list
     tags.map(&:name).join(", ")
   end
+  
+  def hashtag_list
+    tags.map{ |t| "#" + t.name}.join(", ")
+  end
 
   def tag_list=(names)
     self.tags = names.split(",").map do |n|

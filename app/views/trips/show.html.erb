@@ -1,3 +1,15 @@
+<% unless @trip.solo_trip? %>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="trip-bar">
+				<p class="no-margin" style="line-height:200%;">
+					<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
+				</p>
+			</div>
+		</div>
+	</div>
+<% end %>
+
 <%= render "trips/trip_edit_modal" %>
 <div class="container-fluid">
 	<div class="show-trip">
@@ -6,7 +18,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="center" style="margin-top:20px;">
-							<%= image_tag "regions/#{Trip::REGIONS[@trip.region].downcase.tr(" ", "_").delete(".").delete(",")}.png", size: "200x200" %>
+							<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg" %>
 						</div>
 					</div>
 				</div>
@@ -18,62 +30,28 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1"><hr></div>
-				</div>
-				<div class="row top-margin">
-					<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-10 col-md-offset-1">
 						<div class="center">
-							<% unless @trip.solo_trip? %>
-								<p class="no-margin" style="line-height:180%;">
-									<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
-								</p>
+							<% if @trip.tags.any? %>
+								<small><%= @trip.hashtag_list %></small>
 							<% end %>
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1"><hr style="margin-top:5px;margin-bottom:40px;"></div>
+				</div>
 
 				<div class="row">
-					<div class="col-md-12">
-						<div class="center">
+					<div class="col-md-10 col-md-offset-1">
+						<%= render "trips/tabpanel" %>
+					</div>
+				</div>
 
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1"><hr></div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="center">
-							<% if current_user && current_user == @trip.user %>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal">
-								 EDIT TRIP
-								</button>
-							<% end %>
-						</div>
-					</div>
-				</div>
 				
 			</div>
 			<div class="col-md-3">
-				<% if @trip.public? %>
-					<%= render "trips/social_media" %>
-				<% end %>
-				<h3>Tags:</h3>
-				<% @trip.tags.each do |tag| %>
-					<div class="tag inline"><nobr><%= tag.name %></nobr></div>
-				<% end %>
-				<h3>Organizer:</h3>
-				<% if @trip.user.fb_image %>
-          <%= image_tag @trip.user.fb_image, class: "image" %>
-        <% else %>
-          <%= image_tag "blank_avatar.jpg", class: "image" %>
-        <% end %>
-				<%= @trip.user.first_name %>,
-				<em><small><%= @trip.user.occupation %></small></em>
-				<% if @trip.reason %>
-					<div class="comment"><%= @trip.reason %></div>
-				<% end %>
+				<%= render "trips/show_sidebar" %>
 			</div>
 		</div>
 	</div>

@@ -476,13 +476,17 @@ h2.choice.inactive a {
 .onboarding-section { min-height: 430px; }
 
 .show-trip {
+	margin-bottom:100px;
 	h1 {
 		color: $turquoise_dark;
-		margin: 20px 0px 10px 0px;
+		margin: 20px 0px 0px 0px;
 		font-family: 'Crafty Girls';
 		font-size:250%;
 	}
 	hr {border-top: 1px solid $grey;}
+	h3 {
+		margin-top:40px;
+	}
 }
 .comment {
 	margin-top:10px;
@@ -492,10 +496,17 @@ h2.choice.inactive a {
 	font-size:80%;
 }
 .dots {
-	background: lighten($salmon, 20%);
+	color: $white;
+	background: $salmon;
 	border: 1px dotted $grey_dark;
 	padding:0px 6px 0px 6px;
 	@include rounded_borders;
+}
+.trip-bar {
+	text-align:center;
+	background: black;
+	color: $white;
+	padding: 4px 0px;
 }
 
 .tag {

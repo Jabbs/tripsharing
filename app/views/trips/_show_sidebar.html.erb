@@ -1,0 +1,20 @@
+<% if @trip.public? %>
+	<div style="margin-top:30px;"><%= render "trips/social_media" %></div>
+<% end %>
+<h3>Organizer:</h3>
+<% if @trip.user.fb_image %>
+  <%= image_tag @trip.user.fb_image, class: "image" %>
+<% else %>
+  <%= image_tag "blank_avatar.jpg", class: "image" %>
+<% end %>
+<%= @trip.user.first_name %>,
+<em><small><%= @trip.user.occupation %></small></em>
+<% if @trip.reason %>
+	<div class="comment"><%= @trip.reason %></div>
+<% end %>
+<% if current_user && current_user == @trip.user %>
+	<hr>
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal">
+	 EDIT TRIP
+	</button>
+<% end %>
