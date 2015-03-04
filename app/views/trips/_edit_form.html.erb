@@ -42,7 +42,8 @@
 	<div class="row" style="margin-bottom:10px;">
 		<div class="col-md-2"><div class="right"><label>Departing:</label></div></div>
 		<div class="col-md-4">
-			<input class="datepicker" id="trip_departs_at" placeholder="mm/dd/yyyy" name="trip[departs_at]" data-date-format="mm/dd/yyyy" value="<%= @trip.departs_at.strftime('%m/%d/%Y') %>">
+			<% @trip.departs_at.present? ? departs_at_value = @trip.departs_at.strftime('%m/%d/%Y') : departs_at_value = "" %>
+			<input class="datepicker" id="trip_departs_at" placeholder="mm/dd/yyyy" name="trip[departs_at]" data-date-format="mm/dd/yyyy" value="<%= departs_at_value %>">
 		</div>
 		<div class="col-md-2"><div class="right"><label>Returning:</label></div></div>
 		<div class="col-md-4">
