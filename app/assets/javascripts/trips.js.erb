@@ -5,8 +5,10 @@
 $('document').ready(function() {
 	
 	// http://keith-wood.name/countdown.html
-	var d = new Date(parseFloat(tripDepartsAt));
-	$('#defaultCountdown').countdown({until: d, compact: true, description: ''});
+	if(typeof tripDepartsAt !== 'undefined') {
+		var d = new Date(parseFloat(tripDepartsAt));
+		$('#defaultCountdown').countdown({until: d, compact: true, description: ''});
+	};
 	
 	function hideOnbardingPartials() {
 		$("#onboarding-who").hide();

@@ -34,7 +34,7 @@ class Trip < ActiveRecord::Base
   REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia", "3"], ["South Asia", "4"], ["Southeast Asia", "5"], ["North Asia", "6"], ["N. America", "7"],
              ["S. America", "8"], ["Central America", "9"], ["Australia, South Pacific", "10"], ["Middle East", "11"], ["Russia, Central Asia, Transcaucasia", "12"],
              ["Antarctica", "13"]]
-  DURATIONS = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) tolerable", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
+  DURATIONS = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) avg", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
   DEPARTINGS_ARRAY = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
   DEPARTINGS = {"1" => "today", "2" => "asap", "3" => "this weekend", "4" => "spring 2015", "5" => "summer 2015", "6" => "fall 2015", "7" => "winter 2015",

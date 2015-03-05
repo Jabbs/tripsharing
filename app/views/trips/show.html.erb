@@ -23,16 +23,15 @@
 					<div class="col-md-12">
 						<h3 class="no-margin">
 							<i class='fa fa-clock-o'></i>
-							<% if @trip.departs_at %>
+							<% if @trip.departs_at.present? %>
 								<%= javascript_tag do %>
 								  window.tripDepartsAt = "<%=j (@trip.departs_at.to_f * 1000).to_s%>";
 								<% end %>
-								<%= pluralize(@days_until_trip, "day") %>
 								<span id="defaultCountdown"></span>
-							<% elsif @trip.departing_category %>
+							<% elsif @trip.departing_category.present? %>
 								<%= Trip::DEPARTINGS[@trip.departing_category].capitalize %>
 							<% else %>
-								TBD
+								tbd
 							<% end %>
 							<% if @first_stop %>
 								<span class="pull-right">
