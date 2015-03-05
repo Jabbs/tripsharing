@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trip_id: 1
+  user_id: 1
+  to_iata: MyString
+  from_iata: MyString
+  to_name: MyString
+  from_name: MyString
+  transportation_type: MyString
+
+two:
+  trip_id: 1
+  user_id: 1
+  to_iata: MyString
+  from_iata: MyString
+  to_name: MyString
+  from_name: MyString
+  transportation_type: MyString

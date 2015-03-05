@@ -73256,7 +73256,7 @@ $('document').ready(function() {
 	
 		templates: {
         suggestion: function (airport) {
-            return "<p class='salmon pointer'>" + "<i class='fa fa-plane'></i> " + airport.name + '</p>';
+            return "<p class='salmon iata'>" + "<i class='fa fa-plane'></i> " + airport.name + '</p>';
         }
     }
 	});

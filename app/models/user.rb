@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   before_save :correct_case_of_inputs
   # after_commit :send_verification_email, on: :create
-  after_commit :build_interests
+  # after_commit :build_interests
   
   # validations
   validates :email, presence: true, uniqueness: true

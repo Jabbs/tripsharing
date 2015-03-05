@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228144215) do
+ActiveRecord::Schema.define(version: 20150305153004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,23 @@ ActiveRecord::Schema.define(version: 20150228144215) do
 
   add_index "locations", ["country"], name: "index_locations_on_country", using: :btree
   add_index "locations", ["locationable_id", "locationable_type"], name: "index_locations_on_locationable_id_and_locationable_type", using: :btree
+
+  create_table "stops", force: true do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.string   "to_iata"
+    t.string   "from_iata"
+    t.string   "to_name",                           null: false
+    t.string   "from_name"
+    t.string   "transportation_type", default: "1"
+    t.integer  "order",               default: 1
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "stops", ["from_iata"], name: "index_stops_on_from_iata", using: :btree
+  add_index "stops", ["to_iata"], name: "index_stops_on_to_iata", using: :btree
+  add_index "stops", ["trip_id"], name: "index_stops_on_trip_id", using: :btree
 
   create_table "surveys", force: true do |t|
     t.string   "destination"

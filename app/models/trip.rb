@@ -7,6 +7,8 @@ class Trip < ActiveRecord::Base
   validates :description, length: { maximum: 5000 }
   
   belongs_to :user
+  has_many :stops, dependent: :destroy
+  accepts_nested_attributes_for :stops, allow_destroy: true
   has_many :locations, as: :locationable, dependent: :destroy
   accepts_nested_attributes_for :locations, allow_destroy: true
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
@@ -14,6 +16,8 @@ class Trip < ActiveRecord::Base
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :taggings, allow_destroy: true
+  
+  after_save :create_first_stop
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
@@ -100,6 +104,12 @@ class Trip < ActiveRecord::Base
   def tag_list=(names)
     self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip).first_or_create!
+    end
+  end
+  
+  def create_first_stop
+    unless self.stops.any? && self.departs_to.present?
+      Stop.create_from_trip(self)
     end
   end
   

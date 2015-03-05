@@ -12,6 +12,16 @@
 
 <%= render "trips/trip_edit_modal" %>
 <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>
+				<span class="airport"><%= @first_stop.from_iata[0] %></span><span class="airport"><%= @first_stop.from_iata[1] %></span><span class="airport"><%= @first_stop.from_iata[2] %></span>
+				to
+				<span class="airport"><%= @first_stop.to_iata[0] %></span><span class="airport"><%= @first_stop.to_iata[1] %></span><span class="airport"><%= @first_stop.to_iata[2] %></span>
+			</h1>
+		</div>
+	</div>
+	
 	<div class="show-trip">
 		<div class="row">
 			<div class="col-md-9">

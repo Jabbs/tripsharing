@@ -1,8 +1,7 @@
 <% if @trip.public? %>
 	<div style="margin-top:30px;"><%= render "trips/social_media" %></div>
 <% end %>
-<h3>Updates:</h3>
-<% if @trip.reason %>
+<% if @trip.reason? %>
 	<div class="comment">
 		"<%= @trip.reason %>"
 		<br>-- Trip Organizer

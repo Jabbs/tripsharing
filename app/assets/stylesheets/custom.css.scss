@@ -503,6 +503,22 @@ h2.choice.inactive a {
 	padding:0px 6px 0px 6px;
 	@include rounded_borders;
 }
+.airport {
+	margin-right:2px;
+	color: $white;
+	border: 1px dotted $grey_dark;
+	padding:0px 6px 0px 6px;
+	@include rounded_borders;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
+	background: -o-linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
+	background: -moz-linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
+	background: -linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
+}
+.iata {
+	@include rounded_borders;
+	padding:5px;
+	&:hover {cursor:pointer; background: $salmon; color: $white;}
+}
 .trip-bar {
 	text-align:center;
 	background: $grey_light;

@@ -26,6 +26,7 @@ class TripsController < ApplicationController
   def show
     @my_trips = current_user.trips
     @trip = Trip.friendly.find(params[:id])
+    @first_stop = @trip.stops.where(order: 1).first
     
     if request.path != trip_path(@trip) && request.path != user_trip_path(current_user, @trip)
       redirect_to @trip, status: :moved_permanently
@@ -90,6 +91,7 @@ class TripsController < ApplicationController
                                    :group_departing_proximity, :group_relationship_status, :group_drinking, :group_personality, :group_nationality,
                                    :departing_category, :reason, :returns_at, :tag_list,
                                    image_attachments_attributes: [:image, :description],
+                                   stops_attributes: [:to_iata, :from_iata, :to_name, :from_name, :transportation_type, :order],
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
     end
