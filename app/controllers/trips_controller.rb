@@ -27,6 +27,7 @@ class TripsController < ApplicationController
     @my_trips = current_user.trips
     @trip = Trip.friendly.find(params[:id])
     @first_stop = @trip.stops.where(order: 1).first
+    @days_until_trip = (@trip.departs_at.to_date - Date.today).to_i if @trip.departs_at
     
     if request.path != trip_path(@trip) && request.path != user_trip_path(current_user, @trip)
       redirect_to @trip, status: :moved_permanently

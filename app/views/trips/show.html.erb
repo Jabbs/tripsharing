@@ -1,3 +1,4 @@
+
 <% unless @trip.solo_trip? %>
 	<div class="container-fluid">
 		<div class="row">
@@ -14,19 +15,20 @@
 <div class="container-fluid">
 	<div class="show-trip">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				
+			<div class="col-md-1">
+
+			</div>
+			<div class="col-md-10">
 				<div class="row">
 					<div class="col-md-12">
 						<h3 class="no-margin">
-							<%= javascript_tag do %>
-							  window.tripDepartsAt = "<%=j (@trip.departs_at.to_f * 1000).to_s%>";
-							<% end %>
-							
-							<i class='fa fa-clock-o clock'></i>
-							<div id="defaultCountdown"></div>
+							<i class='fa fa-clock-o'></i>
 							<% if @trip.departs_at %>
-								<%= @trip.departs_at.strftime('%m/%d/%Y') %>
+								<%= javascript_tag do %>
+								  window.tripDepartsAt = "<%=j (@trip.departs_at.to_f * 1000).to_s%>";
+								<% end %>
+								<%= pluralize(@days_until_trip, "day") %>
+								<span id="defaultCountdown"></span>
 							<% elsif @trip.departing_category %>
 								<%= Trip::DEPARTINGS[@trip.departing_category].capitalize %>
 							<% else %>
@@ -43,30 +45,30 @@
 				
 				<div class="row">
 					<div class="col-md-12">
-						<div style="margin-top:20px;">
+						<div style="margin-top:10px;">
 							<!-- 1200px width needed -->
-							<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive" %>
+							<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic" %>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<div class="center">
-							<h1><%= @trip.name %></h1>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="center">
+						<div class="trip-name">
+							<h1>
+								<%= @trip.name %>
+								<% if current_user && current_user == @trip.user %>
+									<button type="button" class="btn btn-danger" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
+									 EDIT
+									</button>
+								<% end %>
+							</h1>
 							<% if @trip.tags.any? %>
-								<small><%= @trip.hashtag_list %></small>
+								<div class="center" style="padding-bottom:10px;">
+									<%= @trip.hashtag_list %>
+								</div>
 							<% end %>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12"><hr style="margin-top:5px;margin-bottom:40px;"></div>
 				</div>
 
 				<div class="row">

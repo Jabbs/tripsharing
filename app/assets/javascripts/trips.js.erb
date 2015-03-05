@@ -4,10 +4,9 @@
 	
 $('document').ready(function() {
 	
-	// countdown
-	alert(tripDepartsAt);
+	// http://keith-wood.name/countdown.html
 	var d = new Date(parseFloat(tripDepartsAt));
-	$('#defaultCountdown').countdown({until: d});
+	$('#defaultCountdown').countdown({until: d, compact: true, description: ''});
 	
 	function hideOnbardingPartials() {
 		$("#onboarding-who").hide();

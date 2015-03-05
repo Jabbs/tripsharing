@@ -1,16 +1,14 @@
-<% if @trip.public? %>
-	<div style="margin-top:30px;"><%= render "trips/social_media" %></div>
-<% end %>
+
 <% if @trip.reason? %>
+	<hr style="margin-top:50px;margin-bottom:50px;">
 	<div class="comment">
 		"<%= @trip.reason %>"
 		<br>-- Trip Organizer
 		<span class="pull-right"><%= time_ago_in_words(@trip.created_at) %> ago.</span>
 	</div>
 <% end %>
-<% if current_user && current_user == @trip.user %>
-	<hr>
-	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#tripEditModal">
-	 EDIT TRIP
-	</button>
+
+<% if @trip.public? %>
+	<hr style="margin-top:50px;margin-bottom:50px;">
+	<div class="center" style="margin-top:30px;margin-bottom:0px;"><%= render "trips/social_media" %></div>
 <% end %>

@@ -477,15 +477,28 @@ h2.choice.inactive a {
 
 .show-trip {
 	margin-bottom:100px;
+	.trip-pic {
+		border: 1px solid $grey_dark;
+
+	}
+	.trip-name {
+		background: $white;
+		text-align: center;
+		margin:0px;
+		margin-bottom:30px;
+		border: 1px solid $grey_dark;
+		border-top:none;
+	}
 	h1 {
 		color: $turquoise_dark;
-		margin: 20px 0px 0px 0px;
+		padding: 20px 0px 10px 0px;
+		margin:0px;
 		font-family: 'Crafty Girls';
 		font-size:250%;
 	}
 	hr {border-top: 1px solid $grey;}
 	h3 {
-		margin-top:40px;
+		margin-top:30px;
 	}
 }
 .comment {
@@ -519,14 +532,7 @@ h2.choice.inactive a {
 	background: -moz-linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
 	background: -linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
 }
-.clock {
-	margin-right:2px;
-	color: $white;
-	border: 1px dotted $grey_dark;
-	padding:4px 6px;
-	@include rounded_borders;
-	background: blue;
-}
+
 .iata {
 	@include rounded_borders;
 	padding:5px;
@@ -535,7 +541,7 @@ h2.choice.inactive a {
 .trip-bar {
 	text-align:center;
 	background: $grey_light;
-	padding: 4px 0px;
+	padding: 8px 0px;
 	border-bottom: 1px dotted $grey_dark;
 	border-top: 1px dotted $grey_dark;
 }
