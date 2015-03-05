@@ -456,11 +456,11 @@ h2.choice.inactive a {
 	label {font-size: 140%;}
 	hr.thick {margin-top:0px; border-top: 3px solid $turquoise_dark;}
 	h1 {
-		color: $salmon;
+		color: $turquoise_dark;
 		margin: 10px 0px 0px 20px;
 		font-family: 'Crafty Girls';
 		padding-bottom:20px;
-		font-size:150%;
+		font-size:180%;
 	}
 	h3 {color: $salmon; margin-top:10px;}
 	.trip-category {
@@ -498,21 +498,34 @@ h2.choice.inactive a {
 }
 .dots {
 	color: $white;
+	background: $turquoise_dark;
+	border: 1px dotted $grey_dark;
+	padding:0px 6px 0px 6px;
+}
+.dots-salmon {
+	color: $white;
 	background: $salmon;
 	border: 1px dotted $grey_dark;
 	padding:0px 6px 0px 6px;
-	@include rounded_borders;
 }
 .airport {
 	margin-right:2px;
 	color: $white;
 	border: 1px dotted $grey_dark;
-	padding:0px 6px 0px 6px;
+	padding:0px 6px;
 	@include rounded_borders;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
 	background: -o-linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
 	background: -moz-linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
 	background: -linear-gradient(linear, left top, left bottom, color-stop(0%,#aebcbf), color-stop(50%,#6e7774), color-stop(51%,#0a0e0a), color-stop(100%,#0a0809));
+}
+.clock {
+	margin-right:2px;
+	color: $white;
+	border: 1px dotted $grey_dark;
+	padding:4px 6px;
+	@include rounded_borders;
+	background: blue;
 }
 .iata {
 	@include rounded_borders;

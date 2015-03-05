@@ -12,10 +12,12 @@ class Stop < ActiveRecord::Base
   TRANSPORTATION_TYPES_ARRAY = [["flight", "1"], ["car", "2"]]
   
   def self.create_from_trip(trip)
-    stop = trip.stops.new(user_id: trip.user_id)
-    stop.to_name = trip.departs_to
-    stop.from_name = trip.departs_from
-    stop.save
+    if !trip.departs_to.blank?
+      stop = trip.stops.new(user_id: trip.user_id)
+      stop.to_name = trip.departs_to
+      stop.from_name = trip.departs_from
+      stop.save
+    end
   end
   
   def parse_airport_to_name
@@ -29,12 +31,14 @@ class Stop < ActiveRecord::Base
   end
   
   def parse_airport_from_name
-    from_iata = self.from_name.split("-")[0].strip.upcase
-    from_name = self.from_name.split("-")[1].strip
-    if from_iata.length == 3
-      self.from_iata = from_iata
-      self.from_name = from_name
-      self.save
+    if self.from_name.present?
+      from_iata = self.from_name.split("-")[0].strip.upcase
+      from_name = self.from_name.split("-")[1].strip
+      if from_iata.length == 3
+        self.from_iata = from_iata
+        self.from_name = from_name
+        self.save
+      end
     end
   end
   

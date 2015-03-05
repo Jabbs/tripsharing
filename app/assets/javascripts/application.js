@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require scrollReveal
+//= require jquery.countdown
 //= require_tree .
 
 

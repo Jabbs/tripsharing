@@ -4,6 +4,11 @@
 	
 $('document').ready(function() {
 	
+	// countdown
+	alert(tripDepartsAt);
+	var d = new Date(parseFloat(tripDepartsAt));
+	$('#defaultCountdown').countdown({until: d});
+	
 	function hideOnbardingPartials() {
 		$("#onboarding-who").hide();
 		$("#onboarding-when").hide();

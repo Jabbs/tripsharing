@@ -106,8 +106,10 @@ class Trip < ActiveRecord::Base
       Tag.where(name: n.strip).first_or_create!
     end
   end
-  
+    
   def create_first_stop
+    logger.debug "&&&&&& #{self.stops.any?}"
+    logger.debug "^^^^^^^^^ #{self.departs_to.present?}"
     unless self.stops.any? && self.departs_to.present?
       Stop.create_from_trip(self)
     end

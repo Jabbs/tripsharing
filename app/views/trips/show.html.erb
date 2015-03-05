@@ -2,9 +2,9 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="trip-bar">
-				<p class="no-margin" style="line-height:200%;">
+				<h4 class="no-margin" style="line-height:200%;">
 					<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
-				</p>
+				</h4>
 			</div>
 		</div>
 	</div>
@@ -12,21 +12,37 @@
 
 <%= render "trips/trip_edit_modal" %>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h1>
-				<span class="airport"><%= @first_stop.from_iata[0] %></span><span class="airport"><%= @first_stop.from_iata[1] %></span><span class="airport"><%= @first_stop.from_iata[2] %></span>
-				to
-				<span class="airport"><%= @first_stop.to_iata[0] %></span><span class="airport"><%= @first_stop.to_iata[1] %></span><span class="airport"><%= @first_stop.to_iata[2] %></span>
-			</h1>
-		</div>
-	</div>
-	
 	<div class="show-trip">
 		<div class="row">
-			<div class="col-md-9">
+			<div class="col-md-10 col-md-offset-1">
+				
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="col-md-12">
+						<h3 class="no-margin">
+							<%= javascript_tag do %>
+							  window.tripDepartsAt = "<%=j (@trip.departs_at.to_f * 1000).to_s%>";
+							<% end %>
+							
+							<i class='fa fa-clock-o clock'></i>
+							<div id="defaultCountdown"></div>
+							<% if @trip.departs_at %>
+								<%= @trip.departs_at.strftime('%m/%d/%Y') %>
+							<% elsif @trip.departing_category %>
+								<%= Trip::DEPARTINGS[@trip.departing_category].capitalize %>
+							<% else %>
+								TBD
+							<% end %>
+							<% if @first_stop %>
+								<span class="pull-right">
+								<%= @first_stop.to_name %> <span class="airport"><%= @first_stop.to_iata[0] %></span><span class="airport"><%= @first_stop.to_iata[1] %></span><span class="airport"><%= @first_stop.to_iata[2] %></span>
+								</span>
+							<% end %>
+						</h3>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
 						<div style="margin-top:20px;">
 							<!-- 1200px width needed -->
 							<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive" %>
@@ -34,14 +50,14 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="col-md-12">
 						<div class="center">
 							<h1><%= @trip.name %></h1>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="col-md-12">
 						<div class="center">
 							<% if @trip.tags.any? %>
 								<small><%= @trip.hashtag_list %></small>
@@ -50,19 +66,21 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1"><hr style="margin-top:5px;margin-bottom:40px;"></div>
+					<div class="col-md-12"><hr style="margin-top:5px;margin-bottom:40px;"></div>
 				</div>
 
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="col-md-12">
 						<%= render "trips/tabpanel" %>
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col-md-12">
+						<%= render "trips/show_sidebar" %>
+					</div>
+				</div>
 				
-			</div>
-			<div class="col-md-3">
-				<%= render "trips/show_sidebar" %>
 			</div>
 		</div>
 	</div>

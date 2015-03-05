@@ -38,7 +38,7 @@ gem 'nokogiri'
 gem "koala", "~> 1.11.0rc"
 gem "scrollreveal-rails"
 gem 'autoscaler'
-
+gem 'jquery-countdown-rails'
 
 group :development do
   gem 'letter_opener'
