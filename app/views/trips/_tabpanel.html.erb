@@ -14,15 +14,20 @@
   <!-- Tab panes -->
   <div class="tab-content trip-content">
     <div role="tabpanel" class="tab-pane active" id="description">
+			<div id="trip-description-form" style="display:none;">
+				<%= render "trips/description_form" %>
+			</div>
 			<% if @trip.description.present? %>
-			
 				<div class="description">
 					<%= simple_format(@trip.description)%>
 				</div>
-				
+				<a href="#" id="edit-description" class="grey-link">
+					edit
+				</a>
 			<% elsif current_user && current_user == @trip.user %>
+			
 				<div class="center">
-					<a href="#" data-toggle="modal" data-target="#tripEditModal" class="add-description">
+					<a href="#" id="add-description" class="grey-link">
 					  <i class="fa fa-plus-circle" style="font-size:1000%; margin-top:20px;"></i>
 						<h3>Add Description</h3>
 					</a>
@@ -55,7 +60,7 @@
 		-->
 		<div role="tabpanel" class="tab-pane" id="travelers">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="well">
 						<div class="row">
 							<div class="col-md-4">
@@ -63,10 +68,9 @@
 							</div>
 							<div class="col-md-8">
 								<p class="no-margin" style="line-height:130%;">
-									<%= @trip.user.first_name %><br>
+									<%= @trip.user.first_name %>, <%= @trip.user.age %><br>
 									<%= User::NATIONALITIES[@trip.user.nationality] %><br>
-									<% @trip.user.occupation.present? ? o = ", #{@trip.user.occupation}" : o = "" %>
-									<%= @trip.user.age %><%= o %><br>
+									<%= @trip.user.try(:occupation) %>
 								</p>
 							</div>
 						</div>

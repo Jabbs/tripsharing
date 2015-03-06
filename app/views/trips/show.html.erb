@@ -22,7 +22,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h3 class="no-margin">
-							<% if @first_stop %>
+							<% if @first_stop && @first_stop.to_iata.present? %>
 								<span class="airport"><%= @first_stop.to_iata[0] %></span><span class="airport"><%= @first_stop.to_iata[1] %></span><span class="airport"><%= @first_stop.to_iata[2] %></span>
 								<%= @first_stop.to_name %>
 							<% else %>
@@ -53,13 +53,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="row" style="margin-bottom:20px;">
+				<div class="row">
 					<div class="col-md-12">
+						<div id="trip-name-tags-form" style="display:none;" class="edit-trip-name">
+							<%= render "trips/name_tags_form" %>
+						</div>
 						<div class="trip-name">
 							<h1>
 								<%= @trip.name %>
 								<% if current_user && current_user == @trip.user %>
-									<button type="button" class="btn btn-danger" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
+									<button type="button" class="btn btn-default" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
 									 EDIT
 									</button>
 								<% end %>
@@ -69,56 +72,15 @@
 									<%= @trip.hashtag_list %>
 								</div>
 							<% end %>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="center">
-							<h3>Itinerary</h3>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="dots-white" style="padding-top:10px;padding-bottom:10px;">
-							<i class='fa fa-map-marker'></i> Chicago
-							<span class="pull-right">
-								<% if @trip.departs_at.present? %>
-									<%= @trip.departs_at.strftime('%m/%d/%Y') %>
-								<% elsif @trip.departing_category.present? %>
-									<%= Trip::DEPARTINGS[@trip.departing_category].capitalize %>
-								<% else %>
-									tbd
-								<% end %>
-								<i class='fa fa-calendar'></i>
-							</span>
-						</div>
-					</div>
-				</div>
-				
-				<div id="stops">
-					<%= render @stops %>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div id="stop-form" style="display:none;"><%= render "stops/form" %></div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-12">
-						<div class="center">
-							<%= link_to new_trip_stop_path(@trip), remote: true, class: "grey-link" do %>
-								<i class="fa fa-plus-circle" id="new-stop" style="font-size:300%; margin-top:20px;"></i>
+							<% if current_user && current_user == @trip.user %>
+								<%= link_to "edit", "#", id: "edit-name-tags", class: "grey-link pull-right", style: "position:relative; top:-1.7em;left:-.5em;" %>
 							<% end %>
-							<a href="#" class="grey-link">
-								<i class="fa fa-minus-circle" id="cancel-stop" style="font-size:300%; margin-top:20px;display:none;"></i>
-							</a>
 						</div>
 					</div>
 				</div>
-
+				<hr>
+				<%= render "trips/itinerary" %>
+				<hr style="margin-top:40px;margin-bottom:60px;">
 				<div class="row">
 					<div class="col-md-12">
 						<%= render "trips/tabpanel" %>

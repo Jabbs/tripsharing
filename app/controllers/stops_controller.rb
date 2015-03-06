@@ -8,9 +8,6 @@ class StopsController < ApplicationController
   def create
     fix_date_month_order
     @stop = @trip.stops.build(stop_params)
-    if !params["stop"]["to_name_dest"].blank?
-      @stop.to_name = params["stop"]["to_name_dest"]
-    end
     @stop.user = current_user
     if @stop.save
       respond_to do |format|
@@ -45,7 +42,7 @@ class StopsController < ApplicationController
     end
     
     def stop_params
-      params.require(:stop).permit(:to_iata, :from_iata, :to_name, :from_name, :transportation_type, :order, :to_date, :from_date)
+      params.require(:stop).permit(:to_iata, :from_iata, :to_name, :from_name, :transportation_type, :order, :to_date, :from_date, :to_name_dest)
     end
     
     def correct_user

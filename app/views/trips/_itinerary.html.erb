@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="center">
+			<h3>Itinerary</h3>
+		</div>
+	</div>
+</div>
+<div id="stops">
+	<%= render @stops %>
+</div>
+<% if current_user && current_user == @trip.user %>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="stop-form" style="display:none;"><%= render "stops/form" %></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="center">
+				<%= link_to new_trip_stop_path(@trip), remote: true, class: "grey-link" do %>
+					<i class="fa fa-plus-circle" id="new-stop" style="font-size:300%; margin-top:10px;"></i>
+				<% end %>
+				<a href="#" class="grey-link">
+					<i class="fa fa-minus-circle" id="cancel-stop" style="font-size:300%; margin-top:10px;display:none;"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+<% end %>

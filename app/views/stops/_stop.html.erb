@@ -1,27 +1,46 @@
 <div id="<%= stop.id %>-stop">
-
 	<div class="row">
 		<div class="col-md-12">
-			<div class="dots-white" style="padding-top:10px;padding-bottom:10px;">
-				<% if stop.to_name.present? && stop.to_iata.present? %>
-					<i class="fa fa-plane"></i>
+			<div class="dots-white" style="padding-top:10px;padding-bottom:10px;margin-top:10px;">
+				
+				<% if stop.to_name.present? && stop.to_iata.present? && stop.from_iata.present? %>
+					<i class="fa fa-plane" style="margin-right:2px;"></i>
+					Flight:
+					<span class="airport"><%= stop.from_iata[0] %></span><span class="airport"><%= stop.from_iata[1] %></span><span class="airport"><%= stop.from_iata[2] %></span>
+					<%= stop.from_name %>
+					<i class='fa fa-arrow-right' style="margin-left:10px;margin-right:10px;"></i>
 					<span class="airport"><%= stop.to_iata[0] %></span><span class="airport"><%= stop.to_iata[1] %></span><span class="airport"><%= stop.to_iata[2] %></span>
 					<%= stop.to_name %>
-				<% else %>
-					<i class="fa fa-map-marker"></i>
+				<% elsif stop.to_name.present? && stop.to_iata.present? %>
+					<i class="fa fa-plane" style="margin-right:2px;"></i>
+					Arrival:
+					<span class="airport"><%= stop.to_iata[0] %></span><span class="airport"><%= stop.to_iata[1] %></span><span class="airport"><%= stop.to_iata[2] %></span>
 					<%= stop.to_name %>
+				<% elsif stop.from_name.present? && stop.from_iata.present? %>
+					<i class="fa fa-plane" style="margin-right:2px;"></i>
+					Departure:
+					<span class="airport"><%= stop.from_iata[0] %></span><span class="airport"><%= stop.from_iata[1] %></span><span class="airport"><%= stop.from_iata[2] %></span>
+					<%= stop.from_name %>
+				<% else %>
+					<i class="fa fa-map-marker right-margin" style="margin-left:3px;"></i>
+					<%= stop.to_name_dest %>
 				<% end %>
-				<%= link_to [@trip, stop], remote: true, method: :delete, class: "grey-link" do %>
-				  <i class='fa fa-trash'></i>
+				
+				<% if current_user && current_user == @trip.user %>
+					<%= link_to [@trip, stop], remote: true, method: :delete, class: "grey-link" do %>
+					  <i class='fa fa-trash'></i>
+					<% end %>
 				<% end %>
+				
 				<span class="pull-right">
 					<% if stop.to_date.present? %>
 						<%= stop.to_date.strftime('%m/%d/%Y') %>
 					<% else %>
 						tbd
 					<% end %>
-					<i class='fa fa-calendar'></i>
+					<i class='fa fa-calendar' style="margin-left:3px;"></i>
 				</span>
+				
 			</div>
 		</div>
 	</div>

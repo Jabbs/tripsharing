@@ -482,6 +482,14 @@ h2.choice.inactive a {
 		border: 1px solid $grey_dark;
 
 	}
+	.edit-trip-name {
+		background: $white;
+		text-align: center;
+		margin:0px;
+		margin-bottom:30px;
+		border: 1px solid $grey_dark;
+		border-top:none;
+	}
 	.trip-name {
 		background: $white;
 		text-align: center;
