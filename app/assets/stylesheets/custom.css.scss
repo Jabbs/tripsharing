@@ -522,6 +522,15 @@ h2.choice.inactive a {
 	border: 1px dotted $grey_dark;
 	padding:0px 6px 0px 6px;
 }
+.dots-white {
+	background: $white;
+	border: 1px dotted $grey_dark;
+	padding:0px 6px 0px 6px;
+}
+a.grey-link {
+	color:darken($grey, 10%);
+	&:hover {text-decoration:none;color: $grey_dark;}
+}
 .airport {
 	margin-right:2px;
 	color: $white;

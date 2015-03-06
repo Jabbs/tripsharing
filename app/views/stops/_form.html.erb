@@ -1,27 +1,19 @@
-<%= form_for [@trip, @stop], remote: true do |f| %>
+<div class="dots-white top-margin" style="padding-top:10px;padding-bottom:10px;">
+	<%= form_for [@trip, @stop], remote: true do |f| %>
 	
-	<!-- t.integer  "order",               default: 1
-  t.datetime "to_date"
-  t.datetime "from_date" -->
-
-
-	<%= f.select :transportation_type, ["flight", "car"] %>
-	<div class="row top-margin">
-		<div class="col-md-3"><label>Departing From:</label></div>
-		<div class="col-md-9">
-			<div class="prefetch">
-			  <input class="typeahead" type="text" name="stop[from_name]" placeholder="Airport" style="width:500px;" autocomplete="off">
-			</div>
-		</div>
-	</div>
-	<div class="row top-margin">
-		<div class="col-md-3"><label>Landing In:</label></div>
-		<div class="col-md-9">
-			<div class="prefetch">
-			  <input class="typeahead" type="text" name="stop[to_name]" placeholder="Airport" style="width:500px;" autocomplete="off">
-			</div>
-		</div>
-	</div>
+		<i class="fa fa-map-marker"></i>
 	
-	<%= f.submit %>
-<% end %>
+		<input name="stop[to_name_dest]" id="stop_to_name_dest" type="text" class="add-geocomplete" placeholder="Destination" style="width:250px;" autocomplete="off">
+		
+		<span style="margin-left:5px;margin-right:10px;">--or--</span>
+		<i class="fa fa-plane"></i>
+		<div class="prefetch inline no-margin" style="position:relative;top:-3px;">
+		  <input class="typeahead" type="text" id="stop_to_name" name="stop[to_name]" placeholder="Airport" style="width:250px;" autocomplete="off">
+		</div>
+		<span class="pull-right">
+			<i class="fa fa-calendar"></i>
+			<input class="datepicker" id="stop_to_date" placeholder="mm/dd/yyyy" name="stop[to_date]" data-date-format="mm/dd/yyyy">
+			<%= f.submit "ADD", class: "btn btn-default" %>
+		</span>
+	<% end %>
+</div>

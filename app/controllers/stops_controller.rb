@@ -6,7 +6,11 @@ class StopsController < ApplicationController
   respond_to :html, :js
   
   def create
+    fix_date_month_order
     @stop = @trip.stops.build(stop_params)
+    if !params["stop"]["to_name_dest"].blank?
+      @stop.to_name = params["stop"]["to_name_dest"]
+    end
     @stop.user = current_user
     if @stop.save
       respond_to do |format|
@@ -26,13 +30,18 @@ class StopsController < ApplicationController
   end
   
   private
+  
+    def fix_date_month_order
+      params[:stop][:to_date] = Date.strptime(params[:stop][:to_date],'%m/%d/%Y') if params[:stop][:to_date].present?
+    end
     
     def get_trip
       @trip = Trip.friendly.find(params[:trip_id])
     end
     
     def get_stops
-      @stops = @trip.stops
+      @stops = @trip.stops.order(:created_at)
+      @stop = Stop.new(trip_id: @trip.id)
     end
     
     def stop_params

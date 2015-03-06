@@ -1,4 +1,5 @@
 $('#stops').html("<%= j (render @stops) %>");
-$('#stop-form').slideUp(350);
+$('#<%= @stop.id %>-stop').fadeOut(400);
+$('#stop-form').hide();
 $("#cancel-stop").hide()
 $("#new-stop").show()

@@ -12,8 +12,23 @@ $('document').ready(function() {
 	
 	var fadeInSpeed = 400;
 	
-	$('#new-stop').click(function() {
+	$('#new-stop').click(function (e) {
+		e.preventDefault();
+		$("#stop_to_name_dest").val("");
+		$("#stop_to_name").val("");
+		$("#stop_to_date").val("");
 		$("#stop-form").fadeIn(fadeInSpeed);
+		$("#new-stop").hide()
+		$("#cancel-stop").show()
+	});
+	$('#cancel-stop').click(function (e) {
+		e.preventDefault();
+		$("#stop_to_name_dest").val("");
+		$("#stop_to_name").val("");
+		$("#stop_to_date").val("");
+		$("#stop-form").hide();
+		$("#new-stop").show()
+		$("#cancel-stop").hide()
 	});
 	
 	function hideOnbardingPartials() {

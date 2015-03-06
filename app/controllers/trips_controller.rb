@@ -26,7 +26,7 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.friendly.find(params[:id])
     @stop = Stop.new(trip_id: @trip.id)
-    @stops = @trip.stops
+    @stops = @trip.stops.order(:created_at)
     @first_stop = @trip.stops.where(order: 1).first
         
     if request.path != trip_path(@trip) && request.path != user_trip_path(current_user, @trip)
