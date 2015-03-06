@@ -26,16 +26,16 @@ module TripsHelper
     case group_dynamic_id
     when "1"
       if plural == true
-        group_text = " <span class='dots'>males</span> or <span class='dots'>females</span>"
+        group_text = " <span class='dots'><i class='fa fa-mars'></i> males</span> or <span class='dots'><i class='fa fa-venus'></i> females</span>"
       else
-        group_text = " <span class='dots'>male</span> or <span class='dots'>female</span>"
+        group_text = " <span class='dots'><i class='fa fa-mars'></i> male</span> or <span class='dots'><i class='fa fa-venus'></i> female</span>"
       end
     when "2"
-      plural == true ? group_text = " <span class='dots'>females</span>" : group_text = " <span class='dots'>female</span>"
+      plural == true ? group_text = " <span class='dots'><i class='fa fa-venus'></i> females</span>" : group_text = " <span class='dots'><i class='fa fa-venus'></i> female</span>"
     when "3"
-      plural == true ? group_text = " <span class='dots'>males</span>" : group_text = " <span class='dots'>male</span>"
+      plural == true ? group_text = " <span class='dots'><i class='fa fa-mars'></i> males</span>" : group_text = " <span class='dots'><i class='fa fa-mars'></i> male</span>"
     when "4"
-      plural == true ? group_text = " <span class='dots'>couples</span>" : group_text = " <span class='dots'>couple</span>"
+      plural == true ? group_text = " <span class='dots'><i class='fa fa-venus-mars'></i> couples</span>" : group_text = " <span class='dots'><i class='fa fa-venus-mars'></i> couple</span>"
     end
     
     if group_age_min == "any" && group_age_max == "any"

@@ -1,0 +1,27 @@
+<%= form_for [@trip, @stop], remote: true do |f| %>
+	
+	<!-- t.integer  "order",               default: 1
+  t.datetime "to_date"
+  t.datetime "from_date" -->
+
+
+	<%= f.select :transportation_type, ["flight", "car"] %>
+	<div class="row top-margin">
+		<div class="col-md-3"><label>Departing From:</label></div>
+		<div class="col-md-9">
+			<div class="prefetch">
+			  <input class="typeahead" type="text" name="stop[from_name]" placeholder="Airport" style="width:500px;" autocomplete="off">
+			</div>
+		</div>
+	</div>
+	<div class="row top-margin">
+		<div class="col-md-3"><label>Landing In:</label></div>
+		<div class="col-md-9">
+			<div class="prefetch">
+			  <input class="typeahead" type="text" name="stop[to_name]" placeholder="Airport" style="width:500px;" autocomplete="off">
+			</div>
+		</div>
+	</div>
+	
+	<%= f.submit %>
+<% end %>

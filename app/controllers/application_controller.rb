@@ -36,7 +36,11 @@ class ApplicationController < ActionController::Base
   end
   
   def instantiate_new_trip
-    @new_trip = Trip.new(user_id: current_user.id) if current_user
+    if current_user
+      @new_trip = Trip.new(user_id: current_user.id)
+    else
+      @new_trip = Trip.new
+    end
   end
   
 end

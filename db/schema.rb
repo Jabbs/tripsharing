@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20150305153004) do
     t.string   "from_name"
     t.string   "transportation_type", default: "1"
     t.integer  "order",               default: 1
+    t.datetime "to_date"
+    t.datetime "from_date"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end

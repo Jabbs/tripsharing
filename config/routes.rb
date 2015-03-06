@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :surveys, only: [:create]
   resources :trips do
     get 'details'
+    resources :stops
   end
   match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
   match 'airports', to: 'trips#airports', via: [:get]

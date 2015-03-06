@@ -10,6 +10,12 @@ $('document').ready(function() {
 		$('#defaultCountdown').countdown({until: d, compact: true, description: ''});
 	};
 	
+	var fadeInSpeed = 400;
+	
+	$('#new-stop').click(function() {
+		$("#stop-form").fadeIn(fadeInSpeed);
+	});
+	
 	function hideOnbardingPartials() {
 		$("#onboarding-who").hide();
 		$("#onboarding-when").hide();
@@ -18,7 +24,7 @@ $('document').ready(function() {
 		$("#onboarding-profile").hide();
 		$(".trip-category").removeClass("active");
 	};
-	var fadeInSpeed = 400;
+	
 	$('.onboarding-goto-who').click(function() { hideOnbardingPartials(); $(".travel-companions").addClass("active"); $("#onboarding-who").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-when').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-when").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-stops').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-stops").fadeIn(fadeInSpeed); });

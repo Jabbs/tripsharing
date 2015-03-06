@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="well">
+			<span class="pull-left">
+				<% if stop.from_name.present? && stop.from_iata.present? %>
+					<span class="airport"><%= stop.from_iata[0] %></span><span class="airport"><%= stop.from_iata[1] %></span><span class="airport"><%= stop.from_iata[2] %></span>
+					<%= stop.from_name %> 
+				<% end %>
+			<span class="pull-right">
+				<% if stop.to_name.present? && stop.to_iata.present? %>
+					<%= stop.to_name %>
+					<span class="airport"><%= stop.to_iata[0] %></span><span class="airport"><%= stop.to_iata[1] %></span><span class="airport"><%= stop.to_iata[2] %></span>
+				<% end %>
+			</span>
+		</div>
+	</div>
+</div>

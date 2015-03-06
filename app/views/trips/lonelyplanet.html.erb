@@ -3,7 +3,7 @@
 	<% @lp_trips.each do |trip| %>
 		<div class="row">
 			<div class="col-md-12">
-				<h3><%= trip["title"] %> <small>- <%= trip["author"] %></small></h3>
+				<p><%= trip["title"] %> <small>- <%= trip["author"] %></small></p>
 				<p><%= link_to trip["url"], trip["url"], target: "_blank" %></p>
 				<%= trip["content"].html_safe %>
 			</div>

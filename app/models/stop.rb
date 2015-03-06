@@ -3,7 +3,6 @@ class Stop < ActiveRecord::Base
   belongs_to :user
   
   validates :to_name, presence: true
-  validates :order, uniqueness: {scope: :trip_id}, presence: true
   
   after_create :parse_airport_to_name
   after_create :parse_airport_from_name
@@ -22,8 +21,8 @@ class Stop < ActiveRecord::Base
   
   def parse_airport_to_name
     to_iata = self.to_name.split("-")[0].strip.upcase
-    to_name = self.to_name.split("-")[1].strip
-    if to_iata.length == 3
+    to_name = self.to_name.split("-")[1].strip if self.to_name.split("-")[1].present?
+    if to_iata.length == 3 && to_name != nil
       self.to_iata = to_iata
       self.to_name = to_name
       self.save

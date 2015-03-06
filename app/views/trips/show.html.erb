@@ -71,11 +71,31 @@
 				</div>
 
 				<div class="row">
+				  <div class="col-md-5 col-md-offset-1">
+				    <h2>Stops</h2>
+				  </div>
+
+				  <div class="col-md-2 col-md-offset-4">
+				  	<button class="btn btn-default" id="new-stop">New</button>
+				  </div>
+				</div>
+				
+				<div class="row">
+				  <div class="col-md-7 col-md-offset-1" id="stops"><%= render @stops %></div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div id="stop-form" style="display:none;"><%= render "stops/form" %></div>
+					</div>
+				</div>
+
+				<div class="row">
 					<div class="col-md-12">
 						<%= render "trips/tabpanel" %>
 					</div>
 				</div>
-
+				
 				<div class="row">
 					<div class="col-md-12">
 						<%= render "trips/show_sidebar" %>

@@ -9,6 +9,8 @@ class CreateStops < ActiveRecord::Migration
       t.string :from_name
       t.string :transportation_type, default: "1"
       t.integer :order, default: 1
+      t.datetime :to_date
+      t.datetime :from_date
 
       t.timestamps null: false
     end

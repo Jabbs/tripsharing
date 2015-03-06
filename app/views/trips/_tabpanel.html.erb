@@ -8,7 +8,7 @@
 		<li role="presentation"><a href="#activities" aria-controls="activities" role="tab" data-toggle="tab">Activities</a></li>
 		<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
     -->
-		<li role="presentation"><a href="#organizers" aria-controls="organizers" role="tab" data-toggle="tab">Organizer(s)</a></li>
+		<li role="presentation"><a href="#travelers" aria-controls="travelers" role="tab" data-toggle="tab">Travelers</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -29,7 +29,7 @@
 				</div>
 			<% else %>
 				<div class="center grey">
-					<i class="fa fa-picture-o" style="font-size:1000%; margin-top:20px;"></i>
+					<i class="fa fa-align-center" style="font-size:1000%; margin-top:20px;"></i>
 					<h3>No Description Available</h3>
 				</div>
 			<% end %>	
@@ -53,19 +53,40 @@
     <div role="tabpanel" class="tab-pane" id="activities">activities...</div>
 		<div role="tabpanel" class="tab-pane" id="messages">messages...</div>
 		-->
-		<div role="tabpanel" class="tab-pane" id="organizers">
+		<div role="tabpanel" class="tab-pane" id="travelers">
 			<div class="row">
-				<div class="col-md-2">
-					<% if @trip.user.fb_image %>
-            <%= image_tag @trip.user.fb_image, class: "image" %>
-          <% else %>
-            <%= image_tag "blank_avatar.jpg", class: "image" %>
-          <% end %>
-					
-					<%= @trip.user.first_name %>
+				<div class="col-md-3">
+					<div class="well">
+						<div class="row">
+							<div class="col-md-4">
+								<%= image_tag "blank_avatar.png", class: "image img-responsive" %>
+							</div>
+							<div class="col-md-8">
+								<p class="no-margin" style="line-height:130%;">
+									<%= @trip.user.first_name %><br>
+									<%= User::NATIONALITIES[@trip.user.nationality] %><br>
+									<% @trip.user.occupation.present? ? o = ", #{@trip.user.occupation}" : o = "" %>
+									<%= @trip.user.age %><%= o %><br>
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
     
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
