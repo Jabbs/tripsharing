@@ -1,35 +1,50 @@
-
 <% unless @trip.solo_trip? %>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="trip-bar">
 				<h4 class="no-margin" style="line-height:200%;">
-					<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %> 
+					<div id="travel-text" class="inline">
+						<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
+					</div>
+					<% if current_user && current_user == @trip.user %>
+						<div id="trip-travel-text-form" style="display:none;">
+							<%= render "trips/travel_text_form" %>
+						</div>
+						<small><%= link_to "change", "#", id: "edit-travel-text", class: "grey-link" %></small>
+					<% end %>
 				</h4>
 			</div>
 		</div>
 	</div>
 <% end %>
-
-<%= render "trips/trip_edit_modal" %>
+<% if current_user && current_user == @trip.user %>
+	<%= render "trips/trip_image_modal" %>
+	<%= render "trips/trip_edit_modal" %>
+<% end %>
 <div class="container-fluid">
 	<div class="show-trip">
 		<div class="row">
 			<div class="col-md-1">
-
 			</div>
 			<div class="col-md-10">
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="no-margin">
-							<% if @first_stop && @first_stop.to_iata.present? %>
-								<span class="airport"><%= @first_stop.to_iata[0] %></span><span class="airport"><%= @first_stop.to_iata[1] %></span><span class="airport"><%= @first_stop.to_iata[2] %></span>
-								<%= @first_stop.to_name %>
+						<div class="big top-margin">
+							<% if @trip.departs_at.present? && @trip.returns_at.present? %>
+								<%= @trip.departs_at.strftime('%-m/%d/%y') %> - <%= @trip.returns_at.strftime('%-m/%d/%y') %>,
 							<% else %>
-								<%= Trip::REGIONS[@trip.region] %>
+								<%= Trip::DURATIONS[@trip.duration] %>,
 							<% end %>
+							<%= Trip::REGIONS[@trip.region] %>
+							<small style="font-size:60%;">
+								<% if current_user && current_user == @trip.user %>
+									<a href="#" type="button" class="grey-link" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
+									 change
+									</a>
+								<% end %>
+							</small>
 							<span class="pull-right">
-								<i class='fa fa-clock-o'></i>
+								Leaving:
 								<% if @trip.departs_at.present? %>
 									<%= javascript_tag do %>
 									  window.tripDepartsAt = "<%=j (@trip.departs_at.to_f * 1000).to_s%>";
@@ -41,15 +56,26 @@
 									tbd
 								<% end %>
 							</span>
-						</h3>
+						</div>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-12">
-						<div style="margin-top:10px;">
-							<!-- 1200px width needed -->
-							<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic" %>
+						<div style="margin-top:0px;">
+
+							<% if current_user && current_user == @trip.user %>
+								<div class="no-height">
+									<a href="#" type="button" class="grey-link" style="font-family:inherit;" data-toggle="modal" data-target="#tripImageModal">
+										<i id="trip-image-modal" class='fa fa-camera' style="margin-left:5px; margin-top:5px;"></i>
+									</a>
+								</div>
+							<% end %>
+							<% if @trip.image_attachments.any? %>
+								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic").to_s %>
+							<% else %>
+								<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic" %>
+							<% end %>
 						</div>
 					</div>
 				</div>
@@ -61,11 +87,6 @@
 						<div class="trip-name">
 							<h1>
 								<%= @trip.name %>
-								<% if current_user && current_user == @trip.user %>
-									<button type="button" class="btn btn-default" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
-									 EDIT
-									</button>
-								<% end %>
 							</h1>
 							<% if @trip.tags.any? %>
 								<div class="center" style="padding-bottom:10px;">

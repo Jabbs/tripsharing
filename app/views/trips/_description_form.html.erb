@@ -1,5 +1,5 @@
 <%= form_for @trip do |f| %>
-	<%= f.text_area :description, placeholder: "Description...", rows: 10, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;margin-bottom:20px;", autofocus: true %>
+	<%= f.text_area :description, placeholder: "Description...", rows: 10, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;margin-bottom:20px;", id: "trip_edit_description" %>
   <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-danger" %>
 	<%= link_to "Cancel", "#", id: "cancel-description" %>
 <% end %>

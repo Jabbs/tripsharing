@@ -1,9 +1,9 @@
-<div class="dots-white top-margin" style="padding-top:10px;padding-bottom:10px;">
+<div class="dots-white" style="padding-top:10px;padding-bottom:10px; margin-top:10px;">
 	<%= form_for [@trip, @stop], remote: true do |f| %>
 	
 		<i class="fa fa-map-marker"></i>
 	
-		<input name="stop[to_name_dest]" id="stop_to_name_dest" type="text" class="add-geocomplete" placeholder="Destination" style="width:240px;" autocomplete="off" autofocus>
+		<input name="stop[to_name_dest]" type="text" class="add-geocomplete stop_to_name_dest" placeholder="Destination" style="width:240px;" autocomplete="off">
 		
 		<span style="margin-left:5px;margin-right:7px;">--or--</span>
 		<i class="fa fa-plane"></i>

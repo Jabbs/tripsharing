@@ -12,36 +12,50 @@ $('document').ready(function() {
 	
 	var fadeInSpeed = 400;
 
+	$("#edit-travel-text").click(function (e) {
+		e.preventDefault();
+		$('#trip-travel-text-form').fadeIn(fadeInSpeed);
+		$('#travel-text').hide();
+		$('#edit-travel-text').hide();
+	});
+	$("#cancel-travel-text").click(function (e) {
+		e.preventDefault();
+		$('#trip-travel-text-form').hide();
+		$('#travel-text').show();
+		$('#edit-travel-text').show();
+	});
+
 	$("#edit-name-tags").click(function (e) {
 		e.preventDefault();
 		$('#trip-name-tags-form').fadeIn(fadeInSpeed);
-		$('.trip-name').hide()
-		$('#edit-name-tags').hide()
+		$('.trip-name').hide();
+		$('#edit-name-tags').hide();
 	});
 	$("#cancel-name-tags").click(function (e) {
 		e.preventDefault();
 		$('#trip-name-tags-form').hide();
-		$('.trip-name').show()
-		$('#edit-name-tags').show()
+		$('.trip-name').show();
+		$('#edit-name-tags').show();
 	});
 
 	$("#edit-description").click(function (e) {
 		e.preventDefault();
 		$('#trip-description-form').fadeIn(fadeInSpeed);
-		$('.description').hide()
-		$('#edit-description').hide()
+		$('.description').hide();
+		$('#edit-description').hide();
 	});	
 	$("#add-description").click(function (e) {
 		e.preventDefault();
 		$('#trip-description-form').fadeIn(fadeInSpeed);
-		$('#add-description').hide()
+		$('#add-description').hide();
+		$('#trip_edit_description').focus();
 	});
 	$("#cancel-description").click(function (e) {
 		e.preventDefault();
 		$('#trip-description-form').hide();
-		$('.description').show()
-		$('#add-description').show()
-		$("#edit-description").show()
+		$('.description').show();
+		$('#add-description').show();
+		$("#edit-description").show();
 	});
 	
 	$('#new-stop').click(function (e) {
@@ -51,8 +65,9 @@ $('document').ready(function() {
 		$("#stop_to_date").val("");
 		$("#stop_from_name").val("");
 		$("#stop-form").fadeIn(fadeInSpeed);
-		$("#new-stop").hide()
-		$("#cancel-stop").show()
+		$("#new-stop").hide();
+		$("#cancel-stop").show();
+		$('.stop_to_name_dest').focus();
 	});
 	$('#cancel-stop').click(function (e) {
 		e.preventDefault();
@@ -61,8 +76,8 @@ $('document').ready(function() {
 		$("#stop_to_date").val("");
 		$("#stop_from_name").val("");
 		$("#stop-form").hide();
-		$("#new-stop").show()
-		$("#cancel-stop").hide()
+		$("#new-stop").show();
+		$("#cancel-stop").hide();
 	});
 	
 	function hideOnbardingPartials() {

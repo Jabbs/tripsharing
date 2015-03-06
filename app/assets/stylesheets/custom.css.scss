@@ -480,7 +480,7 @@ h2.choice.inactive a {
 	max-width: 1448px;
 	.trip-pic {
 		border: 1px solid $grey_dark;
-
+		clip: rect(0px,60px,200px,0px);
 	}
 	.edit-trip-name {
 		background: $white;

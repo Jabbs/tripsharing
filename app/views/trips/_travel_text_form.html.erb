@@ -1,0 +1,18 @@
+<%= form_for @trip do |f| %>
+	<%= f.select :group_count, Trip::GROUP_COUNT_ARRAY %>
+	<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS_ARRAY %>
+	ages
+	<%= f.select :group_age_min, ('18'..'99').to_a, {prompt: "--min--"} %>
+	to
+  <%= f.select :group_age_max, ('18'..'99').to_a, {prompt: "--max--"} %>.
+	Nationality:
+	<select name="trip[group_nationality]">
+		<% User::NATIONALITIES_ARRAY.each do |nationality| %>
+			<% @trip.group_nationality == nationality[1] ? selected = "selected" : selected = "" %>
+			<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
+		<% end %>
+	</select>.
+  <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-danger" %>
+	<%= link_to "Cancel", "#", id: "cancel-travel-text", class: "grey-link" %>
+
+<% end %>

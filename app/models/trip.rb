@@ -5,6 +5,7 @@ class Trip < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 250 }
   validates :user_id, presence: true
   validates :description, length: { maximum: 5000 }
+  validates :region, presence: true
   
   belongs_to :user
   has_many :stops, dependent: :destroy
@@ -34,7 +35,8 @@ class Trip < ActiveRecord::Base
   REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia", "3"], ["South Asia", "4"], ["Southeast Asia", "5"], ["North Asia", "6"], ["N. America", "7"],
              ["S. America", "8"], ["Central America", "9"], ["Australia, South Pacific", "10"], ["Middle East", "11"], ["Russia, Central Asia, Transcaucasia", "12"],
              ["Antarctica", "13"]]
-  DURATIONS = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) avg", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
+  DURATIONS = {"1" => "1-3 days", "2" => "4-14 days", "3" => "15-24 days", "4" => "25-44 days", "5" => "45+ days", "6" => "unknown" }
+  DURATIONS_ARRAY = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) avg", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
   DEPARTINGS_ARRAY = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
   DEPARTINGS = {"1" => "today", "2" => "asap", "3" => "this weekend", "4" => "spring 2015", "5" => "summer 2015", "6" => "fall 2015", "7" => "winter 2015",
@@ -108,8 +110,6 @@ class Trip < ActiveRecord::Base
   end
     
   def create_first_stop
-    logger.debug "&&&&&& #{self.stops.any?}"
-    logger.debug "^^^^^^^^^ #{self.departs_to.present?}"
     unless self.stops.any? && self.departs_to.present?
       Stop.create_from_trip(self)
     end

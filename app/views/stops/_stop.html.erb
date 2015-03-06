@@ -34,7 +34,7 @@
 				
 				<span class="pull-right">
 					<% if stop.to_date.present? %>
-						<%= stop.to_date.strftime('%m/%d/%Y') %>
+						<%= stop.to_date.strftime('%-m/%d/%y') %>
 					<% else %>
 						tbd
 					<% end %>
