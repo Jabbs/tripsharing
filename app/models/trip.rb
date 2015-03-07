@@ -52,6 +52,18 @@ class Trip < ActiveRecord::Base
               "11" => "Skiing", "12" => "Trekking / Hiking", "13" => "Business / Networking", "14" => "Volunteering", "15" => "Wildlife / Ecology",
               "16" => "Food / Wine", "17" => "Drinking with locals", "18" => "Camping", "19" => "Museums", "20" => "Beaches",}
   
+  def self.search(region=nil, departs_at=nil, returns_at=nil)
+    trips = self.where(state: "2")
+
+    unless departs_at == nil || returns_at == nil || departs_at.blank? || returns_at.blank?
+      trips = trips.where(departs_at: ( departs_at..returns_at) )
+    end
+    unless region.blank? || region == nil
+      trips = trips.where(region: region)
+    end
+    trips
+  end
+  
   def self.get_lonelyplanet_trips
     lp_trips = []
     url = "https://www.lonelyplanet.com/thorntree/forums/travel-companions.atom"

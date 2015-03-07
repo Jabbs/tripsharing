@@ -4,12 +4,26 @@
 			<%= render "layouts/sidebar" %>
 		</div>
 	  <div class="col-md-9 dash-background">
-			<div class="well" style="margin:20px;">
-				<div class="center grey">
-					<i class="fa fa-plane" style="font-size:1000%"></i>
-					<h3>No Trips Currently Available</h3>
-					<p>Sign up for alerts to stay notified of upcoming trips.</p>
-				</div>
+			<div class="row">
+				<% if @trips.any? %>
+					<div class="col-md-10 col-md-offset-1">
+						<div class="row">
+							<% @trips.each do |trip| %>
+								<%= render "trips/list_item", trip: trip %>
+							<% end %>
+						</div>
+					</div>
+				<% else %>
+					<div class="col-md-12">
+						<div class="well" style="margin:20px;">
+							<div class="center grey">
+								<i class="fa fa-plane" style="font-size:1000%"></i>
+								<h3>No Trips Currently Available</h3>
+								<p>Sign up for alerts to stay notified of upcoming trips.</p>
+							</div>
+						</div>
+					</div>
+				<% end %>
 			</div>
 	  </div>
 	</div>

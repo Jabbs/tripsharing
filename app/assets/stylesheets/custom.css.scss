@@ -367,15 +367,20 @@ h2.choice.inactive a {
 	height: 100%;
 	width: 100%;
 }
+.trip-background {
+//	background: url("clouds.jpg");
+}
 .dash-background {
 	min-height:600px;
 	padding-right:0px;
 	padding-left:0px;
-	background: url("home/288412.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	padding-top:20px;
+	background: url("clouds.jpg");
+//	-webkit-background-size: cover;
+//	-moz-background-size: cover;
+//	-o-background-size: cover;
+//	background-size: cover;
+	border-left: 2px solid $grey_dark;
 }
 #home-background { 
   background: url("home/288412.jpg") no-repeat center center fixed;
@@ -675,9 +680,7 @@ a.btn-facebook {
 }
 .sidebar {
 	padding-top:10px;
-	border-right: 3px solid $grey_light;
-	outline: 1px solid $grey_dark;
-	min-height:600px;
+	padding-bottom:20px;
 	h2 { padding-left:5px; font-size: 100%; margin:5px 0px 5px 0px; font-weight: 200; }
 	hr {border-top: 1px solid $grey_dark;margin:15px 0 5px 0;}
 }
@@ -706,10 +709,8 @@ a.btn-facebook {
 	z-index:1;
   margin:0px;
   height:49px;
-  border-bottom: 1px solid black;
   background-image: none;
-	border-bottom: 1px solid $grey_light;
-
+	border-bottom: 1px solid $grey_dark;
   li a {
     text-shadow: none;
     &:hover { color: $turquoise;}
@@ -737,6 +738,7 @@ a.btn-facebook {
 /* footer */
 .footer_background {background: url("tiles/noise_salmon.jpg");}
 footer {
+	border-top: 1px solid $grey_dark;
 	position: relative;
   left: 0;
   right: 0;

@@ -1,0 +1,53 @@
+<div class="col-md-4">
+	<div class="well trip-well active pointer">
+	  <% if trip.inactive? %>
+	    <div class="no-height">
+	      <div class="trip-status grey-background">
+	        <div class="center">
+	          INACTIVE
+	        </div>
+	      </div>
+	    </div>
+	  <% end %>
+	  <!-- - else
+	  -->
+	  <!--   .no-height
+	  -->
+	  <!--     .trip-status.green-background
+	  -->
+	  <!--       .center
+	  -->
+	  <!--         LIVE DISCUSSION
+	  -->
+	  <% if trip.image_attachments.any? %>
+	    <%= image_tag(trip.image_attachments.first.image.url(:medium), class: "img-responsive").to_s %>
+	  <% else %>
+	    <%= image_tag("globe-icon-planes-250.png", class: "img-responsive") %>
+	  <% end %>
+	  <h4 style="min-height:40px;">
+	    <%= link_to "#{truncate(trip.name, length: 50)}", trip_path(trip) %>
+	  </h4>
+	  <div class="icons">
+	    <div class="black">
+	      <i class="icon-map-marker" style="margin-left:.2em;margin-right:.7em;"></i>
+	      Chicago,
+				<%= trip.region %>
+	      <br/>
+				 <i class="icon-group" style="margin-right:.2em;"></i>
+				<%= trip.group_count %>
+				<br>
+				<i class="icon-facebook" style="margin-left:.2em;margin-right:.7em;"></i>
+				<%= pluralize(["2","3","4","5","6","7"].shuffle.first.to_i, "mutual friends") %>
+				<div class="no-height">
+					<div class="right">
+						<div style="position:relative; bottom:20px;">
+							<%= "$" * ["1","2","3"].shuffle.first.to_i %>
+						</div>
+					</div>
+				</div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+

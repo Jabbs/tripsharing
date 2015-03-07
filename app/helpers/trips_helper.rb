@@ -48,7 +48,7 @@ module TripsHelper
       age_text = " under the age of <span class='dots'>#{group_age_max}</span>"
     end
     
-    status = "<span class='dots-salmon'>seeking</span>"
+    status = "<span class='dots-salmon'>Seeking</span>"
     
     if plural == true
       return "#{status} " + group_count_text + " travel companions," + " " + nationality_text + group_text + age_text + "."

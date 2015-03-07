@@ -1,51 +1,6 @@
-<div class="well trip-well active pointer">
-  <% if trip.inactive? %>
-    <div class="no-height">
-      <div class="trip-status grey-background">
-        <div class="center">
-          INACTIVE
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <!-- - else
-  -->
-  <!--   .no-height
-  -->
-  <!--     .trip-status.green-background
-  -->
-  <!--       .center
-  -->
-  <!--         LIVE DISCUSSION
-  -->
-  <% if trip.image_attachments.any? %>
-    <%= image_tag(trip.image_attachments.first.image.url(:medium)).to_s %>
-  <% else %>
-    <%= image_tag("globe-icon-planes-250.png") %>
-  <% end %>
-  <h4 style="min-height:40px;">
-    <%= link_to "#{truncate(trip.name, length: 50)}", trip_path(trip) %>
-  </h4>
-  <div class="icons">
-    <div class="black">
-      <i class="icon-map-marker" style="margin-left:.2em;margin-right:.7em;"></i>
-      <%= trip.location.city %>,
-			<%= trip.location.country %>
-      <br/>
-			 <i class="icon-group" style="margin-right:.2em;"></i>
-			<%= pluralize(trip.group_size, "traveler") %>
-			<br>
-			<i class="icon-facebook" style="margin-left:.2em;margin-right:.7em;"></i>
-			<%= pluralize(["2","3","4","5","6","7"].shuffle.first.to_i, "mutual friends") %>
-			<div class="no-height">
-				<div class="right">
-					<div style="position:relative; bottom:20px;">
-						<%= "$" * ["1","2","3"].shuffle.first.to_i %>
-					</div>
-				</div>
-			</div>
-    </div>
-  </div>
+<div class="col-md-12">
+	<div class="well">
+		<%= travel_text(trip.group_dynamics, trip.group_nationality, trip.group_count, trip.group_age_min, trip.group_age_max).html_safe %>
+		<%= link_to "view", trip %>
+	</div>
 </div>
-
-
