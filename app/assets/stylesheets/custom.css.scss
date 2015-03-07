@@ -131,6 +131,7 @@ h4 { line-height: 1.2em; }
 .top-margin { margin-top:20px; }
 .top-margin-small { margin-top:10px; }
 .top-margin-tiny { margin-top:5px; }
+.bottom-margin-small { margin-bottom:10px; }
 .no-top-border { border-top:none;}
 .indent { margin-left: 17px;}
 .center { text-align: center; }
@@ -414,6 +415,14 @@ h2.choice.inactive a {
 	background-size: cover;
 	min-height: 800px;
 }
+#home-background5 { 
+  background: url("home/Bagan-Medium.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 800px;
+}
 .focus:before {
   content: "";
   position: fixed;
@@ -450,7 +459,6 @@ h2.choice.inactive a {
 }
 .build-trip-well {
 	padding-top:0px;
-	box-shadow: 5px 5px 2px #888888;
 	margin-top:40px;
 	margin-bottom:60px;
 	label {font-size: 140%;}

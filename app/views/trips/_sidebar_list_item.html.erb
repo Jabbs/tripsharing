@@ -6,6 +6,9 @@
 		<div class="col-md-12">
 			<h3>
 				<%= link_to trip.name, trip %>
+				<% if trip.incomplete? %>
+					<em class="red" style="font-size:80%;">imcomplete</em>
+				<% end %>
 			</h3>
 		</div>
 	</div>

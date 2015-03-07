@@ -1,0 +1,10 @@
+<% user.nationality.present? ? n = ", #{User::NATIONALITIES[user.nationality]}" : n = "" %>
+<%= user.first_name %>, <%= user.age %><%= n %>, <%= user.gender.capitalize %><br>
+<% if user.occupation? %>
+	<%= user.occupation %><br>
+<% end %>
+<% if user.fb_location? %>
+	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
+	<%= user.try(:fb_location) %><br>
+<% end %>
+<i class="fa fa-plane"></i> <%= pluralize(user.trips.count, "trip") %>

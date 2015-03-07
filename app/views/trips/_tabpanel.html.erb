@@ -60,19 +60,19 @@
 		-->
 		<div role="tabpanel" class="tab-pane" id="travelers">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="well">
-						<div class="row">
-							<div class="col-md-4">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-2">
+							<% if @trip.user.fb_image? %>
+								<%= image_tag current_user.fb_image, class: "image img-responsive" %>
+							<% else %>
 								<%= image_tag "blank_avatar.png", class: "image img-responsive" %>
-							</div>
-							<div class="col-md-8">
-								<p class="no-margin" style="line-height:130%;">
-									<%= @trip.user.first_name %>, <%= @trip.user.age %><br>
-									<%= User::NATIONALITIES[@trip.user.nationality] %><br>
-									<%= @trip.user.try(:occupation) %>
-								</p>
-							</div>
+							<% end %>
+						</div>
+						<div class="col-md-10" style="border-left: 1px solid grey;">
+							<p class="no-margin" style="line-height:130%;">
+								<%= render "users/list_item", user: @trip.user %>
+							</p>
 						</div>
 					</div>
 				</div>
