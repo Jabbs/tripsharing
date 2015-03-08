@@ -494,6 +494,7 @@ h2.choice.inactive a {
 	.trip-pic {
 		border: 1px solid $grey_dark;
 		clip: rect(0px,60px,200px,0px);
+		&:hover { cursor: pointer;}
 	}
 	.edit-trip-name {
 		background: $white;

@@ -12,6 +12,17 @@ $('document').ready(function() {
 	
 	var fadeInSpeed = 400;
 
+	$(".trip-pic").mouseenter(function() {
+		$("#trip-image-modal").show();
+	});
+	$(".trip-pic").mouseleave(function() {
+		$("#trip-image-modal").hide();
+	});
+
+	$(".trip-pic").click(function() {
+		$("#trip-image-modal").click();
+	});
+
 	$("#edit-travel-text").click(function (e) {
 		e.preventDefault();
 		$('#trip-travel-text-form').fadeIn(fadeInSpeed);
