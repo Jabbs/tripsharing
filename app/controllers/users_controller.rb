@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     raise ActionController::RoutingError.new('Not Found') if !params[:blankey].blank?
     @user = User.new(user_params)
-    @user.birth_year = @user.birthday.year.to_s
+    fix_date_month_order
     if @user.save
       sign_in @user
       create_survey_from_user
@@ -59,6 +59,10 @@ class UsersController < ApplicationController
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
                       :verification_token, :verified, :bio, :tag_line, :welcome_sent_at, :occupation,
                       :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown, :home_airport, :fb_occupation)
+    end
+    
+    def fix_date_month_order
+      params[:user][:birthday] = Date.strptime(params[:user][:birthday],'%m/%d/%Y') if params[:user][:birthday].present?
     end
     
     def admin_user

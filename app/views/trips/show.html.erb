@@ -71,7 +71,7 @@
 									</a>
 								</div>
 							<% end %>
-							<% if @trip.image_attachments.any? %>
+							<% if @trip.image_attachments.count != 0 %>
 								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic").to_s %>
 							<% else %>
 								<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic" %>

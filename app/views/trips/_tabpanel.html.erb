@@ -63,8 +63,8 @@
 				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-2">
-							<% if @trip.user.fb_image? %>
-								<%= image_tag current_user.fb_image, class: "image img-responsive" %>
+							<% if @trip.user.fb_image.present? %>
+								<%= image_tag @trip.user.fb_image, class: "image img-responsive" %>
 							<% else %>
 								<%= image_tag "blank_avatar.png", class: "image img-responsive" %>
 							<% end %>

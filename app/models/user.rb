@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :gender, presence: true
-  validates :birth_year, presence: true
+  validates :birthday, presence: true
   validates_format_of :email, :with => /@/
   validates :password, presence: true, on: :create
   # validates_date :birthday, allow_blank: true
@@ -116,7 +116,6 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.email = auth.info.email
-      user.birth_year = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y').year if auth.extra.raw_info.birthday
       user.birthday = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y') if auth.extra.raw_info.birthday
       user.verified = auth.info.verified
       user.gender = auth.extra.raw_info.gender
@@ -176,7 +175,7 @@ class User < ActiveRecord::Base
   end
   
   def full_name
-    self.first_name + " " + self.last_name
+    self.first_name + " " + self.last_name if self.first_name && self.last_name
   end
   
   def correct_case_of_inputs

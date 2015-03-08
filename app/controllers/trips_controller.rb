@@ -37,7 +37,7 @@ class TripsController < ApplicationController
     if request.path != trip_path(@trip) && request.path != user_trip_path(current_user, @trip)
       redirect_to @trip, status: :moved_permanently
     end
-    @trip.add_view_count unless current_user?(@trip.user) || admin_user?
+    # @trip.add_view_count unless current_user?(@trip.user) || admin_user?
     
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: "The trip you attempted to view is no longer available."
