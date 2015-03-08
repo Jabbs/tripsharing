@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   
   def create
     raise ActionController::RoutingError.new('Not Found') if !params[:blankey].blank?
-    @user = User.new(user_params)
     fix_date_month_order
+    @user = User.new(user_params)
     if @user.save
       sign_in @user
       create_survey_from_user
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
         redirect_to trips_path
       end
     else
+      logger.debug("ERRORS: #{@user.errors.full_messages}")
       redirect_to root_path, alert: "There was an issue creating your account."
     end
   end
@@ -62,7 +63,9 @@ class UsersController < ApplicationController
     end
     
     def fix_date_month_order
+      logger.debug("111111: #{params[:user][:birthday]}")
       params[:user][:birthday] = Date.strptime(params[:user][:birthday],'%m/%d/%Y') if params[:user][:birthday].present?
+      logger.debug("222222: #{params[:user][:birthday]}")
     end
     
     def admin_user
