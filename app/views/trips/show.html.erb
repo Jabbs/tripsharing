@@ -66,15 +66,15 @@
 
 							<% if current_user && current_user == @trip.user %>
 								<div class="no-height">
-									<a href="#" type="button" class="grey-link huge" style="font-family:inherit;" data-toggle="modal" data-target="#tripImageModal">
+									<a href="#" type="button" class="grey-link bigger" style="font-family:inherit;" data-toggle="modal" data-target="#tripImageModal">
 										<i id="trip-image-modal" class='fa fa-camera' style="margin-left:5px; margin-top:5px;display:none;"></i>
 									</a>
 								</div>
 							<% end %>
 							<% if @trip.image_attachments.count != 0 %>
-								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic").to_s %>
+								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic", title: "cover photo").to_s %>
 							<% else %>
-								<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic" %>
+								<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic", title: "cover photo" %>
 							<% end %>
 						</div>
 					</div>
@@ -100,17 +100,20 @@
 					</div>
 				</div>
 				<hr>
+				<%= render "trips/description" %>
+				<hr style="margin-top:60px;">
 				<%= render "trips/itinerary" %>
-				<hr style="margin-top:40px;margin-bottom:60px;">
-				<div class="row">
-					<div class="col-md-12">
-						<%= render "trips/tabpanel" %>
-					</div>
-				</div>
+				<hr style="margin-top:40px;margin-bottom:20px;">
+				<%= render "trips/organizer" %>
+				<hr style="margin-top:40px;margin-bottom:20px;">
+				<%= render "trips/join_request" %>
 				
 				<div class="row">
 					<div class="col-md-12">
-						<%= render "trips/show_sidebar" %>
+						<% if @trip.public? %>
+							<hr style="margin-top:50px;margin-bottom:50px;">
+							<div class="center" style="margin-top:30px;margin-bottom:0px;"><%= render "trips/social_media" %></div>
+						<% end %>
 					</div>
 				</div>
 				

@@ -69,6 +69,19 @@ $('document').ready(function() {
 		$("#edit-description").show();
 	});
 	
+	$('#openJoinReq').click(function (e) {
+		e.preventDefault();
+		$("#join-req-form").slideDown(fadeInSpeed);
+		$('#openJoinReq').hide();
+		$('#join_req_content').focus();
+	});
+	$('#cancel-join-req').click(function (e) {
+		e.preventDefault();
+		$("#join-req-form").hide();
+		$('#openJoinReq').show();
+		$('#join_req_content').val("");
+	});
+	
 	$('#new-stop').click(function (e) {
 		e.preventDefault();
 		$("#stop_to_name_dest").val("");

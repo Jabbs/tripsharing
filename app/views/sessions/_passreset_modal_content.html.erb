@@ -10,7 +10,7 @@
 				<br>
 				<%= text_field_tag :email, params[:email], style: "width:100%; margin-top:0px;", placeholder: "Email", autocomplete: :off %>
 				<br>
-				<%= submit_tag 'Reset My Password', class: "btn btn-default", style: "margin-top:10px; margin-bottom:20px;", disable_with: 'Submitting...' %>
+				<%= submit_tag 'Reset My Password', class: "btn btn-default", style: "margin-top:10px; margin-bottom:20px;", data: { disable_with: "Submitting..." } %>
 			<% end %>
 
 		</div>

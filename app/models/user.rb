@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
   # associations
   has_many :trips
   has_many :interests, dependent: :destroy
+  has_many :join_requests, dependent: :destroy
   has_one :survey
   
   # callbacks

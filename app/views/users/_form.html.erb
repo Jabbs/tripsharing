@@ -54,6 +54,6 @@
     <%= text_field_tag :blankey %>
     <br/>
   </div>
-  <%= f.submit "Create Account", disable_with: 'Submitting...', class: "btn btn-default btn-lg fancy-dark", style: "margin-top:20px;" %>
+  <%= f.submit "Create Account", data: { disable_with: "Submitting..." }, class: "btn btn-default btn-lg fancy-dark", style: "margin-top:20px;" %>
 	
  <% end %>

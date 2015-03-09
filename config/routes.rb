@@ -1,10 +1,11 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  
+
   resources :surveys, only: [:create]
   resources :trips do
     get 'details'
     resources :stops
+    resources :join_requests, only: [:create]
   end
   match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
   match 'airports', to: 'trips#airports', via: [:get]

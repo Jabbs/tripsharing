@@ -30,6 +30,7 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.friendly.find(params[:id])
     @new_image_attachment = @trip.image_attachments.build
+    @join_request = @trip.join_requests.new
     @stop = Stop.new(trip_id: @trip.id)
     @stops = @trip.stops.order(:created_at)
     @first_stop = @trip.stops.where(order: 1).first

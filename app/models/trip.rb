@@ -8,6 +8,7 @@ class Trip < ActiveRecord::Base
   validates :region, presence: true
   
   belongs_to :user
+  has_many :join_requests, dependent: :destroy
   has_many :stops, dependent: :destroy
   accepts_nested_attributes_for :stops, allow_destroy: true
   has_many :locations, as: :locationable, dependent: :destroy

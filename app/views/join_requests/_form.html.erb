@@ -1,0 +1,17 @@
+<div class="dots-white" style="padding-top:20px;padding-bottom:20px; margin-top:10px;">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="center">
+				<div><%= image(current_user) %></div>
+				<i class="fa fa-ellipsis-v"></i>
+				<%= form_for [@trip, @join_request] do |f| %>
+					<%= f.text_area :content, placeholder: "Your message here...", rows: 4, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;margin-bottom:10px;", id: "join_req_content" %>
+				  <%= f.submit "Submit", data: { disable_with: "Submitting..." }, class: "btn btn-danger" %>
+				<% end %>
+				<a href="#" class="grey-link" id="cancel-join-req">
+					cancel
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

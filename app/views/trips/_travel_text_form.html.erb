@@ -12,7 +12,7 @@
 			<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
 		<% end %>
 	</select>.
-  <%= f.submit "Save", disable_with: 'Saving...', class: "btn btn-danger" %>
+  <%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
 	<%= link_to "Cancel", "#", id: "cancel-travel-text", class: "grey-link" %>
 
 <% end %>
