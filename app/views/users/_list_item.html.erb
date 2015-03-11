@@ -1,8 +1,8 @@
 <div style="margin-bottom:5px;">
 	<% if user.fb_image.present? %>
-		<%= image_tag @trip.user.fb_image %>
+		<%= image_tag "#{user.fb_image}" + "?type=large", class: "profile-pic" %>
 	<% else %>
-		<%= image_tag "blank_avatar.png" %>
+		<%= image_tag "blank_avatar.png", class: "profile-pic" %>
 	<% end %>
 </div>
 <% user.nationality.present? ? n = "#{User::NATIONALITIES[user.nationality]}, " : n = "" %>
@@ -13,7 +13,10 @@
 <% if user.occupation? %>
 	<%= user.occupation %><br>
 <% end %>
-<% if user.fb_location? %>
+<% if user.location? %>
+	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
+	<%= user.try(:location) %><br>
+<% elsif user.fb_location? %>
 	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
 	<%= user.try(:fb_location) %><br>
 <% end %>

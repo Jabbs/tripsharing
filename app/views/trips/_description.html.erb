@@ -18,11 +18,15 @@
 		</a>
 	<% elsif current_user && current_user == @trip.user %>
 
-		<div class="center">
-			<a href="#" id="add-description" class="grey-link">
-			  <i class="fa fa-plus-circle" style="font-size:1000%;"></i>
-				<h3 style="padding:0px;margin:0px;margin-bottom:10px;">Add Description</h3>
-			</a>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="center">
+					<a href="#" id="add-description" class="grey-link">
+					  <i class="fa fa-plus-circle" style="font-size:1000%;"></i>
+						<h3 style="padding:0px;margin:0px;margin-bottom:10px;">Add Description</h3>
+					</a>
+				</div>
+			</div>
 		</div>
 	<% else %>
 		<div class="center grey">

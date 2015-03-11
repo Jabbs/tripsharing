@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   before_filter :admin_user, only: [:index]
   before_filter :check_complete_interests, only: [:profile]
   
+  def show
+    @user = User.friendly.find(params[:id])
+  end
+  
   def profile
     @user = User.friendly.find(params[:user_id])
   end

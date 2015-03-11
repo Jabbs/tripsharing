@@ -1,7 +1,16 @@
-<% if @user.fb_image %>
-  <%= image_tag @user.fb_image, class: "image" %>
-<% else %>
-  <%= image_tag "blank_avatar.jpg", class: "image" %>
-<% end %>
-<%= @user.first_name %>,
-<em><small><%= @user.occupation %></small></em>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="center">
+				<h3><span class="dots"><%= @user.full_name %></span></h3>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="center">
+				<%= render "users/list_item_profile", user: @user %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -77,7 +77,7 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to trip_details_path(@trip)
     else
-      render 'index'
+      redirect_to trips_path, alert: "You must create a name for your trip."
     end
   end
   
