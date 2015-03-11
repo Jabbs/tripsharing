@@ -6,6 +6,13 @@ class UsersController < ApplicationController
   
   def show
     @user = User.friendly.find(params[:id])
+    @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"])
+    @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
+    @cu_graph = Koala::Facebook::API.new(current_user.oauth_token, ENV["FACEBOOK_SECRET"])
+    @user_likes = @graph.get_connections("me", "likes")
+    @cu_likes = @cu_graph.get_connections("me", "likes")
+    @shared_likes = @user_likes + @cu_likes
+    @shared_likes = @shared_likes.select {|e| @shared_likes.count(e) > 1}.uniq
   end
   
   def profile

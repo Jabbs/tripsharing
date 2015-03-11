@@ -13,4 +13,28 @@
 			</div>
 		</div>
 	</div>
+	<% if @shared_likes.any? %>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="center">
+					<h3><%= pluralize(@shared_likes.size, "Shared Interest") %></h3>
+					<% @shared_likes.each do |like| %>
+						<%= image_tag "http://graph.facebook.com/" + "#{like["id"]}" + "/picture?type=square", title: "#{like["name"]}", class: "image" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<% if @mutual_friends.any? %>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="center">
+					<h3><%= pluralize(@mutual_friends.size, "Mutual Friend") %></h3>
+					<% @mutual_friends.each do |friend| %>
+						<%= image_tag "http://graph.facebook.com/" + "#{friend["id"]}" + "/picture?type=square", title: "#{friend["name"]}", class: "image" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
 </div>
