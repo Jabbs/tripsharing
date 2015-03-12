@@ -147,7 +147,11 @@ h4 { line-height: 1.2em; }
 .top-padding {padding-top:60px;}
 .no-bottom-padding { padding-bottom: 0px;}
 .no-padding {padding:0px;}
-.well {background: white;}
+.well {
+	background: white;
+	border: 1px dotted $grey_dark;
+	box-shadow: none;
+}
 .well.darken {background: lighten($grey_light, 15%);}
 .shadow {box-shadow: 3px 3px 2px #888888;}
 .span1minus30 { width: 30px; }

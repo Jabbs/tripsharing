@@ -6,7 +6,7 @@
 			  <h4 class="modal-title" id="myModalLabel">Images</h4>
 			</div>
 			<div class="modal-body">
-				<% if @trip.image_attachments.any? %>
+				<% if @trip.image_attachments.any? && @trip.image_attachments.count != 0 %>
 					<div class="row">
 						<div class="col-md-12">
 							<%= form_tag "/trips/#{@trip.slug}/remove_images", method: :delete do %>
@@ -28,8 +28,8 @@
 					</div>
 					<hr>
 				<% end %>
-				<h4>Add Image (Maximum of 5 images)</h4>
-			  <div class="row">
+				<label>Add Image (Maximum of 5 images)</label>
+			  <div class="row" style="margin-top:10px;">
 					<div class="col-md-12">
 						<% if @trip.image_attachments.any? && @trip.image_attachments.count > 4 %>
 							<em>No more images can be added.</em>

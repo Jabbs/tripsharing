@@ -1,40 +1,37 @@
-<div class="container">
+<div class="container" style="margin-bottom:60px;">
+	<div class="row">
+		<div class="col-md-4">
+			<h3><span class="dots"><%= @user.full_name %></span></h3>
+			<%= render "users/list_item_profile", user: @user %>
+		</div>
+		<div class="col-md-8">
+			<% if @shared_likes.any? %>
+				<div class="row">
+					<div class="col-md-12">
+						<h3><%= pluralize(@shared_likes.size, "Shared Interest") %></h3>
+						<% @shared_likes.first(20).each do |like| %>
+							<%= image_tag "http://graph.facebook.com/" + "#{like["id"]}" + "/picture?type=square", title: "#{like["name"]}", class: "image" %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+			<% if @mutual_friends.any? %>
+				<div class="row">
+					<div class="col-md-12">
+						<h3><%= pluralize(@mutual_friends.size, "Mutual Friend") %></h3>
+						<% @mutual_friends.first(20).each do |friend| %>
+							<%= image_tag "http://graph.facebook.com/" + "#{friend["id"]}" + "/picture?type=square", title: "#{friend["name"]}", class: "image" %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<div class="container-fluid" style="background:grey;">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="center">
-				<h3><span class="dots"><%= @user.full_name %></span></h3>
-			</div>
+			<%= render "users/timeline" %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="center">
-				<%= render "users/list_item_profile", user: @user %>
-			</div>
-		</div>
-	</div>
-	<% if @shared_likes.any? %>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="center">
-					<h3><%= pluralize(@shared_likes.size, "Shared Interest") %></h3>
-					<% @shared_likes.each do |like| %>
-						<%= image_tag "http://graph.facebook.com/" + "#{like["id"]}" + "/picture?type=square", title: "#{like["name"]}", class: "image" %>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	<% end %>
-	<% if @mutual_friends.any? %>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="center">
-					<h3><%= pluralize(@mutual_friends.size, "Mutual Friend") %></h3>
-					<% @mutual_friends.each do |friend| %>
-						<%= image_tag "http://graph.facebook.com/" + "#{friend["id"]}" + "/picture?type=square", title: "#{friend["name"]}", class: "image" %>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	<% end %>
 </div>
