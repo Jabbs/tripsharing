@@ -173,6 +173,14 @@ h4 { line-height: 1.2em; }
 	float: none;
 	margin: 0 auto;
 }
+.checkbox-image {
+	border: 2px solid $white;
+  box-shadow: 0 0 3px 3px $white;
+}
+.highlight {
+	border: 2px solid $salmon;
+  box-shadow: 0 0 3px 3px $salmon;
+}
 .modal {z-index:5;}
 .alert { border-radius: 0; margin-bottom: 0px;}
 .modal-body label { font-weight:200; }

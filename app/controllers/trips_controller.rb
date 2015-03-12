@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:show]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
-  before_filter :correct_user, only: [:edit, :update, :details]
+  before_filter :correct_user, only: [:edit, :update, :details, :remove_images]
   before_filter :redirect_inactive_trip, only: [:show]
   before_filter :redirect_incomplete_trip, only: [:show]
   
@@ -27,9 +27,25 @@ class TripsController < ApplicationController
     @my_trips = current_user.trips
   end
   
+  def remove_images
+    @trip = Trip.friendly.find(params[:trip_id])
+    x = 0
+    if params[:remove_image]
+      images = params[:remove_image]
+      images.each do |image|
+        if image[1] == 'on'
+          ImageAttachment.find(image[0]).destroy
+          x += 1
+        end
+      end
+    end
+    flash[:notice] = "Selected images have been removed." if x != 0
+    redirect_to @trip
+  end
+  
   def show
     @trip = Trip.friendly.find(params[:id])
-    @new_image_attachment = @trip.image_attachments.build
+    @trip.image_attachments.build
     @join_request = @trip.join_requests.new
     @stop = Stop.new(trip_id: @trip.id)
     @stops = @trip.stops.order(:created_at)
@@ -65,6 +81,7 @@ class TripsController < ApplicationController
         redirect_to @trip, notice: 'Trip successfully updated.'
       end
     else
+      logger.debug "********* #{@trip.errors.full_messages}"
       redirect_to @trip, alert: 'There was an issue updating your trip.'
     end
   end
@@ -97,15 +114,17 @@ class TripsController < ApplicationController
                                    :region, :private, :seeking_type, :group_count, :duration, :time_flexibility, :departs_from, :departs_to,
                                    :group_departing_proximity, :group_relationship_status, :group_drinking, :group_personality, :group_nationality,
                                    :departing_category, :reason, :returns_at, :tag_list,
-                                   image_attachments_attributes: [:image, :description],
+                                   image_attachments_attributes: [:image, :description, :_destroy],
                                    stops_attributes: [:to_iata, :from_iata, :to_name, :from_name, :transportation_type, :order, :to_date, :from_date],
                                    locations_attributes: [:address1, :address2, :city, :country, 
                                    :state, :zip, :latitude, :longitude, :display_on_map, :unparsed])
     end
     
     def fix_date_month_order
-      params[:trip][:departs_at] = Date.strptime(params[:trip][:departs_at],'%m/%d/%Y') if params[:trip][:departs_at].present?
-      params[:trip][:returns_at] = Date.strptime(params[:trip][:returns_at],'%m/%d/%Y') if params[:trip][:returns_at].present?
+      if params[:trip].present?
+        params[:trip][:departs_at] = Date.strptime(params[:trip][:departs_at],'%m/%d/%Y') if params[:trip][:departs_at].present?
+        params[:trip][:returns_at] = Date.strptime(params[:trip][:returns_at],'%m/%d/%Y') if params[:trip][:returns_at].present?
+      end
     end
     
     def create_tags

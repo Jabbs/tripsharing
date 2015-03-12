@@ -1,0 +1,2 @@
+module ImageAttachmentsHelper
+end

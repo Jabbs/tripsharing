@@ -4,6 +4,15 @@
 	
 $('document').ready(function() {
 	
+	$('input[type="checkbox"]').click(function(){
+		if($(this).prop("checked") == true){
+			$(this).siblings('img').addClass("highlight");
+		}
+		else if($(this).prop("checked") == false){
+			$(this).siblings('img').removeClass("highlight");
+		}
+	});
+	
 	// http://keith-wood.name/countdown.html
 	if(typeof tripDepartsAt !== 'undefined') {
 		var d = new Date(parseFloat(tripDepartsAt));

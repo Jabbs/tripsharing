@@ -1,0 +1,2 @@
+class ImageAttachmentsController < ApplicationController
+end
