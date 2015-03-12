@@ -1,7 +1,7 @@
 <%= form_for @trip do |f| %>
-	<%= f.text_field :name, autocomplete: :off, style: "padding-left:3px; width:80%;margin-top:10px;" %>
+	<%= f.text_field :name, autocomplete: :off, style: "padding-left:3px; width:80%;margin-top:10px;", placeholder: "Name of trip" %>
 	<br>
-	<textarea autocomplete="off" id="trip_tag_list" name="trip[tag_list]" placeholder="Separated by commas (,)" rows="3" style="padding-left:3px;border-color: #DBDBDB; width:80%;margin-top:10px;"><%= @trip.tag_list %></textarea>
+	<textarea autocomplete="off" id="trip_tag_list" name="trip[tag_list]" placeholder="Tags separated by commas" rows="2" style="padding-left:3px;border-color: #DBDBDB; width:80%;margin-top:10px;"><%= @trip.tag_list %></textarea>
 	<br>
   <%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
 	<%= link_to "Cancel", "#", id: "cancel-name-tags" %>

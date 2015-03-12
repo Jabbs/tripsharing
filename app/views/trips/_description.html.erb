@@ -13,7 +13,7 @@
 		<div class="description">
 			<%= simple_format(@trip.description)%>
 		</div>
-		<a href="#" id="edit-description" class="grey-link">
+		<a href="#" id="edit-description" class="grey-link pull-right" style="position:relative; top:-15px;">
 			edit
 		</a>
 	<% elsif current_user && current_user == @trip.user %>

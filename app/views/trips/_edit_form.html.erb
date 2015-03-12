@@ -38,13 +38,6 @@
 		</div>
 	</div>
 	<hr>
-	<div class="row" style="margin-top:5px;margin-bottom:20px;">
-		<div class="col-md-2"><div class="right"><label>Reason for trip:</label></div></div>
-		<div class="col-md-10">
-			<%= f.text_area :reason, placeholder: "I am planning this trip because...", rows: 3, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;" %>
-		</div>
-	</div>
-	<hr>
   <%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
 
 <% end %>

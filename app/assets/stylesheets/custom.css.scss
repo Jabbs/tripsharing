@@ -169,6 +169,10 @@ h4 { line-height: 1.2em; }
 	outline:none!important;
 	text-decoration:none;
 }
+.col-centered {
+	float: none;
+	margin: 0 auto;
+}
 .modal {z-index:5;}
 .alert { border-radius: 0; margin-bottom: 0px;}
 .modal-body label { font-weight:200; }
@@ -491,7 +495,6 @@ h2.choice.inactive a {
 .profile-pic {
 	border: 6px solid $white;
 }
-
 .show-trip {
 	margin-bottom:100px;
 	max-width: 1448px;

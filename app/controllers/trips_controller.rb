@@ -65,7 +65,7 @@ class TripsController < ApplicationController
         redirect_to @trip, notice: 'Trip successfully updated.'
       end
     else
-      render action: "edit"
+      redirect_to @trip, alert: 'There was an issue updating your trip.'
     end
   end
   
