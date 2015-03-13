@@ -1,6 +1,57 @@
-<div class="col-md-12">
-	<div class="well">
-		<%= travel_text(trip.group_dynamics, trip.group_nationality, trip.group_count, trip.group_age_min, trip.group_age_max).html_safe %>
-		<%= link_to "view", trip %>
+<div class="row" style="margin-bottom:5px;">
+	<div class="col-md-1 no-padding" style="background:grey;">
+		<div class="center">
+			<i class="fa fa-clock-o"></i>
+			<br>
+			<% if trip.departs_at.present? %>
+				<%= time_ago_in_words(trip.departs_at)  %>
+			<% elsif trip.departing_category.present? %>
+				<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
+			<% else %>
+				tbd
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-1 no-padding" style="background:grey;">
+		<div class="center">
+			<i class="fa fa-group"></i>
+			<br>
+			1 spot!
+		</div>
+	</div>
+	<div class="col-md-1 no-padding" style="background:grey;">
+		<div class="center">
+			Ages
+			<br>
+			<%= trip.group_age_min %>-<%= trip.group_age_max %>
+		</div>
+	</div>
+	<div class="col-md-2 no-padding" style="background:white;">
+		<div class="">
+			<%= Trip::REGIONS[trip.region] %>
+			<br>
+			<% if trip.departs_at.present? && trip.returns_at.present? %>
+				<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
+			<% else %>
+				<%= Trip::DURATIONS[trip.duration] %>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-2 no-padding" style="background:white;">
+		<% if trip.user.fb_image.present? %>
+			<% img_path = "#{trip.user.fb_image}" + "?type=normal"  %>
+		<% else %>
+			<% img_path = "blank_avatar.png"  %>
+		<% end %>
+		<%= link_to trip.user do %>
+			<%= image_tag(img_path, class: "image", size: "40x40") %>
+		<% end %>
+	</div>
+	<div class="col-md-4">
+		<i class="fa fa-map-marker"></i>
+		<%= trip.departs_to %>
+	</div>
+	<div class="col-md-1">
+		<%= link_to "view", trip, class: "btn btn-sm btn-default" %>
 	</div>
 </div>

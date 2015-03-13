@@ -7,11 +7,9 @@
 			<div class="row">
 				<% if @trips.any? %>
 					<div class="col-md-10 col-md-offset-1">
-						<div class="row">
-							<% @trips.each do |trip| %>
-								<%= render "trips/well", trip: trip %>
-							<% end %>
-						</div>
+						<% @trips.each do |trip| %>
+							<%= render "trips/list_item", trip: trip %>
+						<% end %>
 					</div>
 				<% else %>
 					<div class="col-md-12">
