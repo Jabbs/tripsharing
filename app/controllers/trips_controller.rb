@@ -113,7 +113,7 @@ class TripsController < ApplicationController
                                    :duration_in_days, :price_dollars_low, :price_dollars_high, :departs_at, :currency, :group_dynamics,
                                    :region, :private, :seeking_type, :group_count, :duration, :time_flexibility, :departs_from, :departs_to,
                                    :group_departing_proximity, :group_relationship_status, :group_drinking, :group_personality, :group_nationality,
-                                   :departing_category, :reason, :returns_at, :tag_list,
+                                   :departing_category, :reason, :returns_at, :tag_list, :default_image,
                                    image_attachments_attributes: [:image, :description, :_destroy],
                                    stops_attributes: [:to_iata, :from_iata, :to_name, :from_name, :transportation_type, :order, :to_date, :from_date],
                                    locations_attributes: [:address1, :address2, :city, :country, 

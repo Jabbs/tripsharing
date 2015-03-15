@@ -478,6 +478,28 @@ h2.choice.inactive a {
 	color: #E4E3D8;
 	margin: 50px;
 }
+.trip-well {
+	background: $white;
+	margin-bottom: 20px;
+	.trip-name {
+		height:0px;
+		padding: 10px;
+		position:relative;
+		top:-84px;
+		line-height: 130%;
+		text-shadow: 1px 1px black;
+		a {color: $white;}
+		a:hover {text-decoration:none;}
+	}
+	.trip-well-body {
+		min-height: 200px;
+	}
+	box-shadow: 3px 3px 2px #888888;
+}
+.hide-overflow-87 {
+	height: 87px;
+	overflow: hidden;
+}
 .build-trip-well {
 	padding-top:0px;
 	margin-top:40px;
@@ -632,6 +654,17 @@ a.grey-link {
 	-moz-border-radius: 5em;
 	border-radius: 5em;
 }
+
+.circle-salmon {
+	background: $salmon;
+  border: 2px solid $white;
+  -webkit-border-radius: 5em;
+	-moz-border-radius: 5em;
+	border-radius: 5em;
+	height: 50px;
+	width: 50px;
+}
+
 .questionmark {
   height:56px;
   width:56px;

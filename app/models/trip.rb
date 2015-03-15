@@ -20,6 +20,7 @@ class Trip < ActiveRecord::Base
   accepts_nested_attributes_for :taggings, allow_destroy: true
   
   after_save :create_first_stop
+  before_create :add_default_image
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
@@ -126,6 +127,10 @@ class Trip < ActiveRecord::Base
     unless self.stops.any? && self.departs_to.present?
       Stop.create_from_trip(self)
     end
+  end
+  
+  def add_default_image
+    self.default_image = "koh_phi_phi_thailand.jpg"
   end
   
   def switch_to_state(state)

@@ -63,7 +63,6 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div style="margin-top:0px;">
-
 							<% if current_user && current_user == @trip.user %>
 								<div class="no-height">
 									<a href="#" type="button" class="grey-link bigger" style="font-family:inherit;" data-toggle="modal" data-target="#tripImageModal">
@@ -74,7 +73,7 @@
 							<% if @trip.image_attachments.count != 0 %>
 								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic", title: "cover photo").to_s %>
 							<% else %>
-								<%= image_tag "trip_defaults/koh_phi_phi_thailand.jpg", class: "img-responsive trip-pic", title: "cover photo" %>
+								<%= image_tag "trip_defaults/" + @trip.default_image + ".jpg", class: "img-responsive trip-pic", title: "cover photo" %>
 							<% end %>
 						</div>
 					</div>

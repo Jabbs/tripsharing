@@ -37,17 +37,18 @@
 			<% end %>
 		</div>
 	</div>
-	<div class="col-md-2 no-padding" style="background:white;">
+	<div class="col-md-4 no-padding" style="background:white;">
+		<div class="circle-salmon"></div>
 		<% if trip.user.fb_image.present? %>
-			<% img_path = "#{trip.user.fb_image}" + "?type=normal"  %>
+			<% img_path = "#{trip.user.fb_image}" + "?type=small"  %>
 		<% else %>
 			<% img_path = "blank_avatar.png"  %>
 		<% end %>
 		<%= link_to trip.user do %>
-			<%= image_tag(img_path, class: "image", size: "40x40") %>
+			<%= image_tag(img_path, class: "image") %>
 		<% end %>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-2">
 		<i class="fa fa-map-marker"></i>
 		<%= trip.departs_to %>
 	</div>
