@@ -14,37 +14,84 @@
 	  <% else %>
 	    <% image_path = "trip_defaults/" + trip.default_image + "_small.jpg" %>
 	  <% end %>
-		<div class="hide-overflow-87">
-			<%= link_to trip do %>
-				<%= image_tag(image_path, class: "img-responsive", title: trip.name).to_s %>
-			<% end %>
-		</div>
 		<div class="trip-name">
 			<%= link_to trip do %>
-				<%= truncate(trip.name, length: 100) %>
+				<%= truncate(trip.name, length: 90) %>
 			<% end %>
 		</div>
+		<div class="hide-overflow-87">
+			<div class="overlay-trip">
+				<%= link_to trip do %>
+					<%= image_tag(image_path, class: "img-responsive", title: trip.name).to_s %>
+				<% end %>
+			</div>
+		</div>
 		<div class="trip-well-body">
-		  <div class="icons">
-		    <div class="black">
-		      <i class="icon-map-marker" style="margin-left:.2em;margin-right:.7em;"></i>
-		      Chicago,
-					<%= trip.region %>
-		      <br/>
-					 <i class="icon-group" style="margin-right:.2em;"></i>
-					<%= trip.group_count %>
+			<div class="row">
+				<div class="col-md-12">
+					<% if trip.user.fb_image.present? %>
+						<% img_path = "#{trip.user.fb_image}" + "?type=small"  %>
+					<% else %>
+						<% img_path = "blank_avatar.png"  %>
+					<% end %>
+					<%= link_to trip.user, class: "no-decoration" do %>
+						<%= image_tag(img_path, class: "image") %>
+					<% end %>
+					<i class="fa fa-plus"></i>
+					<span class="big">3 SPOTS</span>
+				</div>
+			</div>
+			<div class="row" style="margin-top:10px; height: 55px;">
+				<div class="col-md-6">
+					<i class="fa fa-clock-o" style="margin-left:1px;margin-right:2px;"></i>
+					<% if trip.departs_at.present? %>
+						<%= time_ago_in_words(trip.departs_at)  %>
+					<% elsif trip.departing_category.present? %>
+						<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
+					<% else %>
+						tbd
+					<% end %>
 					<br>
-					<i class="icon-facebook" style="margin-left:.2em;margin-right:.7em;"></i>
-					<%= pluralize(["2","3","4","5","6","7"].shuffle.first.to_i, "mutual friends") %>
-					<div class="no-height">
-						<div class="right">
-							<div style="position:relative; bottom:20px;">
-								<%= "$" * ["1","2","3"].shuffle.first.to_i %>
-							</div>
-						</div>
+					<i class="fa fa-group"></i>
+					Ages <%= trip.group_age_min %>-<%= trip.group_age_max %>
+				</div>
+				<div class="col-md-6">
+					<div class="pull-right">
+						<%= Trip::REGIONS[trip.region] %>
 					</div>
-		    </div>
-		  </div>
+					<br>
+					<div class="pull-right">
+						<% if trip.departs_at.present? && trip.returns_at.present? %>
+							<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
+						<% else %>
+							<%= Trip::DURATIONS[trip.duration] %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="trip-first-stop">
+				<div class="row">
+					<div class="col-md-12">
+						<small>first stop:</small><br>
+						<div class="trip-departs-to">
+							<i class="fa fa-map-marker" style="margin-left:4px;margin-right:2px;"></i>
+							<small>
+								<% if trip.departs_to.present? %>
+									<%= trip.try(:departs_to) %>
+								<% else %>
+									Unknown
+								<% end %>
+							</small>
+						</div>
+						<i class='fa fa-calendar' style="margin-left:2px;margin-right:1px;"></i>
+						<% if trip.departs_at.present? %>
+							<%= trip.departs_at.strftime('%-m/%d/%y') %>
+						<% else %>
+							tbd
+						<% end %>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

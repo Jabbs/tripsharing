@@ -139,7 +139,12 @@ h4 { line-height: 1.2em; }
 .left { text-align: left; }
 .pointer { cursor: pointer; }
 .no-pointer { cursor: auto; }
-.no-decoration { text-decoration: none; }
+.no-decoration {
+	text-decoration: none;
+	&:hover {text-decoration: none;}
+	a {text-decoration: none;}
+	a:hover {text-decoration: none;}
+}
 .left-border { border-left: 1px solid black;}
 .underline { text-decoration: underline; }
 .small-padding { padding: 10px; }
@@ -387,7 +392,7 @@ h2.choice.inactive a {
 //	background: url("clouds.jpg");
 }
 .dash-background {
-	min-height:600px;
+	min-height:900px;
 	padding-right:0px;
 	padding-left:0px;
 	padding-top:20px;
@@ -483,23 +488,40 @@ h2.choice.inactive a {
 	margin-bottom: 20px;
 	.trip-name {
 		height:0px;
-		padding: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
 		position:relative;
-		top:-84px;
+		z-index:10;
+		top:10px;
 		line-height: 130%;
 		text-shadow: 1px 1px black;
 		a {color: $white;}
 		a:hover {text-decoration:none;}
 	}
 	.trip-well-body {
-		min-height: 200px;
+		min-height: 146x;
+		padding:5px;
+		.trip-first-stop {
+			margin-top:8px;
+			padding-top:5px;
+			min-height: 80px;
+			border-top: 1px dotted $grey_dark;
+			.trip-departs-to {height:18px; overflow: hidden;margin-bottom:20px;}
+		}
 	}
 	box-shadow: 3px 3px 2px #888888;
 }
 .hide-overflow-87 {
 	height: 87px;
-	overflow: hidden;
+	overflow:hidden;
 }
+.hide-overflow-87:hover .overlay-trip {
+	background-color: black;
+}
+.hide-overflow-87:hover img {
+  opacity: 0.8;
+}
+
 .build-trip-well {
 	padding-top:0px;
 	margin-top:40px;
