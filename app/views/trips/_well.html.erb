@@ -1,5 +1,5 @@
 <div class="col-md-4">
-	<div class="trip-well active">
+	<div class="trip-well">
 	  <% if trip.inactive? %>
 	    <div class="no-height">
 	      <div class="trip-status grey-background">
@@ -14,17 +14,15 @@
 	  <% else %>
 	    <% image_path = "trip_defaults/" + trip.default_image + "_small.jpg" %>
 	  <% end %>
-		<div class="trip-name">
-			<%= link_to trip do %>
-				<%= truncate(trip.name, length: 90) %>
-			<% end %>
-		</div>
 		<div class="hide-overflow-87">
-			<div class="overlay-trip">
+			<div class="trip-name">
 				<%= link_to trip do %>
-					<%= image_tag(image_path, class: "img-responsive", title: trip.name).to_s %>
+					<%= truncate(trip.name, length: 90) %>
 				<% end %>
 			</div>
+			<%= link_to trip do %>
+				<%= image_tag(image_path, class: "img-responsive", title: trip.name).to_s %>
+			<% end %>
 		</div>
 		<div class="trip-well-body">
 			<div class="row">
@@ -35,14 +33,16 @@
 						<% img_path = "blank_avatar.png"  %>
 					<% end %>
 					<%= link_to trip.user, class: "no-decoration" do %>
-						<%= image_tag(img_path, class: "image") %>
+						<%= image_tag(img_path, class: "image", title: "#{trip.user.first_name}, #{trip.user.age}, #{trip.user.gender.capitalize}") %>
 					<% end %>
-					<i class="fa fa-plus"></i>
-					<span class="big">3 SPOTS</span>
+					<%= link_to trip, class: "grey-dark-link" do %>
+						<i class="fa fa-plus"></i>
+						<span class="big"><%= spot_count(trip.group_count) %></span>
+					<% end %>
 				</div>
 			</div>
-			<div class="row" style="margin-top:10px; height: 55px;">
-				<div class="col-md-6">
+			<div class="row" style="margin-top:10px; height: 60px;overflow:hidden;">
+				<div class="col-md-7">
 					<i class="fa fa-clock-o" style="margin-left:1px;margin-right:2px;"></i>
 					<% if trip.departs_at.present? %>
 						<%= time_ago_in_words(trip.departs_at)  %>
@@ -53,9 +53,9 @@
 					<% end %>
 					<br>
 					<i class="fa fa-group"></i>
-					Ages <%= trip.group_age_min %>-<%= trip.group_age_max %>
+					Ages <%= age_text(trip.group_age_min, trip.group_age_max) %>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-5">
 					<div class="pull-right">
 						<%= Trip::REGIONS[trip.region] %>
 					</div>

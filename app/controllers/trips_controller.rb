@@ -24,7 +24,7 @@ class TripsController < ApplicationController
     else
       @trips = Trip.where(state: "2").order("created_at DESC").paginate(page: params[:page], per_page: 9)
     end
-    @my_trips = current_user.trips
+    @my_trips = current_user.trips.where().not(state: "4")
   end
   
   def remove_images
@@ -103,6 +103,13 @@ class TripsController < ApplicationController
     @trip.destroy
     
     redirect_to root_path, alert: "The Trip has been removed."
+  end
+  
+  def deactivate
+    @trip = Trip.friendly.find(params[:trip_id])
+    @trip.deactivate
+    
+    redirect_to @trip, notice: "This Trip has been deactivated."
   end
   
   private

@@ -3,14 +3,18 @@
 		<div class="row">
 			<div class="trip-bar">
 				<h4 class="no-margin" style="line-height:200%;">
-					<div id="travel-text" class="inline">
-						<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
-					</div>
-					<% if current_user && current_user == @trip.user %>
-						<div id="trip-travel-text-form" style="display:none;">
-							<%= render "trips/travel_text_form" %>
+					<% if @trip.active? %>
+						<div id="travel-text" class="inline">
+							<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
 						</div>
-						<small><%= link_to "change", "#", id: "edit-travel-text", class: "grey-link" %></small>
+						<% if current_user && current_user == @trip.user %>
+							<div id="trip-travel-text-form" style="display:none;">
+								<%= render "trips/travel_text_form" %>
+							</div>
+							<small><%= link_to "change", "#", id: "edit-travel-text", class: "grey-link" %></small>
+						<% end %>
+					<% else %>
+						THIS TRIP IS INACTIVE
 					<% end %>
 				</h4>
 			</div>
@@ -37,7 +41,7 @@
 							<% end %>
 							<%= Trip::REGIONS[@trip.region] %>
 							<small style="font-size:60%;">
-								<% if current_user && current_user == @trip.user %>
+								<% if current_user && current_user == @trip.user && @trip.active? %>
 									<a href="#" type="button" class="grey-link" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
 									 change
 									</a>
@@ -63,17 +67,18 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div style="margin-top:0px;">
-							<% if current_user && current_user == @trip.user %>
+							<% if current_user && current_user == @trip.user && @trip.active? %>
 								<div class="no-height">
 									<a href="#" type="button" class="grey-link bigger" style="font-family:inherit;" data-toggle="modal" data-target="#tripImageModal">
 										<i id="trip-image-modal" class='fa fa-camera' style="margin-left:5px; margin-top:5px;display:none;"></i>
 									</a>
 								</div>
 							<% end %>
+							<% current_user?(@trip.user) ? add_class = "pointer" : add_class = "" %>
 							<% if @trip.image_attachments.count != 0 %>
-								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic", title: "cover photo").to_s %>
+								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic #{add_class}", title: "cover photo").to_s %>
 							<% else %>
-								<%= image_tag "trip_defaults/" + @trip.default_image + ".jpg", class: "img-responsive trip-pic", title: "cover photo" %>
+								<%= image_tag "trip_defaults/" + @trip.default_image + ".jpg", class: "img-responsive trip-pic #{add_class}", title: "cover photo" %>
 							<% end %>
 						</div>
 					</div>
@@ -92,7 +97,7 @@
 									<%= @trip.hashtag_list %>
 								</div>
 							<% end %>
-							<% if current_user && current_user == @trip.user %>
+							<% if current_user && current_user == @trip.user && @trip.active? %>
 								<%= link_to "edit", "#", id: "edit-name-tags", class: "grey-link pull-right", style: "position:relative; top:-1.7em;left:-.5em;" %>
 							<% end %>
 						</div>
@@ -104,17 +109,29 @@
 				<%= render "trips/itinerary" %>
 				<hr style="margin-top:40px;margin-bottom:20px;">
 				<%= render "trips/organizer" %>
-				<hr style="margin-top:40px;margin-bottom:20px;">
-				<%= render "trips/join_request" %>
+				<% if @trip.active? && !current_user?(@trip.user) %>
+					<hr style="margin-top:40px;margin-bottom:20px;">
+					<%= render "trips/join_request" %>
+				<% end %>
 				
 				<div class="row">
 					<div class="col-md-12">
-						<% if @trip.public? %>
+						<% if @trip.public? && @trip.active? %>
 							<hr style="margin-top:50px;margin-bottom:50px;">
 							<div class="center" style="margin-top:30px;margin-bottom:0px;"><%= render "trips/social_media" %></div>
 						<% end %>
 					</div>
 				</div>
+				
+				<% if current_user && current_user == @trip.user && @trip.active? %>
+					<div class="row top-margin">
+						<div class="col-md-12">
+							<div class="center">
+								<small><%= link_to "deactivate my trip", trip_deactivate_path(@trip), method: :delete, data: { confirm: 'Are you sure?' } %></small>
+							</div>
+						</div>
+					</div>
+				<% end %>
 				
 			</div>
 		</div>

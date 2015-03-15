@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :stops
     resources :join_requests, only: [:create]
     match 'remove_images', to: 'trips#remove_images', via: [:delete]
+    match 'deactivate', to: 'trips#deactivate', via: [:delete]
   end
   match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
   match 'airports', to: 'trips#airports', via: [:get]

@@ -8,7 +8,7 @@
 <div id="stops">
 	<%= render @stops %>
 </div>
-<% if current_user && current_user == @trip.user %>
+<% if current_user && current_user == @trip.user && @trip.active? %>
 	<div class="row">
 		<div class="col-md-12">
 			<div id="stop-form" style="display:none;"><%= render "stops/form" %></div>

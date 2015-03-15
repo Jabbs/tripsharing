@@ -57,4 +57,38 @@ module TripsHelper
     end
 
   end
+  
+  def age_text(group_age_min, group_age_max)
+    if group_age_min == "any" && group_age_max == "any"
+      age_text = "Any"
+    elsif group_age_min != "any" && group_age_max != "any"
+      age_text = "#{group_age_min}-#{group_age_max}"
+    elsif group_age_min != "any" && group_age_max == "any"
+      age_text = "#{group_age_min} & up"
+    elsif group_age_min == "any" && group_age_max != "any"
+      age_text = "18-#{group_age_max}"
+    end
+    return age_text
+  end
+  
+  def spot_count(group_count_id)
+    # GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", 
+    #   "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd"}
+    
+    case group_count_id
+    when "1"
+      group_count_text = group_count_id + " SPOT"
+    when "2", "3", "4", "5"
+      group_count_text = group_count_id + " SPOTS"
+    when "6"
+      group_count_text = "10 SPOTS"
+    when "7"
+      group_count_text = "15 SPOTS"
+    when "8"
+      group_count_text = "UNLIMITTED"
+    when "9"
+      group_count_text = "TBD"
+    end
+    return group_count_text
+  end
 end

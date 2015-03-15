@@ -153,6 +153,11 @@ class Trip < ActiveRecord::Base
     save!
   end
   
+  def deactivate
+    self.state = "4"
+    self.save!
+  end
+  
   def solo_trip?
     self.group_dynamics == "5" ? true : false
   end
@@ -166,7 +171,7 @@ class Trip < ActiveRecord::Base
   end
   
   def active?
-    self.state == "2" || "3" ? true : false
+    self.state == "2" || self.state == "3" ? true : false
   end
   
   def public?

@@ -491,12 +491,10 @@ h2.choice.inactive a {
 		padding-left: 10px;
 		padding-right: 10px;
 		position:relative;
-		z-index:10;
 		top:10px;
 		line-height: 130%;
 		text-shadow: 1px 1px black;
 		a {color: $white;}
-		a:hover {text-decoration:none;}
 	}
 	.trip-well-body {
 		min-height: 146x;
@@ -506,7 +504,7 @@ h2.choice.inactive a {
 			padding-top:5px;
 			min-height: 80px;
 			border-top: 1px dotted $grey_dark;
-			.trip-departs-to {height:18px; overflow: hidden;margin-bottom:20px;}
+			.trip-departs-to {height:18px; overflow: hidden;margin-bottom:20px; color: darken($turquoise_dark, 10%);}
 		}
 	}
 	box-shadow: 3px 3px 2px #888888;
@@ -514,12 +512,7 @@ h2.choice.inactive a {
 .hide-overflow-87 {
 	height: 87px;
 	overflow:hidden;
-}
-.hide-overflow-87:hover .overlay-trip {
-	background-color: black;
-}
-.hide-overflow-87:hover img {
-  opacity: 0.8;
+	&:hover .trip-name a {text-decoration: underline;}
 }
 
 .build-trip-well {
@@ -557,7 +550,6 @@ h2.choice.inactive a {
 	.trip-pic {
 		border: 1px solid $grey_dark;
 		clip: rect(0px,60px,200px,0px);
-		&:hover { cursor: pointer;}
 	}
 	.edit-trip-name {
 		background: $white;
@@ -615,6 +607,10 @@ h2.choice.inactive a {
 a.grey-link {
 	color:darken($grey, 10%);
 	&:hover {text-decoration:none;color: $grey_dark;}
+}
+a.grey-dark-link {
+	color: $grey_dark;
+	&:hover {text-decoration:none;color: darken($grey_dark, 10%);}
 }
 .airport {
 	margin-right:2px;
