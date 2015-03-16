@@ -41,31 +41,37 @@
 					<% end %>
 				</div>
 			</div>
-			<div class="row" style="margin-top:10px; height: 60px;overflow:hidden;">
-				<div class="col-md-7">
-					<i class="fa fa-clock-o" style="margin-left:1px;margin-right:2px;"></i>
-					<% if trip.departs_at.present? %>
-						<%= time_ago_in_words(trip.departs_at)  %>
-					<% elsif trip.departing_category.present? %>
-						<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
-					<% else %>
-						tbd
-					<% end %>
-					<br>
-					<i class="fa fa-group"></i>
-					Ages <%= age_text(trip.group_age_min, trip.group_age_max) %>
-				</div>
-				<div class="col-md-5">
-					<div class="pull-right">
-						<%= Trip::REGIONS[trip.region] %>
-					</div>
-					<br>
-					<div class="pull-right">
-						<% if trip.departs_at.present? && trip.returns_at.present? %>
-							<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
+			<div style="height:60px; margin-top:10px; overflow:hidden;">
+				<div class="row">
+					<div class="col-md-5">
+						<i class="fa fa-clock-o" style="margin-left:1px;margin-right:2px;"></i>
+						<% if trip.departs_at.present? %>
+							<%= time_ago_in_words(trip.departs_at)  %>
+						<% elsif trip.departing_category.present? %>
+							<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
 						<% else %>
-							<%= Trip::DURATIONS[trip.duration] %>
+							tbd
 						<% end %>
+					</div>
+					<div class="col-md-7">
+						<div class="pull-right">
+							<%= Trip::REGIONS[trip.region] %>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-7">
+						<i class="fa fa-group"></i>
+						Ages <%= age_text(trip.group_age_min, trip.group_age_max) %>
+					</div>
+					<div class="col-md-5">
+						<div class="pull-right">
+							<% if trip.departs_at.present? && trip.returns_at.present? %>
+								<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
+							<% else %>
+								<%= Trip::DURATIONS[trip.duration] %>
+							<% end %>
+						</div>
 					</div>
 				</div>
 			</div>
