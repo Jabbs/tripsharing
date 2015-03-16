@@ -171,6 +171,9 @@ h4 { line-height: 1.2em; }
 
 // OVERRIDES
 .alert {}
+.panel {
+	border: 1px dotted;
+}
 .modal-open .modal,.btn:focus{
     outline:none!important;
 }
