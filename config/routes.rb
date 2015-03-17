@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :interests
     get 'profile'
     get 'join'
+    get 'trips'
     # resources :trips
   end
   resources :password_resets, only: [:new, :create, :edit, :update]

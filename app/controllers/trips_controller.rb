@@ -24,7 +24,6 @@ class TripsController < ApplicationController
     else
       @trips = Trip.where(state: "2").order("created_at DESC").paginate(page: params[:page], per_page: 9)
     end
-    @my_trips = current_user.trips.where().not(state: "4")
   end
   
   def remove_images

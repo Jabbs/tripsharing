@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, except: [:create]
-  before_filter :correct_user, except: [:index, :create]
+  before_filter :correct_user, only: [:profile, :join, :update]
   before_filter :admin_user, only: [:index]
-  before_filter :check_complete_interests, only: [:profile]
+  # before_filter :check_complete_interests, only: [:profile]
   
   def show
     @user = User.friendly.find(params[:id])
@@ -21,6 +21,11 @@ class UsersController < ApplicationController
   
   def index
     @users = User.order("created_at DESC")
+  end
+  
+  def trips
+    @user = User.friendly.find(params[:user_id])
+    @my_trips = @user.trips.where().not(state: "4")
   end
   
   def join
@@ -56,10 +61,6 @@ class UsersController < ApplicationController
     else
       redirect_to user_profile_path(current_user), alert: "We encountered an error."
     end
-  end
-  
-  def browse
-    
   end
   
   private

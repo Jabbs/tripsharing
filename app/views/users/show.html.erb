@@ -2,15 +2,17 @@
 	<div class="row top-margin">
 		<div class="col-md-3">
 			<div style="margin-bottom:5px;">
-				<% if @user.fb_image.present? %>
-					<%= image_tag "#{@user.fb_image}" + "?type=large", class: "profile-pic" %>
-				<% else %>
-					<%= image_tag "blank_avatar.png", class: "profile-pic" %>
+				<%= link_to @user do %>
+					<% if @user.fb_image.present? %>
+						<%= image_tag "#{@user.fb_image}" + "?type=large", class: "profile-pic", title: @user.full_name %>
+					<% else %>
+						<%= image_tag "blank_avatar.png", class: "profile-pic", title: @user.full_name %>
+					<% end %>
 				<% end %>
 			</div>
 			<ul class="list-unstyled">
-				<li><%= link_to "About", user_profile_path(@user) %></li>
-				<li><%= link_to "Trips (#{@user.trips.count})" %></li>
+				<li><%= link_to "About", @user %></li>
+				<li><%= link_to "Trips (#{@user.trips.count})", user_trips_path(@user) %></li>
 			</ul>
 		</div>
 		<div class="col-md-9">
