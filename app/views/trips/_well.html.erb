@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-3">
 	<div class="trip-well">
 	  <% if trip.inactive? %>
 	    <div class="no-height">
@@ -10,9 +10,9 @@
 	    </div>
 	  <% end %>
 	  <% if trip.image_attachments.any? %>
-			<% image_path = trip.image_attachments.first.image.url(:medium) %>
+			<% image_path = trip.image_attachments.first.image %>
 	  <% else %>
-	    <% image_path = "trip_defaults/" + trip.default_image + "_small.jpg" %>
+	    <% image_path = "trip_defaults/" + trip.default_image + ".jpg" %>
 	  <% end %>
 		<div class="hide-overflow-87">
 			<div class="trip-name">
@@ -43,34 +43,44 @@
 			</div>
 			<div style="height:60px; margin-top:10px; overflow:hidden;">
 				<div class="row">
-					<div class="col-md-5">
-						<i class="fa fa-clock-o" style="margin-left:1px;margin-right:2px;"></i>
-						<% if trip.departs_at.present? %>
-							<%= time_ago_in_words(trip.departs_at)  %>
-						<% elsif trip.departing_category.present? %>
-							<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
-						<% else %>
-							tbd
-						<% end %>
-					</div>
-					<div class="col-md-7">
-						<div class="pull-right">
-							<%= Trip::REGIONS[trip.region] %>
+					<div class="col-xs-6">
+						<div class="row">
+							<div class="col-sm-12">
+								<i class="fa fa-clock-o" style="margin-left:1px;margin-right:2px;"></i>
+								<% if trip.departs_at.present? %>
+									<%= time_ago_in_words(trip.departs_at)  %>
+								<% elsif trip.departing_category.present? %>
+									<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
+								<% else %>
+									tbd
+								<% end %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<i class="fa fa-group"></i>
+								Ages <%= age_text(trip.group_age_min, trip.group_age_max) %>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-7">
-						<i class="fa fa-group"></i>
-						Ages <%= age_text(trip.group_age_min, trip.group_age_max) %>
-					</div>
-					<div class="col-md-5">
-						<div class="pull-right">
-							<% if trip.departs_at.present? && trip.returns_at.present? %>
-								<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
-							<% else %>
-								<%= Trip::DURATIONS[trip.duration] %>
-							<% end %>
+					<div class="col-xs-6">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="pull-right">
+									<%= Trip::REGIONS[trip.region] %>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="pull-right">
+									<% if trip.departs_at.present? && trip.returns_at.present? %>
+										<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
+									<% else %>
+										<%= Trip::DURATIONS[trip.duration] %>
+									<% end %>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

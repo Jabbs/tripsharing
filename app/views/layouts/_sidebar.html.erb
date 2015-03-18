@@ -1,33 +1,28 @@
 <!-- begin #sidebar -->
 <div class="sidebar">
-	<div class="row">
-		<div class="col-md-12">
-			<h2>SEARCH:</h2>
-		</div>
-	</div>
-	<div class="row" style="padding-left:20px;margin-top:10px;">
+	<div class="row" style="padding-left:4px;margin-top:10px;">
 		<div class="col-md-12">
 			<%= form_tag trips_path, :method => 'get' do %>
 				<%= hidden_field_tag :search, "true" %>
-				<div class="row"><div class="col-md-12">Show trips going to:</div></div>
+				<div class="row"><div class="col-md-12">Going:</div></div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-12">
-						<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "anywhere" } %>
+						<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "anywhere", style: "width:95%;" } %>
 					</div>
 				</div>
 				<div class="row"><div class="col-md-12" style="margin-bottom:10px;">Departing:</div></div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-2">From:</div>
-					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="departs_at" data-date-format="mm/dd/yyyy" value="<%= params[:departs_at] %>"></div>
+					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="departs_at" data-date-format="mm/dd/yyyy" value="<%= params[:departs_at] %>" style="width:124%;"></div>
 				</div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-2">To:</div>
-					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="returns_at" data-date-format="mm/dd/yyyy" value="<%= params[:returns_at] %>"></div>
+					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="returns_at" data-date-format="mm/dd/yyyy" value="<%= params[:returns_at] %>" style="width:124%;"></div>
 				</div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-12">
 						<button class="btn btn-default btn-sm" data-disable-with="Please wait..." style="margin-right:10px;">
-		          <i class="fa fa-search"></i> Search
+		          <i class="fa fa-search"></i> Find
 		        </button>
 					</div>
 				</div>
