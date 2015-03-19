@@ -5,6 +5,23 @@ class TripsController < ApplicationController
   before_filter :redirect_inactive_trip, only: [:show]
   before_filter :redirect_incomplete_trip, only: [:show]
   
+  def user_trips
+    @user = User.friendly.find(params[:user_id])
+    
+    if params[:incomplete]
+      @trips = @user.trips.where(state: "1")
+      redirect_to user_trips_path(@user) if !current_user?(@user)
+    elsif params[:active]
+      @trips = @user.trips.where(state: "2")
+    elsif params[:in_progress]
+      @trips = @user.trips.where(state: "6")
+    elsif params[:completed]
+      @trips = @user.trips.where(state: "5")
+    else
+      @trips = @user.trips
+    end
+  end
+  
   def lonelyplanet
     @lp_trips = Trip.get_lonelyplanet_trips
   end

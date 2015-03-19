@@ -100,6 +100,7 @@ html,body {
 }
 body {
   color: $body_grey;
+	background: $beige;
 }
 #main {
 	min-height:600px;
@@ -614,6 +615,14 @@ a.grey-link {
 }
 a.grey-dark-link {
 	color: $grey_dark;
+	&:hover {text-decoration:none;color: darken($grey_dark, 10%);}
+}
+a.grey-dark-link.on {
+	color: $salmon;
+	&:hover {text-decoration:none;color: darken($salmon, 10%);}
+}
+a.grey-very-dark-link {
+	color: darken($grey_dark, 10%);
 	&:hover {text-decoration:none;color: darken($grey_dark, 10%);}
 }
 .airport {

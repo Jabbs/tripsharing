@@ -1,13 +1,13 @@
-<% user.nationality.present? ? n = "#{User::NATIONALITIES[user.nationality]}, " : n = "" %>
-<%= user.age %>, <%= n %><%= user.gender.capitalize %><br>
+<i class='fa fa-venus-mars' style="margin-right:7px;"></i> <%= user.age %>, <%= user.gender.capitalize %><br>
 <% if user.occupation? %>
+	<i class='fa fa-briefcase' style="margin-right:9px;"></i>
 	<%= user.occupation %><br>
 <% end %>
 <% if user.location? %>
-	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
+	<i class='fa fa-map-marker' style="margin-left:3px;margin-right:12px;"></i>
 	<%= user.try(:location) %><br>
 <% elsif user.fb_location? %>
-	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
+	<i class='fa fa-map-marker' style="margin-left:3px;margin-right:12px;"></i>
 	<%= user.try(:fb_location) %><br>
 <% end %>
 

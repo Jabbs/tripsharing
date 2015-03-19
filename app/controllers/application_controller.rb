@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   end
   before_filter :ensure_domain
   before_filter :instantiate_new_trip
+  before_filter :get_trip_counts
   # before_filter :set_airports
   protect_from_forgery
   include SessionsHelper
@@ -28,6 +29,15 @@ class ApplicationController < ActionController::Base
           @survey.save
         end
       end
+    end
+  end
+  
+  def get_trip_counts
+    if current_user
+    	@my_trips_incomplete_count = current_user.trips.where(state: "1").size
+    	@my_trips_active_count = current_user.trips.where(state: "2").size
+    	@my_trips_in_progress_count = current_user.trips.where(state: "6").size
+    	@my_trips_complete_count = current_user.trips.where(state: "5").size
     end
   end
   

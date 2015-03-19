@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :full_name, use: [:slugged, :history]
+  friendly_id :number_id, use: [:slugged, :history]
   has_secure_password
   FACES = ["calebogden","adellecharles","pixeliris","boheme","michzen","madedigital","geeftvorm","jennyshen","alv",
     "chloepark","lovskogen","teylorfeliz","nickcouto","jobharmsen","hollowellme","heyjoyhey","zwitscherlise","visionarty","shibu_ravi",
@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
   has_one :survey
   
   # callbacks
+  before_create { generate_token(:number_id) }
   before_create { generate_token(:auth_token) }
   before_save :correct_case_of_inputs
   # after_commit :send_verification_email, on: :create
@@ -172,6 +173,12 @@ class User < ActiveRecord::Base
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+  
+  def generate_number(column)
+    begin
+      self[column] = rand(100000000000).to_s
     end while User.exists?(column => self[column])
   end
   

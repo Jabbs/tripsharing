@@ -8,7 +8,9 @@
 				<% if @trips.any? %>
 					<div class="col-md-12">
 						<% @trips.each do |trip| %>
-							<%= render "trips/well", trip: trip %>
+							<div class="col-md-3">
+								<%= render "trips/well", trip: trip %>
+							</div>
 						<% end %>
 					</div>
 				<% else %>

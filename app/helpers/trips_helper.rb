@@ -91,4 +91,12 @@ module TripsHelper
     end
     return group_count_text
   end
+  
+  def get_tab_class(query_param, link)
+    if query_param == link
+      return "on"
+    else
+      return ""
+    end
+  end
 end

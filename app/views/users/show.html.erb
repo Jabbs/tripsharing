@@ -4,7 +4,10 @@
 			<%= render 'users/sidebar' %>
 		</div>
 		<div class="col-md-9">
-			<h3 style="margin-top:5px;margin-bottom:10px;"><span class="dots"><%= @user.full_name %></span></h3>
+			<h3 style="margin-top:5px;margin-bottom:10px;">
+				<span class="dots"><%= @user.full_name %></span>
+				<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(@user), class: "grey-link", title: "edit profile" %>
+			</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default" style="margin-top:10px;">
@@ -18,12 +21,12 @@
 				</div>
 			</div>
 			
-			<% if @shared_likes.any? %>
+			<% if @shared_likes.any? && !current_user?(@user) %>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-						    <h3 class="panel-title"><%= pluralize(@shared_likes.size, "Shared Interest") %></h3>
+						    <h3 class="panel-title"><%= pluralize(@shared_likes.size, "Shared Facebook Interest") %></h3>
 						  </div>
 						  <div class="panel-body">
 						    <% @shared_likes.first(20).each do |like| %>
@@ -34,12 +37,12 @@
 					</div>
 				</div>
 			<% end %>
-			<% if @mutual_friends.any? %>
+			<% if @mutual_friends.any? && !current_user?(@user) %>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-						    <h3 class="panel-title"><%= pluralize(@mutual_friends.size, "Mutual Friend") %></h3>
+						    <h3 class="panel-title"><%= pluralize(@mutual_friends.size, "Mutual Facebook Friend") %></h3>
 						  </div>
 						  <div class="panel-body">
 						    <% @mutual_friends.first(20).each do |friend| %>
