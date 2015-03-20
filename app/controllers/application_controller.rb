@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_domain
   before_filter :instantiate_new_trip
   before_filter :get_trip_counts
+  before_filter :record_user_activity
   # before_filter :set_airports
   protect_from_forgery
   include SessionsHelper
@@ -52,5 +53,13 @@ class ApplicationController < ActionController::Base
       @new_trip = Trip.new
     end
   end
+  
+  private
+
+    def record_user_activity
+      if current_user
+        current_user.touch :last_sign_in_at
+      end
+    end
   
 end

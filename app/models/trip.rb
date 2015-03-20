@@ -130,7 +130,7 @@ class Trip < ActiveRecord::Base
   end
   
   def add_default_image
-    self.default_image = "koh_phi_phi_thailand.jpg"
+    self.default_image = "koh_phi_phi_thailand"
   end
   
   def switch_to_state(state)

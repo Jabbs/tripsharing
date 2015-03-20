@@ -5,6 +5,12 @@
   </a>
 </li>
 <li>
+  <a href="<%= edit_user_path(current_user) %>">
+    <i class="fa fa-gear" style="margin-right:.25em;"></i>
+   	Settings
+  </a>
+</li>
+<li>
   <a data-method="delete" href="<%= logout_path %>" rel="nofollow">
     <i class="fa fa-sign-out" method="delete" style="margin-right:.3em;"></i>
     Log Out
