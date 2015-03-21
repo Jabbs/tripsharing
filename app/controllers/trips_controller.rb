@@ -7,7 +7,7 @@ class TripsController < ApplicationController
   
   def user_trips
     @user = User.friendly.find(params[:user_id])
-    
+    set_trips_counts(@user)
     if params[:incomplete]
       @trips = @user.trips.where(state: "1")
       redirect_to user_trips_path(@user) if !current_user?(@user)

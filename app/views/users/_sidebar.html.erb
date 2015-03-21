@@ -3,7 +3,7 @@
 		<% if @user.fb_image.present? %>
 			<%= image_tag "#{@user.fb_image}" + "?type=large", class: "profile-pic", title: @user.full_name %>
 		<% else %>
-			<%= image_tag "blank_avatar.png", class: "profile-pic", title: @user.full_name %>
+			<%= image_tag "blank_avatar.png", class: "profile-pic", title: @user.full_name, size: "200x200" %>
 		<% end %>
 	<% end %>
 </div>
@@ -15,10 +15,13 @@
 <strong><%= link_to "#{trip_text}".html_safe, user_trips_path(@user), class: "grey-very-dark-link" %></strong>
 <% query_param = request.query_parameters.first[0] if request.query_parameters.any? %>
 <ul class="list-unstyled" style="padding-left:17px;">
-	<% if current_user?(@user) %>
-  	<li><%= link_to "Incomplete (#{@my_trips_incomplete_count})", user_trips_path(@user, incomplete: true), class: "grey-dark-link #{get_tab_class(query_param, "incomplete")}" %></li>
+	<% if current_user?(@user) && @trips_incomplete_count != 0 %>
+  	<li><%= link_to "Incomplete (#{@trips_incomplete_count})", user_trips_path(@user, incomplete: true), class: "grey-dark-link #{get_tab_class(query_param, "incomplete")}" %></li>
 	<% end %>
-	<li><%= link_to "Accepting Companions (#{@my_trips_active_count})", user_trips_path(@user, active: true), class: "grey-dark-link #{get_tab_class(query_param, "active")}" %></li>
-	<li><%= link_to "In Progress (#{@my_trips_in_progress_count})", user_trips_path(@user, in_progress: true), class: "grey-dark-link #{get_tab_class(query_param, "in_progress")}" %></li>
-	<li><%= link_to "Completed (#{@my_trips_complete_count})", user_trips_path(@user, completed: true), class: "grey-dark-link #{get_tab_class(query_param, "completed")}" %></li>
+	<li><%= link_to "Accepting Companions (#{@trips_active_count})", user_trips_path(@user, active: true), class: "grey-dark-link #{get_tab_class(query_param, "active")}" %></li>
+	<li><%= link_to "In Progress (#{@trips_in_progress_count})", user_trips_path(@user, in_progress: true), class: "grey-dark-link #{get_tab_class(query_param, "in_progress")}" %></li>
+	<li><%= link_to "Completed (#{@trips_complete_count})", user_trips_path(@user, completed: true), class: "grey-dark-link #{get_tab_class(query_param, "completed")}" %></li>
+	<% if current_user?(@user) %>
+		<li><a href="" data-toggle="modal" data-target="#tripNewModal" href="#" role="button">new +</a></li>
+	<% end %>
 </ul>

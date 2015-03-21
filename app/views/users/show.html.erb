@@ -6,7 +6,9 @@
 		<div class="col-md-9">
 			<h3 style="margin-top:5px;margin-bottom:10px;">
 				<span class="dots"><%= @user.full_name %></span>
-				<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(@user), class: "grey-link", title: "edit profile" %>
+				<% if current_user?(@user) %>
+					<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(@user), class: "grey-link", title: "edit profile" %>
+				<% end %>
 			</h3>
 			<div class="row">
 				<div class="col-md-12">

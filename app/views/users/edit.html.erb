@@ -20,10 +20,22 @@
 					<div class="col-md-12">
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-						    <h3 class="panel-title">Overview</h3>
+						    <h3 class="panel-title">General</h3>
 						  </div>
 						  <div class="panel-body">
-						    <%= f.text_area :bio, placeholder: "Description...", rows: 7, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;margin-bottom:20px;" %>
+								<div class="row">
+									<div class="col-md-2">
+										Status:
+									</div>
+									<div class="col-md-10">
+										<%= f.select :status, User::STATUS_ARRAY %>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<%= f.text_area :bio, placeholder: "Description...", rows: 3, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;" %>
+									</div>
+								</div>
 						  </div>
 						</div>
 					</div>

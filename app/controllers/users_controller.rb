@@ -6,13 +6,20 @@ class UsersController < ApplicationController
   
   def show
     @user = User.friendly.find(params[:id])
-    @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"])
-    @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
-    @cu_graph = Koala::Facebook::API.new(current_user.oauth_token, ENV["FACEBOOK_SECRET"])
-    @user_likes = @graph.get_connections("me", "likes")
-    @cu_likes = @cu_graph.get_connections("me", "likes")
-    @shared_likes = @user_likes + @cu_likes
-    @shared_likes = @shared_likes.select {|e| @shared_likes.count(e) > 1}.uniq
+    set_trips_counts(@user)
+    @shared_likes = []; @mutual_friends = []
+    @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"]) if @user.oauth_token
+    if @graph && current_user.uid
+      @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
+    end
+    @cu_graph = Koala::Facebook::API.new(current_user.oauth_token, ENV["FACEBOOK_SECRET"]) if current_user.oauth_token
+    if @cu_graph && @graph
+      @user_likes = @graph.get_connections("me", "likes")
+      @cu_likes = @cu_graph.get_connections("me", "likes")
+      @shared_likes = @user_likes + @cu_likes
+      @shared_likes = @shared_likes.select {|e| @shared_likes.count(e) > 1}.uniq
+    end
+  rescue Koala::Facebook::AuthenticationError
   end
   
   def profile
@@ -66,7 +73,7 @@ class UsersController < ApplicationController
   private
     
     def user_params
-      params.require(:user).permit(:admin, :auth_token, :birth_year, :email, :fb_hometown, :fb_image, :fb_location, 
+      params.require(:user).permit(:admin, :auth_token, :email, :fb_hometown, :fb_image, :fb_location, 
                       :fb_url, :first_name, :gender, :last_name, :last_sign_in_at, :last_sign_in_ip, :newsletter, 
                       :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, :password,
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 

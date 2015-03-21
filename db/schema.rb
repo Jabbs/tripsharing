@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320143844) do
+ActiveRecord::Schema.define(version: 20150321153108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -207,7 +207,6 @@ ActiveRecord::Schema.define(version: 20150320143844) do
     t.string   "phone"
     t.string   "gender"
     t.boolean  "newsletter",             default: false
-    t.string   "birth_year"
     t.boolean  "subscribed",             default: true
     t.string   "uid"
     t.string   "oauth_token"
@@ -230,12 +229,19 @@ ActiveRecord::Schema.define(version: 20150320143844) do
     t.string   "hometown"
     t.boolean  "send_to_first_trip",     default: false
     t.string   "nationality"
-    t.string   "looking_for"
     t.string   "fb_occupation"
     t.string   "home_airport"
     t.string   "location"
     t.string   "number_id"
     t.text     "activity_trail",         default: "1"
+    t.string   "status",                 default: "1"
+    t.string   "education"
+    t.text     "country_blob"
+    t.text     "language_blob"
+    t.text     "interest_blob"
+    t.string   "preference_food"
+    t.string   "preference_drink"
+    t.string   "preference_activity"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

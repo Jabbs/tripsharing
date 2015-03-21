@@ -39,6 +39,8 @@ gem "koala", "~> 1.11.0rc"
 gem "scrollreveal-rails"
 gem 'autoscaler'
 gem 'jquery-countdown-rails'
+gem 'language_list', '~> 1.1.0'
+gem 'countries'
 
 group :development do
   gem 'letter_opener'

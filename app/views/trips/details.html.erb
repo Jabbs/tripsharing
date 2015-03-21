@@ -44,7 +44,7 @@
 							<%= form_for @trip, html: {class: "form-fancy"} do |f| %>
 								<div id="onboarding-who">
 									<div class="onboarding-section">
-										<h3>WHO WOULD YOU LIKE TO JOIN YOU?</h3>
+										<h3>WHO WOULD YOU LIKE TO JOIN YOU IN <%= Trip::REGIONS[@trip.region].upcase %>?</h3>
 										<hr style="margin-bottom:80px;">
 										<%= render 'trips/onboarding/who', f: f %>
 									</div>
