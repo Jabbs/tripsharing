@@ -64,6 +64,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @user.slug = nil
     if @user.update_attributes(user_params)
+      update_interest_blob
       redirect_to current_user, notice: "Your profile has been updated."
     else
       redirect_to edit_user_path(current_user), alert: "We encountered an error."
@@ -78,7 +79,22 @@ class UsersController < ApplicationController
                       :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, :password,
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
                       :verification_token, :verified, :bio, :tag_line, :welcome_sent_at, :occupation,
-                      :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown, :home_airport, :fb_occupation)
+                      :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown, :home_airport, :fb_occupation,
+                      :status, :location, :education)
+    end
+    
+    def update_interest_blob
+      # example preference_tags {"1"=>"1", "2"=>"2", "3"=>"2", "4"=>"3", "5"=>"3", "6"=>"3"}
+      # example interest_blob "1-3,2-2,3-1,4-2,5-4,6-3"
+      preference_tags = params[:preference_tags]
+      if preference_tags.any?
+        interest_blob = ""
+        preference_tags.each do |p|
+          interest_blob = interest_blob + p[0] + "-" + p[1] + ","
+        end
+        @user.interest_blob = interest_blob.chomp(",")
+        @user.save
+      end
     end
     
     def fix_date_month_order

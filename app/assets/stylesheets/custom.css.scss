@@ -176,10 +176,6 @@ h4 { line-height: 1.2em; }
 label {
 	color: darken($grey_dark, 30%);
 }
-.prefetch input.typeahead {
-	border: 1px solid #CCC;
-	padding-left:3px;
-}
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -285,6 +281,9 @@ input[type="radio"].fancyradio+span:hover {
 input[type="radio"].fancyradio:checked+span{
 	color: $white;
 	background: $salmon;
+}
+input[type="radio"].fancyradio-shell+span {
+	border: 1px solid #CCC;
 }
 .fancy-dark.btn.btn-lg {
 	font-size: 28px;

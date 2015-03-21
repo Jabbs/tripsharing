@@ -111,9 +111,10 @@
 										</div>
 										<div class="radio" style="margin-top:0px;">
 											<% group[2].each do |preference| %>
+												<% @user.interest_blob.include?(group[1] + "-" + preference[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
 												<div class="col-md-2" style="width: 150px;">
 												  <label>
-												    <input type="radio" name="preference_tags[<%= group[0] %>]" class="fancyradio" value="<%= preference[1] %>" style="display:none;">
+												    <input type="radio" name="preference_tags[<%= group[1] %>]" class="fancyradio fancyradio-shell" value="<%= preference[1] %>" style="display:none;" <%= checked_or_no %>>
 														<span><%= preference[0] %></span>
 												  </label>
 												</div>	
@@ -135,6 +136,35 @@
 						  </div>
 						  <div class="panel-body">
 						    
+								<div class="row">
+									<div class="col-md-12">
+										
+										<% User::COUNTRIES_ARRAY.each do |country| %>
+
+												<div class="col-md-6">
+													<div class="radio" style="margin-bottom:2px;">
+													  <label style="padding:0px;">
+													    <input type="radio" name="country_tags[<%= country[1] %>]" class="fancyradio" value="0" checked style="display:none;">
+															<span>no</span>
+													  </label>
+
+													  <label style="padding-left:2px;">
+													    <input type="radio" name="country_tags[<%= country[1] %>]" class="fancyradio" value="1" style="display:none;">
+															<span>yes</span>
+													  </label>
+														<div class="interest" style="position:relative; top:3px;"><%= country[0] %></div>
+													</div>
+												</div>
+
+										<% end %>
+										
+											
+
+										
+										
+									</div>
+								</div>
+						
 						  </div>
 						</div>
 					</div>

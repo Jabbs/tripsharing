@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20150321153108) do
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                                  null: false
+    t.string   "email",                                                      null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "password_digest"
@@ -215,8 +215,8 @@ ActiveRecord::Schema.define(version: 20150321153108) do
     t.string   "fb_image"
     t.string   "fb_url"
     t.string   "fb_location"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.string   "provider"
     t.string   "tag_line"
     t.text     "bio"
@@ -238,10 +238,7 @@ ActiveRecord::Schema.define(version: 20150321153108) do
     t.string   "education"
     t.text     "country_blob"
     t.text     "language_blob"
-    t.text     "interest_blob"
-    t.string   "preference_food"
-    t.string   "preference_drink"
-    t.string   "preference_activity"
+    t.text     "interest_blob",          default: "1-0,2-0,3-0,4-0,5-0,6-0"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
