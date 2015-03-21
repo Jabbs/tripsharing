@@ -126,6 +126,7 @@ h4 { line-height: 1.2em; }
 .no-top-margin { margin-top: 0px; }
 .no-bottom-margin { margin-bottom: 0px; }
 .no-margin { margin: 0; }
+.small-bottom-margin { margin-bottom:10px; }
 .small-left-margin { margin-left:10px; }
 .small-margin { margin-top:3px; margin-bottom:3px; }
 .right-margin { margin-right:3px; }
@@ -171,6 +172,14 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
+
+label {
+	color: darken($grey_dark, 30%);
+}
+.prefetch input.typeahead {
+	border: 1px solid #CCC;
+	padding-left:3px;
+}
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -261,10 +270,10 @@ a.add-description {
 #onboarding-stops, #onboarding-when {display: none;}
 .interest {font-size: 140%;display:inline;margin:0px;margin-left:10px;padding:0px;}
 input[type="radio"].fancyradio+span {
-	padding:0px 8px 4px 8px;
+	padding:2px 8px 4px 8px;
 	margin:0px;
 	font-size: 90%;
-	color: $grey;
+	color: $grey_dark;
 	border: 1px solid transparent;
 	@include rounded_border;
 }

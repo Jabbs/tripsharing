@@ -14,7 +14,15 @@ class User < ActiveRecord::Base
   #   Mapping from select array to the hash:
   #   a = User::NATIONALITIES_ARRAY
   #   b = a.map { |x| "#{x[1]}"+ "monkey" + " => " + "monkey" + x[0] }
-  #   find and replace """ with: "
+  #   find and replace "monkey" with: "
+  PREFERENCES = [
+    ["food", "1", [["slightly picky", "1"], ["typical", "2"], ["adventerous", "3"]] ],
+    ["seafood", "2", [["no", "1"], ["sometimes", "2"], ["love it", "3"]] ],
+    ["drinking", "3", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["party animal", "4"]] ],
+    ["lodging", "4", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],
+    ["rooming", "5", [["own room", "1"], ["open to share", "2"], ["prefer sharing", "3"], ["any", "4"]] ],
+    ["budget", "6", [["$", "1"], ["$$", "2"], ["$$$", "3"]] ],
+  ]
   STATUS = {"1" => "Planning travel", "2" => "Seeking travel companions", "3" => "Dreaming about travel", "4" => "On a trip"}
   STATUS_ARRAY = [["Planning travel", "1"], ["Seeking travel companions", "2"], ["Dreaming about travel", "3"], ["On a trip", "4"]]
   NATIONALITIES = {"0" => "any", "1" => "American", "2" => "British", "3" => "English", "4" => "Irish", "5" => "Northern Irish", "6" => "Canadian", 
