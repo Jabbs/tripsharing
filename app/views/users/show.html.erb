@@ -6,6 +6,9 @@
 		<div class="col-md-9">
 			<h3 style="margin-top:5px;margin-bottom:10px;">
 				<span class="dots"><%= @user.full_name %></span>
+				<% if @user.status? %>
+						<span class="dots-white" style="font-size: 60%;"><%= User::STATUS[@user.status] %></span>
+				<% end %>
 				<% if current_user?(@user) %>
 					<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(@user), class: "grey-link", title: "edit profile" %>
 				<% end %>
@@ -22,6 +25,36 @@
 					</div>
 				</div>
 			</div>
+			
+			<% if @user.bio? %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default" style="margin-top:10px;">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">Bio</h3>
+						  </div>
+						  <div class="panel-body">
+						    <%= simple_format(@user.bio) %>
+						  </div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			
+			<% if @user.interest_blob? %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default" style="margin-top:10px;">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">Travel Preferences</h3>
+						  </div>
+						  <div class="panel-body">
+						    <%= render "users/travel_interests", user: @user %>
+						  </div>
+						</div>
+					</div>
+				</div>
+			<% end %>
 			
 			<% if @shared_likes.any? && !current_user?(@user) %>
 				<div class="row">

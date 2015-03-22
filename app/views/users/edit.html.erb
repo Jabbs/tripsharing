@@ -104,7 +104,7 @@
 						  </div>
 						  <div class="panel-body">
 								
-								<% User::PREFERENCES.each do |group| %>
+								<% User::PREFERENCES_ARRAY.each do |group| %>
 									<div class="row small-bottom-margin">
 										<div class="col-md-2">
 											<label class="pull-right"><%= group[0].capitalize %>:</label>
@@ -134,37 +134,19 @@
 						  <div class="panel-heading">
 						    <h3 class="panel-title">Countries I've Visited</h3>
 						  </div>
-						  <div class="panel-body">
-						    
+						  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
 								<div class="row">
-									<div class="col-md-12">
-										
-										<% User::COUNTRIES_ARRAY.each do |country| %>
-
-												<div class="col-md-6">
-													<div class="radio" style="margin-bottom:2px;">
-													  <label style="padding:0px;">
-													    <input type="radio" name="country_tags[<%= country[1] %>]" class="fancyradio" value="0" checked style="display:none;">
-															<span>no</span>
-													  </label>
-
-													  <label style="padding-left:2px;">
-													    <input type="radio" name="country_tags[<%= country[1] %>]" class="fancyradio" value="1" style="display:none;">
-															<span>yes</span>
-													  </label>
-														<div class="interest" style="position:relative; top:3px;"><%= country[0] %></div>
-													</div>
+									<% User::COUNTRIES_ARRAY.each do |country| %>
+											<% @user.country_blob.include?(country[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+											<div class="col-md-3">
+												<div class="checkbox">
+											    <label>
+											      <input type="checkbox" name="country_tags[<%= country[1] %>]" <%= checked_or_no %>> <%= country[0] %>
+											    </label>
 												</div>
-
-										<% end %>
-										
-											
-
-										
-										
-									</div>
+											</div>
+									<% end %>
 								</div>
-						
 						  </div>
 						</div>
 					</div>
@@ -176,8 +158,19 @@
 						  <div class="panel-heading">
 						    <h3 class="panel-title">Languages</h3>
 						  </div>
-						  <div class="panel-body">
-						    
+						  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
+								<div class="row">
+									<% User::LANGUAGES_ARRAY.each do |language| %>
+											<% @user.language_blob.include?(language[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+											<div class="col-md-3">
+												<div class="checkbox">
+											    <label>
+											      <input type="checkbox" name="language_tags[<%= language[1] %>]" <%= checked_or_no %>> <%= language[0] %>
+											    </label>
+												</div>
+											</div>
+									<% end %>
+								</div>
 						  </div>
 						</div>
 					</div>

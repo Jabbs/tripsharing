@@ -65,6 +65,8 @@ class UsersController < ApplicationController
     @user.slug = nil
     if @user.update_attributes(user_params)
       update_interest_blob
+      update_country_blob
+      update_language_blob
       redirect_to current_user, notice: "Your profile has been updated."
     else
       redirect_to edit_user_path(current_user), alert: "We encountered an error."
@@ -87,12 +89,36 @@ class UsersController < ApplicationController
       # example preference_tags {"1"=>"1", "2"=>"2", "3"=>"2", "4"=>"3", "5"=>"3", "6"=>"3"}
       # example interest_blob "1-3,2-2,3-1,4-2,5-4,6-3"
       preference_tags = params[:preference_tags]
-      if preference_tags.any?
+      unless preference_tags.nil?
         interest_blob = ""
         preference_tags.each do |p|
           interest_blob = interest_blob + p[0] + "-" + p[1] + ","
         end
         @user.interest_blob = interest_blob.chomp(",")
+        @user.save
+      end
+    end
+    
+    def update_country_blob
+      country_tags = params[:country_tags]
+      unless country_tags.nil?
+        country_blob = ""
+        country_tags.each do |c|
+          country_blob = country_blob + c[0] + ","
+        end
+        @user.country_blob = country_blob.chomp(",")
+        @user.save
+      end
+    end
+    
+    def update_language_blob
+      language_tags = params[:language_tags]
+      unless language_tags.nil?
+        language_blob = ""
+        language_tags.each do |l|
+          language_blob = language_blob + l[0] + ","
+        end
+        @user.language_blob = language_blob.chomp(",")
         @user.save
       end
     end
