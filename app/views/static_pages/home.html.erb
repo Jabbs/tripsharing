@@ -58,11 +58,3 @@
 	</div>
 </div>
 
-<div class="visible-sm-block visible-md-block visible-lg-block">
-	<div class="footer_background" style="max-height:156px;padding-top:10px;">
-		<% User::FACES.shuffle.each do |face| %>
-			<% head =  "https://s3.amazonaws.com/uifaces/faces/twitter/" + face + "/73.jpg" %>
-			<%= image_tag(head, style: "margin-right:-5px;") %>
-		<% end %>
-	</div>
-</div>

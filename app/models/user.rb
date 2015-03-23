@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   friendly_id :number_id, use: [:slugged, :history]
   has_secure_password
   
+  # http://uifaces.com/api
   FACES = ["calebogden","adellecharles","pixeliris","boheme","michzen","madedigital","geeftvorm","jennyshen","alv",
     "chloepark","lovskogen","teylorfeliz","nickcouto","jobharmsen","hollowellme","heyjoyhey","zwitscherlise","visionarty","shibu_ravi",
     "kfriedson","edwellbrook","mikaelstaer", "gigifk", "leezlee", "calebjoyce", "karagates", "cheriana", "her_ruu",
