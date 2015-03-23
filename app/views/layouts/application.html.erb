@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <title><%= content_for?(:title) ? yield(:title) : t('application.root.title') %></title>
+
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('application.root.description') %>">
+
   <link rel="image_src" href="<%= content_for?(:image_path) ? yield(:image_path) : image_path('globe-icon-planes-250.png') %>"/>
-	
-  <%= render 'layouts/shim' %>
-  <%= render 'layouts/google_analytics' %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/olark' %>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Crafty+Girls' rel='stylesheet' type='text/css'>
+	
+	
+  <%= render 'layouts/shim' %>
+  <%= render 'layouts/google_analytics' %>
+	<%= render 'layouts/olark' %>
+	
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 	
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 </head>

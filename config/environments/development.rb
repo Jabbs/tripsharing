@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   
+  # Without this change, the application would serve the precompiled assets 
+  # from /assets in development, and you would not see any local changes until you compile assets again.
+  # http://guides.rubyonrails.org/v4.2.0/asset_pipeline.html#precompiling-assets
+  config.assets.prefix = "/dev-assets"
+  
   # Send out mailers when .delivery is invoked
   config.action_mailer.perform_deliveries = true
   
