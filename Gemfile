@@ -31,7 +31,6 @@ gem 'omniauth-facebook'
 gem "placeholder-gem"
 gem 'sidekiq-failures'
 gem 'sidekiq-status'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'activeresource'
 gem 'thin'
 gem 'nokogiri'
@@ -46,6 +45,7 @@ group :development do
   gem 'letter_opener'
 end
 
+gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'

@@ -7,4 +7,8 @@ test:
   adapter: postgresql
   database: tripsharing_test
   host: localhost
-
+  
+production:
+  adapter: postgresql
+  database: tripsharing_production
+  host: localhost
