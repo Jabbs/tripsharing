@@ -22,6 +22,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [1200, 300]
   end
   
+  version :landscape_small, :from_version => :landscape do
+    process :resize_to_fill => [600, 150]
+  end
+  
   version :big do
     process :resize_to_limit => [532, 0]
   end

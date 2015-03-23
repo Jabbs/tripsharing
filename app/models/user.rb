@@ -145,6 +145,8 @@ class User < ActiveRecord::Base
   has_many :interests, dependent: :destroy
   has_many :join_requests, dependent: :destroy
   has_one :survey
+  has_many :image_attachments, as: :image_attachable, dependent: :destroy
+  accepts_nested_attributes_for :image_attachments, allow_destroy: true
   
   # callbacks
   before_create { generate_token(:number_id) }

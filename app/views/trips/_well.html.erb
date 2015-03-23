@@ -8,11 +8,12 @@
       </div>
     </div>
   <% end %>
-  <% if trip.image_attachments.any? %>
-		<% image_path = trip.image_attachments.first.image %>
+  <% if trip.image_attachments.any? && trip.image_attachments.first.image.landscape_small.file.exists? %>
+		<% image_path = trip.image_attachments.first.image.url(:landscape_small) %>
   <% else %>
     <% image_path = "trip_defaults/" + trip.default_image + ".jpg" %>
   <% end %>
+
 	<div class="hide-overflow-87">
 		<div class="trip-name">
 			<%= link_to trip do %>
@@ -20,7 +21,7 @@
 			<% end %>
 		</div>
 		<%= link_to trip do %>
-			<%= image_tag(image_path, class: "img-responsive", title: trip.name).to_s %>
+			<%= image_tag(image_path, class: "img-responsive", style: "min-height:80px;", title: trip.name).to_s %>
 		<% end %>
 	</div>
 	<div class="trip-well-body">

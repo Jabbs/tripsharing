@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, except: [:create]
-  before_filter :correct_user, only: [:profile, :join, :edit, :update, :account, :photos, :email_settings, :privacy, :apps]
+  before_filter :correct_user, only: [:profile, :join, :edit, :update, :account, :photos, :email_settings, :privacy, :apps, :remove_images]
   before_filter :admin_user, only: [:index]
   # before_filter :check_complete_interests, only: [:profile]
   
@@ -61,6 +61,7 @@ class UsersController < ApplicationController
   def account
   end
   def photos
+    @user.image_attachments.build
   end
   def email_settings
   end
@@ -99,6 +100,22 @@ class UsersController < ApplicationController
     end
   end
   
+  def remove_images
+    @user = User.friendly.find(params[:user_id])
+    x = 0
+    if params[:remove_image]
+      images = params[:remove_image]
+      images.each do |image|
+        if image[1] == 'on'
+          ImageAttachment.find(image[0]).destroy
+          x += 1
+        end
+      end
+    end
+    flash[:notice] = "Selected images have been removed." if x != 0
+    redirect_to user_photos_path(@user)
+  end
+  
   private
     
     def user_params
@@ -108,7 +125,8 @@ class UsersController < ApplicationController
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
                       :verification_token, :verified, :bio, :tag_line, :welcome_sent_at, :occupation,
                       :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown, :home_airport, :fb_occupation,
-                      :status, :location, :education)
+                      :status, :location, :education,
+                      image_attachments_attributes: [:image, :description, :_destroy],)
     end
     
     def update_interest_blob

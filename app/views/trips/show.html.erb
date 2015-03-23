@@ -75,7 +75,7 @@
 								</div>
 							<% end %>
 							<% current_user?(@trip.user) ? add_class = "pointer" : add_class = "" %>
-							<% if @trip.image_attachments.count != 0 %>
+							<% if @trip.image_attachments.count != 0 && @trip.image_attachments.first.image.landscape.file.exists? %>
 								<%= image_tag(@trip.image_attachments.first.image.url(:landscape), class: "img-responsive trip-pic #{add_class}", title: "cover photo").to_s %>
 							<% else %>
 								<%= image_tag "trip_defaults/" + @trip.default_image + ".jpg", class: "img-responsive trip-pic #{add_class}", title: "cover photo" %>

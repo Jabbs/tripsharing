@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get 'privacy'
     get 'apps'
     get 'join'
+    match 'remove_images', to: 'users#remove_images', via: [:delete]
     match '/trips', to: "trips#user_trips", via: :get
   end
   resources :password_resets, only: [:new, :create, :edit, :update]

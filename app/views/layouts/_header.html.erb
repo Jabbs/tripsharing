@@ -21,7 +21,9 @@
 	          <ul class="nav pull-right visible-desktop">
 	            <li class="dropdown">
 	              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                <% if current_user.fb_image %>
+									<% if current_user.image_attachments.count != 0 %>
+										<%= image_tag(current_user.image_attachments.last.image.url(:thumb), id: "image-dropdown", size: "30x30" ).to_s %>
+	                <% elsif current_user.fb_image %>
 	                  <%= image_tag current_user.fb_image, size: "30x30", id: "image-dropdown" %>
 	                <% else %>
 	                  <%= image_tag "blank_avatar.jpg", size: "30x30", id: "image-dropdown" %>
