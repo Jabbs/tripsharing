@@ -105,7 +105,7 @@ body {
 #main {
 	min-height:600px;
 	background:$beige;
-//	background: url("plane_beige.png") 
+//	background: image-url("plane_beige.png") 
 }
 h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
 h1 { color: $dark_blue; }
@@ -414,7 +414,7 @@ h2.choice.inactive a {
 }
 #page {display: none;}
 #spinner {
-	background: url("spinner.gif") no-repeat center center #FFF;
+	background: image-url("spinner.gif") no-repeat center center #FFF;
 	position: fixed;
 	z-index: 20;
 	height: 100%;
@@ -422,14 +422,14 @@ h2.choice.inactive a {
 }
 
 .trip-background {
-//	background: url("clouds.jpg");
+//	background: image-url("clouds.jpg");
 }
 .dash-background {
 	min-height:900px;
 	padding-right:0px;
 	padding-left:0px;
 	padding-top:20px;
-	background: url("clouds.jpg");
+	background: image-url("clouds.jpg");
 //	-webkit-background-size: cover;
 //	-moz-background-size: cover;
 //	-o-background-size: cover;
@@ -437,7 +437,7 @@ h2.choice.inactive a {
 	border-left: 2px solid $grey_dark;
 }
 #home-background { 
-  background: url("home/288412.jpg") no-repeat center center fixed;
+  background: image-url("home/288412.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -467,7 +467,7 @@ h2.choice.inactive a {
 	min-height: 600px;
 }
 #home-background4 { 
-  background: url("home/bogota_columbia.jpg") no-repeat center center fixed;
+  background: image-url("home/bogota_columbia.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -475,7 +475,7 @@ h2.choice.inactive a {
 	min-height: 800px;
 }
 #home-background5 { 
-  background: url("home/Bagan-Medium.jpg") no-repeat center center fixed;
+  background: image-url("home/Bagan-Medium.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -491,7 +491,7 @@ h2.choice.inactive a {
   z-index: -1;
   
   display: block;
-	background: url("home/288412.jpg") no-repeat center center fixed;
+	background: image-url("home/288412.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -849,7 +849,7 @@ a.btn-facebook {
 }
 
 /* footer */
-.footer_background {background: url("tiles/noise_salmon.jpg");}
+.footer_background {background: image-url("tiles/noise_salmon.jpg");}
 footer {
 	border-top: 1px solid $grey_dark;
 	position: relative;
@@ -857,7 +857,7 @@ footer {
   right: 0;
   z-index: 0;
   height:240px;
-	background: url("tiles/noise_salmon.jpg");
+	background: image-url("tiles/noise_salmon.jpg");
 //	opacity: 1; // Leave this as 1
 //  background-color: rgba(0,0,0,0.6);
   padding-top: 30px;
