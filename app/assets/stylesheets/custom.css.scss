@@ -130,6 +130,7 @@ h4 { line-height: 1.2em; }
 .small-left-margin { margin-left:10px; }
 .small-margin { margin-top:3px; margin-bottom:3px; }
 .right-margin { margin-right:3px; }
+.bottom-margin { margin-bottom: 20px; }
 .top-margin { margin-top:20px; }
 .top-margin-small { margin-top:10px; }
 .top-margin-tiny { margin-top:5px; }
@@ -647,6 +648,7 @@ a.grey-dark-link {
 }
 a.grey-dark-link.on {
 	color: $salmon;
+	font-weight: 500;
 	&:hover {text-decoration:none;color: darken($salmon, 10%);}
 }
 a.grey-very-dark-link {

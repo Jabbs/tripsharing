@@ -1,0 +1,88 @@
+<div class="container" style="margin-bottom:60px;">
+	<div class="row top-margin">
+		<div class="col-md-3">
+			<%= render "users/sidebar_edit", user: @user %>
+		</div>
+		<%= form_for @user, html: { id: "edit_user_form"} do |f| %>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">Account Settings</h3>
+						  </div>
+						  <div class="panel-body">
+							
+								<div class="row bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">Email:</label>
+									</div>
+									<div class="col-md-6">
+										<%= @user.email %>
+									</div>
+								</div>
+								
+								<div class="row bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">First Name:</label>
+									</div>
+									<div class="col-md-6">
+										<%= f.text_field :first_name, style: "width: 100%;", required: true, autocomplete: 'off' %>
+									</div>
+								</div>
+								<div class="row bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">Last Name:</label>
+									</div>
+									<div class="col-md-6">
+										<%= f.text_field :last_name, style: "width: 100%;", required: true, autocomplete: 'off' %>
+									</div>
+								</div>
+							
+								<div class="row bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">Birthday:</label>
+									</div>
+									<div class="col-md-6">
+										<input class="datepicker" value="<%= @user.birthday.strftime('%m/%d/%Y') %>" placeholder="mm/dd/yyyy" name="user[birthday]" style="width:100%;" required data-date-format="mm/dd/yyyy" autocomplete="off">
+									</div>
+								</div>
+								<div class="row bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">Gender:</label>
+									</div>
+									<div class="col-md-6">
+										<%= f.select :gender, ["female", "male", "other"], {}, {style: "width:100%;", required: true} %>
+									</div>
+								</div>
+								
+								<hr>
+								
+								<div class="row bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">Password:</label>
+									</div>
+									<div class="col-md-6">
+										<a href="" data-toggle="modal" data-target="#changePasswordModal" href="#" role="button">change password</a>
+									</div>
+								</div>
+
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+
+
+				<div class="row">
+					<div class="col-md-12">
+						<%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-danger pull-right" %>
+						<%= link_to "Cancel", @user, class: "btn btn-default pull-right", style: "margin-right:10px;" %>
+					</div>
+				</div>
+				
+			</div>
+		<% end %>
+		<%= render "users/change_password_modal" %>
+	</div>
+</div>

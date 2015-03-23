@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, except: [:create]
-  before_filter :correct_user, only: [:profile, :join, :edit, :update]
+  before_filter :correct_user, only: [:profile, :join, :edit, :update, :account, :photos, :email_settings, :privacy, :apps]
   before_filter :admin_user, only: [:index]
   # before_filter :check_complete_interests, only: [:profile]
   
@@ -57,19 +57,45 @@ class UsersController < ApplicationController
   end
   
   def edit
-    
+  end
+  def account
+  end
+  def photos
+  end
+  def email_settings
+  end
+  def privacy
+  end
+  def apps
   end
   
   def update
     @user = User.friendly.find(params[:id])
     @user.slug = nil
+    fix_date_month_order
     if @user.update_attributes(user_params)
       update_interest_blob
       update_country_blob
       update_language_blob
-      redirect_to current_user, notice: "Your profile has been updated."
+      referrer = request.referer.split('/').last
+      case referrer
+      when "edit"
+        redirect_to edit_user_path(@user), notice: "Your profile has been updated and saved."
+      when "account"
+        redirect_to user_account_path(@user), notice: "Your profile has been updated and saved."
+      when "photos"
+        redirect_to user_photos_path(@user), notice: "Your profile has been updated and saved."
+      when "email_settings"
+        redirect_to user_email_settings_path(@user), notice: "Your profile has been updated and saved."
+      when "privacy"
+        redirect_to user_privacy_path(@user), notice: "Your profile has been updated and saved."
+      when "apps"
+        redirect_to user_apps_path(@user), notice: "Your profile has been updated and saved."
+      else
+        redirect_to current_user, notice: "Your profile has been updated and saved."
+      end
     else
-      redirect_to edit_user_path(current_user), alert: "We encountered an error."
+      redirect_to edit_user_path(current_user), alert: "There was an issue updating your account."
     end
   end
   
@@ -78,7 +104,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:admin, :auth_token, :email, :fb_hometown, :fb_image, :fb_location, 
                       :fb_url, :first_name, :gender, :last_name, :last_sign_in_at, :last_sign_in_ip, :newsletter, 
-                      :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, :password,
+                      :oauth_expires_at, :oauth_token, :password_digest, :password_reset_sent_at, :password, :password_confirmation,
                       :password_reset_token, :phone, :sign_in_count, :slug, :subscribed, :uid, :verification_sent_at, 
                       :verification_token, :verified, :bio, :tag_line, :welcome_sent_at, :occupation,
                       :fb_locale, :fb_timezone, :fb_updated_time, :birthday, :hometown, :home_airport, :fb_occupation,
@@ -124,9 +150,7 @@ class UsersController < ApplicationController
     end
     
     def fix_date_month_order
-      logger.debug("111111: #{params[:user][:birthday]}")
       params[:user][:birthday] = Date.strptime(params[:user][:birthday],'%m/%d/%Y') if params[:user][:birthday].present?
-      logger.debug("222222: #{params[:user][:birthday]}")
     end
     
     def admin_user

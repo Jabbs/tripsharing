@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   #   a = User::NATIONALITIES_ARRAY
   #   b = a.map { |x| "#{x[1]}"+ "monkey" + " => " + "monkey" + x[0] }
   #   find and replace "monkey" with: "
+  
   PREFERENCES = {
     "1" => {"name" => "drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
     "2" => {"name" => "food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},

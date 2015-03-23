@@ -5,7 +5,7 @@
 		<% img_path = "blank_avatar.png" %>
 	<% end %>
 	<%= link_to user do %>
-		<%= image_tag(img_path, class: "profile-pic") %>
+		<%= image_tag(img_path, class: "profile-pic", size: "110x110") %>
 	<% end %>
 </div>
 <% user.nationality.present? ? n = "#{User::NATIONALITIES[user.nationality]}, " : n = "" %>

@@ -1,0 +1,7 @@
+<div class="row">
+	<% user.country_blob.split(",").each do |c| %>
+		<div class="col-md-3 small-bottom-margin">
+			<%= User::COUNTRIES[c] %>
+		</div>
+	<% end %>
+</div>

@@ -97,7 +97,6 @@ class TripsController < ApplicationController
         redirect_to @trip, notice: 'Trip successfully updated.'
       end
     else
-      logger.debug "********* #{@trip.errors.full_messages}"
       redirect_to @trip, alert: 'There was an issue updating your trip.'
     end
   end

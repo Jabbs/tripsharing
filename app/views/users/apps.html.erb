@@ -18,7 +18,12 @@
 										<label class="pull-right">Status:</label>
 									</div>
 									<div class="col-md-10">
-										<%= f.select :status, User::STATUS_ARRAY %>
+										ACCOUNT
+											"email",  UNEDITABLE 
+											"first_name"
+											"last_name"
+											"birthday"
+											"gender"
 									</div>
 								</div>
 								
@@ -85,86 +90,8 @@
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Travel Preferences</h3>
-						  </div>
-						  <div class="panel-body">
-								
-								<% User::PREFERENCES_ARRAY.each do |group| %>
-									<div class="row small-bottom-margin">
-										<div class="col-md-2">
-											<label class="pull-right"><%= group[0].capitalize %>:</label>
-										</div>
-										<div class="radio" style="margin-top:0px;">
-											<% group[2].each do |preference| %>
-												<% @user.interest_blob.include?(group[1] + "-" + preference[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
-												<div class="col-md-2" style="width: 150px;">
-												  <label>
-												    <input type="radio" name="preference_tags[<%= group[1] %>]" class="fancyradio fancyradio-shell" value="<%= preference[1] %>" style="display:none;" <%= checked_or_no %>>
-														<span><%= preference[0] %></span>
-												  </label>
-												</div>	
-											<% end %>
-										</div>
-									</div>
-								<% end %>
 
-						  </div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Languages</h3>
-						  </div>
-						  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
-								<div class="row">
-									<% User::LANGUAGES_ARRAY.each do |language| %>
-											<% @user.language_blob.include?(language[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
-											<div class="col-md-3">
-												<div class="checkbox">
-											    <label>
-											      <input type="checkbox" name="language_tags[<%= language[1] %>]" <%= checked_or_no %>> <%= language[0] %>
-											    </label>
-												</div>
-											</div>
-									<% end %>
-								</div>
-						  </div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Countries I've Visited</h3>
-						  </div>
-						  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
-								<div class="row">
-									<% User::COUNTRIES_ARRAY.each do |country| %>
-											<% @user.country_blob.include?(country[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
-											<div class="col-md-3">
-												<div class="checkbox">
-											    <label>
-											      <input type="checkbox" name="country_tags[<%= country[1] %>]" <%= checked_or_no %>> <%= country[0] %>
-											    </label>
-												</div>
-											</div>
-									<% end %>
-								</div>
-						  </div>
-						</div>
-					</div>
-				</div>
-				
+
 				<div class="row">
 					<div class="col-md-12">
 						<%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-danger pull-right" %>

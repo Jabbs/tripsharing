@@ -28,7 +28,12 @@ Rails.application.routes.draw do
     resources :verifications, only: [:show]
     match '/resend_verification', to: "verifications#resend", via: :get
     resources :interests
+    get 'account'
+    get 'photos'
     get 'profile'
+    get 'email_settings'
+    get 'privacy'
+    get 'apps'
     get 'join'
     match '/trips', to: "trips#user_trips", via: :get
   end
