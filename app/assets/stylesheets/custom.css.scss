@@ -889,8 +889,6 @@ footer {
 }
 
 .field_with_errors {
-  @extend .control-group;
-  @extend .error;
   input, textarea {color: black;}
   display: inline;
 }
