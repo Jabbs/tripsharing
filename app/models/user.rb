@@ -31,6 +31,11 @@ class User < ActiveRecord::Base
     ["rooming", "4", [["own room", "1"], ["open to share", "2"], ["prefer sharing", "3"], ["any", "4"]] ],
     ["budget", "5", [["$", "1"], ["$$", "2"], ["$$$", "3"]] ],
   ]
+  EMAILS = {"1" => "Announcements - Tripsharing updates", "2" => "Announcements - travel news, tips, etc.", "3" => "Trip join requests", "4" => "Messages from Tripsharing members", "5" => "Responses to your join requests", "6" => "Friend requests", "7" => "References", "8" => "Replies to threads you've posted in", "9" => "Trips you may be interested in"}
+  EMAILS_ARRAY = [["Announcements - Tripsharing updates", "1"], ["Announcements - travel news, tips, etc.", "2"], 
+                  ["Trip join requests", "3"], ["Messages from Tripsharing members", "4"],
+                  ["Responses to your join requests", "5"], ["Friend requests", "6"], ["References", "7"],
+                  ["Replies to threads you've posted in", "8"], ["Trips you may be interested in", "9"]]
   STATUS = {"1" => "Planning travel", "2" => "Seeking travel companions", "3" => "Dreaming about travel", "4" => "On a trip"}
   STATUS_ARRAY = [["Planning travel", "1"], ["Seeking travel companions", "2"], ["Dreaming about travel", "3"], ["On a trip", "4"]]
   NATIONALITIES = {"0" => "any", "1" => "American", "2" => "British", "3" => "English", "4" => "Irish", "5" => "Northern Irish", "6" => "Canadian", 
@@ -149,11 +154,12 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
   
   # callbacks
-  before_create { generate_token(:number_id) }
+  before_create { generate_number(:number_id) }
   before_create { generate_token(:auth_token) }
+  after_create :build_email_blob
   before_save :correct_case_of_inputs
   # after_commit :send_verification_email, on: :create
-  # after_commit :build_interests
+  # after_commit :build_interests 
   
   # validations
   validates :email, presence: true, uniqueness: true
@@ -199,6 +205,11 @@ class User < ActiveRecord::Base
   
   def self.fb_image_random_5
     self.pluck(:fb_image).shuffle.first(5)
+  end
+  
+  def build_email_blob
+    self.email_blob = User::EMAILS_ARRAY.map {|e| e[1] + ","}.join.chomp(",")
+    self.save
   end
   
   def age

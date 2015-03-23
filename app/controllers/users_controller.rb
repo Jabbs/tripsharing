@@ -78,6 +78,7 @@ class UsersController < ApplicationController
       update_interest_blob
       update_country_blob
       update_language_blob
+      update_email_blob
       referrer = request.referer.split('/').last
       case referrer
       when "edit"
@@ -163,6 +164,18 @@ class UsersController < ApplicationController
           language_blob = language_blob + l[0] + ","
         end
         @user.language_blob = language_blob.chomp(",")
+        @user.save
+      end
+    end
+    
+    def update_email_blob
+      email_tags = params[:email_tags]
+      unless email_tags.nil?
+        email_blob = ""
+        email_tags.each do |e|
+          email_blob = email_blob + e[0] + ","
+        end
+        @user.email_blob = email_blob.chomp(",")
         @user.save
       end
     end

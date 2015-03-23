@@ -5,7 +5,6 @@
 		<li><%= link_to "Account", user_account_path(user), class: "grey-dark-link #{get_tab_class(query_param, "account")}" %></li>
 		<li><%= link_to "Photos", user_photos_path(user), class: "grey-dark-link #{get_tab_class(query_param, "photos")}" %></li>
 		<li><%= link_to "Email Settings", user_email_settings_path(user), class: "grey-dark-link #{get_tab_class(query_param, "email_settings")}" %></li>
-		<li><%= link_to "Privacy", user_privacy_path(user), class: "grey-dark-link #{get_tab_class(query_param, "privacy")}" %></li>
 		<li><%= link_to "Apps", user_apps_path(user), class: "grey-dark-link #{get_tab_class(query_param, "apps")}" %></li>
 	</ul>
 </div>
