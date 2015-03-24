@@ -33,7 +33,7 @@ end
   gender = ["male", "female"].shuffle.first
   home_airport = "ORD - Chicago O'Hare International Airport"
   education = "Molecular Biology and Business"
-  bio = Faker::Lorem.paragraph(10) + "<br>" + Faker::Lorem.paragraph(10)
+  bio = Faker::Lorem.paragraph(rand(7..15)) + "<br><br>" + Faker::Lorem.paragraph(rand(7..15))
   occupation = Faker::Company.catch_phrase
   birthday = Faker::Date.between(60.years.ago, 21.years.ago)
   location = Faker::Address.city + ", " + Faker::Address.country
@@ -47,11 +47,11 @@ end
               home_airport: home_airport, education: education)
 end
 
-80.times do
+120.times do
   region = Trip::REGIONS.keys.shuffle.first
   departing_category = Trip::DEPARTINGS.keys.shuffle.first
   name = Trip.generate_name(departing_category, region)
-  description = Faker::Lorem.paragraph(10) + "<br><br>" + Faker::Lorem.paragraph(10)
+  description = Faker::Lorem.paragraph(rand(7..15)) + "<br><br>" + Faker::Lorem.paragraph(rand(7..15)) + "<br><br>" + Faker::Lorem.paragraph(rand(7..15))
   user_id = User.pluck(:id).shuffle.first
   departs_at = Faker::Date.between(Date.today, 120.days.from_now)
   group_dynamics = Trip::GROUP_DYNAMICS.keys.shuffle.first
@@ -63,8 +63,27 @@ end
   group_age_max = (group_age_min.to_i + rand(5..15)).to_s
   reason = Faker::Lorem.paragraph(10) + "<br>" + Faker::Lorem.paragraph(10)
   default_image = Trip::IMAGE_REGION_DEFAULTS[region].shuffle.first
-  Trip.create!(region: region, departing_category: departing_category, name: name, description: description,
+  trip = Trip.new(region: region, departing_category: departing_category, name: name, description: description,
                user_id: user_id, departs_at: departs_at, group_dynamics: group_dynamics, state: state,
                returns_at: returns_at, time_flexibility: time_flexibility, group_count: group_count, group_age_min: group_age_min,
                group_age_max: group_age_max, reason: reason, default_image: default_image)
+  
+  Trip::INTERESTS.keys.shuffle.first(rand(2..6)).each do |k|
+    name = Trip::INTERESTS[k].parameterize
+    if Tag.find_by_name(name)
+     t = Tag.find_by_name(name)
+    else
+     t = Tag.create!(name: name)
+    end
+    trip.taggings.build(tag_id: t.id)
+  end
+  trip.save!
+  
+  stop_date = departs_at
+  rand(2..7).times do
+    to_date = stop_date
+    trip.stops.create!(to_name: "", to_name_dest: Faker::Address.city, to_date: to_date)
+    stop_date = stop_date + rand(1..3).days
+  end
+  
 end

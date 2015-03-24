@@ -120,6 +120,7 @@ h4 { line-height: 1.2em; }
 .bigger {font-size: 200%;}
 .big {font-size: 150%;}
 .heavy {font-size: 130%;}
+.regular {font-size:100%;}
 .smaller {font-size: 90%;line-height: 130%;}
 .small {font-size: 80%;line-height: 120%;}
 .tiny {font-size: 30%;line-height: 120%;}
@@ -523,19 +524,26 @@ h2.choice.inactive a {
 	background: $white;
 	margin-bottom: 20px;
 	font-size:90%;
+	 -webkit-border-top-right-radius: 15px;
+	    -moz-border-top-right-radius: 15px;
+	         border-top-right-radius: 15px;
+	 -webkit-border-top-left-radius: 15px;
+	    -moz-border-top-left-radius: 15px;
+	         border-top-left-radius: 15px;
 	.trip-name {
 		height:0px;
 		padding-left: 10px;
 		padding-right: 10px;
 		position:relative;
 		top:10px;
+		font-size: 140%;
 		line-height: 130%;
 		text-shadow: 1px 1px black;
 		a {color: $white;}
 	}
 	.trip-well-body {
 		min-height: 146x;
-		padding:5px;
+		padding:8px;
 		.trip-first-stop {
 			margin-top:8px;
 			padding-top:5px;
@@ -547,6 +555,12 @@ h2.choice.inactive a {
 	box-shadow: 3px 3px 2px #888888;
 }
 .hide-overflow-87 {
+	 -webkit-border-top-right-radius: 15px;
+	    -moz-border-top-right-radius: 15px;
+	         border-top-right-radius: 15px;
+	 -webkit-border-top-left-radius: 15px;
+	    -moz-border-top-left-radius: 15px;
+	         border-top-left-radius: 15px;
 	height: 87px;
 	overflow:hidden;
 	&:hover .trip-name a {text-decoration: underline;}

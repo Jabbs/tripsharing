@@ -33,10 +33,10 @@ class Trip < ActiveRecord::Base
   IMAGE_REGION_DEFAULTS = {"1"=>["greece", "ireland", "spain"], "2"=>["animals", "cape_town", "mountains"], "3"=>["china", "great_wall", "temple"], "4"=>["himalayas", "rajasthan", "varanasi"], "5"=>["halong_bay", "kuala_lumpur", "singapore", "waikiki"], "6"=>["manpupuner"], "7"=>["chicago", "grand_canyon", "nyc", "pfeiffer_beach"], "8"=>["buenos_aires", "medellin", "rio"], "9"=>["cortina_falls", "panama"], "10"=>["new_zealand", "sydney"], "11"=>["dubai", "egypt"], "12"=>["moscow"], "13"=>["glacier"]}
   # http://www.maps.com/ref_map.aspx?pid=12873
   REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia", "4" => "South Asia", "5" => "Southeast Asia", "6" => "North Asia", "7" => "N. America",
-             "8" => "S. America", "9" => "Central America", "10" => "Australia, South Pacific", "11" => "Middle East", "12" => "Russia, Central Asia, Transcaucasia",
+             "8" => "S. America", "9" => "Central America", "10" => "Australia, South Pacific", "11" => "Middle East", "12" => "Russia, C. Asia, Transcaucasia",
              "13" => "Antarctica"}
   REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia", "3"], ["South Asia", "4"], ["Southeast Asia", "5"], ["North Asia", "6"], ["N. America", "7"],
-             ["S. America", "8"], ["Central America", "9"], ["Australia, South Pacific", "10"], ["Middle East", "11"], ["Russia, Central Asia, Transcaucasia", "12"],
+             ["S. America", "8"], ["Central America", "9"], ["Australia, South Pacific", "10"], ["Middle East", "11"], ["Russia, C. Asia, Transcaucasia", "12"],
              ["Antarctica", "13"]]
   DURATIONS = {"1" => "1-3 days", "2" => "4-14 days", "3" => "15-24 days", "4" => "25-44 days", "5" => "45+ days", "6" => "unknown" }
   DURATIONS_ARRAY = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) avg", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
