@@ -17,14 +17,14 @@ class User < ActiveRecord::Base
   #   b = a.map { |x| "#{x[1]}"+ "monkey" + " => " + "monkey" + x[0] }
   #   find and replace "monkey" with: "
   
-  PREFERENCES = {
+  INTERESTS = {
     "1" => {"name" => "drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
     "2" => {"name" => "food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
     "3" => {"name" => "lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any Lodging"}},
     "4" => {"name" => "rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing Rooms", "3" => "Prefer Sharing Rooms", "4" => "Any Room Sharing"}},
     "5" => {"name" => "budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}},
   }
-  PREFERENCES_ARRAY = [
+  INTERESTS_ARRAY = [
     ["drinking", "1", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["heavy drinker", "4"]] ],
     ["food", "2", [["picky", "1"], ["typical", "2"], ["adventerous", "3"]] ],
     ["lodging", "3", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],

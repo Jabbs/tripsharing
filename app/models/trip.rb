@@ -20,7 +20,7 @@ class Trip < ActiveRecord::Base
   accepts_nested_attributes_for :taggings, allow_destroy: true
   
   after_save :create_first_stop
-  before_create :add_default_image
+  after_create :add_default_image
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
@@ -30,6 +30,7 @@ class Trip < ActiveRecord::Base
                      ["16+", "8"], ["tbd", "9"]]
   GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd"}
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
+  IMAGE_REGION_DEFAULTS = {"1"=>["greece", "ireland", "spain"], "2"=>["animals", "cape_town", "mountains"], "3"=>["china", "great_wall", "temple"], "4"=>["himalayas", "rajasthan", "varanasi"], "5"=>["halong_bay", "kuala_lumpur", "singapore", "waikiki"], "6"=>["manpupuner"], "7"=>["chicago", "grand_canyon", "nyc", "pfeiffer_beach"], "8"=>["buenos_aires", "medellin", "rio"], "9"=>["cortina_falls", "panama"], "10"=>["new_zealand", "sydney"], "11"=>["dubai", "egypt"], "12"=>["moscow"], "13"=>["glacier"]}
   # http://www.maps.com/ref_map.aspx?pid=12873
   REGIONS = {"1" => "Europe", "2" => "Africa", "3" => "East Asia", "4" => "South Asia", "5" => "Southeast Asia", "6" => "North Asia", "7" => "N. America",
              "8" => "S. America", "9" => "Central America", "10" => "Australia, South Pacific", "11" => "Middle East", "12" => "Russia, Central Asia, Transcaucasia",
@@ -43,7 +44,8 @@ class Trip < ActiveRecord::Base
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
   DEPARTINGS = {"1" => "today", "2" => "asap", "3" => "this weekend", "4" => "spring 2015", "5" => "summer 2015", "6" => "fall 2015", "7" => "winter 2015",
                 "8" => "spring 2016", "9" => "summer 2016", "10" => "fall 2016", "11" => "winter 2016"}
-  FLEXIBILITY = [["no", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
+  FLEXIBILITY = {"1" => "no", "2" => "a little", "3" => "some", "4" => "a lot"}
+  FLEXIBILITY_ARRAY = [["no", "1"], ["a little", "2"], ["some", "3"], ["a lot", "4"]]
   INTERESTS_ARRAY = [["Cultural immersion", "1"],["Exploring the city", "2"],["Partying / Clubbing", "3"],["Sports", "4"],
                     ["Backpacking", "5"],["Bicycling", "6"],["Overland and Safari", "7"],["Mountaineering", "8"],["Sailing / Boating", "9"],
                     ["Scuba / Snorkelling", "10"],["Skiing", "11"],["Trekking / Hiking", "12"],["Business / Networking", "13"],
@@ -92,12 +94,15 @@ class Trip < ActiveRecord::Base
     trip.group_dynamics = survey.companion_type
     trip.add_predetermined_ages
     trip.region = survey.destination
-    x = ["adventure", "exploit", "venture", "getaway"]
-    y = ["friends", "companions", "buddies"]
-    # concat a name
-    trip.name = Trip::DEPARTINGS[survey.month] + " travel #{x.shuffle.first} to " + Trip::REGIONS[survey.destination]
-    trip.name = trip.name.titleize
+    trip.name = Trip.generate_name(survey.month, survey.destination)
     trip.save!
+  end
+  
+  def self.generate_name(departings_key, regions_key)
+    x = ["adventure", "exploit", "venture", "getaway"]
+    name = Trip::DEPARTINGS[departings_key] + " travel #{x.shuffle.first} to " + Trip::REGIONS[regions_key]
+    name = name.titleize
+    return name
   end
   
   def self.tagged_with(name)
@@ -130,7 +135,8 @@ class Trip < ActiveRecord::Base
   end
   
   def add_default_image
-    self.default_image = "koh_phi_phi_thailand"
+    self.default_image = Trip::IMAGE_REGION_DEFAULTS[region].shuffle.first
+    self.save
   end
   
   def switch_to_state(state)

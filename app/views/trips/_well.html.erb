@@ -11,7 +11,7 @@
   <% if trip.image_attachments.any? && trip.image_attachments.first.image.landscape_small.file.exists? %>
 		<% image_path = trip.image_attachments.first.image.url(:landscape_small) %>
   <% else %>
-    <% image_path = "trip_defaults/" + trip.default_image + ".jpg" %>
+    <% image_path = "trip_defaults/#{Trip::REGIONS[trip.region].parameterize.tr("-", "_")}/" + trip.default_image + "_small.jpg" %>
   <% end %>
 
 	<div class="hide-overflow-87">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323191951) do
+ActiveRecord::Schema.define(version: 20150324005723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,9 +178,9 @@ ActiveRecord::Schema.define(version: 20150323191951) do
     t.string   "group_relationship_status"
     t.string   "group_drinking"
     t.string   "group_personality"
-    t.string   "group_nationality"
-    t.string   "reason"
+    t.string   "group_nationality",         default: "0"
     t.string   "default_image"
+    t.text     "reason"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
