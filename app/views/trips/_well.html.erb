@@ -97,7 +97,7 @@
 			</div>
 			<div class="row" style="margin-top:20px;">
 				<div class="col-md-12">
-					<% last_id = trip.tags.last.id %>
+					<% trip.tags.any? ? last_id = trip.tags.last.id : last_id = "" %>
 					<% trip.tags.each do |t| %>
 						<%= link_to "##{t.name}", "#" %><%= "," unless last_id == t.id %>
 					<% end %>
