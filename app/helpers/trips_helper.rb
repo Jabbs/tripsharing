@@ -99,4 +99,13 @@ module TripsHelper
       return ""
     end
   end
+  
+  def trip_image_landscape_small(trip)
+    if trip.image_attachments.any? && trip.image_attachments.first.image.landscape_small.file.exists? 
+      image_path = trip.image_attachments.first.image.url(:landscape_small) 
+    else 
+      image_path = "trip_defaults/#{Trip::REGIONS[trip.region].parameterize.tr("-", "_")}/" + trip.default_image + "_small.jpg" 
+    end 
+    return image_tag(image_path, class: "img-responsive", style: "min-height:80px;", title: trip.name).to_s 
+  end
 end

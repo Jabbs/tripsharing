@@ -16,7 +16,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<% if @user.image_attachments.count != 0 %>
-											<%= image_tag(@user.image_attachments.first.image.url(:small), class: "checkbox-image", size: "200x200").to_s %>
+											<%= image_tag(@user.image_attachments.first.image.url(:small), class: "profile-pic", size: "200x200").to_s %>
 										<% elsif @user.fb_image.present? %>
 											<%= image_tag "#{@user.fb_image}" + "?type=large", class: "profile-pic", title: @user.full_name %>
 										<% else %>

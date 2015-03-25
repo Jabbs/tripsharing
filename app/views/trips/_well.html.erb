@@ -8,11 +8,7 @@
       </div>
     </div>
   <% end %>
-  <% if trip.image_attachments.any? && trip.image_attachments.first.image.landscape_small.file.exists? %>
-		<% image_path = trip.image_attachments.first.image.url(:landscape_small) %>
-  <% else %>
-    <% image_path = "trip_defaults/#{Trip::REGIONS[trip.region].parameterize.tr("-", "_")}/" + trip.default_image + "_small.jpg" %>
-  <% end %>
+
 
 	<div class="hide-overflow-87">
 		<div class="trip-name">
@@ -21,26 +17,23 @@
 			<% end %>
 		</div>
 		<%= link_to trip do %>
-			<%= image_tag(image_path, class: "img-responsive", style: "min-height:80px;", title: trip.name).to_s %>
+			<%= trip_image_landscape_small(trip) %>
 		<% end %>
 	</div>
 	<div class="trip-well-body">
 		<div class="row">
 			<div class="col-md-10">
-				<% if trip.user.fb_image.present? %>
-					<% img_path = "#{trip.user.fb_image}" + "?type=small"  %>
-				<% else %>
-					<% img_path = "blank_avatar.png"  %>
-				<% end %>
+				
 				<%= link_to trip.user, class: "no-decoration" do %>
-					<%= image_tag(img_path, class: "image", title: "#{trip.user.first_name}, #{trip.user.age}, #{trip.user.gender.capitalize}") %>
+					<%= user_image(trip.user) %>
 				<% end %>
+				
 				<% if trip.incomplete? %>
 					<span class="big">INCOMPLETE</span>
 				<% else %>
 					<%= link_to trip, class: "grey-dark-link" do %>
 						<i class="fa fa-plus"></i>
-						<span class="bigger"><%= spot_count(trip.group_count) %></span>
+						<span class="big"><%= spot_count(trip.group_count) %></span>
 					<% end %>
 				<% end %>
 			</div>
@@ -97,10 +90,12 @@
 			</div>
 			<div class="row" style="margin-top:20px;">
 				<div class="col-md-12">
-					<% trip.tags.any? ? last_id = trip.tags.last.id : last_id = "" %>
-					<% trip.tags.each do |t| %>
-						<%= link_to "##{t.name}", "#" %><%= "," unless last_id == t.id %>
-					<% end %>
+
+						<% trip.tags.any? ? last_id = trip.tags.last.id : last_id = "" %>
+						<% trip.tags.each do |t| %>
+							<%= link_to "##{t.name}", "#" %><%= "," unless last_id == t.id %>
+						<% end %>
+
 				</div>
 			</div>
 		</div>

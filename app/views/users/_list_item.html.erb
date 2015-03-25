@@ -1,29 +1,22 @@
-<div style="margin-bottom:5px;">
-	<% if user.fb_image.present? %>
-		<% img_path = "#{user.fb_image}" + "?type=normal" %>
-	<% else %>
-		<% img_path = "blank_avatar.png" %>
-	<% end %>
+<div style="margin-bottom:15px;">
 	<%= link_to user do %>
-		<%= image_tag(img_path, class: "profile-pic", size: "110x110") %>
+		<%= user_profile_image(user, "normal") %>
 	<% end %>
 </div>
-<% user.nationality.present? ? n = "#{User::NATIONALITIES[user.nationality]}, " : n = "" %>
-<%= link_to user do %>
+
+<%= link_to user, class: "grey-link" do %>
 	<span class="dots">
-		<%= user.first_name %>, <%= user.age %>
+		<%= user.first_name %>
 	</span>
 <% end %>
 <br>
-<%= n %><%= user.gender.capitalize %><br>
+<%= user.age %>, <%= user.gender.capitalize %><br>
 <% if user.occupation? %>
 	<%= user.occupation %><br>
 <% end %>
 <% if user.location? %>
-	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
 	<%= user.try(:location) %><br>
 <% elsif user.fb_location? %>
-	<i class='fa fa-map-marker' style="margin-left:2px;"></i>
 	<%= user.try(:fb_location) %><br>
 <% end %>
 <% if user.tag_line? %>

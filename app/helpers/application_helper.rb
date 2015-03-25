@@ -24,4 +24,5 @@ module ApplicationHelper
     	@trips_complete_count = user.trips.where(state: "5").size
   	end
   end
+  
 end

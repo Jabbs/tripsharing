@@ -1,0 +1,53 @@
+<div class="modal" id="tripJoinReqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    <div class="modal-content">
+			<div class="modal-header">
+				Send a message to the organizer...
+			</div>
+			<div class="modal-body">
+				<div class="row small-bottom-margin">
+					<div class="col-md-2">Trip:</div>
+					<div class="col-md-9 col-md-offset-1"><strong><%= trip.name %></strong></div>
+				</div>
+				<div class="row small-bottom-margin">
+					<div class="col-md-2">Tags:</div>
+					<div class="col-md-9 col-md-offset-1">
+						<% if @trip.tags.any? %>
+							<%= trip.hashtag_list %>
+						<% else %>
+							n/a
+						<% end %>
+					</div>
+				</div>
+				<div class="row small-bottom-margin">
+					<div class="col-md-2">Description:</div>
+					<div class="col-md-9 col-md-offset-1"><%= simple_format(trip.description) %></div>
+				</div>
+				<div class="row small-bottom-margin">
+					<div class="col-md-2">Organizer:</div>
+					<div class="col-md-9 col-md-offset-1">
+						<%= user_image(trip.user) %>
+						<%= user_details(trip.user) %>
+					</div>
+				</div>
+				<div class="row small-bottom-margin">
+					<div class="col-md-2">Requirements:</div>
+					<div class="col-md-9 col-md-offset-1">
+						<%= travel_text(trip.group_dynamics, trip.group_nationality, trip.group_count, trip.group_age_min, trip.group_age_max).html_safe %>
+					</div>
+				</div>
+				<hr style="margin-bottom:40px;">
+				<div class="row">
+					<div class="col-md-2">
+						<%= user_image(current_user) %>
+					</div>
+					<div class="col-md-9 col-md-offset-1">
+						<%= render "join_requests/form" %>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>

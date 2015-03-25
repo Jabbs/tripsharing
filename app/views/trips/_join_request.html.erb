@@ -6,16 +6,10 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<div id="join-req-form" style="display:none;"><%= render "join_requests/form" %></div>
-	</div>
-</div>
-<div class="row">
 	<div class="col-md-12">
 		<div class="center">
-			<a href="#" type="button" class="btn btn-lg btn-default" style="font-family:inherit;" id="openJoinReq">
-				JOIN!
-			</a>
+			<a href="" data-toggle="modal" data-target="#tripJoinReqModal" class="btn btn-primary btn-lg" href="#" role="button"> JOIN!</a>
 		</div>
+		<%= render "trips/modals/new_join_request", trip: @trip %>
 	</div>
 </div>
