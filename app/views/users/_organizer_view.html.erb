@@ -1,0 +1,31 @@
+<div class="row bottom-margin">
+	<div class="col-md-3">
+		<%= link_to user do %>
+			<%= user_image(user) %>
+		<% end %>
+	</div>
+	<div class="col-md-9" style="padding-top:5px;">
+		<div class="smaller-bottom-margin">
+			<%= link_to user, class: "grey-link" do %>
+				<span class="dots">
+					<%= user.full_name %>
+				</span>
+			<% end %>
+		</div>
+		<div class="smaller-bottom-margin">
+			<%= user.age %>, <%= user.gender.capitalize %>
+		</div>
+		<% if user.occupation? %>
+			<div class="smaller-bottom-margin">
+				<%= user.occupation %>
+			</div>
+		<% end %>
+		<div class="smaller-bottom-margin">
+			<% if user.location? %>
+				<%= user.try(:location) %>
+			<% elsif user.fb_location? %>
+				<%= user.try(:fb_location) %>
+			<% end %>
+		</div>
+	</div>
+</div>

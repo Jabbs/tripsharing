@@ -27,7 +27,7 @@ module UsersHelper
     else 
       img_path = "blank_avatar.png" 
     end 
-    return image_tag(img_path, class: "profile-pic", size: size, title: user.full_name).to_s
+    return image_tag(img_path, class: "profile-pic img-responsive", size: size, title: user.full_name).to_s
   end
   
   def user_image(user)

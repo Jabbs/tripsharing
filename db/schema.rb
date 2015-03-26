@@ -171,8 +171,6 @@ ActiveRecord::Schema.define(version: 20150324005723) do
     t.string   "departing_category"
     t.string   "departs_from"
     t.string   "departs_to"
-    t.string   "group_age_min",             default: "18"
-    t.string   "group_age_max"
     t.string   "group_count"
     t.string   "group_departing_proximity"
     t.string   "group_relationship_status"
@@ -181,6 +179,8 @@ ActiveRecord::Schema.define(version: 20150324005723) do
     t.string   "group_nationality",         default: "0"
     t.string   "default_image"
     t.text     "reason"
+    t.integer  "group_age_min",             default: 0
+    t.integer  "group_age_max",             default: 0
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree

@@ -12,6 +12,8 @@ unless User.find_by_email("petejabbour1@gmail.com").present?
   last_name = "Jabbour"
   password = "testing"
   gender = "male"
+  home_airport = "ORD - Chicago O'Hare International Airport"
+  education = "Molecular Biology and Business"
   bio = "Some time back, I took a trip to Vietnam with some people I had not previously met (other than through mutual Facebook friends). It was an amazing experience. After only a two week trip many of us became good friends and keep in touch to this day. It amazed me how the travel experience (and experience in general, sad or happy) brings us close together in such a short amount of time. I want to bring that experience to everyone who is willing to try."
   occupation = "Web Developer"
   birthday = Date.strptime("07/30/1982",'%m/%d/%Y')
@@ -22,7 +24,8 @@ unless User.find_by_email("petejabbour1@gmail.com").present?
   interest_blob = "1-3,2-3,3-1,4-1,5-2"
   User.create!(email: email, first_name: first_name, last_name: last_name, password: password, gender: gender,
               bio: bio, occupation: occupation, birthday: birthday, location: location, status: status,
-              country_blob: country_blob, language_blob: language_blob, interest_blob: interest_blob)
+              country_blob: country_blob, language_blob: language_blob, interest_blob: interest_blob,
+              home_airport: home_airport, education: education)
 end
 
 15.times do
@@ -32,7 +35,7 @@ end
   password = "testing"
   gender = ["male", "female"].shuffle.first
   home_airport = "ORD - Chicago O'Hare International Airport"
-  education = "Molecular Biology and Business"
+  education = Faker::Company.catch_phrase
   bio = Faker::Lorem.paragraph(rand(7..15)) + "<br><br>" + Faker::Lorem.paragraph(rand(7..15))
   occupation = Faker::Company.catch_phrase
   birthday = Faker::Date.between(60.years.ago, 21.years.ago)

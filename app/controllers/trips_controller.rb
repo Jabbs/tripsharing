@@ -41,6 +41,8 @@ class TripsController < ApplicationController
     else
       @trips = Trip.where(state: "2").order("created_at DESC").paginate(page: params[:page], per_page: 18)
     end
+    # only show the user trips that fit their age
+    @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age)
   end
   
   def remove_images

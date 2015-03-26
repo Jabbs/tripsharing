@@ -2,9 +2,9 @@
 	<%= f.select :group_count, Trip::GROUP_COUNT_ARRAY %>
 	<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS_ARRAY %>
 	ages
-	<%= f.select :group_age_min, ('18'..'99').to_a.unshift("any"), {prompt: "--min--"} %>
+	<%= f.select :group_age_min, (18..99), {prompt: "--min--"} %>
 	to
-  <%= f.select :group_age_max, ('18'..'99').to_a.unshift("any"), {prompt: "--max--"} %>.
+  <%= f.select :group_age_max, (18..99), {prompt: "--max--"} %>.
 	Nationality:
 	<select name="trip[group_nationality]">
 		<% User::NATIONALITIES_ARRAY.each do |nationality| %>

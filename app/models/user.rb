@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
   #   find and replace "monkey" with: "
   
   INTERESTS = {
-    "1" => {"name" => "drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
-    "2" => {"name" => "food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
-    "3" => {"name" => "lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any Lodging"}},
-    "4" => {"name" => "rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing Rooms", "3" => "Prefer Sharing Rooms", "4" => "Any Room Sharing"}},
-    "5" => {"name" => "budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}},
+    "1" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
+    "2" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
+    "3" => {"name" => "Lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any"}},
+    "4" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
+    "5" => {"name" => "Budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}},
   }
   INTERESTS_ARRAY = [
     ["drinking", "1", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["heavy drinker", "4"]] ],

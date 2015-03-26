@@ -36,20 +36,22 @@ module TripsHelper
       plural == true ? group_text = " <span class='dots'><i class='fa fa-mars'></i> males</span>" : group_text = " <span class='dots'><i class='fa fa-mars'></i> male</span>"
     when "4"
       plural == true ? group_text = " <span class='dots'><i class='fa fa-venus-mars'></i> couples</span>" : group_text = " <span class='dots'><i class='fa fa-venus-mars'></i> couple</span>"
+    when "5"
+      group_text = "solo"
     end
     
-    if group_age_min == "any" && group_age_max == "any"
+    if group_age_min == 0 && group_age_max == 0
       age_text = ""
-    elsif group_age_min != "any" && group_age_max != "any"
+    elsif group_age_min != 0 && group_age_max != 0
       age_text = " ages <span class='dots'>#{group_age_min}</span> to <span class='dots'>#{group_age_max}</span>"
-    elsif group_age_min != "any" && group_age_max == "any"
+    elsif group_age_min != 0 && group_age_max == 0
       age_text = " above the age of <span class='dots'>#{group_age_min}</span>"
-    elsif group_age_min == "any" && group_age_max != "any"
+    elsif group_age_min == 0 && group_age_max != 0
       age_text = " under the age of <span class='dots'>#{group_age_max}</span>"
     end
     
     status = "<span class='dots-salmon'>Seeking</span>"
-    
+    logger.debug "Age text: #{group_text == nil}"
     if plural == true
       return "#{status} " + group_count_text + " travel companions," + " " + nationality_text + group_text + age_text + "."
     else
@@ -59,13 +61,13 @@ module TripsHelper
   end
   
   def age_text(group_age_min, group_age_max)
-    if group_age_min == "any" && group_age_max == "any"
+    if group_age_min == 0 && group_age_max == 0
       age_text = "Any"
-    elsif group_age_min != "any" && group_age_max != "any"
+    elsif group_age_min != 0 && group_age_max != 0
       age_text = "#{group_age_min}-#{group_age_max}"
-    elsif group_age_min != "any" && group_age_max == "any"
+    elsif group_age_min != 0 && group_age_max == 0
       age_text = "#{group_age_min} & up"
-    elsif group_age_min == "any" && group_age_max != "any"
+    elsif group_age_min == 0 && group_age_max != 0
       age_text = "18-#{group_age_max}"
     end
     return age_text

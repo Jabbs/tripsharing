@@ -14,9 +14,9 @@
 <div class="row top-margin">
 	<div class="col-md-3"><label>Ages:</label></div>
 	<div class="col-md-9">
-		<%= f.select :group_age_min, ('18'..'99').to_a.unshift("any"), {prompt: "--min--"} %>
+		<%= f.select :group_age_min, (18..99), {prompt: "--min--"} %>
 		<span style="position:relative;top:-13px;">-- to --</span>
-	  <%= f.select :group_age_max, ('18'..'99').to_a.unshift("any"), {prompt: "--max--"} %>
+	  <%= f.select :group_age_max, (18..99), {prompt: "--max--"} %>
 	</div>
 </div>
 
