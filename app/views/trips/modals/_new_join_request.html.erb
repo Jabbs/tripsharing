@@ -1,47 +1,51 @@
 <div class="modal" id="tripJoinReqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
     <div class="modal-content">
 			<div class="modal-header">
 				Send a message to the organizer...
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="padding-bottom:40px;">
 				<div class="row small-bottom-margin">
-					<div class="col-md-2">Trip:</div>
-					<div class="col-md-9 col-md-offset-1"><strong><%= trip.name %></strong></div>
+					<div class="col-md-2"><div class="pull-right">Organizer:</div></div>
+					<div class="col-md-1">
+						<%= link_to trip.user do %>
+							<%= user_image(trip.user) %>
+						<% end %>
+					</div>
+					<div class="col-md-8"><%= user_details(trip.user) %></div>
+				</div>
+				<hr>
+				<div class="row small-bottom-margin">
+					<div class="col-md-2"><div class="pull-right">Trip:</div></div>
+					<div class="col-md-9"><strong><%= trip.name %></strong></div>
 				</div>
 				<div class="row small-bottom-margin">
-					<div class="col-md-2">Tags:</div>
-					<div class="col-md-9 col-md-offset-1">
-						<% if @trip.tags.any? %>
+					<div class="col-md-2"></div>
+					<div class="col-md-9"><%= simple_format(trip.description) %></div>
+				</div>
+				<div class="row small-bottom-margin">
+					<div class="col-md-2"></div>
+					<div class="col-md-9">
+						<% if trip.tags.any? %>
 							<%= trip.hashtag_list %>
 						<% else %>
 							n/a
 						<% end %>
 					</div>
 				</div>
+				<hr>
 				<div class="row small-bottom-margin">
-					<div class="col-md-2">Description:</div>
-					<div class="col-md-9 col-md-offset-1"><%= simple_format(trip.description) %></div>
-				</div>
-				<div class="row small-bottom-margin">
-					<div class="col-md-2">Organizer:</div>
-					<div class="col-md-9 col-md-offset-1">
-						<%= user_image(trip.user) %>
-						<%= user_details(trip.user) %>
+					<div class="col-md-2"><div class="pull-right">Requirements:</div></div>
+					<div class="col-md-9">
+						<h4><%= travel_text(trip.group_dynamics, trip.group_nationality, trip.group_count, trip.group_age_min, trip.group_age_max).html_safe %></h4>
 					</div>
 				</div>
-				<div class="row small-bottom-margin">
-					<div class="col-md-2">Requirements:</div>
-					<div class="col-md-9 col-md-offset-1">
-						<%= travel_text(trip.group_dynamics, trip.group_nationality, trip.group_count, trip.group_age_min, trip.group_age_max).html_safe %>
-					</div>
-				</div>
-				<hr style="margin-bottom:40px;">
+				<hr style="margin-bottom:20px;">
 				<div class="row">
 					<div class="col-md-2">
-						<%= user_image(current_user) %>
+						<div class="pull-right"><%= user_image(current_user) %></div>
 					</div>
-					<div class="col-md-9 col-md-offset-1">
+					<div class="col-md-9">
 						<%= render "join_requests/form" %>
 					</div>
 				</div>

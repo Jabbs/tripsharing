@@ -177,7 +177,21 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
-
+.btn-turquoise {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-turquoise:hover,
+.btn-turquoise:focus,
+.btn-turquoise.focus,
+.btn-turquoise:active,
+.btn-turquoise.active,
+.open > .dropdown-toggle.btn-turquoise {
+  color: #fff;
+  background-color: $turquoise_dark;
+  border-color: darken($turquoise_dark, 10%);
+}
 label {
 	color: darken($grey_dark, 30%);
 }

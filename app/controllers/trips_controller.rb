@@ -37,7 +37,7 @@ class TripsController < ApplicationController
 
   def index
     if params[:search]
-      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at]).paginate(page: params[:page], per_page: 18)
+      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag]).paginate(page: params[:page], per_page: 18)
     else
       @trips = Trip.where(state: "2").order("created_at DESC").paginate(page: params[:page], per_page: 18)
     end

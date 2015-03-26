@@ -42,6 +42,10 @@ module UsersHelper
   end
   
   def user_details(user)
-    
+    content_tag(:ul, class: 'list-unstyled') do
+      content_tag(:li, user.full_name) +
+      content_tag(:li, "#{user.age}, #{user.gender.capitalize}") + 
+      content_tag(:li, user.try(:location))
+    end
   end
 end

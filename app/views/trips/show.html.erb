@@ -95,7 +95,10 @@
 							</h1>
 							<% if @trip.tags.any? %>
 								<div class="center" style="padding-bottom:10px;">
-									<%= @trip.hashtag_list %>
+									<% last_id = @trip.tags.last.id %>
+									<% @trip.tags.each do |t| %>
+										<%= link_to "##{t.name}", "/trips?search=true&tag=#{t.name}" %><%= "," unless last_id == t.id %>
+									<% end %>
 								</div>
 							<% end %>
 							<% if current_user && current_user == @trip.user && @trip.active? %>

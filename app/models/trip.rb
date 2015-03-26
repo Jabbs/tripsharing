@@ -56,7 +56,7 @@ class Trip < ActiveRecord::Base
               "11" => "Skiing", "12" => "Trekking / Hiking", "13" => "Business / Networking", "14" => "Volunteering", "15" => "Wildlife / Ecology",
               "16" => "Food / Wine", "17" => "Drinking with locals", "18" => "Camping", "19" => "Museums", "20" => "Beaches",}
   
-  def self.search(region=nil, departs_at=nil, returns_at=nil)
+  def self.search(region=nil, departs_at=nil, returns_at=nil, tag=nil)
     trips = self.where(state: "2")
 
     unless departs_at == nil || returns_at == nil || departs_at.blank? || returns_at.blank?
@@ -64,6 +64,9 @@ class Trip < ActiveRecord::Base
     end
     unless region.blank? || region == nil
       trips = trips.where(region: region)
+    end
+    unless tag.blank? || tag == nil
+      trips = trips.joins(:tags).where(tags: {name: tag})
     end
     trips
   end
