@@ -4,13 +4,13 @@
 		<div class="col-md-12">
 			<%= form_tag trips_path, :method => 'get' do %>
 				<%= hidden_field_tag :search, "true" %>
-				<div class="row"><div class="col-md-12">Going:</div></div>
+				<div class="row"><div class="col-md-12">Region:</div></div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-12">
 						<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "anywhere", style: "width:95%;" } %>
 					</div>
 				</div>
-				<div class="row"><div class="col-md-12" style="margin-bottom:10px;">Departing:</div></div>
+				<div class="row"><div class="col-md-12" style="margin-bottom:10px;">Departure Date:</div></div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-2">From:</div>
 					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="departs_at" data-date-format="mm/dd/yyyy" value="<%= params[:departs_at] %>" style="width:95%;"></div>

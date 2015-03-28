@@ -1,6 +1,9 @@
 <section>
   <div class="row">
 		<div class="col-md-6">
+			<%= render 'users/form' %>
+		</div>
+		<div class="col-md-6">
 			<div class="center">
 				<p class="small" style="margin-top:100px;margin-bottom:5px;">The easy way...</p>
 				<p class="small center" style="margin-top:0px;">We never post to Facebook.</p>
@@ -9,14 +12,12 @@
 				</a>
 			</div>
 		</div>
-		<div class="col-md-6" style="border-left: 1px solid black;">
-			<%= render 'users/form' %>
-		</div>
+
   </div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-left">
-				<%= link_to "<i class='fa fa-arrow-left'></i> back".html_safe, "#", class: "cancelsignuplink", style: "position:relative;top:-20px;" %>
+				<%= link_to "<i class='fa fa-arrow-left'></i> back".html_safe, "#", class: "cancelsignuplink" %>
 			</div>
 		</div>
 	</div>

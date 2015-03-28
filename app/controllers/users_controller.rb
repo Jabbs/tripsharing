@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   
   def create
     raise ActionController::RoutingError.new('Not Found') if !params[:blankey].blank?
-    fix_date_month_order
     @user = User.new(user_params)
     if @user.save
       sign_in @user

@@ -1,59 +1,83 @@
 <%= form_for @user, :url => { controller: 'users', :action => :create }, html: { id: "new_user_form"} do |f| %>
-	<%= render "shared/error_messages", object: f.object %>
-	<div class="row">
-		<div class="col-md-6">
-			<label>First name *</label>
-			<br>
-			<input name="user[first_name]" type="text" autocomplete="off" placeholder="First name" style="width:100%;" required>
-		</div>
-		<div class="col-md-6">						
-			<label>Last name *</label>
-			<br>
-			<input name="user[last_name]" type="text" autocomplete="off" placeholder="Last name" style="width:100%;" required>
-		</div>
+	<div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
+		<legend>Sign up!</legend>
+		<form action="#" method="post" class="form" role="form">
+			<div class="row">
+				<div class="col-xs-6 col-md-6">
+					<input class="form-control" name="user[first_name]" placeholder="First Name" type="text" required autofocus autocomplete="off" />
+				</div>
+				<div class="col-xs-6 col-md-6">
+					<input class="form-control" name="user[last_name]" placeholder="First Name" type="text" required autocomplete="off" />
+				</div>
+			</div>
+			<input class="form-control" name="user[email]" placeholder="Your Email" type="email" required autocomplete="off" />
+			<input class="form-control add-geocomplete" name="user[location]" type="text" id="location" placeholder="My location" value="<%= @survey.try(:hometown) %>">
+			<input class="form-control" autocomplete="off" id="user_password" name="user[password]" type="password" placeholder="Password" required minlength="6">
+			<label for="">Birth Date</label>
+			<div class="row">
+				<div class="col-xs-4 col-md-4">
+			    <select class="form-control" name="user[birthday(2i)]" required>
+						<option value="default" disabled="disabled">Month</option>
+						<option value="1">Jan</option>
+						<option value="2">Feb</option>
+						<option value="3">Mar</option>
+						<option value="4">Apr</option>
+						<option value="5">May</option>
+						<option value="6">Jun</option>
+						<option value="7">Jul</option>
+						<option value="8">Aug</option>
+						<option value="9">Sep</option>
+						<option value="10">Oct</option>
+						<option value="11">Nov</option>
+						<option value="12">Dec</option>
+			    </select>
+				</div>
+				<div class="col-xs-4 col-md-4">
+			    <select class="form-control" name="user[birthday(3i)]" required>
+			    	<option value="default" disabled="disabled">Day</option>
+						<% (1..31).each do |n| %>
+							<option value="<%= n %>"><%= n %></option>
+						<% end %>
+			    </select>
+				</div>
+				<div class="col-xs-4 col-md-4">
+			    <select class="form-control" name="user[birthday(1i)]" required>
+			    	<option value="default" disabled="disabled">Year</option>
+						<% end_year = Date.today.year - 18 %>
+						<% (1900..end_year).reverse_each do |n| %>
+							<option value="<%= n %>"><%= n %></option>
+						<% end %>
+			    </select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 col-md-2">
+					<label class="radio-inline">
+				    <input type="radio" name="user[gender]" id="inlineCheckbox1" value="female" required/>
+				    Female
+					</label>
+				</div>
+				<div class="col-xs-2 col-md-2">
+					<label class="radio-inline">
+				    <input type="radio" name="user[gender]" id="inlineCheckbox2" value="male" required/>
+				    Male
+					</label>
+				</div>
+				<div class="col-xs-2 col-md-2">
+					<label class="radio-inline">
+				    <input type="radio" name="user[gender]" id="inlineCheckbox3" value="other" required/>
+				    Other
+					</label>
+				</div>
+			</div>
+			<br />
+			<br />
+			<div class="blankey" style="display:none;">
+		    <h4>Leave this field blank to prevent spam:</h4>
+		    <%= text_field_tag :blankey %>
+		    <br/>
+		  </div>
+			<%= f.submit "Create Account", data: { disable_with: "Submitting..." }, class: "btn btn-lg btn-salmon btn-block" %>
+		</form>
 	</div>
-	<div class="row" style="margin-top:10px;">
-		<div class="col-md-6">
-			<label>Gender *</label>
-			<br>
-			<select name="user[gender]" style="width:100%;" required>
-				<option disabled selected>Select Gender</option>
-				<option value="female">Female</option>
-				<option value="male">Male</option>
-        <option value="other">Other</option>
-      </select>
-		</div>
-		<div class="col-md-6">
-			<label>Birthday *</label>
-			<br>
-			<input class="datepicker" placeholder="mm/dd/yyyy" name="user[birthday]" style="width:100%;" required data-date-format="mm/dd/yyyy">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<label>Current Location (optional)</label>
-			<input name="user[location]" type="text" class="add-geocomplete" id="location" placeholder="My location" value="<%= @survey.try(:hometown) %>" style="width:100%;">
-		</div>
-	</div>
-	<div class="row" style="margin-top:10px;">
-		<div class="col-md-12">
-			<label>Email *</label>
-			<br>
-			<input type="email" style="width:100%;" autocomplete="off" name="user[email]" placeholder="Email" required>
-		</div>
-	</div>
-	<div class="row" style="margin-top:10px;">
-		<div class="col-md-12">
-			<label>Make a Password: *</label>
-			<br>
-			<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password" required minlength="6">
-		</div>
-	</div>
-	<div class="blankey" style="display:none;">
-    <h4>Leave this field blank to prevent spam:</h4>
-    <%= text_field_tag :blankey %>
-    <br/>
-  </div>
-  <%= f.submit "Create Account", data: { disable_with: "Submitting..." }, class: "btn btn-default btn-lg fancy-dark", style: "margin-top:20px;" %>
-	
- <% end %>
+<% end %>
