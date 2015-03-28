@@ -152,6 +152,7 @@ class User < ActiveRecord::Base
   has_one :survey
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
+  has_many :followings, as: :followable, dependent: :destroy
   
   # callbacks
   before_create { generate_number(:number_id) }

@@ -1,0 +1,8 @@
+<% x = "star_" + "#{@followable.id}" %>
+<% y = "following_group_" + "#{@followable.id}" %>
+<% resource = @followable.class.name.pluralize.downcase %>
+<% href = "'/#{resource}/#{@followable.slug}/followings'" %>
+<% link = "<a data-method='post' data-remote='true' href=" + href + " id=" + x + " rel='nofollow' title='Follow this'>follow</a>" %>
+$("#<%= y %>").empty();
+$("#<%= y %>").append("<%= link.html_safe %>");
+

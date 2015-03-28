@@ -18,6 +18,7 @@ class Trip < ActiveRecord::Base
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :taggings, allow_destroy: true
+  has_many :followings, as: :followable, dependent: :destroy
   
   after_save :create_first_stop
   after_create :add_default_image

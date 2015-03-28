@@ -122,7 +122,15 @@
 					<% end %>
 				</div>
 				<div class="col-md-6">
-					<i class="fa fa-heart-o big pointer pull-right"></i>
+					<% if current_user %>
+						<div id="following_group_<%= trip.id %>">
+							<% if current_user_following?(trip) %>
+								<%= link_to "following", "/trips/#{trip.slug}/followings/#{trip.followings.where(user_id: current_user.id).first.id}", method: :delete, remote: true, id: "star_#{trip.id}" %>
+							<% else %>
+								<%= link_to "follow", trip_followings_path(trip), method: :post, remote: true, id: "star_#{trip.id}", title: 'Follow Trip' %>
+							<% end %>
+						</div>
+					<% end %>
 				</div>
 			</div>
 		</div>

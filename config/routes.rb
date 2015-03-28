@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :surveys, only: [:create]
   resources :trips do
+    resources :followings, only: [:create, :destroy]
     get 'details'
     resources :stops
     resources :join_requests, only: [:create]
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   # match '/press', to: 'static_pages#press', via: :get
   
   resources :users, path: "/members" do
+    resources :followings, only: [:create, :destroy]
     resources :verifications, only: [:show]
     match '/resend_verification', to: "verifications#resend", via: :get
     resources :interests

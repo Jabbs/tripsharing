@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324005723) do
+ActiveRecord::Schema.define(version: 20150328140411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "followings", force: true do |t|
+    t.string   "followable_type"
+    t.integer  "followable_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followings", ["followable_id"], name: "index_followings_on_followable_id", using: :btree
+  add_index "followings", ["user_id"], name: "index_followings_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -181,6 +192,7 @@ ActiveRecord::Schema.define(version: 20150324005723) do
     t.text     "reason"
     t.integer  "group_age_min",             default: 0
     t.integer  "group_age_max",             default: 0
+    t.integer  "followings_count",          default: 0
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
@@ -240,6 +252,7 @@ ActiveRecord::Schema.define(version: 20150324005723) do
     t.text     "language_blob",          default: ""
     t.text     "interest_blob",          default: ""
     t.text     "email_blob",             default: ""
+    t.integer  "followings_count",       default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
