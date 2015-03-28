@@ -63,7 +63,6 @@
 						</div>
 					</div>
 				</div>
-				
 				<div class="row">
 					<div class="col-md-12">
 						<div style="margin-top:0px;">
@@ -84,6 +83,14 @@
 						</div>
 					</div>
 				</div>
+				<% if current_user && !current_user?(@trip.user) %>
+					<div class="no-height">
+						<div style="position:relative; z-index:5; top:-3em; left:1em;">
+							<%= render "join_requests/join_btn", trip: @trip, btn_size: "btn-sm", join_text: "JOIN REQUEST" %>
+							<%= render "followings/following_btn", resource: @trip %>
+						</div>
+					</div>
+				<% end %>
 				<div class="row">
 					<div class="col-md-12">
 						<div id="trip-name-tags-form" style="display:none;" class="edit-trip-name">

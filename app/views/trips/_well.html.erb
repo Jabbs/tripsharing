@@ -113,7 +113,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<i class='fa fa-calendar' style="margin-left:2px;margin-right:1px;"></i>
 					<% if trip.departs_at.present? %>
 						<%= trip.departs_at.strftime('%-m/%d/%y') %>
@@ -121,13 +121,15 @@
 						tbd
 					<% end %>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8">
 					<% if current_user %>
-						<div id="following_group_<%= trip.id %>">
-							<% if current_user_following?(trip) %>
-								<%= link_to "following", "/trips/#{trip.slug}/followings/#{trip.followings.where(user_id: current_user.id).first.id}", method: :delete, remote: true, id: "star_#{trip.id}" %>
+						<div class="pull-right">
+							<% if current_user?(trip.user) %>
+								<%= link_to "<i class='fa fa-check'></i> following".html_safe, "#", title: "Your trip", class: "btn btn-turquoise btn-sm", disabled: true %>
 							<% else %>
-								<%= link_to "follow", trip_followings_path(trip), method: :post, remote: true, id: "star_#{trip.id}", title: 'Follow Trip' %>
+								<%= render "join_requests/join_btn", trip: trip, btn_size: "btn-sm", join_text: "JOIN" %>
+								<%= render "trips/modals/new_join_request_modal", trip: trip %>
+								<%= render "followings/following_btn", resource: trip %>
 							<% end %>
 						</div>
 					<% end %>

@@ -43,6 +43,7 @@ class TripsController < ApplicationController
     end
     # only show the user trips that fit their age
     @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age)
+    @join_request = JoinRequest.new
   end
   
   def remove_images

@@ -76,6 +76,7 @@ class UsersController < ApplicationController
     fix_date_month_order
     if @user.update_attributes(user_params)
       update_interest_blob
+      update_region_blob
       update_country_blob
       update_language_blob
       update_email_blob
@@ -140,6 +141,18 @@ class UsersController < ApplicationController
           interest_blob = interest_blob + p[0] + "-" + p[1] + ","
         end
         @user.interest_blob = interest_blob.chomp(",")
+        @user.save
+      end
+    end
+    
+    def update_region_blob
+      region_tags = params[:region_tags]
+      unless region_tags.nil?
+        region_blob = ""
+        region_tags.each do |r|
+          region_blob = region_blob + r[0] + ","
+        end
+        @user.region_blob = region_blob.chomp(",")
         @user.save
       end
     end

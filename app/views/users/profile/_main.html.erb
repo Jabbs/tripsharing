@@ -1,0 +1,92 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default" style="margin-top:10px;">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Overview</h3>
+		  </div>
+		  <div class="panel-body">
+		    <%= render "users/profile_view", user: @user %>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<% if @user.bio? %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default" style="margin-top:10px;">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Bio</h3>
+			  </div>
+			  <div class="panel-body">
+			    <%= simple_format(@user.bio) %>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<% if @user.interest_blob? %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default" style="margin-top:10px;">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Travel Preferences</h3>
+			  </div>
+			  <div class="panel-body">
+			    <div class="row">
+			    	<%= render "users/travel_interests", user: @user, small: false %>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<% if @user.country_blob? %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default" style="margin-top:10px;">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Countries I've Visited</h3>
+			  </div>
+			  <div class="panel-body">
+			    <%= render "users/countries", user: @user %>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<% if @shared_likes.any? && !current_user?(@user) %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title"><%= pluralize(@shared_likes.size, "Shared Facebook Interest") %></h3>
+			  </div>
+			  <div class="panel-body">
+			    <% @shared_likes.first(20).each do |like| %>
+						<%= image_tag "http://graph.facebook.com/" + "#{like["id"]}" + "/picture?type=square", title: "#{like["name"]}", class: "image" %>
+					<% end %>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
+<% if @mutual_friends.any? && !current_user?(@user) %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title"><%= pluralize(@mutual_friends.size, "Mutual Facebook Friend") %></h3>
+			  </div>
+			  <div class="panel-body">
+			    <% @mutual_friends.first(20).each do |friend| %>
+						<%= image_tag "http://graph.facebook.com/" + "#{friend["id"]}" + "/picture?type=square", title: "#{friend["name"]}", class: "image" %>
+					<% end %>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>

@@ -4,114 +4,40 @@
 			<%= render 'users/sidebar' %>
 		</div>
 		<div class="col-md-9">
-			<h3 style="margin-top:5px;margin-bottom:10px;">
-				<span class="dots"><%= @user.full_name %></span>
-				<% if @user.status? %>
-						<span class="dots-white" style="font-size: 60%;"><%= User::STATUS[@user.status] %></span>
-				<% end %>
-				<% if current_user?(@user) %>
-					<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(@user), class: "grey-link", title: "edit profile" %>
-				<% end %>
-			</h3>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="panel panel-default" style="margin-top:10px;">
-					  <div class="panel-heading">
-					    <h3 class="panel-title">Overview</h3>
+					<h3 style="margin-top:15px;margin-bottom:20px;">
+						<span class="dots"><%= @user.full_name %></span>
+						<% if @user.status? %>
+								<span class="dots-white" style="font-size: 60%;"><%= User::STATUS[@user.status] %></span>
+						<% end %>
+						<% if current_user?(@user) %>
+							<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(@user), class: "grey-link", title: "edit profile" %>
+						<% end %>
+					</h3>
+				</div>
+			</div>
+			<div class="row top-margin">
+				<div class="col-md-12">
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					    <ul id="myTab" class="nav nav-tabs" role="tablist">
+					      <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">About</a></li>
+					      <li role="presentation" class=""><a href="#feed" role="tab" id="feed-tab" data-toggle="tab" aria-controls="feed" aria-expanded="false">Activity Feed</a></li>
+					    </ul>
+					    <div class="tab-content">
+					      <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+					        <%= render 'users/profile/main' %>
+					      </div>
+					      <div role="tabpanel" class="tab-pane fade" id="feed" aria-labelledby="feed-tab">
+					        <%= render "users/timeline" %>
+					      </div>
+
+					    </div>
 					  </div>
-					  <div class="panel-body">
-					    <%= render "users/profile_view", user: @user %>
-					  </div>
-					</div>
 				</div>
 			</div>
 			
-			<% if @user.bio? %>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default" style="margin-top:10px;">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Bio</h3>
-						  </div>
-						  <div class="panel-body">
-						    <%= simple_format(@user.bio) %>
-						  </div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-			
-			<% if @user.interest_blob? %>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default" style="margin-top:10px;">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Travel Preferences</h3>
-						  </div>
-						  <div class="panel-body">
-						    <div class="row">
-						    	<%= render "users/travel_interests", user: @user, small: false %>
-						    </div>
-						  </div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-			
-			<% if @user.country_blob? %>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default" style="margin-top:10px;">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Countries I've Visited</h3>
-						  </div>
-						  <div class="panel-body">
-						    <%= render "users/countries", user: @user %>
-						  </div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-			
-			<% if @shared_likes.any? && !current_user?(@user) %>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title"><%= pluralize(@shared_likes.size, "Shared Facebook Interest") %></h3>
-						  </div>
-						  <div class="panel-body">
-						    <% @shared_likes.first(20).each do |like| %>
-									<%= image_tag "http://graph.facebook.com/" + "#{like["id"]}" + "/picture?type=square", title: "#{like["name"]}", class: "image" %>
-								<% end %>
-						  </div>
-						</div>
-					</div>
-				</div>
-			<% end %>
-			<% if @mutual_friends.any? && !current_user?(@user) %>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title"><%= pluralize(@mutual_friends.size, "Mutual Facebook Friend") %></h3>
-						  </div>
-						  <div class="panel-body">
-						    <% @mutual_friends.first(20).each do |friend| %>
-									<%= image_tag "http://graph.facebook.com/" + "#{friend["id"]}" + "/picture?type=square", title: "#{friend["name"]}", class: "image" %>
-								<% end %>
-						  </div>
-						</div>
-					</div>
-				</div>
-			<% end %>
 		</div>
 	</div>
 </div>
-<div class="container-fluid" style="background:grey;">
-	<div class="row">
-		<div class="col-md-12">
-			<%= render "users/timeline" %>
-		</div>
-	</div>
-</div>
+

@@ -1,8 +1,9 @@
-<div class="modal" id="tripJoinReqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal" id="tripJoinReqModal<%= trip.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
     <div class="modal-content">
 			<div class="modal-header">
-				Send a message to the organizer...
+				<i class='fa fa-comment-o' style='margin-right:10px;'></i>
+				REQUEST TO JOIN:
 			</div>
 			<div class="modal-body" style="padding-bottom:40px;">
 				<div class="row small-bottom-margin">
@@ -46,7 +47,7 @@
 						<div class="pull-right"><%= user_image(current_user) %></div>
 					</div>
 					<div class="col-md-9">
-						<%= render "join_requests/form" %>
+						<%= render "join_requests/form", trip: trip %>
 					</div>
 				</div>
 

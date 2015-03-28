@@ -178,10 +178,29 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
-.btn-turquoise {
+
+ul.nav-tabs li a {color: $grey_dark;}
+ul.nav-tabs li a:hover {background: #fff;}
+.tab-content .tab-pane {padding-left: 0px; padding-right:0px;}
+.btn-turquoise-hover {
   color: #333;
   background-color: #fff;
   border-color: #ccc;
+}
+.btn-turquoise-hover:hover,
+.btn-turquoise-hover:focus,
+.btn-turquoise-hover.focus,
+.btn-turquoise-hover:active,
+.btn-turquoise-hover.active,
+.open > .dropdown-toggle.btn-turquoise {
+  color: #fff;
+  background-color: $turquoise_dark;
+  border-color: darken($turquoise_dark, 10%);
+}
+.btn-turquoise {
+  color: #fff;
+  background-color: $turquoise_dark;
+  border-color: darken($turquoise_dark, 10%);
 }
 .btn-turquoise:hover,
 .btn-turquoise:focus,
@@ -193,9 +212,22 @@ h4 { line-height: 1.2em; }
   background-color: $turquoise_dark;
   border-color: darken($turquoise_dark, 10%);
 }
-label {
-	color: darken($grey_dark, 30%);
+.btn-salmon {
+  color: #fff;
+  background-color: $salmon;
+  border-color: darken($salmon, 10%);
 }
+.btn-salmon:hover,
+.btn-salmon:focus,
+.btn-salmon.focus,
+.btn-salmon:active,
+.btn-salmon.active,
+.open > .dropdown-toggle.btn-salmon {
+  color: #fff;
+  background-color: $salmon;
+  border-color: darken($salmon, 10%);
+}
+label {color: darken($grey_dark, 30%);}
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,

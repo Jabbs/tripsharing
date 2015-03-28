@@ -2,7 +2,7 @@
 <% y = "following_group_" + "#{@followable.id}" %>
 <% resource = @followable.class.name.pluralize.downcase %>
 <% href = "'/#{resource}/#{@followable.slug}/followings/#{@following.id}'" %>
-<% link = "<a data-method='delete' data-remote='true' href=" + href + " id=" + x + " rel='nofollow' title='Unfollow this'>following</a>" %>
+<% link = "<a data-method='delete' data-remote='true' href=" + href + " id=" + x + " rel='nofollow' title='Unfollow this' class='btn btn-turquoise btn-sm'><i class='fa fa-check'></i> following</a>" %>
 $("#<%= y %>").empty();
 $("#<%= y %>").append("<%= link.html_safe %>");
 

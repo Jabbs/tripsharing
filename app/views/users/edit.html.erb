@@ -92,7 +92,6 @@
 						    <h3 class="panel-title">Travel Preferences</h3>
 						  </div>
 						  <div class="panel-body">
-								
 								<% User::INTERESTS_ARRAY.each do |group| %>
 									<div class="row small-bottom-margin">
 										<div class="col-md-2">
@@ -111,7 +110,6 @@
 										</div>
 									</div>
 								<% end %>
-
 						  </div>
 						</div>
 					</div>
@@ -121,7 +119,31 @@
 					<div class="col-md-12">
 						<div class="panel panel-default">
 						  <div class="panel-heading">
-						    <h3 class="panel-title">Languages</h3>
+						    <h3 class="panel-title">Regions I'm Following</h3>
+						  </div>
+						  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
+								<div class="row">
+									<% Trip::REGIONS_ARRAY.each do |region| %>
+											<% @user.region_blob.split(",").include?(region[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+											<div class="col-md-3">
+												<div class="checkbox">
+											    <label>
+											      <input type="checkbox" name="region_tags[<%= region[1] %>]" <%= checked_or_no %>> <%= region[0] %>
+											    </label>
+												</div>
+											</div>
+									<% end %>
+								</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">Languages I Speak</h3>
 						  </div>
 						  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
 								<div class="row">
