@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     resources :followings, only: [:create, :destroy]
     get 'details'
     resources :stops
-    resources :join_requests, only: [:create]
+    resources :join_requests, only: [:create] do
+      match 'accept', to: 'join_requests#accept', via: [:put]
+      match 'decline', to: 'join_requests#decline', via: [:put]
+    end
     match 'remove_images', to: 'trips#remove_images', via: [:delete]
     match 'deactivate', to: 'trips#deactivate', via: [:delete]
   end
@@ -26,6 +29,10 @@ Rails.application.routes.draw do
   # match '/press', to: 'static_pages#press', via: :get
   
   resources :users, path: "/members" do
+    resources :messages
+    match 'contacts', to: 'messages#contacts', via: [:get]
+    match 'sent_messages', to: 'messages#sent_messages', via: [:get]
+    match 'join_requests', to: 'messages#join_requests', via: [:get]
     resources :followings, only: [:create, :destroy]
     resources :verifications, only: [:show]
     match '/resend_verification', to: "verifications#resend", via: :get

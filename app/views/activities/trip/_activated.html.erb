@@ -1,0 +1,17 @@
+<% trip = activity.trackable %>
+<li class="<%= activity.trackable_type.underscore %>-<%= activity.action %>">
+  <div class="timeline-badge danger"><i class="fa fa-plane"></i></div>
+  <div class="timeline-panel">
+    <div class="timeline-heading">
+      <h4 class="timeline-title">Trip created</h4>
+      <p><small class="text-muted"><i class="fa fa-time"></i> <%= time_ago_in_words(activity.trackable.created_at) %> ago.</small></p>
+    </div>
+    <div class="timeline-body">
+      <div class="row">
+      	<div class="col-md-6 col-md-offset-3">
+      		<%= render "trips/well", trip: trip  %>
+      	</div>
+      </div>
+    </div>
+  </div>
+</li>

@@ -19,9 +19,13 @@ class Trip < ActiveRecord::Base
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :taggings, allow_destroy: true
   has_many :followings, as: :followable, dependent: :destroy
+  has_many :followers, through: :followings, source: :user
+  has_many :companionings, dependent: :destroy
+  has_many :companions, through: :companionings, source: :user
   
   after_save :create_first_stop
   after_create :add_default_image
+  after_commit :add_first_companion
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
@@ -136,6 +140,10 @@ class Trip < ActiveRecord::Base
     unless self.stops.any? && self.departs_to.present?
       Stop.create_from_trip(self)
     end
+  end
+  
+  def add_first_companion
+    self.companionings.create!(user_id: self.user.id)
   end
   
   def add_default_image

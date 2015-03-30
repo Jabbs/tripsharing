@@ -148,11 +148,22 @@ class User < ActiveRecord::Base
   # associations
   has_many :trips
   has_many :interests, dependent: :destroy
-  has_many :join_requests, dependent: :destroy
+  has_many :join_requests_sent, dependent: :destroy, class_name: "JoinRequest"
+  has_many :join_requests_received, through: :trips, source: :join_requests
   has_one :survey
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
   has_many :followings, as: :followable, dependent: :destroy
+  has_many :followers, through: :followings, source: :user
+  has_many :activities, dependent: :destroy
+  has_many :feed_items, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :sent_messages, foreign_key: "sender_id", class_name: "Message", dependent: :destroy
+  has_many :received_messages, foreign_key: "receiver_id", class_name: "Message"
+  # has_many :message_receivers, through: :sent_messages, source: :receiver
+  # has_many :message_senders, through: :received_messages, source: :sender
+  has_many :friendings, dependent: :destroy
+  has_many :friends, through: :friendings, source: :user
   
   # callbacks
   before_create { generate_number(:number_id) }

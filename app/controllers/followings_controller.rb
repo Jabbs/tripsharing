@@ -4,10 +4,8 @@ class FollowingsController < ApplicationController
     def create
       @following = @followable.followings.build(user_id: current_user.id)
       if @following.save
-        # track_activity @following
         respond_to do |format|
           format.js
-          # format.html { redirect_to @followable, notice: "You are now following this project!" }
         end
       else
         redirect_to root_path, alert: "There was an issue following this."

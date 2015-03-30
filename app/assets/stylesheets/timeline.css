@@ -78,7 +78,7 @@
   left: 0px;
   margin-right: -25px;
   background-color: #999999;
-  z-index: 100;
+  z-index: 0;
   border-top-right-radius: 50%;
   border-top-left-radius: 50%;
   border-bottom-right-radius: 50%;
@@ -124,8 +124,4 @@
 }
 .timeline-body > p + p {
   margin-top: 5px;
-}
-
-.timeline-body {
-    display: none;
 }

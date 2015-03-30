@@ -112,8 +112,8 @@
 
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-4">
+			<div class="no-height">
+				<div style="position:relative; top:1em;">
 					<i class='fa fa-calendar' style="margin-left:2px;margin-right:1px;"></i>
 					<% if trip.departs_at.present? %>
 						<%= trip.departs_at.strftime('%-m/%d/%y') %>
@@ -121,7 +121,9 @@
 						tbd
 					<% end %>
 				</div>
-				<div class="col-md-8">
+			</div>
+			<div class="row">
+				<div class="col-md-12">
 					<% if current_user %>
 						<div class="pull-right">
 							<% if current_user?(trip.user) %>

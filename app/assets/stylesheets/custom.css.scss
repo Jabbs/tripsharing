@@ -130,6 +130,7 @@ h4 { line-height: 1.2em; }
 .no-top-margin { margin-top: 0px; }
 .no-bottom-margin { margin-bottom: 0px; }
 .no-margin { margin: 0; }
+.small-right-margin { margin-right:5px; }
 .small-bottom-margin { margin-bottom:10px; }
 .smaller-bottom-margin { margin-bottom:2px; }
 .small-left-margin { margin-left:10px; }
@@ -178,6 +179,7 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
+.label-success {background: $turquoise_dark; padding-top:3px;}
 .form-control { margin-bottom: 10px; }
 ul.nav-tabs li a {color: $grey_dark;}
 ul.nav-tabs li a:hover {background: #fff;}
@@ -471,7 +473,10 @@ h2.choice.inactive a {
 	height: 100%;
 	width: 100%;
 }
-
+.well-messages {
+	min-height: 600px;
+	padding: none;
+}
 .trip-background {
 //	background: image-url("clouds.jpg");
 }

@@ -11,10 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328185231) do
+ActiveRecord::Schema.define(version: 20150329220214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.integer  "user_id",                            null: false
+    t.string   "action",                             null: false
+    t.integer  "trackable_id",                       null: false
+    t.string   "trackable_type",                     null: false
+    t.boolean  "notifications_sent", default: false
+    t.boolean  "created_feed_items", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
+  create_table "companionings", force: true do |t|
+    t.integer  "trip_id",                  null: false
+    t.integer  "user_id",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "role",       default: "0", null: false
+  end
+
+  add_index "companionings", ["trip_id"], name: "index_companionings_on_trip_id", using: :btree
+  add_index "companionings", ["user_id", "trip_id"], name: "index_companionings_on_user_id_and_trip_id", unique: true, using: :btree
+  add_index "companionings", ["user_id"], name: "index_companionings_on_user_id", using: :btree
+
+  create_table "feed_items", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "activity_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feed_items", ["activity_id"], name: "index_feed_items_on_activity_id", using: :btree
+  add_index "feed_items", ["user_id", "activity_id"], name: "index_feed_items_on_user_id_and_activity_id", unique: true, using: :btree
+  add_index "feed_items", ["user_id"], name: "index_feed_items_on_user_id", using: :btree
 
   create_table "followings", force: true do |t|
     t.string   "followable_type"
@@ -26,6 +63,15 @@ ActiveRecord::Schema.define(version: 20150328185231) do
 
   add_index "followings", ["followable_id"], name: "index_followings_on_followable_id", using: :btree
   add_index "followings", ["user_id"], name: "index_followings_on_user_id", using: :btree
+
+  create_table "friendings", force: true do |t|
+    t.integer  "friend_id",  null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendings", ["friend_id", "user_id"], name: "index_friendings_on_friend_id_and_user_id", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -65,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150328185231) do
     t.integer  "trip_id"
     t.integer  "user_id"
     t.text     "content"
-    t.string   "state"
+    t.string   "state",      default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,6 +134,33 @@ ActiveRecord::Schema.define(version: 20150328185231) do
 
   add_index "locations", ["country"], name: "index_locations_on_country", using: :btree
   add_index "locations", ["locationable_id", "locationable_type"], name: "index_locations_on_locationable_id_and_locationable_type", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.integer  "sender_id",                   null: false
+    t.integer  "receiver_id",                 null: false
+    t.text     "content",                     null: false
+    t.string   "subject"
+    t.boolean  "viewed",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id",                           null: false
+    t.boolean  "email_sent",        default: false
+    t.datetime "email_sent_at"
+    t.boolean  "badge_icon_viewed", default: false
+    t.boolean  "email_viewed",      default: false
+    t.string   "trigger_code",                      null: false
+    t.string   "action_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "stops", force: true do |t|
     t.integer  "trip_id"
@@ -141,19 +214,6 @@ ActiveRecord::Schema.define(version: 20150328185231) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
-
-  create_table "trip_users", force: true do |t|
-    t.integer  "trip_id"
-    t.integer  "user_id"
-    t.string   "status",       default: "pending"
-    t.text     "introduction"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-  end
-
-  add_index "trip_users", ["status"], name: "index_trip_users_on_status", using: :btree
-  add_index "trip_users", ["trip_id"], name: "index_trip_users_on_trip_id", using: :btree
-  add_index "trip_users", ["user_id"], name: "index_trip_users_on_user_id", using: :btree
 
   create_table "trips", force: true do |t|
     t.string   "name"

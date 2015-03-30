@@ -19,6 +19,8 @@ class UsersController < ApplicationController
       @shared_likes = @user_likes + @cu_likes
       @shared_likes = @shared_likes.select {|e| @shared_likes.count(e) > 1}.uniq
     end
+    @activities = @user.activities
+    @join_request = JoinRequest.new
   rescue Koala::Facebook::AuthenticationError
   end
   

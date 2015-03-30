@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  email_sent: false
+  email_sent_at: 2015-03-29 09:25:24
+  badge_icon_viewed: false
+  email_viewed: false
+  trigger_code: MyString
+
+two:
+  user_id: 1
+  email_sent: false
+  email_sent_at: 2015-03-29 09:25:24
+  badge_icon_viewed: false
+  email_viewed: false
+  trigger_code: MyString

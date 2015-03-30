@@ -1,6 +1,5 @@
 class InterestsController < ApplicationController
-  before_filter :signed_in_user
-  before_filter :correct_user
+  before_filter :admin_user
   
   def index
     @interests_location = current_user.interests.where(category: "Destination").order(:id)
@@ -41,6 +40,10 @@ class InterestsController < ApplicationController
   end
   
   private
+  
+    def admin_user
+      redirect_to root_path unless admin_user?
+    end
   
     def correct_user
       @user = User.friendly.find(params[:user_id])

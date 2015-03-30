@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   
   APP_DOMAIN = 'www.trip-sharing.com'
+  
+  def track_activity(trackable, action = params[:action])
+    current_user.activities.create!(trackable: trackable, action: action) if current_user
+  end
 
   def ensure_domain
     if (Rails.env.production? && request.env['HTTP_HOST'] != APP_DOMAIN) && ENV['STAGING'].nil?

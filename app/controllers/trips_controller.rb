@@ -20,6 +20,7 @@ class TripsController < ApplicationController
     else
       @trips = @user.trips
     end
+    @join_request = JoinRequest.new
   end
   
   def lonelyplanet
@@ -95,6 +96,7 @@ class TripsController < ApplicationController
         current_user.occupation = params[:user][:occupation]
         current_user.save
         @trip.switch_to_state("2")
+        track_activity @trip, "activated"
         redirect_to @trip
       else
         redirect_to @trip, notice: 'Trip successfully updated.'
@@ -126,7 +128,7 @@ class TripsController < ApplicationController
   def deactivate
     @trip = Trip.friendly.find(params[:trip_id])
     @trip.deactivate
-    
+
     redirect_to @trip, notice: "This Trip has been deactivated."
   end
   
