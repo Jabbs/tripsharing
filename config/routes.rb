@@ -50,13 +50,13 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   match '/unsubscribe', to: "verifications#unsubscribe", via: :get
   match '/unsubscribed', to: "static_pages#unsubscribed", via: :get
-  match '/home', to: "static_pages#home", via: :get
+  match '/home', to: "static_pages#home2", via: :get
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
-  root :to => 'static_pages#home'
+  root :to => 'static_pages#home2'
   mount Sidekiq::Web, at: '/sidekiq'
   
   # The priority is based upon order of creation: first created -> highest priority.

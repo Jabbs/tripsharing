@@ -1,0 +1,32 @@
+<div id="home">
+	<div id="home-background5">
+		<div class="container-fluid">
+			<div class="row small-top-margin">
+				<div class="col-md-12">
+					<div class="pull-right">
+						<a href="#" type="button" id="signup-link" data-toggle="modal" data-target="#signinModal">
+							sign up
+						</a>
+						<button type="button" id="login-link" class="btn btn-default" data-toggle="modal" data-target="#signinModal">
+						  Log In
+						</button>
+						<%= render "sessions/signin_modal" %>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="row">
+						<div class="col-md-10">
+							<h1 id="slogan"><%= t('application.root.slogan') %></h1>
+							<%= link_to "How Does It Work?", "#", class: "btn btn-lg btn-primary" %>
+						</div>
+						<div class="col-md-2">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

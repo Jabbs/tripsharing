@@ -9,6 +9,12 @@ class StaticPagesController < ApplicationController
     redirect_to trips_path if current_user
   end
   
+  def home2
+    @session_user = User.new
+    @user = User.new
+    redirect_to trips_path if current_user
+  end
+  
   def about
     @fb_images_rand_5 = User.fb_image_random_5
   end

@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         @user = User.new
         @session_user = User.new
         @session_user.errors.add(:email, "or password invalid")
-        redirect_to home_path, alert: "Invalid email or password."
+        redirect_to root_path, alert: "Invalid email or password."
       end
     end
   end

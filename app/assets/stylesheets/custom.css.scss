@@ -130,6 +130,7 @@ h4 { line-height: 1.2em; }
 .no-top-margin { margin-top: 0px; }
 .no-bottom-margin { margin-bottom: 0px; }
 .no-margin { margin: 0; }
+.small-top-margin {margin-top:10px;}
 .small-right-margin { margin-right:5px; }
 .small-bottom-margin { margin-bottom:10px; }
 .smaller-bottom-margin { margin-bottom:2px; }
@@ -163,7 +164,7 @@ h4 { line-height: 1.2em; }
 .no-padding {padding:0px;}
 .well {
 	background: white;
-	border: 1px dotted $grey_dark;
+//	border: 1px dotted $grey_dark;
 	box-shadow: none;
 }
 .well.darken {background: lighten($grey_light, 15%);}
@@ -179,6 +180,14 @@ h4 { line-height: 1.2em; }
 }
 
 // OVERRIDES
+input[type="password"].form-control,
+input[type="email"].form-control,
+input[type="text"].form-control,
+input[type="search"].form-control{
+	 -webkit-border-radius: 2px;
+	    -moz-border-radius: 2px;
+	         border-radius: 2px;
+}
 .label-success {background: $turquoise_dark; padding-top:3px;}
 .form-control { margin-bottom: 10px; }
 ul.nav-tabs li a {color: $grey_dark;}
@@ -492,8 +501,15 @@ h2.choice.inactive a {
 //	background-size: cover;
 	border-left: 2px solid $grey_dark;
 }
+#slogan {
+	color: #fff;
+	margin-top: 1em;
+}
+
 #home-background { 
-  background: image-url("home/288412.jpg") no-repeat center center fixed;
+//  background: image-url("home/288412.jpg") no-repeat center center fixed;
+//  background: image-url("home/people_camping_hiking.jpg") no-repeat center center fixed;
+	background: image-url("home/Bagan-Medium.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -783,6 +799,20 @@ a.grey-very-dark-link {
   -webkit-border-radius: 5em;
 	-moz-border-radius: 5em;
 	border-radius: 5em;
+}
+i.social-circle {
+  display: inline-block;
+	font-size: 200%;
+	color: #fff;
+	width: 40px;
+	height: 40px;
+	padding-top:5px;
+  -moz-border-radius: 60px;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  -moz-box-shadow: 0px 0px 4px #fff;
+  -webkit-box-shadow: 0px 0px 4px #fff;
+  box-shadow: 0px 0px 4px #fff;
 }
 
 .circle-salmon {

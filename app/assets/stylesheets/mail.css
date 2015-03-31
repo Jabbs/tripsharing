@@ -23,11 +23,7 @@
 .float-label{
     font-size:10px;
 }
-input[type="text"].form-control,
-input[type="search"].form-control{
-    border:none;
-    border-bottom:1px dotted #CFCFCF;
-}
+
 textarea {
     border:1px dotted #CFCFCF!important;
     height:130px!important;

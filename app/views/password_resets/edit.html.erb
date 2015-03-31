@@ -1,39 +1,39 @@
-<div class="container">
-  <div class="div" style="margin-top:150px;margin-bottom:260px;">
-	
-	
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">Reset Password</h3>
-				  </div>
-				  <div class="panel-body">
-						<%= form_for(@user, html: { id: "edit_user_password_form"}, url: password_reset_path(params[:id])) do |f| %>
-							<%= render 'shared/error_messages', object: @user %>
-							<div class="row small-bottom-margin">
-								<div class="col-md-3">
-									<label class="pull-right">Password:</label>
+<div id="home-background5">
+	<div class="container">
+	  <div class="div" style="margin-top:150px;margin-bottom:260px;">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Reset Password</h3>
+					  </div>
+					  <div class="panel-body">
+							<%= form_for(@user, html: { id: "edit_user_password_form"}, url: password_reset_path(params[:id])) do |f| %>
+								<%= render 'shared/error_messages', object: @user %>
+								<div class="row small-bottom-margin">
+									<div class="col-md-3">
+										<label class="pull-right">Password:</label>
+									</div>
+									<div class="col-md-6">
+										<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password" required minlength="6">
+									</div>
 								</div>
-								<div class="col-md-6">
-									<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password" required minlength="6">
+								<div class="row">
+									<div class="col-md-3">
+										<label class="pull-right">Password Confirm:</label>
+									</div>
+									<div class="col-md-6">
+										<input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" style="width:100%;" type="password" placeholder="Password Confirm" required minlength="6" data-parsley-equalto="#user_password">
+									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<label class="pull-right">Password Confirm:</label>
-								</div>
-								<div class="col-md-6">
-									<input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" style="width:100%;" type="password" placeholder="Password Confirm" required minlength="6" data-parsley-equalto="#user_password">
-								</div>
-							</div>
-							<hr>
-							<%= f.submit "Submit", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
-						<% end %>
-				  </div>
+								<hr>
+								<%= f.submit "Submit", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
+							<% end %>
+					  </div>
+					</div>
 				</div>
 			</div>
-		</div>
 
-  </div>
+	  </div>
+	</div>
 </div>

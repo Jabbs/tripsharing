@@ -1,0 +1,14 @@
+<div class="modal-body">
+	<%= render "sessions/facebook_or", fb_prefix: "Sign up" %>
+	<hr>
+	<div class="row">
+		<%= render 'users/form' %>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			Already a member?
+			<%= link_to "Log in", "#", id: "login-link" %>
+		</div>
+	</div>
+</div>

@@ -42,7 +42,7 @@
 	<% if controller_name == 'static_pages' && action_name == 'home' %>
 		<div id="spinner"></div>
 	<% end %>
-	<% unless controller_name == 'static_pages' || controller_name == 'sessions' %>
+	<% unless controller_name == 'static_pages' || controller_name == 'sessions' || controller_name == 'password_resets' %>
 		<%= render 'layouts/header' %>
 	<% end %>
 	<%= render 'shared/flash', flash: flash %>
