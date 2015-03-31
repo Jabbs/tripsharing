@@ -23,19 +23,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def create_survey_from_user
-    if current_user && cookies[:survey_id]
-      if @survey = Survey.find_by_id(cookies[:survey_id])
-        if @survey && !current_user.survey.present?
-          @survey.user = current_user
-          current_user.send_to_first_trip = true
-          current_user.save
-          @survey.save
-        end
-      end
-    end
-  end
-  
   def set_airports
     @airports ||= view_context.render 'trips/airports.json'
   end

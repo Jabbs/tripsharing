@@ -503,7 +503,8 @@ h2.choice.inactive a {
 }
 #slogan {
 	color: #fff;
-	margin-top: 1em;
+	margin-top: 4em;
+	margin-bottom: 1em;
 }
 
 #home-background { 
@@ -722,6 +723,10 @@ h2.choice.inactive a {
 	background: $white;
 	border: 1px dotted $grey_dark;
 	padding:0px 6px 0px 6px;
+}
+a.white-link {
+	color:darken($white, 10%);
+	&:hover {text-decoration:none;color: darken($white, 20%);}
 }
 a.grey-link {
 	color:darken($grey, 10%);

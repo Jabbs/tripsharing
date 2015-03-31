@@ -35,10 +35,16 @@
 	              </ul>
 	            </li>
 	          </ul>
+					<% else %>
+						<div style="margin-top:8px">
+							<%= render "sessions/signup_buttons" %>
+						</div>
+						
 	        <% end %>
 	      </ul>
-
-				<%= render "layouts/noticebar" %>
+				<% if current_user %>
+					<%= render "layouts/noticebar" %>
+				<% end %>
 				
 				<% unless @remove_start_trip_button %>
 					<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-salmon pull-left" style="margin-top:8px;margin-left:30px;" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Start A Trip</a>

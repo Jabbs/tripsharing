@@ -40,19 +40,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      create_survey_from_user
-      unless current_user.trips.any?
-        Trip.create_from_survey(current_user, current_user.survey) if current_user.survey
-      end
-      if current_user.trips.any? && current_user.send_to_first_trip == true
-        current_user.send_to_first_trip == false
-        current_user.save
-        redirect_to current_user.trips.first
-      else
-        redirect_to trips_path
-      end
+      redirect_to trips_path
     else
-      logger.debug("ERRORS: #{@user.errors.full_messages}")
       redirect_to root_path, alert: "There was an issue creating your account."
     end
   end
