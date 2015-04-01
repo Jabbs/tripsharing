@@ -103,8 +103,8 @@
 					<small>first stop:</small><br>
 					<div class="trip-departs-to">
 						<i class="fa fa-map-marker" style="margin-left:4px;margin-right:2px;"></i>
-						<% if trip.departs_to.present? %>
-							<%= trip.try(:departs_to) %>
+						<% if trip.stop_location.present? %>
+							<%= trip.try(:stop_location) %>
 						<% else %>
 							Unknown
 						<% end %>

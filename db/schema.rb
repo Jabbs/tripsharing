@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329220214) do
+ActiveRecord::Schema.define(version: 20150401125623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,40 +219,33 @@ ActiveRecord::Schema.define(version: 20150329220214) do
     t.string   "name"
     t.datetime "expires_at"
     t.text     "description"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "slug"
-    t.integer  "view_count",                default: 0
+    t.integer  "view_count",         default: 0
     t.integer  "user_id"
-    t.boolean  "initialized_with_signup",   default: false
-    t.string   "audience",                  default: "public"
     t.integer  "duration_in_days"
-    t.string   "price_dollars_low"
-    t.string   "price_dollars_high"
     t.datetime "departs_at"
     t.string   "group_dynamics"
-    t.string   "state",                     default: "1"
-    t.string   "currency",                  default: "USD"
+    t.string   "state",              default: "1"
     t.string   "region"
-    t.boolean  "private",                   default: false
+    t.boolean  "private",            default: false
     t.string   "seeking_type"
     t.datetime "returns_at"
     t.string   "duration"
     t.string   "time_flexibility"
     t.string   "departing_category"
-    t.string   "departs_from"
-    t.string   "departs_to"
     t.string   "group_count"
-    t.string   "group_departing_proximity"
-    t.string   "group_relationship_status"
-    t.string   "group_drinking"
-    t.string   "group_personality"
-    t.string   "group_nationality",         default: "0"
+    t.string   "group_nationality",  default: "0"
     t.string   "default_image"
     t.text     "reason"
-    t.integer  "group_age_min",             default: 0
-    t.integer  "group_age_max",             default: 0
-    t.integer  "followings_count",          default: 0
+    t.integer  "group_age_min",      default: 0
+    t.integer  "group_age_max",      default: 0
+    t.integer  "followings_count",   default: 0
+    t.string   "stop_location"
+    t.string   "user_occupation"
+    t.string   "user_nationality"
+    t.text     "user_interest_blob"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree

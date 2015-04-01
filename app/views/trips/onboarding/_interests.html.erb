@@ -1,0 +1,25 @@
+<div class="row top-margin">
+	<div class="col-md-12">
+		<% User::INTERESTS_ARRAY.each do |group| %>
+			<div class="row">
+				<div class="col-sm-2">
+					<label><%= group[0].capitalize %>:</label>
+				</div>
+				<div class="radio" style="margin-top:0px;">
+					<div class="col-md-10">
+						<% group[2].each do |preference| %>
+							<% @user.interest_blob.split(",").include?(group[1] + "-" + preference[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+						
+							  <label>
+							    <input type="radio" name="preference_tags[<%= group[1] %>]" class="fancyradio fancyradio-shell" value="<%= preference[1] %>" style="display:none;" <%= checked_or_no %>>
+									<span><%= preference[0] %></span>
+							  </label>
+						
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<hr>
+		<% end %>
+	</div>
+</div>

@@ -1,7 +1,7 @@
 <div class="row top-margin">
 	<div class="col-md-3"><label>Nationality:</label></div>
 	<div class="col-md-9">
-		<select name="user[nationality]">
+		<select name="trip[user_nationality]">
 			<% nationalities = [["-- select --", "0"]] + User::NATIONALITIES_ARRAY.drop(1) %>
 			<% nationalities.each do |nationality| %>
 				<% current_user && current_user.nationality == nationality[1] ? selected = "selected" : selected = "" %>
@@ -13,12 +13,12 @@
 <div class="row top-margin">
 	<div class="col-md-3"><label>Occupation:</label></div>
 	<div class="col-md-9">
-		<input type="text" name="user[occupation]" placeholder="Occupation" style="width:100%;" autocomplete="off" value="<%= current_user.try(:occupation) %>">
+		<input type="text" name="trip[user_occupation]" placeholder="Occupation" style="width:100%;" autocomplete="off" value="<%= current_user.try(:occupation) %>">
 	</div>
 </div>
 <div class="row top-margin">
 	<div class="col-md-3"><label>Reason For Trip:</label></div>
 	<div class="col-md-9">
-		<textarea type="text" name="trip[description]" placeholder="I am planning this trip because..." style="width:100%;" rows="10" autocomplete="off"><%= @trip.reason %></textarea>
+		<input type="text" name="trip[description]" placeholder="I am planning this trip because..." style="width:100%;" rows="10" autocomplete="off"><%= @trip.reason %></input>
 	</div>
 </div>

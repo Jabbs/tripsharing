@@ -9,10 +9,9 @@ class Stop < ActiveRecord::Base
   TRANSPORTATION_TYPES_ARRAY = [["flight", "1"], ["car", "2"]]
   
   def self.create_from_trip(trip)
-    if !trip.departs_to.blank?
+    if !trip.stop_location.blank?
       stop = trip.stops.new(user_id: trip.user_id)
-      stop.to_name = trip.departs_to
-      stop.from_name = trip.departs_from
+      stop.to_name = trip.stop_location
       stop.to_date = trip.departs_at if trip.departs_at
       stop.save
     end

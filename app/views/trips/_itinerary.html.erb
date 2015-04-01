@@ -5,6 +5,20 @@
 		</div>
 	</div>
 </div>
+<% if @stops.size == 0 %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="dots-white" style="padding-top:10px;padding-bottom:10px;margin-top:10px;">
+				<i class="fa fa-map-marker right-margin" style="margin-left:3px;"></i>
+				No stops have been added.
+				<span class="pull-right">
+					tbd
+					<i class='fa fa-calendar' style="margin-left:3px;"></i>
+				</span>
+			</div>
+		</div>
+	</div>
+<% end %>
 <div id="stops">
 	<%= render @stops %>
 </div>

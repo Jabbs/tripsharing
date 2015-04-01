@@ -26,7 +26,7 @@ class Trip < ActiveRecord::Base
   after_create :add_default_image
   after_commit :add_first_companion
   
-  STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress"}
+  STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress", "7" => "no user"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
   GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples", "5" => "Not Seeking Companions"}
   GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["solo travel", "5"]]
@@ -94,17 +94,6 @@ class Trip < ActiveRecord::Base
     lp_trips
   end
   
-  def self.create_from_survey(user, survey)
-    trip = Trip.new(user_id: user.id)
-    trip.initialized_with_signup = true
-    trip.departing_category = survey.month
-    trip.group_dynamics = survey.companion_type
-    trip.add_predetermined_ages
-    trip.region = survey.destination
-    trip.name = Trip.generate_name(survey.month, survey.destination)
-    trip.save!
-  end
-  
   def self.generate_name(departings_key, regions_key)
     x = ["adventure", "exploit", "venture", "getaway"]
     name = Trip::DEPARTINGS[departings_key] + " travel #{x.shuffle.first} to " + Trip::REGIONS[regions_key]
@@ -136,7 +125,7 @@ class Trip < ActiveRecord::Base
   end
     
   def create_first_stop
-    unless self.stops.any? && self.departs_to.present?
+    unless self.stops.any? && self.stop_location.present?
       Stop.create_from_trip(self)
     end
   end
@@ -206,6 +195,10 @@ class Trip < ActiveRecord::Base
   
   def inactive?
     self.state == "4" ? true : false
+  end
+  
+  def userless?
+    self.state == "7" ? true : false
   end
   
   def price_info?

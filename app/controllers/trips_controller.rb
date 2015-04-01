@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
-  before_filter :signed_in_user, except: [:show, :details, :create]
+  before_filter :signed_in_user, except: [:show, :details, :create, :update]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
-  before_filter :correct_user, only: [:edit, :update, :remove_images]
+  before_filter :correct_user, only: [:edit, :remove_images, :update]
   before_filter :redirect_inactive_trip, only: [:show]
   before_filter :redirect_incomplete_trip, only: [:show]
   
@@ -66,6 +66,8 @@ class TripsController < ApplicationController
   end
   
   def show
+    @session_user = User.new
+    @user = User.new
     @trip = Trip.friendly.find(params[:id])
     @trip.image_attachments.build
     @join_request = @trip.join_requests.new
@@ -93,12 +95,14 @@ class TripsController < ApplicationController
     create_tags if params["interest_tags"]
     fix_date_month_order
     if @trip.update_attributes(trip_params)
+      update_user_interest_blob
       if referrer == "details"
-        current_user.nationality = params[:user][:nationality]
-        current_user.occupation = params[:user][:occupation]
-        current_user.save
-        @trip.switch_to_state("2")
-        track_activity @trip, "activated"
+        if current_user
+          @trip.switch_to_state("2")
+          track_activity @trip, "activated"
+        else
+          @trip.switch_to_state("7")
+        end
         redirect_to @trip
       else
         redirect_to @trip, notice: 'Trip successfully updated.'
@@ -118,7 +122,7 @@ class TripsController < ApplicationController
       cookies[:trip_id] = @trip.id
       redirect_to trip_details_path(@trip)
     else
-      redirect_to trips_path, alert: "You must create a name for your trip."
+      redirect_to root_path, alert: "You must create a name for your trip."
     end
   end
   
@@ -139,11 +143,11 @@ class TripsController < ApplicationController
   private
     
     def trip_params
-            
+      
       params.require(:trip).permit(:group_age_max, :group_age_min, :description, :expires_at, :group_age_min, :group_age_max, :name, :active, :state,
-                                   :duration_in_days, :price_dollars_low, :price_dollars_high, :departs_at, :currency, :group_dynamics,
-                                   :region, :private, :seeking_type, :group_count, :duration, :time_flexibility, :departs_from, :departs_to,
-                                   :group_departing_proximity, :group_relationship_status, :group_drinking, :group_personality, :group_nationality,
+                                   :duration_in_days, :departs_at, :group_dynamics,
+                                   :region, :private, :seeking_type, :group_count, :duration, :time_flexibility,
+                                   :group_nationality, :stop_location, :user_occupation, :user_nationality, :user_interest_blob,
                                    :departing_category, :reason, :returns_at, :tag_list, :default_image,
                                    image_attachments_attributes: [:image, :description, :_destroy],
                                    stops_attributes: [:to_iata, :from_iata, :to_name, :from_name, :transportation_type, :order, :to_date, :from_date],
@@ -155,6 +159,18 @@ class TripsController < ApplicationController
       if params[:trip].present?
         params[:trip][:departs_at] = Date.strptime(params[:trip][:departs_at],'%m/%d/%Y') if params[:trip][:departs_at].present?
         params[:trip][:returns_at] = Date.strptime(params[:trip][:returns_at],'%m/%d/%Y') if params[:trip][:returns_at].present?
+      end
+    end
+    
+    def update_user_interest_blob
+      preference_tags = params[:preference_tags]
+      unless preference_tags.nil?
+        user_interest_blob = ""
+        preference_tags.each do |p|
+          user_interest_blob = user_interest_blob + p[0] + "-" + p[1] + ","
+        end
+        @trip.user_interest_blob = user_interest_blob.chomp(",")
+        @trip.save
       end
     end
     

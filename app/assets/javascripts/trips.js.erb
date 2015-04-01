@@ -105,6 +105,7 @@ $('document').ready(function() {
 		$("#onboarding-when").hide();
 		$("#onboarding-stops").hide();
 		$("#onboarding-purpose").hide();
+		$("#onboarding-interests").hide();
 		$("#onboarding-profile").hide();
 		$(".trip-category").removeClass("active");
 	};
@@ -113,6 +114,7 @@ $('document').ready(function() {
 	$('.onboarding-goto-when').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-when").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-stops').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-stops").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-purpose').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-purpose").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-interests').click(function() { hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-interests").fadeIn(fadeInSpeed); });
 	$('.onboarding-goto-profile').click(function() { hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-profile").fadeIn(fadeInSpeed); });
 
 	$(".form-fancy").on("keypress", function (e) {

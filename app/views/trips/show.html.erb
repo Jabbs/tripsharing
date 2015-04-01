@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="trip-bar">
 				<h4 class="no-margin" style="line-height:200%;">
-					<% if @trip.active? %>
+					<% if @trip.active? || @trip.userless? %>
 						<div id="travel-text" class="inline">
 							<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
 						</div>
@@ -119,8 +119,8 @@
 				<hr style="margin-top:60px;">
 				<%= render "trips/itinerary" %>
 				<hr style="margin-top:40px;margin-bottom:20px;">
-				<%= render "trips/organizer" %>
-				<% if @trip.active? && !current_user?(@trip.user) %>
+				<%= render "trips/organizer" if @trip.user %>
+				<% if current_user && @trip.active? && !current_user?(@trip.user) %>
 					<hr style="margin-top:40px;margin-bottom:20px;">
 					<%= render "trips/join_request" %>
 				<% end %>
