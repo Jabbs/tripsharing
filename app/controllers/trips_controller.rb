@@ -1,7 +1,8 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:show, :details, :create, :update]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
-  before_filter :correct_user, only: [:edit, :remove_images, :update]
+  before_filter :correct_user, only: [:edit, :remove_images]
+  before_filter :correct_user_update_if_user, only: [:update]
   before_filter :redirect_inactive_trip, only: [:show]
   before_filter :redirect_incomplete_trip, only: [:show]
   
@@ -197,6 +198,14 @@ class TripsController < ApplicationController
       params[:trip_id]? id = params[:trip_id] : id = params[:id]
       @trip = Trip.friendly.find(id)
       redirect_to root_path unless current_user == @trip.user
+    end
+    
+    def correct_user_update_if_user
+      if current_user
+        params[:trip_id]? id = params[:trip_id] : id = params[:id]
+        @trip = Trip.friendly.find(id)
+        redirect_to root_path unless current_user == @trip.user
+      end
     end
     
     def redirect_inactive_trip
