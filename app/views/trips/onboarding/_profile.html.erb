@@ -4,7 +4,7 @@
 		<select name="user[nationality]">
 			<% nationalities = [["-- select --", "0"]] + User::NATIONALITIES_ARRAY.drop(1) %>
 			<% nationalities.each do |nationality| %>
-				<% current_user.nationality == nationality[1] ? selected = "selected" : selected = "" %>
+				<% current_user && current_user.nationality == nationality[1] ? selected = "selected" : selected = "" %>
 				<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
 			<% end %>
 		</select>
@@ -13,12 +13,12 @@
 <div class="row top-margin">
 	<div class="col-md-3"><label>Occupation:</label></div>
 	<div class="col-md-9">
-		<input type="text" name="user[occupation]" placeholder="Occupation" style="width:500px;" autocomplete="off" value="<%= current_user.occupation %>">
+		<input type="text" name="user[occupation]" placeholder="Occupation" style="width:100%;" autocomplete="off" value="<%= current_user.try(:occupation) %>">
 	</div>
 </div>
 <div class="row top-margin">
 	<div class="col-md-3"><label>Reason For Trip:</label></div>
 	<div class="col-md-9">
-		<textarea type="text" name="trip[description]" placeholder="I am planning this trip because..." style="width:500px;min-height:100px;" rows="40" autocomplete="off"><%= @trip.reason %></textarea>
+		<textarea type="text" name="trip[description]" placeholder="I am planning this trip because..." style="width:100%;" rows="10" autocomplete="off"><%= @trip.reason %></textarea>
 	</div>
 </div>

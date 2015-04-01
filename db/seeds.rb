@@ -22,10 +22,11 @@ unless User.find_by_email("petejabbour1@gmail.com").present?
   country_blob = "39,50,60,96,219,242"
   language_blob = "15"
   interest_blob = "1-3,2-3,3-1,4-1,5-2"
+  region_blob = "1,2,3,5,7,8,9,10"
   User.create!(email: email, first_name: first_name, last_name: last_name, password: password, gender: gender,
               bio: bio, occupation: occupation, birthday: birthday, location: location, status: status,
               country_blob: country_blob, language_blob: language_blob, interest_blob: interest_blob,
-              home_airport: home_airport, education: education)
+              home_airport: home_airport, education: education, region_blob: region_blob)
 end
 
 15.times do
@@ -43,11 +44,12 @@ end
   status = User::STATUS.keys.shuffle.first
   country_blob = User::COUNTRIES.keys.shuffle.first(rand(1..10)).join(",")
   language_blob = User::LANGUAGES.keys.shuffle.first(rand(1..3)).join(",")
+  region_blob = Trip::REGIONS.keys.shuffle.first(rand(1..10)).join(",")
   interest_blob = User::INTERESTS.keys.map { |k| k + "-" + rand(1..3).to_s }.join(",")
   User.create!(email: email, first_name: first_name, last_name: last_name, password: password, gender: gender,
               bio: bio, occupation: occupation, birthday: birthday, location: location, status: status,
               country_blob: country_blob, language_blob: language_blob, interest_blob: interest_blob,
-              home_airport: home_airport, education: education)
+              home_airport: home_airport, education: education, region_blob: region_blob)
 end
 
 120.times do

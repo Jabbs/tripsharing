@@ -40,7 +40,13 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      redirect_to trips_path
+      if @trip = Trip.find_by_id(cookies[:trip_id])
+        @trip.user = current_user
+        @trip.save!
+        redirect_to @trip
+      else
+        redirect_to trips_path
+      end
     else
       redirect_to root_path, alert: "There was an issue creating your account."
     end

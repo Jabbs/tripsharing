@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
-  before_filter :signed_in_user, except: [:show]
+  before_filter :signed_in_user, except: [:show, :details, :create]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
-  before_filter :correct_user, only: [:edit, :update, :details, :remove_images]
+  before_filter :correct_user, only: [:edit, :update, :remove_images]
   before_filter :redirect_inactive_trip, only: [:show]
   before_filter :redirect_incomplete_trip, only: [:show]
   
@@ -32,6 +32,8 @@ class TripsController < ApplicationController
   end
   
   def details
+    @session_user = User.new
+    @user = User.new
     @remove_start_trip_button = true
     @trip = Trip.friendly.find(params[:trip_id])
   end
@@ -107,11 +109,13 @@ class TripsController < ApplicationController
   end
   
   def create
-    @my_trips = current_user.trips
+    raise ActionController::RoutingError.new('Not Found') if !params[:blankey].blank?
+    # @my_trips = current_user.trips
     @trip = Trip.new(trip_params)
-    @trip.user = current_user
+    @trip.user = current_user if current_user
     @trip.add_predetermined_ages
     if @trip.save
+      cookies[:trip_id] = @trip.id
       redirect_to trip_details_path(@trip)
     else
       redirect_to trips_path, alert: "You must create a name for your trip."

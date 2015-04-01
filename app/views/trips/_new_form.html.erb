@@ -9,6 +9,10 @@
 		<label class="col-md-2 right">Trip Name:</label>
 	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
 	</div>
+	<div class="blankey" style="display:none;">
+    <h4>Leave this field blank to prevent spam:</h4>
+    <%= text_field_tag :blankey %>
+  </div>
 	<hr/>
   <%= f.submit "BEGIN", data: { disable_with: "Saving..." }, class: "btn btn-salmon pull-right" %>
 

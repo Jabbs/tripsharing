@@ -3,7 +3,6 @@ class Trip < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :history]
                     
   validates :name, presence: true, length: { maximum: 250 }
-  validates :user_id, presence: true
   validates :description, length: { maximum: 5000 }
   validates :region, presence: true
   
@@ -157,9 +156,14 @@ class Trip < ActiveRecord::Base
   end
   
   def add_predetermined_ages
-    self.group_age_min = user.age - 4
-    self.group_age_min = 18 if self.group_age_min < 18
-    self.group_age_max = user.age + 4
+    if user
+      self.group_age_min = user.age - 4
+      self.group_age_min = 18 if self.group_age_min < 18
+      self.group_age_max = user.age + 4
+    else
+      self.group_age_min = 25
+      self.group_age_max = 35
+    end
   end
   
   def city_state

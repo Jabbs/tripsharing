@@ -379,27 +379,6 @@ input[type="radio"].fancyradio-shell+span {
 	padding-left:10px;
 	color: $grey_dark;
 }
-.form-fancy textarea:focus,
-.form-fancy input[type="text"]:focus,
-.form-fancy input[type="password"]:focus,
-.form-fancy input[type="datetime"]:focus,
-.form-fancy input[type="datetime-local"]:focus,
-.form-fancy input[type="date"]:focus,
-.form-fancy input[type="month"]:focus,
-.form-fancy input[type="time"]:focus,
-.form-fancy input[type="week"]:focus,
-.form-fancy input[type="number"]:focus,
-.form-fancy input[type="email"]:focus,
-.form-fancy input[type="url"]:focus,
-.form-fancy input[type="search"]:focus,
-.form-fancy input[type="tel"]:focus,
-.form-fancy input[type="color"]:focus,
-.form-fancy .uneditable-input:focus {   
-  border-color: rgba(126, 239, 104, 0.8);
-  box-shadow: none;
-  outline: 0 none;
-	padding-left:10px;
-}
 
 a.fb-link {
 	color: $grey;

@@ -1,19 +1,23 @@
-<div class="row top-margin">
-	<div class="col-md-3"><label>Departing From:</label></div>
-	<div class="col-md-9">
-		<div class="prefetch">
-		  <input class="typeahead" type="text" name="trip[departs_from]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_from %>" autocomplete="off">
+<div class="row small-bottom-margin">
+	<div class="col-md-12 small-bottom-margin">
+		<div class="input-group">
+		  <span class="input-group-addon" id="sizing-addon1"><i class='fa fa-map-marker' style="padding-left:4px;padding-right:3px;"></i></span>			
+			<input class="form-control add-geocomplete"  aria-describedby="sizing-addon1" type="text" name="trip[departs_from]" placeholder="Location" style="width:500px;" value="<%= @trip.departs_from %>" autocomplete="off">
 		</div>
 	</div>
 </div>
-<div class="row top-margin">
-	<div class="col-md-3"><label>Landing In:</label></div>
-	<div class="col-md-9">
-		<div class="prefetch">
-		  <input class="typeahead" type="text" name="trip[departs_to]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_to %>" autocomplete="off">
+<div class="row" style="margin-left:35px; margin-bottom:18px;">
+	<div class="col-md-12"><h3>or</h3></div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div style="max-height:41px;">
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-plane" style="padding-left:2px;padding-right:2px;"></i></span>
+				<div class="prefetch">				
+					<input aria-describedby="sizing-addon2" class="form-control typeahead" type="text" name="trip[departs_to]" placeholder="Airport" style="width:500px;" value="<%= @trip.departs_to %>" autocomplete="off">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
-
-
