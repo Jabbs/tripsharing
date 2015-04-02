@@ -41,8 +41,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       if @trip = Trip.find_by_id(cookies[:trip_id])
-        @trip.user = current_user
-        @trip.save!
+        connect_trip_to_user
         redirect_to @trip
       else
         redirect_to trips_path

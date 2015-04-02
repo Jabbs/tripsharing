@@ -35,6 +35,16 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def connect_trip_to_user
+    @trip.user = current_user
+    @trip.save!
+    current_user.occupation = @trip.user_occupation
+    current_user.nationality = @trip.user_nationality
+    current_user.interest_blob = @trip.user_interest_blob
+    current_user.save!
+    cookies.delete(:trip_id)
+  end
+  
   private
 
     def record_user_activity

@@ -1,12 +1,19 @@
 <% small == true ? size = "" : size = "col-md-6" %>
 
-<% user.interest_blob.split(",").each do |b| %>
-	<% i = b.split("-") %>
-	<% unless i[1] == "0" %>
-		<% preference = User::INTERESTS[i[0]] %>
-		<% m = preference["margins"].split("-") %>
-		<div class="<%= size %> small-bottom-margin">
-			<i class="fa fa-<%= preference["icon"] %>" style="margin-left:<%= m[0] %>px;margin-right:<%= m[1] %>px;" title="<%= preference["name"] %>"></i> <%= preference["attrs"][i[1]] %>
-		</div>
+<% if user.interest_blob %>
+	<% user.interest_blob.split(",").each do |b| %>
+		<% i = b.split("-") %>
+		<% unless i[1] == "0" %>
+			<% preference = User::INTERESTS[i[0]] %>
+			<% m = preference["margins"].split("-") %>
+			<div class="<%= size %> small-bottom-margin">
+				<i class="fa fa-<%= preference["icon"] %>" style="margin-left:<%= m[0] %>px;margin-right:<%= m[1] %>px;" title="<%= preference["name"] %>"></i> <%= preference["attrs"][i[1]] %>
+			</div>
+		<% end %>
 	<% end %>
+<% else %>
+	Travel Interests
+	<div class="<%= size %> small-bottom-margin">
+		Unknown
+	</div>
 <% end %>

@@ -5,4 +5,4 @@
   <i class='fa fa-user' style='margin-right:5px;'></i>
 	Log In
 </button>
-<%= render "sessions/signin_modal" %>
+<%= render "sessions/signin_modal" unless current_user %>

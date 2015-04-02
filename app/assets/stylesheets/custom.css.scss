@@ -302,7 +302,7 @@ input[type="color"]:focus,
 	z-index: 2;
 	display: none;
 }
-#passreset-modal-content {display: none;}
+#passreset-modal-content, #login-modal-content {display: none;}
 .nav > li.dropdown.active.open > a, 
 .nav > li.dropdown.active.open > ul.dropdown-menu a:hover,
 .nav > li.dropdown.open > a, 

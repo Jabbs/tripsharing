@@ -102,6 +102,7 @@ class TripsController < ApplicationController
           @trip.switch_to_state("2")
           track_activity @trip, "activated"
         else
+          cookies[:trip_id] = @trip.id
           @trip.switch_to_state("7")
         end
         redirect_to @trip
@@ -120,7 +121,6 @@ class TripsController < ApplicationController
     @trip.user = current_user if current_user
     @trip.add_predetermined_ages
     if @trip.save
-      cookies[:trip_id] = @trip.id
       redirect_to trip_details_path(@trip)
     else
       redirect_to root_path, alert: "You must create a name for your trip."
