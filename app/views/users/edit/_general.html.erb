@@ -23,7 +23,7 @@
 					</div>
 					<div class="col-md-10">
 						<div class="prefetch">
-							<input class="typeahead" type="text" name="user[home_airport]" placeholder="Airport nearest you..." style="width:500px;" value="<%= @user.home_airport %>" autocomplete="off">
+							<input class="typeahead" type="text" name="user[home_airport]" placeholder="Airport nearest you..." style="width:500px;" value="<%= user.home_airport %>" autocomplete="off">
 						</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 						<label class="pull-right">Location:</label>
 					</div>
 					<div class="col-md-10">
-						<input name="user[location]" type="text" class="add-geocomplete" id="location" placeholder="Set your location" value="<%= @user.location %>" style="width:100%;" autocomplete="off">
+						<input name="user[location]" type="text" class="add-geocomplete" id="location" placeholder="Set your location" value="<%= user.location %>" style="width:100%;" autocomplete="off">
 					</div>
 				</div>
 				

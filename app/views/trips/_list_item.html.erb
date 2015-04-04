@@ -42,7 +42,7 @@
 		<% if trip.user.fb_image.present? %>
 			<% img_path = "#{trip.user.fb_image}" + "?type=small"  %>
 		<% else %>
-			<% img_path = "blank_avatar.png"  %>
+			<% img_path = "default_profile_image.png"  %>
 		<% end %>
 		<%= link_to trip.user do %>
 			<%= image_tag(img_path, class: "image") %>

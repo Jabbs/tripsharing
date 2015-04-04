@@ -26,7 +26,7 @@
 	                <% elsif current_user.fb_image %>
 	                  <%= image_tag current_user.fb_image, size: "30x30", id: "image-dropdown" %>
 	                <% else %>
-	                  <%= image_tag "blank_avatar.jpg", size: "30x30", id: "image-dropdown" %>
+	                  <%= image_tag "default_profile_image.png", size: "30x30", id: "image-dropdown" %>
 	                <% end %>
 	                <b class="caret"></b>
 	              </a>
@@ -47,7 +47,7 @@
 				<% end %>
 				
 				<% unless @remove_start_trip_button %>
-					<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-salmon pull-left" style="margin-top:8px;margin-left:30px;" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Start A Trip</a>
+					<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-salmon pull-left" style="margin-top:8px;margin-left:30px;" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Plan A Trip</a>
 					<%= render "trips/trip_new_modal" %>
 				<% end %>
 				<% if current_user %>

@@ -20,7 +20,7 @@
 										<% elsif @user.fb_image.present? %>
 											<%= image_tag "#{@user.fb_image}" + "?type=large", class: "profile-pic", title: @user.full_name %>
 										<% else %>
-											<%= image_tag "blank_avatar.png", class: "profile-pic", title: @user.full_name, size: "200x200" %>
+											<%= image_tag "default_profile_image.png", class: "profile-pic", title: @user.full_name, size: "200x200" %>
 										<% end %>
 									</div>
 								</div>

@@ -6,11 +6,11 @@
 		<%= form_for @user do |f| %>
 			<div class="col-md-9">
 
-				<%= render "users/edit/general", f: f %>
-				<%= render "users/edit/travel_preferences", f: f %>
-				<%= render "users/edit/regions_following", f: f %>
-				<%= render "users/edit/languages_spoken", f: f %>
-				<%= render "users/edit/countries_visited", f: f %>
+				<%= render "users/edit/general", user: @user, f: f %>
+				<%= render "users/edit/travel_preferences", user: @user, f: f %>
+				<%= render "users/edit/regions_following", user: @user, f: f %>
+				<%= render "users/edit/languages_spoken", user: @user, f: f %>
+				<%= render "users/edit/countries_visited", user: @user, f: f %>
 				
 				<div class="row">
 					<div class="col-md-12">

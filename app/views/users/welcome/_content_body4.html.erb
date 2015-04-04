@@ -1,23 +1,22 @@
 <div class="modal-body welcome-body">
 	<div class="row bottom-margin">
 		<div class="col-md-4">
-			<h3 class="pull-right no-margin">Profile picture:</h3>
+			<h3 class="pull-right">Profile picture:</h3>
 		</div>
 	</div>
 	<div class="row bottom-margin">
 		<div class="col-md-4">
 			<div class="pull-right">
-				<% if @user.image_attachments.count != 0 %>
-					<%= image_tag(@user.image_attachments.first.image.url(:small), class: "profile-pic", size: "200x200").to_s %>
-				<% elsif @user.fb_image.present? %>
-					<%= image_tag "#{@user.fb_image}" + "?type=large", class: "profile-pic", title: @user.full_name %>
+				<% if @welcome_user.image_attachments.count != 0 %>
+					<%= image_tag(@welcome_user.image_attachments.first.image.url(:small), class: "profile-pic", size: "200x200").to_s %>
+				<% elsif @welcome_user.fb_image.present? %>
+					<%= image_tag "#{@welcome_user.fb_image}" + "?type=large", class: "profile-pic", title: @welcome_user.full_name %>
 				<% else %>
-					<%= image_tag "blank_avatar.png", class: "profile-pic", title: @user.full_name, size: "200x200" %>
+					<%= image_tag "default_profile_image.png", class: "profile-pic", title: @welcome_user.full_name, size: "200x200" %>
 				<% end %>
 			</div>
 		</div>
 		<div class="col-md-8">
-			<%= f.hidden_field :user_id, value: @user.id %>
 			<%= f.fields_for :image_attachments do |builder| %>
 				<% if builder.object.new_record? %>
 					<%= builder.file_field :image, style: "margin-left: 0px;" %>
@@ -41,7 +40,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<%= link_to "BACK", "#", class: "btn btn-default pull-left btn-lg goto-welcome-3" %>
-			<%= f.submit "BEGIN SHARING", data: { disable_with: "Saving..." }, class: "btn btn-salmon btn-lg pull-right small-right-margin" %>
+			<%= f.submit "BEGIN", data: { disable_with: "Saving..." }, class: "btn btn-salmon btn-lg pull-right small-right-margin" %>
 		</div>
 	</div>
 </div>

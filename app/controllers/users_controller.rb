@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         connect_trip_to_user
         redirect_to trip_path(@trip, welcome: 1)
       else
-        redirect_to trips_path
+        redirect_to trips_path(@trip, welcome: 1)
       end
     else
       redirect_to root_path, alert: "There was an issue creating your account."
@@ -75,8 +75,9 @@ class UsersController < ApplicationController
       update_country_blob
       update_language_blob
       update_email_blob
-      referrer = request.referer.split('/').last
-      case referrer
+      referrer = request.referer.split('/')
+      logger.debug "$$$$$$$$$$$$$ #{referrer}"
+      case referrer.last
       when "edit"
         redirect_to edit_user_path(@user), notice: "Your profile has been updated and saved."
       when "account"
@@ -89,8 +90,14 @@ class UsersController < ApplicationController
         redirect_to user_privacy_path(@user), notice: "Your profile has been updated and saved."
       when "apps"
         redirect_to user_apps_path(@user), notice: "Your profile has been updated and saved."
+      when "trips?welcome=1"
+        redirect_to trips_path, notice: "Welcome to Tripsharing."
       else
-        redirect_to current_user, notice: "Your profile has been updated and saved."
+        if referrer[3] == "trips" && referrer[4] && @trip = Trip.friendly.find(referrer[4].split("?").first)
+          redirect_to @trip, notice: "Welcome to Tripsharing."
+        else
+          redirect_to current_user, notice: "Your profile has been updated and saved."
+        end
       end
     else
       redirect_to edit_user_path(current_user), alert: "There was an issue updating your account."

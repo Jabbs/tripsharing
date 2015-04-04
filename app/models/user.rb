@@ -18,17 +18,17 @@ class User < ActiveRecord::Base
   #   find and replace "monkey" with: "
   
   INTERESTS = {
-    "1" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
-    "2" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
-    "3" => {"name" => "Lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any"}},
-    "4" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
+    "1" => {"name" => "Lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any"}},
+    "2" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
+    "3" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
+    "4" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
     "5" => {"name" => "Budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}},
   }
   INTERESTS_ARRAY = [
-    ["drinking", "1", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["heavy drinker", "4"]] ],
-    ["food", "2", [["picky", "1"], ["typical", "2"], ["adventerous", "3"]] ],
-    ["lodging", "3", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],
-    ["rooming", "4", [["own room", "1"], ["open to share", "2"], ["prefer sharing", "3"], ["any", "4"]] ],
+    ["lodging", "1", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],
+    ["rooming", "2", [["own room", "1"], ["open to share", "2"], ["prefer sharing", "3"], ["any", "4"]] ],
+    ["food", "3", [["picky", "1"], ["typical", "2"], ["adventerous", "3"]] ],
+    ["drinking", "4", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["heavy drinker", "4"]] ],
     ["budget", "5", [["$", "1"], ["$$", "2"], ["$$$", "3"]] ],
   ]
   EMAILS = {"1" => "Announcements - Tripsharing updates", "2" => "Announcements - travel news, tips, etc.", "3" => "Trip join requests", "4" => "Messages from Tripsharing members", "5" => "Responses to your join requests", "6" => "Friend requests", "7" => "References", "8" => "Replies to threads you've posted in", "9" => "Trips you may be interested in"}
@@ -271,6 +271,11 @@ class User < ActiveRecord::Base
   
   def full_name
     self.first_name + " " + self.last_name if self.first_name && self.last_name
+  end
+  
+  def complete_welcome
+    self.welcome_complete = true
+    self.save
   end
   
   def correct_case_of_inputs

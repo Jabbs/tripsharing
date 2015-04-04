@@ -11,9 +11,19 @@ class SessionsController < ApplicationController
       sign_in @session_user
       if @trip = Trip.find_by_id(cookies[:trip_id])
         connect_trip_to_user
-        redirect_to trip_path(@trip, welcome: 1)
+        if current_user.welcome_complete?
+          redirect_to trip_path
+        else
+          current_user.complete_welcome
+          redirect_to trip_path(@trip, welcome: 1)
+        end
       else
-        redirect_to trips_path
+        if current_user.welcome_complete?
+          redirect_to trips_path
+        else
+          current_user.complete_welcome
+          redirect_to trips_path(@trip, welcome: 1)
+        end
       end
     else
       @session_user = User.find_by_email(params[:email].to_s.downcase)

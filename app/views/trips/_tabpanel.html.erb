@@ -66,7 +66,7 @@
 							<% if @trip.user.fb_image.present? %>
 								<%= image_tag @trip.user.fb_image, class: "image img-responsive" %>
 							<% else %>
-								<%= image_tag "blank_avatar.png", class: "image img-responsive" %>
+								<%= image_tag "default_profile_image.png", class: "image img-responsive" %>
 							<% end %>
 						</div>
 						<div class="col-md-10" style="border-left: 1px solid grey;">

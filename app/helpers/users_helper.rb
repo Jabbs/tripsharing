@@ -4,7 +4,7 @@ module UsersHelper
     if user.fb_image.present?
       image_tag @trip.user.fb_image
   	else
-  		image_tag "blank_avatar.png"
+  		image_tag "default_profile_image.png"
   	end
   end
   
@@ -25,7 +25,7 @@ module UsersHelper
     elsif user.fb_image.present? 
       img_path = "#{user.fb_image}" + "?type=#{fb_type}" 
     else 
-      img_path = "blank_avatar.png" 
+      img_path = "default_profile_image.png" 
     end 
     return image_tag(img_path, class: "profile-pic img-responsive", size: size, title: user.full_name).to_s
   end
@@ -36,7 +36,7 @@ module UsersHelper
     elsif user.fb_image.present? 
       img_path = "#{user.fb_image}" + "?type=small"  
     else
-      img_path = "blank_avatar.png"
+      img_path = "default_profile_image.png"
 		end
     return image_tag(img_path, class: "image", title: user.full_name, size: "50x50") 
   end

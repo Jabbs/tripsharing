@@ -38,14 +38,18 @@ class ApplicationController < ActionController::Base
   
   def instantiate_welcome_trips
     @welcome_trips = Trip.where(state: "2").last(3)
+    if params[:welcome] == "1"
+      @welcome_user = current_user
+      @welcome_user.image_attachments.build
+    end
   end
   
   def connect_trip_to_user
     @trip.user = current_user
     @trip.save!
-    current_user.occupation = @trip.user_occupation
-    current_user.nationality = @trip.user_nationality
-    current_user.interest_blob = @trip.user_interest_blob
+    current_user.occupation = @trip.user_occupation if current_user.occupation.blank?
+    current_user.nationality = @trip.user_nationality if current_user.nationality.blank?
+    current_user.interest_blob = @trip.user_interest_blob if current_user.interest_blob.blank?
     current_user.save!
     cookies.delete(:trip_id)
   end
