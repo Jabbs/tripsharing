@@ -2,10 +2,10 @@ class MessagesController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user
   before_filter :verified_user
-  before_filter :get_counts
+  before_filter :sender_or_receiver, only: [:show]
   
   def contacts
-    @contacts = current_user.friends.order("last_name DESC")
+    @contacts = current_user.friends.order("last_name DESC").paginate(page: params[:page], per_page: 20)
   end
   
   def sent_messages
@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
   
   def join_requests
     @join_requests_received = current_user.join_requests_received.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+    @join_requests_sent = current_user.join_requests_sent.order("created_at DESC").paginate(page: params[:page], per_page: 10)
   end
   
   def index
@@ -26,30 +27,18 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @project = Project.find_by_id(params[:message][:project_id])
-    @message = Message.new(params[:message])
-    @comments = @project.comments.roots.order("created_at DESC") if @project
-    @comment = Comment.new
+    @message = current_user.sent_messages.build(message_params)
     if @message.save
-      @message.send_new_message_email
-      redirect_to user_messages_path(current_user, sent: true), notice: "Your message has been sent to #{@message.receiver.full_name}"
+      redirect_to user_messages_path(current_user), notice: "Your message has been sent."
     else
-      if @project
-        @comments = @project.comments.roots.order("created_at ASC")
-        @comment = @project.comments.new
-        @commentable = @project
-        render 'projects/show'
-      else
-        redirect_to user_messages_path(current_user), alert: "Message not sent. Please include a subject and body."
-      end
+      redirect_to user_messages_path(current_user), alert: "There was an issue submitting your message."
     end
   end
   
   private
-  
-    def get_counts
-      @join_requests_received_count = current_user.join_requests_received.where(state: "0").size
-      @received_messages_count = current_user.received_messages.where(viewed: false).size
+    
+    def message_params
+      params.require(:message).permit(:subject, :content, :receiver_id, :sender_id)
     end
   
     def admin_user
@@ -73,6 +62,6 @@ class MessagesController < ApplicationController
     end
     
     def verified_user
-      redirect_to current_user, alert: 'You must have a verified account to view messages' unless current_user.verified
+      redirect_to current_user, alert: 'You must have a verified account to access messages' unless current_user.verified
     end
 end

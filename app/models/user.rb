@@ -162,8 +162,9 @@ class User < ActiveRecord::Base
   has_many :received_messages, foreign_key: "receiver_id", class_name: "Message"
   # has_many :message_receivers, through: :sent_messages, source: :receiver
   # has_many :message_senders, through: :received_messages, source: :sender
+  # http://stackoverflow.com/questions/20755890/friendship-has-many-through-model-with-multiple-status
   has_many :friendings, dependent: :destroy
-  has_many :friends, through: :friendings, source: :user
+  has_many :friends, through: :friendings, source: :friend
   
   # callbacks
   before_create { generate_number(:number_id) }
@@ -217,6 +218,17 @@ class User < ActiveRecord::Base
   
   def self.fb_image_random_5
     self.pluck(:fb_image).shuffle.first(5)
+  end
+  
+  def add_friend(user)
+    self.friendings.create(friend_id: user.id)
+  end
+  
+  def remove_friend(user)
+    if self.friendings.where(friend_id: user.id).any?
+      friending = self.friendings.where(friend_id: user.id).first
+      friending.destroy
+    end
   end
   
   def build_email_blob

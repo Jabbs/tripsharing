@@ -1,10 +1,34 @@
-<div class="container">
-	<div class="row top-margin">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="well well-messages">
-				<%= render "messages/nav", tab_active: "contacts" %>
+<div id="home-background5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="well well-messages">
+					<%= render "messages/nav", tab_active: "contacts" %>
 				
-				<h3 class="grey">There are no contacts.</h3>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+						    <ul id="myTab" class="nav nav-tabs" role="tablist">
+						      <li role="presentation" class="active"><a href="#all" id="all-tab" role="tab" data-toggle="tab" aria-controls="all" aria-expanded="true">All</a></li>
+						    </ul>
+							  <div class="tab-content">
+						      <div role="tabpanel" class="tab-pane fade active in" id="all" aria-labelledby="all-tab">
+										<% if @contacts.any? %>
+						        	<% @contacts.each do |contact| %>
+												<%= render "users/contact", user: contact, btn_name: "Message", btn_icon: "comment-o", messageable: true, prefix: "" %>
+											<% end %>
+										<% else %>
+											<h3 class="grey">There are no requests.</h3>
+										<% end %>
+						      </div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				
+				</div>
 			</div>
 		</div>
 	</div>

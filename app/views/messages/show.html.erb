@@ -1,0 +1,36 @@
+<div id="home-background5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="well well-messages">
+					<% if current_user?(@message.receiver) %>
+						<% tab_active = "inbox" %>
+						<% messageable = true %>
+						<% user = @message.sender %>
+						<% prefix = "" %>
+					<% else %>
+						<% tab_active = "sent-mail" %>
+						<% messageable = false %>
+						<% user = @message.receiver %>
+						<% prefix = "TO: " %>
+					<% end %>
+					<%= render "messages/nav", tab_active: tab_active %>
+					<%= render "users/contact", user: user, btn_name: "Reply", btn_icon: "reply", messageable: messageable, prefix: prefix %>
+					<hr>
+					<div class="row">
+						<div class="col-md-12">
+							<%= simple_format(@message.content) %>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-md-12">
+							<span class="pull-right"><em><%= time_ago_in_words(@message.created_at) %> ago</em></span>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

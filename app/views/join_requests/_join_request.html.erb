@@ -1,0 +1,55 @@
+<div class="row small-bottom-margin">
+	<div class="col-md-12">
+		REQUEST TO JOIN:
+		<%= link_to join_request.trip.name, join_request.trip, class: "grey-dark-link" %>
+	</div>
+</div>
+<% if type == "sent" %>
+	<div class="row">
+		<div class="col-md-8">
+			<%= simple_format(join_request.content) %>
+		</div>
+		<div class="col-md-4">
+			<% if join_request.pending? %>
+				<div class="pull-right">PENDING</div>
+			<% elsif join_request.accepted? %>
+				<%= link_to "<i class='fa fa-check'></i> Accepted".html_safe, "#", class: "btn btn-turquoise pull-right disabled", method: :put %>
+			<% elsif join_request.declined? %>
+				<%= link_to "<i class='fa fa-remove'></i> Declined".html_safe, "#", class: "btn btn-default pull-right disabled", method: :put %>
+			<% end %>
+		</div>
+	</div>
+<% else %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-1">
+					<%= link_to join_request.user do %>
+						<%= user_image(join_request.user) %>
+					<% end %>
+				</div>
+				<div class="col-md-3"><%= user_details(join_request.user) %></div>
+				<div class="col-md-5">
+					<%= simple_format(join_request.content) %>
+				</div>
+				<div class="col-md-3">
+					<% if join_request.pending? %>
+						<%= link_to "Accept", trip_join_request_accept_path(join_request.trip, join_request), class: "btn btn-turquoise pull-right", method: :put %>
+						<%= link_to "Ignore", trip_join_request_decline_path(join_request.trip, join_request), class: "btn btn-default pull-right small-right-margin", method: :put %>
+					<% elsif join_request.accepted? %>
+						<%= link_to "<i class='fa fa-check'></i> Accepted".html_safe, "#", class: "btn btn-turquoise pull-right disabled", method: :put %>
+					<% elsif join_request.declined? %>
+						<%= link_to "<i class='fa fa-remove'></i> Ignored".html_safe, "#", class: "btn btn-default pull-right disabled", method: :put %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<div class="row small-top-margin">
+	<div class="col-md-12">
+		<small class="pull-right"><em><%= time_ago_in_words(join_request.created_at) %> ago</em></small>
+	</div>
+</div>
+<hr style="margin-top: 5px;">

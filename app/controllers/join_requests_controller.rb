@@ -7,6 +7,7 @@ class JoinRequestsController < ApplicationController
     @join_request = @trip.join_requests.build(join_request_params)
     @join_request.user = current_user
     if @join_request.save
+      @join_request.trip.user.add_friend(current_user)
       redirect_to @trip, notice: "Your join request has been sent."
     else
       redirect_to @trip, alert: "There was an issue submitting your request to join this trip."

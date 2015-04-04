@@ -1,0 +1,14 @@
+<div class="row small-bottom-margin">
+	<div class="col-md-1 col-sm-2">
+		<%= link_to user do %>
+			<%= user_image(user) %>
+		<% end %>
+	</div>
+	<div class="col-md-11 col-sm-10" style="margin-top:12px;">
+		<%= prefix %><%= user.full_name %>
+		<% if messageable == true %>
+			<a href="#" data-toggle="modal" data-target="#newMessageModal<%= user.id %>" class="btn btn-default btn-sm pull-right"><i class='fa fa-<%= btn_icon %>'></i> <%= btn_name %></a>
+			<%= render "messages/modals/new_message_modal", user: user %>
+		<% end %>
+	</div>
+</div>

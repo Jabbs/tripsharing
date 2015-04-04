@@ -1,0 +1,23 @@
+<div class="modal" id="newMessageModal<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    <div class="modal-content">
+			<%= form_for [current_user, @new_message], html: { class: "new_message_form"} do |f| %>
+				<div class="modal-header">
+					<div class="row">
+						<div class="col-md-1">TO:</div>
+						<div class="col-md-11">
+							<%= f.collection_select :receiver_id, current_user.friends, :id, :full_name, {prompt: "Select a contact", selected: user.id}, {class: "form-control"} %>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body">
+					<%= f.text_area :content, placeholder: "Your message here...", rows: 4, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;", required: true, autofocus: true %>
+				  			
+				</div>
+				<div class="modal-footer">
+					<%= f.submit "Send", data: { disable_with: "Sending..." }, class: "btn btn-salmon pull-right" %>	
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

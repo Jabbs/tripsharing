@@ -3,7 +3,10 @@
     <a href="./page-notifications.html" class="dropdown-toggle" data-toggle="dropdown">
       <i class="fa fa-bell"></i>
       <span class="navbar-visible-collapsed">&nbsp;Notifications&nbsp;</span>
-      <span class="badge">3</span>
+			<!-- 
+			<span class="badge">3</span>
+			 -->
+      
     </a>
 
     <ul class="dropdown-menu noticebar-menu" role="menu">
@@ -11,13 +14,20 @@
         <div class="pull-left">
           Notifications
         </div>
-
-        <div class="pull-right">
+				<!-- 
+				<div class="pull-right">
           <a href="javascript:;">Mark as Read</a>
         </div>
+				 -->
       </li>
-
-      <li>
+			
+			<li class="noticebar-empty">                  
+        <h4 class="noticebar-empty-title">No notifications here.</h4>
+        <p class="noticebar-empty-text">Check back later!</p>                
+      </li>
+			
+			<!-- 
+			<li>
         <a href="./page-notifications.html" class="noticebar-item">
           <span class="noticebar-item-image">
             <i class="fa fa-cloud-upload text-success"></i>
@@ -42,10 +52,13 @@
           </span>
         </a>
       </li>
+			 -->
 
-      <li class="noticebar-menu-view-all">
+			<!-- 
+			<li class="noticebar-menu-view-all">
         <a href="./page-notifications.html">View All Notifications</a>
       </li>
+			 -->
     </ul>
   </li>
 
@@ -54,6 +67,9 @@
     <a href="./page-notifications.html" class="dropdown-toggle" data-toggle="dropdown">
       <i class="fa fa-envelope"></i>
       <span class="navbar-visible-collapsed">&nbsp;Messages&nbsp;</span>
+			<% if @new_messages_count != 0 %>
+				<span class="badge"><%= @new_messages_count %></span>
+			<% end %>
     </a>
 
     <ul class="dropdown-menu noticebar-menu" role="menu">                
@@ -61,10 +77,12 @@
         <div class="pull-left">
           Messages
         </div>
-
-        <div class="pull-right">
-          <a href="javascript:;">New Message</a>
-        </div>
+				
+				<% if current_user %>
+					<div class="pull-right">
+						<%= link_to "New Message", user_contacts_path(current_user) %>
+	        </div>
+				<% end %>
       </li>
 
       <li>

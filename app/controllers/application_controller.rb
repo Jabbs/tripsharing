@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :instantiate_new_trip
   before_filter :record_user_activity
   before_filter :instantiate_welcome_trips
+  before_filter :get_counts
+  before_filter :load_new_message
   # before_filter :set_airports
   protect_from_forgery
   include SessionsHelper
@@ -22,6 +24,10 @@ class ApplicationController < ActionController::Base
       # HTTP 301 is a "permanent" redirect
       redirect_to "http://#{APP_DOMAIN}", :status => 301
     end
+  end
+  
+  def load_new_message
+    @new_message = current_user.sent_messages.new if current_user
   end
   
   def set_airports
@@ -46,6 +52,7 @@ class ApplicationController < ActionController::Base
   
   def connect_trip_to_user
     @trip.user = current_user
+    @trip.switch_to_state("2")
     @trip.save!
     current_user.occupation = @trip.user_occupation if current_user.occupation.blank?
     current_user.nationality = @trip.user_nationality if current_user.nationality.blank?
@@ -55,6 +62,18 @@ class ApplicationController < ActionController::Base
   end
   
   private
+  
+    def get_counts
+      if current_user
+        @join_requests_received_count = current_user.join_requests_received.where(state: "0").size
+        @received_messages_count = current_user.received_messages.where(viewed: false).size
+        @new_messages_count = @join_requests_received_count + @received_messages_count
+      else
+        @join_requests_received_count = 0
+        @received_messages_count = 0
+        @new_messages_count = 0
+      end
+    end
 
     def record_user_activity
       if current_user

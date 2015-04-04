@@ -1,49 +1,37 @@
-<div class="container">
-	<div class="row top-margin">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="well well-messages">
-				<%= render "messages/nav", tab_active: "join-requests" %>
-				<% if @join_requests_received.any? %>
-					<% @join_requests_received.each do |join_request| %>
-						<div class="row small-bottom-margin">
-							<div class="col-md-12">
-								REQUEST TO JOIN:
-								<%= link_to join_request.trip.name, join_request.trip, class: "grey-dark-link" %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-1">
-										<%= link_to join_request.user do %>
-											<%= user_image(join_request.user) %>
+<div id="home-background5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="well well-messages">
+					<%= render "messages/nav", tab_active: "join-requests" %>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+						    <ul id="myTab" class="nav nav-tabs" role="tablist">
+						      <li role="presentation" class="active"><a href="#received" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Received</a></li>
+						      <li role="presentation" class=""><a href="#sent" role="tab" id="feed-tab" data-toggle="tab" aria-controls="feed" aria-expanded="false">Sent</a></li>
+						    </ul>
+							  <div class="tab-content">
+						      <div role="tabpanel" class="tab-pane fade active in" id="received" aria-labelledby="home-tab">
+										<% if @join_requests_received.any? %>
+						        	<%= render 'messages/join_requests_received', join_requests_received: @join_requests_received %>
+										<% else %>
+											<h3 class="grey">There are no requests.</h3>
 										<% end %>
-									</div>
-									<div class="col-md-2"><%= user_details(join_request.user) %></div>
-									<div class="col-md-6">
-										<%= simple_format(join_request.content) %>
-									</div>
-									<div class="col-md-3">
-										<% if join_request.pending? %>
-											<%= link_to "Accept", trip_join_request_accept_path(join_request.trip, join_request), class: "btn btn-turquoise pull-right", method: :put %>
-											<%= link_to "Ignore", trip_join_request_decline_path(join_request.trip, join_request), class: "btn btn-default pull-right small-right-margin", method: :put %>
-										<% elsif join_request.accepted? %>
-											<%= link_to "<i class='fa fa-check'></i> Accepted".html_safe, "#", class: "btn btn-turquoise pull-right disabled", method: :put %>
-										<% elsif join_request.declined? %>
-											<%= link_to "<i class='fa fa-remove'></i> Ignored".html_safe, "#", class: "btn btn-default pull-right disabled", method: :put %>
+						      </div>
+						      <div role="tabpanel" class="tab-pane fade" id="sent" aria-labelledby="feed-tab">
+										<% if @join_requests_sent.any? %>
+						        	<%= render "messages/join_requests_sent", join_requests_sent: @join_requests_sent %>
+										<% else %>
+											<h3 class="grey">There are no requests.</h3>
 										<% end %>
-									</div>
+						      </div>
 								</div>
-
 							</div>
 						</div>
-						<hr>
-					<% end %>
-				<% else %>
-					<h3 class="grey">There are no requests.</h3>
-				<% end %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
