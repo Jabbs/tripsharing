@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Languages I Speak</h3>
+		  </div>
+		  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
+				<div class="row">
+					<% User::LANGUAGES_ARRAY.each do |language| %>
+							<% @user.language_blob.split(",").include?(language[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+							<div class="col-md-3">
+								<div class="checkbox">
+							    <label>
+							      <input type="checkbox" name="language_tags[<%= language[1] %>]" <%= checked_or_no %>> <%= language[0] %>
+							    </label>
+								</div>
+							</div>
+					<% end %>
+				</div>
+		  </div>
+		</div>
+	</div>
+</div>

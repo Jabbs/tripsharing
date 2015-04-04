@@ -1,0 +1,27 @@
+<div class="modal-body welcome-body">
+	<div class="row bottom-margin">
+		<div class="col-md-12">
+			<h4>1. Browse and join trips that match your travel interests.</h4>
+			<h4>2. Meet new friends and share an unforgettable experience.</h4>
+			<h4>3. Start your own trip to share with new travel companions!</h4>
+		</div>
+	</div>
+	<div class="row bottom-margin">
+		<div class="col-md-12">
+			<% @welcome_trips.each do |trip| %>
+				<div class="col-md-4">
+					<div class="demo-trip">
+						<%= render "trips/well", trip: trip, joinable: false %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<div class="modal-footer welcome-footer">
+	<div class="row">
+		<div class="col-md-12">
+			<%= link_to "NEXT", "#", class: "btn btn-salmon btn-lg pull-right small-right-margin goto-welcome-2" %>
+		</div>
+	</div>
+</div>

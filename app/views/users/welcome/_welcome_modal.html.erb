@@ -1,30 +1,28 @@
 <div class="modal fade" data-backdrop="static" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
     <div class="modal-content">
-	
 			<div class="modal-header">
 				<div class="row">
 					<div class="col-md-12">
-						WELCOME TO TRIPSHARING!
+						<h2>WELCOME TO <span id="logo" style="position:relative; top:0px; left:-5px;">Tripsharing</span></h2>
+						<p class="small-top-margin">Matching Travelers Together From All Over The World</p>
 					</div>
 				</div>
 			</div>
-			<div class="modal-body" style="padding-bottom:40px;">
-				<div class="row">
-					<div class="col-md-12">
-						Welcome...
-					</div>
-				</div>
-				<hr>
-				<div class="row">
-					<div class="col-md-12">
-						<%= link_to "next", "", class: "btn btn-default pull-right" %>
-					</div>
-				</div>
-				
-				
-				
-			</div>
+			<%= form_for @user, multipart: true do |f| %>
+				<div id="welcome-modal-content-1">
+					<%= render "users/welcome/content_body1", f: f %>
+		    </div>
+				<div id="welcome-modal-content-2">
+					<%= render "users/welcome/content_body2", f: f %>
+		    </div>
+				<div id="welcome-modal-content-3">
+					<%= render "users/welcome/content_body3", f: f %>
+		    </div>
+				<div id="welcome-modal-content-4">
+					<%= render "users/welcome/content_body4", f: f %>
+		    </div>
+			<% end %>
 
 		</div>
 	</div>

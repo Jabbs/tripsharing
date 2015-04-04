@@ -73,6 +73,7 @@ $('document').ready(function() {
 		$("#passreset-modal-content").hide(); 
 	});
 	
+	// WELCOME MODAL STUFF...
 	// show the signup modal on trips show page if trip state = "7"
 	var pathArray = window.location.pathname.split( '/' );
 	var query = window.location.search.slice(1);
@@ -80,10 +81,28 @@ $('document').ready(function() {
 	if (pathArray[1] == "trips" && pathArray[3] != "details") {
 		$('#signinModal').modal('show'); 
 	};
-	
-	if (query == "welcome=true") {
+	if (query == "welcome=1") {
 		$('#welcomeModal').modal('show'); 
 	};
+	$('.demo-trip a').click(function(e) {
+	  e.preventDefault();
+	});
+	$(".goto-welcome-1").click(function() {
+		$("#welcome-modal-content-2").hide();$("#welcome-modal-content-3").hide();$("#welcome-modal-content-4").hide();
+		$("#welcome-modal-content-1").show();
+	});
+	$(".goto-welcome-2").click(function() {
+		$("#welcome-modal-content-1").hide();$("#welcome-modal-content-3").hide();$("#welcome-modal-content-4").hide();
+		$("#welcome-modal-content-2").show();
+	});
+	$(".goto-welcome-3").click(function() {
+		$("#welcome-modal-content-1").hide();$("#welcome-modal-content-2").hide();$("#welcome-modal-content-4").hide();
+		$("#welcome-modal-content-3").show();
+	});
+	$(".goto-welcome-4").click(function() {
+		$("#welcome-modal-content-1").hide();$("#welcome-modal-content-2").hide();$("#welcome-modal-content-3").hide();
+		$("#welcome-modal-content-4").show();
+	});
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 	
 	$('#go-to-top').click(function () {

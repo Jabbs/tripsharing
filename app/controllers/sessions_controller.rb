@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       sign_in @session_user
       if @trip = Trip.find_by_id(cookies[:trip_id])
         connect_trip_to_user
-        redirect_to @trip
+        redirect_to trip_path(@trip, welcome: 1)
       else
         redirect_to trips_path
       end

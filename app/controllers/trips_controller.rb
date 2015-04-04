@@ -69,6 +69,7 @@ class TripsController < ApplicationController
   def show
     @session_user = User.new
     @user = User.new
+    @user.image_attachments.build
     @trip = Trip.friendly.find(params[:id])
     @trip.image_attachments.build
     @join_request = @trip.join_requests.new

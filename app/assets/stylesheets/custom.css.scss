@@ -325,6 +325,22 @@ a.add-description {
 }
 
 // TRIPS ONBOARDING
+#welcomeModal .modal-dialog .modal-content {
+	background: $beige;
+	.modal-header { background: #fff; }
+}
+#welcome-modal-content-2, #welcome-modal-content-3,
+#welcome-modal-content-4, #welcome-modal-content-5 {
+	display: none;
+}
+.welcome-body {
+	padding-bottom: 40px;
+	height: 500px;
+}
+.welcome-footer {
+	padding-top: 34px;
+	height: 100px;
+}
 #onboarding-purpose, #onboarding-wherefrom, #onboarding-profile,
 #onboarding-stops, #onboarding-when, #onboarding-interests {display: none;}
 .interest {font-size: 140%;display:inline;margin:0px;margin-left:10px;padding:0px;}
@@ -372,7 +388,7 @@ input[type="radio"].fancyradio-shell+span {
 	overflow: hidden;
 	line-height: 40px;
 	font-size: 160%;
-	background-color: transparent;
+//	background-color: transparent;
 	border: none;
 	border: 1px dotted;
 	vertical-align: text-bottom;

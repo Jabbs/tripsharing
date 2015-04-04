@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_domain
   before_filter :instantiate_new_trip
   before_filter :record_user_activity
+  before_filter :instantiate_welcome_trips
   # before_filter :set_airports
   protect_from_forgery
   include SessionsHelper
@@ -33,6 +34,10 @@ class ApplicationController < ActionController::Base
     else
       @new_trip = Trip.new
     end
+  end
+  
+  def instantiate_welcome_trips
+    @welcome_trips = Trip.where(state: "2").last(3)
   end
   
   def connect_trip_to_user
