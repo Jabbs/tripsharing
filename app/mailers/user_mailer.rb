@@ -16,6 +16,11 @@ class UserMailer < ActionMailer::Base
     @user.save
   end
   
+  def your_new_trip_email(user)
+    @user = user
+    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your new trip on Tripsharing")
+  end
+  
   def welcome_email(user)
     # Currently just used as a template for other emails
     @user = user
