@@ -23,7 +23,7 @@
 					<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
 						<tr>
 							<td align="center" bgcolor="#ffffff" style="padding: 20px 0 10px 0;">
-								<img src="assets/trip-sharing-logo-white.png" alt="Tripsharing Logo" width="300" height="71" style="display: block;" />
+								<%= link_to image_tag("trip-sharing-logo-white.png", alt: "Tripsharing"), root_url %>
 							</td>
 						</tr>
 						<tr>
@@ -56,15 +56,15 @@
 											<table border="0" cellpadding="0" cellspacing="0">
 												<tr>
 													<td>
-														<a href="https://twitter.com/Trip_Sharing">
-															<img src="assets/social_icons/twitter_circle_color-38.png" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
-														</a>
+														<%= link_to "https://twitter.com/Trip_Sharing" do %>
+															<%= image_tag("social_icons/twitter_circle_color-38.png", alt: "Twitter", style: "width:38px;height:38px;") %>
+														<% end %>
 													</td>
 													<td style="font-size: 0; line-height: 0;" width="2">&nbsp;</td>
 													<td>
-														<a href="https://www.facebook.com/trip.sharing.1">
-															<img src="assets/social_icons/facebook_circle_color-38.png" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
-														</a>
+														<%= link_to "https://www.facebook.com/trip.sharing.1" do %>
+															<%= image_tag("social_icons/facebook_circle_color-38.png", alt: "Twitter", style: "width:38px;height:38px;") %>
+														<% end %>
 													</td>
 												</tr>
 											</table>

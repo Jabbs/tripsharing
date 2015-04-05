@@ -4,9 +4,9 @@ class PasswordResetsController < ApplicationController
     @forgot_pass_user = User.find_by_email(params[:email].to_s)
     if @forgot_pass_user
       @forgot_pass_user.send_password_reset
-      redirect_to root_path, notice: "Email sent with password reset instructions."
+      redirect_to root_path, notice: "If email exists, password reset instructions have been sent."
     else
-      redirect_to root_path, alert: "We did not find a match with the email you provided."
+      redirect_to root_path, notice: "If email exists, password reset instructions have been sent."
     end
   end
   
