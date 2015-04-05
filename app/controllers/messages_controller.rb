@@ -29,6 +29,7 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build(message_params)
     if @message.save
+      @message.receiver.add_friend(current_user)
       redirect_to user_messages_path(current_user), notice: "Your message has been sent."
     else
       redirect_to user_messages_path(current_user), alert: "There was an issue submitting your message."

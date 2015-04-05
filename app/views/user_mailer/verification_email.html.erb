@@ -1,15 +1,32 @@
-<tr>
-  <td>
-    Hello <%= @user.full_name %>,
-  </td>
-</tr>
-<tr>
-  <td style="padding-top:20px">
-    To verify your TripSharing account please click the following link:
-  </td>
-</tr>
-<tr>
-  <td style="padding-top:20px">
-    <%= link_to "#{user_verification_url(@user, @user.verification_token)}", user_verification_url(@user, @user.verification_token) %>
-  </td>
-</tr>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+	  <td>
+	    <b>Welcome to Tripsharing! Please verify your email address by clicking the link below:</b>
+	  </td>
+	</tr>
+	<tr>
+	  <td style="padding-top:20px; padding-bottom:20px;">
+	    <%= link_to "#{user_verification_url(@user, @user.verification_token)}", user_verification_url(@user, @user.verification_token) %>
+	  </td>
+	</tr>
+	<tr>
+	  <td style="padding-top:20px; padding-bottom:20px;">
+	    3 easy steps to get started:
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    1. Create a trip with the dynamics you enjoy.
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+			2. Follow trips that interest you.
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+			3. Complete your profile
+	  </td>
+	</tr>
+</table>

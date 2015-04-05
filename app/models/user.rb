@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   after_create :build_email_blob
   before_save :correct_case_of_inputs
-  # after_commit :send_verification_email, on: :create
+  after_commit :send_verification_email, on: :create
   # after_commit :build_interests 
   
   # validations
@@ -221,7 +221,8 @@ class User < ActiveRecord::Base
   end
   
   def add_friend(user)
-    self.friendings.create(friend_id: user.id)
+    friending = self.friendings.new(friend_id: user.id)
+    friending.save
   end
   
   def remove_friend(user)
@@ -306,7 +307,6 @@ class User < ActiveRecord::Base
   def send_verification_email
     VerificationWorker.perform_async(self.id)
     # generate_token(:verification_token)
-    # self.verification_sent_at = Time.zone.now
     # save!
     # UserMailer.verification_email(self).deliver
   end

@@ -13,8 +13,12 @@
 	<div class="col-md-11 col-sm-10" style="margin-top:12px;">
 		<div class="row">
 			<div class="col-md-6">
-				<%= link_to [current_user, message], class: "grey-dark-link" do %>
+				<% type != "sent" && message.unread? ? add_bold = "bold" : add_bold = "" %>
+				<%= link_to [current_user, message], class: "grey-dark-link #{add_bold}" do %>
 					<%= truncate(message.content, length: 110) %>
+					<% if type != "sent" && message.unread? %>
+						<span class="turquoise_dark">new</span>
+					<% end %>
 				<% end %>
 			</div>
 			<div class="col-md-4">

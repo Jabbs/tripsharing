@@ -22,3 +22,15 @@
 		<li><a href="" data-toggle="modal" data-target="#tripNewModal" href="#" role="button">new +</a></li>
 	<% end %>
 </ul>
+<% if current_user?(@user) && !@user.verified %>
+	<div class="row">
+		<div class="col-md-12">
+			<span class="red"><i class='fa fa-times-circle-o'></i> Account Not Verified</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<%= link_to 'click to resend email verification', user_resend_verification_url(current_user), disable_with: 'Sending...', class: "grey-dark-link" %>
+		</div>
+	</div>
+<% end %>

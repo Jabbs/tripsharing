@@ -11,14 +11,15 @@ class UserMailer < ActionMailer::Base
   
   def verification_email(user)
     @user = user
-    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Verify your TripSharing Account")
+    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Verify your email address")
     @user.verification_sent_at = DateTime.now
     @user.save
   end
   
   def welcome_email(user)
+    # Currently just used as a template for other emails
     @user = user
-    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Welcome to TripSharing!")
+    mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Welcome to Tripsharing!")
     @user.welcome_sent_at = DateTime.now
     @user.save
   end

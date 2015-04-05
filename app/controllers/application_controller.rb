@@ -65,8 +65,11 @@ class ApplicationController < ActionController::Base
   
     def get_counts
       if current_user
+        @join_requests_received = current_user.join_requests_received.where(state: "0")
         @join_requests_received_count = current_user.join_requests_received.where(state: "0").size
+        @received_messages = current_user.received_messages.where(viewed: false)
         @received_messages_count = current_user.received_messages.where(viewed: false).size
+        @new_join_requests_and_messages = @join_requests_received + @received_messages
         @new_messages_count = @join_requests_received_count + @received_messages_count
       else
         @join_requests_received_count = 0

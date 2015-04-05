@@ -72,49 +72,53 @@
 			<% end %>
     </a>
 
-    <ul class="dropdown-menu noticebar-menu" role="menu">                
+    <ul class="dropdown-menu noticebar-menu" role="menu" style="max-height:400px; overflow:scroll;">                
       <li class="nav-header">
         <div class="pull-left">
           Messages
         </div>
 				
 				<% if current_user %>
+					<!-- 
 					<div class="pull-right">
 						<%= link_to "New Message", user_contacts_path(current_user) %>
 	        </div>
+					 -->
 				<% end %>
       </li>
 
-      <li>
-        <a href="./page-notifications.html" class="noticebar-item">
-          <span class="noticebar-item-image">
-            <img src="./img/avatars/avatar-1-md.jpg" style="width: 50px" alt="">
-          </span>
+			<% if @new_join_requests_and_messages.any? %>
+				<% @new_join_requests_and_messages.sort_by{|e| e[:created_at]}.reverse.each do |new_item| %>
+					<% if new_item.class.to_s == "JoinRequest" %>
+						<% path = user_join_requests_path(current_user) %>
+						<% title = "New Join Request" %>
+					<% elsif new_item.class.to_s == "Message" %>
+						<% path = user_message_path(current_user, new_item) %>
+						<% title = "New Message" %>
+					<% end %>
+					<li>
+		        <a href="<%= path %>" class="noticebar-item">
+		          <span class="noticebar-item-image">
+								<%= user_image(new_item.user) %>
+		          </span>
 
-          <span class="noticebar-item-body">
-            <strong class="noticebar-item-title">New Message</strong>
-            <span class="noticebar-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</span>
-            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> 20 minutes ago</span>
-          </span>
-        </a>
-      </li>
+		          <span class="noticebar-item-body">
+		            <strong class="noticebar-item-title"><%= title %></strong>
+		            <span class="noticebar-item-text"><%= truncate(new_item.content, length: 59) %></span>
+		            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(new_item.created_at) %> ago</span>
+		          </span>
+		        </a>
+		      </li>
+				<% end %>
+			<% else %>
+				<li class="noticebar-empty">                  
+	        <h4 class="noticebar-empty-title">No new messages.</h4>
+	      </li>
+			<% end %>
 
-      <li>
-        <a href="./page-notifications.html" class="noticebar-item">
-          <span class="noticebar-item-image">
-            <img src="./img/avatars/avatar-2-md.jpg" style="width: 50px" alt="">
-          </span>
-
-          <span class="noticebar-item-body">
-            <strong class="noticebar-item-title">New Message</strong>
-            <span class="noticebar-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</span>
-            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> 5 hours ago</span>
-          </span>
-        </a>
-      </li>
 
       <li class="noticebar-menu-view-all">
-				<%= link_to "View All Messages", user_messages_path(current_user) %>
+				<%= link_to "View Inbox", user_messages_path(current_user) %>
       </li>
     </ul>
   </li>

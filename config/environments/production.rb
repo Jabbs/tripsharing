@@ -4,8 +4,8 @@ Rails.application.configure do
   unless ENV['STAGING'].present?
     config.middleware.use ExceptionNotification::Rack,
     :email => {
-      :email_prefix => "[TripSharing ERROR] ",
-      :sender_address => %{"TripSharing" <noreply@trip-sharing.com>},
+      :email_prefix => "[Tripsharing ERROR] ",
+      :sender_address => %{"Tripsharing" <noreply@trip-sharing.com>},
       :exception_recipients => %w{info@trip-sharing.com}
     }
   end
