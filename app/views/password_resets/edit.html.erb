@@ -10,24 +10,27 @@
 					  <div class="panel-body">
 							<%= form_for(@user, html: { id: "edit_user_password_form"}, url: password_reset_path(params[:id])) do |f| %>
 								<%= render 'shared/error_messages', object: @user %>
-								<div class="row small-bottom-margin">
-									<div class="col-md-3">
-										<label class="pull-right">Password:</label>
-									</div>
-									<div class="col-md-6">
-										<input autocomplete="off" id="user_password" name="user[password]" style="width:100%;" type="password" placeholder="Password" required minlength="6">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3">
-										<label class="pull-right">Password Confirm:</label>
-									</div>
-									<div class="col-md-6">
-										<input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" style="width:100%;" type="password" placeholder="Password Confirm" required minlength="6" data-parsley-equalto="#user_password">
+								
+								<div class="row bottom-margin">
+									<div class="col-md-12">
+										<div class="input-group input-group-lg">
+										  <span class="input-group-addon" id="sizing-addon2"><i class='fa fa-lock' style="padding-left:4px;padding-right:2px;"></i></span>
+											<input class="form-control" autocomplete="off" id="user_password_reset_password" name="user[password]" type="password" placeholder="New Password" required minlength="6" aria-describedby="sizing-addon2">
+										</div>
 									</div>
 								</div>
+								
+								<div class="row bottom-margin">
+									<div class="col-md-12">
+										<div class="input-group input-group-lg">
+										  <span class="input-group-addon" id="sizing-addon2"><i class='fa fa-lock' style="padding-left:4px;padding-right:2px;"></i></span>
+											<input class="form-control" autocomplete="off" id="user_password_reset_confirmation" name="user[password_confirmation]" type="password" placeholder="New Password Confirm" required minlength="6" aria-describedby="sizing-addon2" data-parsley-equalto="#user_password_reset_password">
+										</div>
+									</div>
+								</div>
+
 								<hr>
-								<%= f.submit "Submit", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
+								<%= f.submit "Submit", data: { disable_with: "Submitting..." }, class: "btn btn-lg btn-salmon btn-block" %>
 							<% end %>
 					  </div>
 					</div>
