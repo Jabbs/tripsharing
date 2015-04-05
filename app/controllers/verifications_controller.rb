@@ -4,7 +4,7 @@ class VerificationsController < ApplicationController
       @user = User.find_by_verification_token(params[:id].to_s)
       @user.update_attribute(:verified, true)
       sign_in @user unless current_user
-      redirect_to @user, notice: "Your account has been verified."
+      redirect_to @user, notice: "Your email has been verified."
     else
       redirect_to root_path, notice: "There was a problem verifying your account. Please contact support@tripsharing.com 
                                      for more details."

@@ -33,12 +33,31 @@
 					<div class="row">
 						<div class="col-md-4">
 							<div class="well" style="min-height:510px;">
-								<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive" %>
-								<h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</h4>
-								<ul class="">
-									<li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</li>
-									<li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</li>
-								</ul>
+								<div class="row">
+									<div class="col-md-12">
+										<h4 class="no-margin center">Welcome to the Trip Builder!</h4>
+									</div>
+								</div>
+								<hr class="grey-hr">
+								<div class="row">
+									<div class="col-md-8 col-centered">
+										<%= image_tag "home/people_camping_hiking_small.jpg", class: "img-responsive", id: "welcome-img-1" %>
+										<%= image_tag "home/plane_window_small.jpg", class: "img-responsive", id: "welcome-img-2" %>
+										<%= image_tag "activities/town_small.jpg", class: "img-responsive", id: "welcome-img-3" %>
+										<%= image_tag "activities/public_square_small.jpg", class: "img-responsive", id: "welcome-img-4" %>
+										<%= image_tag "activities/food_small.jpg", class: "img-responsive", id: "welcome-img-5" %>
+										<%= image_tag "default_profile_image.png", class: "img-responsive", id: "welcome-img-6" %>
+									</div>
+								</div>
+								<hr class="grey-hr">
+								<dl style="margin-bottom:0px;">
+									<dt class="small-top-margin">Travel Companions:</dt>
+									<dd>Specify your parameters as filters so only your ideal travel companions will join you.</dd>
+									<dt class="small-top-margin">Travel Details:</dt>
+									<dd>Tell us about the logistics of your trip.</dd>
+									<dt class="small-top-margin">About You:</dt>
+									<dd>Complete your profile so interested travelers can know more about you.</dd>
+								</dl>
 							</div>
 						</div>
 						<div class="col-md-8">
@@ -80,7 +99,7 @@
 										<hr style="margin-bottom:0px;">
 										<%= render 'trips/onboarding/purpose', f: f %>
 									</div>
-									<hr>
+									<hr class="no-top-margin">
 									<a class="btn btn-default onboarding-goto-stops"> BACK </a>
 									<a class="btn btn-default btn-lg pull-right fancy-dark onboarding-goto-<%= purpose_to %>"> CONTINUE </a>
 								</div>

@@ -109,13 +109,21 @@ $('document').ready(function() {
 		$("#onboarding-profile").hide();
 		$(".trip-category").removeClass("active");
 	};
+	function hideWelcomeImgs() {
+		$("#welcome-img-1").hide();
+		$("#welcome-img-2").hide();
+		$("#welcome-img-3").hide();
+		$("#welcome-img-4").hide();
+		$("#welcome-img-5").hide();
+		$("#welcome-img-6").hide();
+	}
 	
-	$('.onboarding-goto-who').click(function() { hideOnbardingPartials(); $(".travel-companions").addClass("active"); $("#onboarding-who").fadeIn(fadeInSpeed); });
-	$('.onboarding-goto-when').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-when").fadeIn(fadeInSpeed); });
-	$('.onboarding-goto-stops').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-stops").fadeIn(fadeInSpeed); });
-	$('.onboarding-goto-purpose').click(function() { hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-purpose").fadeIn(fadeInSpeed); });
-	$('.onboarding-goto-interests').click(function() { hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-interests").fadeIn(fadeInSpeed); });
-	$('.onboarding-goto-profile').click(function() { hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-profile").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-who').click(function() { hideWelcomeImgs(); $("#welcome-img-1").show(); hideOnbardingPartials(); $(".travel-companions").addClass("active"); $("#onboarding-who").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-when').click(function() { hideWelcomeImgs(); $("#welcome-img-2").show(); hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-when").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-stops').click(function() { hideWelcomeImgs(); $("#welcome-img-3").show(); hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-stops").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-purpose').click(function() { hideWelcomeImgs(); $("#welcome-img-4").show(); hideOnbardingPartials(); $(".travel-details").addClass("active"); $("#onboarding-purpose").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-interests').click(function() { hideWelcomeImgs(); $("#welcome-img-5").show(); hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-interests").fadeIn(fadeInSpeed); });
+	$('.onboarding-goto-profile').click(function() { hideWelcomeImgs(); $("#welcome-img-6").show(); hideOnbardingPartials(); $(".about-you").addClass("active"); $("#onboarding-profile").fadeIn(fadeInSpeed); });
 
 	$(".form-fancy").on("keypress", function (e) {
 	    if (e.keyCode == 13) {
