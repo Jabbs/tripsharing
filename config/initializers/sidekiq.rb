@@ -3,6 +3,8 @@ require 'sidekiq/web'
 require 'autoscaler/sidekiq'
 require 'autoscaler/heroku_scaler'
 
+# https://github.com/mperham/sidekiq/issues/1720
+
 Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
   [user, password] == ["pj", "pj"]
 end

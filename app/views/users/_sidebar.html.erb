@@ -30,7 +30,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<%= link_to 'click to resend email verification', user_resend_verification_url(current_user), disable_with: 'Sending...', class: "grey-dark-link" %>
+			<%= link_to 'click to resend email verification', user_resend_verification_path(current_user), disable_with: 'Sending...', class: "grey-dark-link" %>
 		</div>
 	</div>
 <% end %>
