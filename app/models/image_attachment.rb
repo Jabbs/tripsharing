@@ -5,5 +5,6 @@ class ImageAttachment < ActiveRecord::Base
   
   # validations
   validates :image, presence: true
-  # validates :description, presence: true
+  validates :image_attachable_id, presence: true
+  validates :image_attachable_type, presence: true
 end

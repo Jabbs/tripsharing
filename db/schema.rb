@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404024413) do
+ActiveRecord::Schema.define(version: 20150406130624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "feed_items", ["user_id"], name: "index_feed_items_on_user_id", using: :btree
 
   create_table "followings", force: true do |t|
-    t.string   "followable_type"
-    t.integer  "followable_id"
-    t.integer  "user_id"
+    t.string   "followable_type", null: false
+    t.integer  "followable_id",   null: false
+    t.integer  "user_id",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,9 +85,9 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "image_attachments", force: true do |t|
-    t.string   "image_attachable_type"
-    t.integer  "image_attachable_id"
-    t.string   "image"
+    t.string   "image_attachable_type", null: false
+    t.integer  "image_attachable_id",   null: false
+    t.string   "image",                 null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
@@ -108,13 +108,17 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
 
   create_table "join_requests", force: true do |t|
-    t.integer  "trip_id"
-    t.integer  "user_id"
-    t.text     "content"
+    t.integer  "trip_id",                  null: false
+    t.integer  "user_id",                  null: false
+    t.text     "content",                  null: false
     t.string   "state",      default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "join_requests", ["trip_id"], name: "index_join_requests_on_trip_id", using: :btree
+  add_index "join_requests", ["user_id", "trip_id"], name: "index_join_requests_on_user_id_and_trip_id", unique: true, using: :btree
+  add_index "join_requests", ["user_id"], name: "index_join_requests_on_user_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "address1"
@@ -136,11 +140,11 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "locations", ["locationable_id", "locationable_type"], name: "index_locations_on_locationable_id_and_locationable_type", using: :btree
 
   create_table "messages", force: true do |t|
-    t.integer  "sender_id",                   null: false
-    t.integer  "receiver_id",                 null: false
-    t.text     "content",                     null: false
-    t.string   "subject"
-    t.boolean  "viewed",      default: false
+    t.integer  "sender_id",                                null: false
+    t.integer  "receiver_id",                              null: false
+    t.text     "content",                                  null: false
+    t.string   "subject",     limit: 1000
+    t.boolean  "viewed",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -165,16 +169,16 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   create_table "stops", force: true do |t|
     t.integer  "trip_id"
     t.integer  "user_id"
-    t.string   "to_iata"
-    t.string   "from_iata"
-    t.string   "to_name",                           null: false
-    t.string   "from_name"
-    t.string   "transportation_type", default: "1"
-    t.integer  "order",               default: 1
+    t.string   "to_iata",             limit: 1000
+    t.string   "from_iata",           limit: 1000
+    t.string   "to_name",             limit: 1000,               null: false
+    t.string   "from_name",           limit: 1000
+    t.string   "transportation_type",              default: "1"
+    t.integer  "order",                            default: 1
     t.datetime "to_date"
     t.datetime "from_date"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "to_name_dest"
   end
 
@@ -197,9 +201,9 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
+    t.integer  "tag_id",        null: false
+    t.integer  "taggable_id",   null: false
+    t.string   "taggable_type", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -208,40 +212,40 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 250, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "trips", force: true do |t|
-    t.string   "name"
+    t.string   "name",               limit: 250,                 null: false
     t.datetime "expires_at"
     t.text     "description"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "slug"
-    t.integer  "view_count",         default: 0
+    t.integer  "view_count",                     default: 0
     t.integer  "user_id"
     t.integer  "duration_in_days"
     t.datetime "departs_at"
     t.string   "group_dynamics"
-    t.string   "state",              default: "1"
-    t.string   "region"
-    t.boolean  "private",            default: false
+    t.string   "state",                          default: "1"
+    t.string   "region",                                         null: false
+    t.boolean  "private",                        default: false
     t.string   "seeking_type"
     t.datetime "returns_at"
     t.string   "duration"
     t.string   "time_flexibility"
     t.string   "departing_category"
     t.string   "group_count"
-    t.string   "group_nationality",  default: "0"
+    t.string   "group_nationality",              default: "0"
     t.string   "default_image"
     t.text     "reason"
-    t.integer  "group_age_min",      default: 0
-    t.integer  "group_age_max",      default: 0
-    t.integer  "followings_count",   default: 0
+    t.integer  "group_age_min",                  default: 0
+    t.integer  "group_age_max",                  default: 0
+    t.integer  "followings_count",               default: 0
     t.string   "stop_location"
     t.string   "user_occupation"
     t.string   "user_nationality"
@@ -251,28 +255,29 @@ ActiveRecord::Schema.define(version: 20150404024413) do
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
   add_index "trips", ["region"], name: "index_trips_on_region", using: :btree
   add_index "trips", ["slug"], name: "index_trips_on_slug", using: :btree
+  add_index "trips", ["state"], name: "index_trips_on_state", using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                                  null: false
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "email",                  limit: 300,                  null: false
+    t.string   "first_name",             limit: 200,                  null: false
+    t.string   "last_name",              limit: 200,                  null: false
     t.string   "password_digest"
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.boolean  "admin",                  default: false
+    t.boolean  "admin",                               default: false
     t.string   "slug"
-    t.boolean  "verified",               default: false
+    t.boolean  "verified",                            default: false
     t.string   "verification_token"
     t.datetime "verification_sent_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                       default: 0
     t.datetime "last_sign_in_at"
     t.string   "last_sign_in_ip"
     t.string   "phone"
-    t.string   "gender"
-    t.boolean  "newsletter",             default: false
-    t.boolean  "subscribed",             default: true
+    t.string   "gender",                                              null: false
+    t.boolean  "newsletter",                          default: false
+    t.boolean  "subscribed",                          default: true
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
@@ -280,40 +285,40 @@ ActiveRecord::Schema.define(version: 20150404024413) do
     t.string   "fb_image"
     t.string   "fb_url"
     t.string   "fb_location"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.string   "provider"
-    t.string   "tag_line"
+    t.string   "tag_line",               limit: 1000
     t.text     "bio"
     t.datetime "welcome_sent_at"
-    t.string   "occupation"
+    t.string   "occupation",             limit: 300
     t.string   "fb_locale"
     t.string   "fb_timezone"
     t.string   "fb_updated_time"
-    t.date     "birthday"
-    t.string   "hometown"
-    t.boolean  "send_to_first_trip",     default: false
+    t.date     "birthday",                                            null: false
+    t.string   "hometown",               limit: 300
+    t.boolean  "send_to_first_trip",                  default: false
     t.string   "nationality"
     t.string   "fb_occupation"
-    t.string   "home_airport"
-    t.string   "location"
+    t.string   "home_airport",           limit: 1000
+    t.string   "location",               limit: 1000
     t.string   "number_id"
-    t.text     "activity_trail",         default: "1"
-    t.string   "status",                 default: "1"
-    t.string   "education"
-    t.text     "country_blob",           default: ""
-    t.text     "language_blob",          default: ""
-    t.text     "interest_blob",          default: ""
-    t.text     "email_blob",             default: ""
-    t.integer  "followings_count",       default: 0
-    t.string   "region_blob",            default: ""
-    t.boolean  "welcome_complete",       default: false
+    t.text     "activity_trail",                      default: "1"
+    t.string   "status",                              default: "1"
+    t.string   "education",              limit: 3000
+    t.text     "country_blob",                        default: ""
+    t.text     "language_blob",                       default: ""
+    t.text     "interest_blob",                       default: ""
+    t.text     "email_blob",                          default: ""
+    t.integer  "followings_count",                    default: 0
+    t.string   "region_blob",                         default: ""
+    t.boolean  "welcome_complete",                    default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["first_name"], name: "index_users_on_first_name", using: :btree
   add_index "users", ["last_name"], name: "index_users_on_last_name", using: :btree
-  add_index "users", ["number_id"], name: "index_users_on_number_id", using: :btree
+  add_index "users", ["number_id"], name: "index_users_on_number_id", unique: true, using: :btree
   add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
