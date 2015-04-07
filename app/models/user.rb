@@ -22,20 +22,22 @@ class User < ActiveRecord::Base
     "2" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
     "3" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
     "4" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
-    "5" => {"name" => "Budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}},
+    "5" => {"name" => "Budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}}
   }
   INTERESTS_ARRAY = [
     ["lodging", "1", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],
     ["rooming", "2", [["own room", "1"], ["open to share", "2"], ["prefer sharing", "3"], ["any", "4"]] ],
     ["food", "3", [["picky", "1"], ["typical", "2"], ["adventerous", "3"]] ],
     ["drinking", "4", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["heavy drinker", "4"]] ],
-    ["budget", "5", [["$", "1"], ["$$", "2"], ["$$$", "3"]] ],
+    ["budget", "5", [["$", "1"], ["$$", "2"], ["$$$", "3"]] ]
   ]
-  EMAILS = {"1" => "Announcements - Tripsharing updates", "2" => "Announcements - travel news, tips, etc.", "3" => "Trip join requests", "4" => "Messages from Tripsharing members", "5" => "Responses to your join requests", "6" => "Friend requests", "7" => "References", "8" => "Replies to threads you've posted in", "9" => "Trips you may be interested in"}
-  EMAILS_ARRAY = [["Announcements - Tripsharing updates", "1"], ["Announcements - travel news, tips, etc.", "2"], 
-                  ["Trip join requests", "3"], ["Messages from Tripsharing members", "4"],
-                  ["Responses to your join requests", "5"], ["Friend requests", "6"], ["References", "7"],
-                  ["Replies to threads you've posted in", "8"], ["Trips you may be interested in", "9"]]
+  EMAILS_ARRAY = [
+    ["General", "1", [["Announcements - Tripsharing updates", "B"], ["Announcements - Travel news, Tips, etc.", "C"]] ],
+    ["Trips", "2", [["Newsletter - daily", "D"], ["Newsletter - weekly", "E"], ["Trip creation - info", "F"], ["Trip - Requests to join", "G"],
+                    ["Trip - New travel companion accepted","H"],["Trip - Departing updates","J"],["Trip - Updates during trip","K"],["Trip - Completion","L"],["Trip - Time changes","N"]] ],
+    ["Messaging", "3", [["New message emails", "P"]] ]
+  ]
+
   STATUS = {"1" => "Planning travel", "2" => "Seeking travel companions", "3" => "Dreaming about travel", "4" => "On a trip"}
   STATUS_ARRAY = [["Planning travel", "1"], ["Seeking travel companions", "2"], ["Dreaming about travel", "3"], ["On a trip", "4"]]
   NATIONALITIES = {"0" => "any", "1" => "American", "2" => "British", "3" => "English", "4" => "Irish", "5" => "Northern Irish", "6" => "Canadian", 
@@ -232,8 +234,18 @@ class User < ActiveRecord::Base
     end
   end
   
+  def unsubscribed
+    self.subscribed == false ? true : false
+  end
+  
   def build_email_blob
-    self.email_blob = User::EMAILS_ARRAY.map {|e| e[1] + ","}.join.chomp(",")
+    x = []
+    User::EMAILS_ARRAY.each do |ea|
+      ea[2].each do |e|
+        x << e[1]
+      end
+    end
+    self.email_blob = x.join(",")
     self.save
   end
   

@@ -1,36 +1,16 @@
 class Notification < ActiveRecord::Base
   belongs_to :user
   
-  # after_create :send_email
-  
   def self.add_to(user, trigger_code)
     user.notifications.create!(trigger_code: trigger_code)
   end
-  # 
-  # def send_email
-  #   unless self.email_sent?
-  #     case self.trigger_code
-  #     when "A"
-  #     when "B"
-  #     when "C"
-  #     when "D"
-  #       
-  #     when "E"
-  #     when "F"
-  #     when "G"
-  #     when "H"
-  #     when "I"
-  #     when "J"
-  #     when "K"
-  #     when "L"
-  #     when "M"
-  #     when "N"
-  #     when "O"
-  #     when "P"
-  #     when "Q"
-  #     end
-  #   end
-  # end
+  
+  # FUNCTIONAL:
+  # A-immediate-user-verification-e
+  # F-immediate-trip-creation-e-n-f
+  # G-immediate-trip-join-request-creation-e-n
+  # H-immediate-trip-join-accepted-e-n
+  # Q-immediate-message-creation-e-n
   
   # T-Triggers (external)
   #   Types
@@ -41,27 +21,27 @@ class Notification < ActiveRecord::Base
   #     ID-timing-context-name-type-type-type
   #   General
   #     A-immediate-user-verification-e
+  #     B-immediate-user-announcements-updates-e
+  #     C-immediate-user-announcements-travel-tips-e
   #   Trip
-  #     B-daily-trips-newsletter-e
-  #     C-weekly-trips-newsletter-e
-  #     D-immediate-trip-creation-e-n-f
-  #     E-immediate-trip-join-request-creation-e-n
-  #     F-immediate-trip-join-accepted-e-n
-  #     G-immediate-trip-join-denied
-  #     H-immediate-trip-departing-last-call-e-n
-  #     I-immediate-trip-departing-soon-e-n
-  #     J-immediate-trip-starting-e-n-f
-  #     K-immediate-trip-complete-e-n-f
-  #     L-lagging-trip-stop-crud-n
-  #     M-lagging-trip-timing-changes-e-n
-  #     N-lagging-trip-following-n
+  #     D-daily-trips-newsletter-e
+  #     E-weekly-trips-newsletter-e
+  #     F-immediate-trip-creation-e-n-f
+  #     G-immediate-trip-join-request-creation-e-n
+  #     H-immediate-trip-join-accepted-e-n
+  #     I-immediate-trip-join-denied
+  #     J-immediate-trip-departing-soon-e-n
+  #     K-immediate-trip-starting-e-n-f
+  #     L-immediate-trip-complete-e-n-f
+  #     M-lagging-trip-stop-crud-n
+  #     N-lagging-trip-timing-changes-e-n
+  #     O-lagging-trip-following-n
   #   Message
-  #     O-immediate-message-creation-e-n
+  #     P-immediate-message-creation-e-n
   #   User
-  #     P-lagging-following-creation-e-n-f
-  #     Q-immediate-user-creation-f
-  #   Comment
-  #     R-immediate-comment-creation-e-n
+  #     Q-lagging-following-creation-e-n-f
+  #     R-immediate-user-creation-f
+
   
 
 end

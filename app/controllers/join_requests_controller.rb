@@ -8,6 +8,8 @@ class JoinRequestsController < ApplicationController
     @join_request.user = current_user
     if @join_request.save
       @join_request.trip.user.add_friend(current_user)
+      Notification.add_to(@join_request.trip.user, "G")
+      UserMailer.delay.join_request_new_email(@join_request.trip.user, @join_request)
       redirect_to @trip, notice: "Your join request has been sent."
     else
       redirect_to @trip, alert: "There was an issue submitting your request to join this trip."
@@ -17,6 +19,8 @@ class JoinRequestsController < ApplicationController
   def accept
     @join_request = JoinRequest.find(params[:join_request_id])
     @join_request.change_to_accepted
+    Notification.add_to(@join_request.user, "H")
+    UserMailer.delay.join_request_accepted_email(@join_request.user, @join_request)
     redirect_to user_join_requests_path(current_user), notice: "This travel companion has been added to your trip."
   end
   

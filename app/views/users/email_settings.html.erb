@@ -13,17 +13,24 @@
 						    <h3 class="panel-title">Email Settings</h3>
 						  </div>
 						  <div class="panel-body">							
-								<% User::EMAILS_ARRAY.each do |email| %>
-									<% @user.email_blob.include?(email[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
-									<div class="row">
+								<% User::EMAILS_ARRAY.each do |email_array| %>
+									<div class="row small-bottom-margin">
 										<div class="col-md-12">
-											<div class="checkbox">
-										    <label>
-										      <input type="checkbox" name="email_tags[<%= email[1] %>]" <%= checked_or_no %>> <%= email[0] %>
-										    </label>
-											</div>
+											<strong><%= email_array[0] %></strong>
 										</div>
 									</div>
+									<% email_array[2].each do |email| %>
+										<% @user.email_blob.include?(email[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="checkbox" style="margin-left:10px; margin-top:0px;margin-top:0px;">
+											    <label>
+											      <input type="checkbox" name="email_tags[<%= email[1] %>]" <%= checked_or_no %>> <%= email[0] %>
+											    </label>
+												</div>
+											</div>
+										</div>
+									<% end %>
 								<% end %>
 							</div>
 						</div>

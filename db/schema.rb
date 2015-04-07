@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407011618) do
+ActiveRecord::Schema.define(version: 20150407115506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,12 +108,14 @@ ActiveRecord::Schema.define(version: 20150407011618) do
   add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
 
   create_table "join_requests", force: true do |t|
-    t.integer  "trip_id",                  null: false
-    t.integer  "user_id",                  null: false
-    t.text     "content",                  null: false
-    t.string   "state",      default: "0"
+    t.integer  "trip_id",                              null: false
+    t.integer  "user_id",                              null: false
+    t.text     "content",                              null: false
+    t.string   "state",                  default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "new_email_sent_at"
+    t.datetime "accepted_email_sent_at"
   end
 
   add_index "join_requests", ["trip_id"], name: "index_join_requests_on_trip_id", using: :btree
@@ -140,13 +142,14 @@ ActiveRecord::Schema.define(version: 20150407011618) do
   add_index "locations", ["locationable_id", "locationable_type"], name: "index_locations_on_locationable_id_and_locationable_type", using: :btree
 
   create_table "messages", force: true do |t|
-    t.integer  "sender_id",                                null: false
-    t.integer  "receiver_id",                              null: false
-    t.text     "content",                                  null: false
-    t.string   "subject",     limit: 1000
-    t.boolean  "viewed",                   default: false
+    t.integer  "sender_id",                                  null: false
+    t.integer  "receiver_id",                                null: false
+    t.text     "content",                                    null: false
+    t.string   "subject",       limit: 1000
+    t.boolean  "viewed",                     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "email_sent_at"
   end
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
@@ -155,7 +158,6 @@ ActiveRecord::Schema.define(version: 20150407011618) do
   create_table "notifications", force: true do |t|
     t.integer  "user_id",                           null: false
     t.boolean  "badge_icon_viewed", default: false
-    t.boolean  "email_viewed",      default: false
     t.string   "trigger_code",                      null: false
     t.string   "action_code"
     t.datetime "created_at"
@@ -249,6 +251,7 @@ ActiveRecord::Schema.define(version: 20150407011618) do
     t.string   "user_occupation"
     t.string   "user_nationality"
     t.text     "user_interest_blob"
+    t.datetime "new_email_sent_at"
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
