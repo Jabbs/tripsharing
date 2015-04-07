@@ -54,6 +54,9 @@ class ApplicationController < ActionController::Base
     @trip.user = current_user
     @trip.switch_to_state("2")
     @trip.save!
+    track_activity @trip, "activated"
+    Notification.add_to(@trip.user, "D")
+    UserMailer.delay.trip_d_email(@trip.user, @trip)
     current_user.occupation = @trip.user_occupation if current_user.occupation.blank?
     current_user.nationality = @trip.user_nationality if current_user.nationality.blank?
     current_user.interest_blob = @trip.user_interest_blob if current_user.interest_blob.blank?

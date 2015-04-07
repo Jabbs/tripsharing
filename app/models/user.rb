@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   after_create :build_email_blob
   before_save :correct_case_of_inputs
-  after_commit :send_verification_email, on: :create
+  after_commit :send_user_verification_email, on: :create
   # after_commit :build_interests 
   
   # validations
@@ -301,13 +301,13 @@ class User < ActiveRecord::Base
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
-    UserMailer.password_reset_email(self).deliver
+    UserMailer.user_password_reset_email(self).deliver
   end
   
-  def send_verification_email
+  def send_user_verification_email
     VerificationWorker.perform_async(self.id)
     # generate_token(:verification_token)
     # save!
-    # UserMailer.verification_email(self).deliver
+    # UserMailer.user_verification_email(self).deliver
   end
 end

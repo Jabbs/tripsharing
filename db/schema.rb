@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406130624) do
+ActiveRecord::Schema.define(version: 20150407011618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,8 +154,6 @@ ActiveRecord::Schema.define(version: 20150406130624) do
 
   create_table "notifications", force: true do |t|
     t.integer  "user_id",                           null: false
-    t.boolean  "email_sent",        default: false
-    t.datetime "email_sent_at"
     t.boolean  "badge_icon_viewed", default: false
     t.boolean  "email_viewed",      default: false
     t.string   "trigger_code",                      null: false
@@ -164,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150406130624) do
     t.datetime "updated_at"
   end
 
+  add_index "notifications", ["trigger_code"], name: "index_notifications_on_trigger_code", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "stops", force: true do |t|

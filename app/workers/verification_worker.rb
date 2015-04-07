@@ -7,7 +7,7 @@ class VerificationWorker
     user.generate_token(:verification_token)
     user.save
     unless user.verification_sent_at && user.verification_sent_at > 10.minute.ago
-      UserMailer.verification_email(user).deliver
+      UserMailer.user_verification_email(user).deliver
     end
   end
   

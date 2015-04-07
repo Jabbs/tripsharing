@@ -23,7 +23,7 @@ class VerificationsController < ApplicationController
   
   def resend
     @user = User.friendly.find(params[:user_id])
-    UserMailer.delay.verification_email(@user)
+    UserMailer.delay.user_verification_email(@user)
     redirect_to @user, notice: "A verification email has been sent. Please click on the link to verify your account.
                                 Check your spam folder if you are still having issues or contact our support team."
   end
