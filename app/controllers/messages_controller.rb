@@ -65,6 +65,6 @@ class MessagesController < ApplicationController
     end
     
     def verified_user
-      redirect_to current_user, alert: 'You must have a verified account to access messages' unless current_user.verified
+      redirect_to current_user, alert: 'You must have a verified email account to access messages' unless current_user.verified
     end
 end

@@ -21,14 +21,14 @@ class User < ActiveRecord::Base
     "1" => {"name" => "Lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any"}},
     "2" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
     "3" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
-    "4" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Heavy Drinker"}},
+    "4" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Often"}},
     "5" => {"name" => "Budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}}
   }
   INTERESTS_ARRAY = [
     ["lodging", "1", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],
     ["rooming", "2", [["own room", "1"], ["open to share", "2"], ["prefer sharing", "3"], ["any", "4"]] ],
     ["food", "3", [["picky", "1"], ["typical", "2"], ["adventerous", "3"]] ],
-    ["drinking", "4", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["heavy drinker", "4"]] ],
+    ["drinking", "4", [["never", "1"], ["rarely", "2"], ["socially", "3"], ["often", "4"]] ],
     ["budget", "5", [["$", "1"], ["$$", "2"], ["$$$", "3"]] ]
   ]
   EMAILS_ARRAY = [
@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
     ["Messaging", "3", [["New message emails", "P"]] ]
   ]
 
-  STATUS = {"1" => "Planning travel", "2" => "Seeking travel companions", "3" => "Dreaming about travel", "4" => "On a trip"}
-  STATUS_ARRAY = [["Planning travel", "1"], ["Seeking travel companions", "2"], ["Dreaming about travel", "3"], ["On a trip", "4"]]
+  STATUS = {"1" => "Seeking travel plans", "2" => "Seeking travel companions", "3" => "Dreaming about travel", "4" => "On a trip"}
+  STATUS_ARRAY = [["Seeking travel plans", "1"], ["Seeking travel companions", "2"], ["Dreaming about travel", "3"], ["On a trip", "4"]]
   NATIONALITIES = {"0" => "any", "1" => "American", "2" => "British", "3" => "English", "4" => "Irish", "5" => "Northern Irish", "6" => "Canadian", 
     "7" => "Scottish", "8" => "Welsh", "9" => "Australian", "10" => "Afghan", "11" => "Albanian", "12" => "Algerian", "13" => "Andorran", 
     "14" => "Angolan", "15" => "Antiguans", "16" => "Argentinean", "17" => "Armenian", "18" => "Austrian", "19" => "Azerbaijani", "20" => "Bahamian", 

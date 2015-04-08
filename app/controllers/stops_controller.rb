@@ -9,12 +9,12 @@ class StopsController < ApplicationController
     fix_date_month_order
     @stop = @trip.stops.build(stop_params)
     @stop.user = current_user
-    if @stop.save
+    if fields_arent_blank && @stop.save
       respond_to do |format|
         format.js
       end
     else
-      redirect_to root_path alert: "The application encountered an error."
+      redirect_to @trip, alert: "You must fill out at least one field."
     end
   end
   
@@ -27,6 +27,10 @@ class StopsController < ApplicationController
   end
   
   private
+  
+    def fields_arent_blank
+      params[:stop][:to_name].blank? && params[:stop][:to_name_dest].blank? ? false : true
+    end
   
     def fix_date_month_order
       params[:stop][:to_date] = Date.strptime(params[:stop][:to_date],'%m/%d/%Y') if params[:stop][:to_date].present?

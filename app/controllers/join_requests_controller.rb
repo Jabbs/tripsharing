@@ -2,6 +2,7 @@ class JoinRequestsController < ApplicationController
   before_filter :get_trip
   before_filter :signed_in_user
   before_filter :correct_user, only: [:accept, :decline]
+  before_filter :verified_user
   
   def create
     @join_request = @trip.join_requests.build(join_request_params)
@@ -42,6 +43,10 @@ class JoinRequestsController < ApplicationController
     
     def join_request_params
       params.require(:join_request).permit(:content)
+    end
+    
+    def verified_user
+      redirect_to current_user, alert: 'You must have a verified email account to send join requests' unless current_user.verified
     end
     
 end

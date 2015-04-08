@@ -1,4 +1,5 @@
 <%= form_for @trip do |f| %>
+	Seeking
 	<%= f.select :group_count, Trip::GROUP_COUNT_ARRAY %>
 	<%= f.select :group_dynamics, Trip::GROUP_DYNAMICS_ARRAY %>
 	ages
@@ -12,7 +13,7 @@
 			<option value="<%= nationality[1] %>" <%= selected %>><%= nationality[0] %></option>
 		<% end %>
 	</select>.
-  <%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-danger" %>
+  <%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-salmon" %>
 	<%= link_to "Cancel", "#", id: "cancel-travel-text", class: "grey-link" %>
 
 <% end %>
