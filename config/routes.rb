@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # match '/privacy', to: 'static_pages#privacy', via: :get
   # match '/terms', to: 'static_pages#terms', via: :get
   # match '/press', to: 'static_pages#press', via: :get
-  
+  resources :relationships, only: [:create, :destroy]
   resources :users, path: "/members" do
     resources :messages
     match 'contacts', to: 'messages#contacts', via: [:get]

@@ -148,6 +148,14 @@ class User < ActiveRecord::Base
   SUBREGIONS = ["Australia and New Zealand", "Caribbean", "Central America", "Central Asia", "Eastern Africa", "Eastern Asia", "Eastern Europe", "Melanesia", "Micronesia", "Middle Africa", "Northern Africa", "Northern America", "Northern Europe", "Polynesia", "South America", "South-Eastern Asia", "Southern Africa", "Southern Asia", "Southern Europe", "Western Africa", "Western Asia", "Western Europe"]
   
   # associations
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
   has_many :trips
   has_many :interests, dependent: :destroy
   has_many :join_requests_sent, dependent: :destroy, class_name: "JoinRequest"
@@ -155,8 +163,8 @@ class User < ActiveRecord::Base
   has_one :survey
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
-  has_many :followings, as: :followable, dependent: :destroy
-  has_many :followers, through: :followings, source: :user
+  # has_many :followings, as: :followable, dependent: :destroy
+  # has_many :followers, through: :followings, source: :user
   has_many :activities, dependent: :destroy
   has_many :feed_items, dependent: :destroy
   has_many :notifications, dependent: :destroy
@@ -220,6 +228,21 @@ class User < ActiveRecord::Base
   
   def self.fb_image_random_5
     self.pluck(:fb_image).shuffle.first(5)
+  end
+  
+  # Follows a user.
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
   end
   
   def add_friend(user)

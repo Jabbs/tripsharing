@@ -4,6 +4,9 @@
 		<%= user_profile_image(@user, "large") %>
 	<% end %>
 </div>
+
+<%= render "users/relationships/forms" if current_user %>
+
 <strong><%= link_to "ABOUT".html_safe, @user, class: "grey-very-dark-link" %></strong>
 <ul class="list-unstyled" style="padding-left:17px;">
 	<li><%= link_to "References (0)", @user, class: "grey-dark-link" %></li>

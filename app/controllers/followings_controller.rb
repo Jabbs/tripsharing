@@ -1,26 +1,26 @@
 class FollowingsController < ApplicationController
-    before_filter :load_followable
+  before_filter :signed_in_user
+  before_filter :load_followable
 
-    def create
-      @following = @followable.followings.build(user_id: current_user.id)
-      if @following.save
-        respond_to do |format|
-          format.js
-        end
-      else
-        redirect_to root_path, alert: "There was an issue following this."
-      end
-    end
-
-    def destroy
-      @following = Following.find(params[:id])
-
-      @following.destroy
+  def create
+    @following = @followable.followings.build(user_id: current_user.id)
+    if @following.save
       respond_to do |format|
         format.js
-        format.html { redirect_to @followable, alert: "You have unfollowed this project." }
       end
+    else
+      redirect_to root_path, alert: "There was an issue following this."
     end
+  end
+
+  def destroy
+    @following = Following.find(params[:id])
+
+    @following.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
 
