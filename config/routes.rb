@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :users, path: "/members" do
     resources :messages
+    resources :notifications, only: [:index]
     match 'contacts', to: 'messages#contacts', via: [:get]
     match 'sent_messages', to: 'messages#sent_messages', via: [:get]
     match 'join_requests', to: 'messages#join_requests', via: [:get]

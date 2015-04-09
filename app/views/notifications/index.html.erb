@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="well well-messages">
-					<%= render "messages/nav", tab_active: "inbox" %>
+					<%= render "notifications/nav" %>
 				
 					<div class="row">
 						<div class="col-md-12">
@@ -13,13 +13,13 @@
 						    </ul>
 							  <div class="tab-content">
 						      <div role="tabpanel" class="tab-pane fade active in" id="all" aria-labelledby="all-tab">
-										<% if @received_messages.any? %>
-						        	<% @received_messages.each do |message| %>
-												<%= render "messages/message", message: message, type: "received" %>
+										<% if @notifications.any? %>
+						        	<% @notifications.each do |notification| %>
+												<%= render "notifications/notification", notification: notification %>
 											<% end %>
-											<%= will_paginate @received_messages %>
+											<%= will_paginate @notifications %>
 										<% else %>
-											<h3 class="grey">There are no messages.</h3>
+											<h3 class="grey">There are no notifications.</h3>
 										<% end %>
 						      </div>
 

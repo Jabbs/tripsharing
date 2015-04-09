@@ -163,8 +163,8 @@ class User < ActiveRecord::Base
   has_one :survey
   has_many :image_attachments, as: :image_attachable, dependent: :destroy
   accepts_nested_attributes_for :image_attachments, allow_destroy: true
-  # has_many :followings, as: :followable, dependent: :destroy
-  # has_many :followers, through: :followings, source: :user
+  has_many :followings, dependent: :destroy
+  has_many :followed_trips, through: :followings, source: :followable, source_type: "Trip"
   has_many :activities, dependent: :destroy
   has_many :feed_items, dependent: :destroy
   has_many :notifications, dependent: :destroy
@@ -233,6 +233,7 @@ class User < ActiveRecord::Base
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
+    Notification.add_to(other_user, "Q", self)
   end
 
   # Unfollows a user.

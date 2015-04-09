@@ -55,7 +55,6 @@ class ApplicationController < ActionController::Base
     @trip.switch_to_state("2")
     @trip.save!
     track_activity @trip, "activated"
-    Notification.add_to(@trip.user, "F")
     UserMailer.delay.trip_new_email(@trip.user, @trip)
     current_user.occupation = @trip.user_occupation if current_user.occupation.blank?
     current_user.nationality = @trip.user_nationality if current_user.nationality.blank?
@@ -74,10 +73,12 @@ class ApplicationController < ActionController::Base
         @received_messages_count = current_user.received_messages.where(viewed: false).size
         @new_join_requests_and_messages = @join_requests_received + @received_messages
         @new_messages_count = @join_requests_received_count + @received_messages_count
+        @new_notifications_count = current_user.notifications.unviewed.size
       else
         @join_requests_received_count = 0
         @received_messages_count = 0
         @new_messages_count = 0
+        @new_notifications_count = 0
       end
     end
 

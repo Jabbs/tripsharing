@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408133114) do
+ActiveRecord::Schema.define(version: 20150409003525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,20 +156,24 @@ ActiveRecord::Schema.define(version: 20150408133114) do
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "notifications", force: true do |t|
-    t.integer  "user_id",                           null: false
-    t.boolean  "badge_icon_viewed", default: false
-    t.string   "trigger_code",                      null: false
+    t.integer  "user_id",                               null: false
+    t.string   "trigger_code",                          null: false
     t.string   "action_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "notificationable_type",                 null: false
+    t.integer  "notificationable_id",                   null: false
+    t.boolean  "viewed",                default: false
   end
 
+  add_index "notifications", ["notificationable_type", "notificationable_id"], name: "index_notifications_polymorphic", using: :btree
   add_index "notifications", ["trigger_code"], name: "index_notifications_on_trigger_code", using: :btree
+  add_index "notifications", ["user_id", "notificationable_type", "notificationable_id", "trigger_code"], name: "index_notifications_four_way_unique", unique: true, using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
+    t.integer  "follower_id", null: false
+    t.integer  "followed_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -1,11 +1,13 @@
-<div style="margin-bottom:15px;">
+<div style="margin-bottom:10px;">
 	<% current_user?(@user) ? image_path = user_photos_path(@user) : image_path = user_path(@user) %>
 	<%= link_to image_path do %>
 		<%= user_profile_image(@user, "large") %>
 	<% end %>
 </div>
+<div style="margin-bottom:15px;">
+	<%= render "users/relationships/forms" if current_user %>
+</div>
 
-<%= render "users/relationships/forms" if current_user %>
 
 <strong><%= link_to "ABOUT".html_safe, @user, class: "grey-very-dark-link" %></strong>
 <ul class="list-unstyled" style="padding-left:17px;">

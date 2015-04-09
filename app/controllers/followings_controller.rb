@@ -4,6 +4,7 @@ class FollowingsController < ApplicationController
 
   def create
     @following = @followable.followings.build(user_id: current_user.id)
+    Notification.add_to(@followable.user, "O", current_user)
     if @following.save
       respond_to do |format|
         format.js

@@ -13,7 +13,7 @@
 						<div class="radio" style="margin-top:0px;">
 							<% group[2].each do |preference| %>
 								<% user.interest_blob.split(",").include?(group[1] + "-" + preference[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
-								<div class="col-md-2" style="width: 145px;">
+								<div class="col-md-2" style="width: 150px;">
 								  <label>
 								    <input type="radio" name="preference_tags[<%= group[1] %>]" class="fancyradio fancyradio-shell" value="<%= preference[1] %>" style="display:none;" <%= checked_or_no %>>
 										<span><%= preference[0] %></span>

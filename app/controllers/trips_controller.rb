@@ -101,7 +101,6 @@ class TripsController < ApplicationController
         if current_user
           @trip.switch_to_state("2")
           track_activity @trip, "activated"
-          Notification.add_to(@trip.user, "F")
           UserMailer.delay.trip_new_email(@trip.user, @trip)
         else
           cookies[:trip_id] = @trip.id

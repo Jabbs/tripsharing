@@ -30,7 +30,6 @@ class MessagesController < ApplicationController
     @message = current_user.sent_messages.build(message_params)
     if @message.save
       @message.receiver.add_friend(current_user)
-      Notification.add_to(@message.receiver, "P")
       UserMailer.delay.message_new_email(@message.receiver, @message)
       redirect_to user_messages_path(current_user), notice: "Your message has been sent."
     else

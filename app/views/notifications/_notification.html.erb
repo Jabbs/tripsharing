@@ -1,0 +1,43 @@
+<div class="row small-bottom-margin">
+	<div class="col-md-1 col-sm-2">
+		<% case notification.trigger_code %>
+		<% when "O", "Q" %>
+			<% user = notification.notificationable %>
+			<%= link_to user do %>
+				<%= user_image(user) %>
+			<% end %>
+		<% when "H" %>
+			<% join_request = notification.notificationable %>
+			<%= link_to join_request.trip do %>
+				<span class="noticebar-item-image">
+          <i class="fa fa-suitcase salmon"></i>
+        </span>
+			<% end %>
+		<% end %>
+		
+	</div>
+	<div class="col-md-11 col-sm-10" style="margin-top:12px;">
+		<div class="row">
+			<div class="col-md-6">
+				<% case notification.trigger_code %>
+				<% when "O" %>
+					<strong class="noticebar-item-title"><%= user.full_name %></strong>
+          <span class="noticebar-item-text">has followed one of your trips.</span>	
+				<% when "H" %>
+					<strong class="noticebar-item-title">Join Request Accepted!</strong>
+          <span class="noticebar-item-text">You have been accepted to join <%= join_request.trip.name %>.</span>
+				<% when "Q" %>
+					<strong class="noticebar-item-title"><%= user.full_name %></strong>
+          <span class="noticebar-item-text">is now following you.</span>
+				<% end %>
+			</div>
+			<div class="col-md-4">
+				<span class="pull-right"><em><%= time_ago_in_words(notification.created_at) %> ago</em></span>
+			</div>
+			<div class="col-md-2">
+
+			</div>
+		</div>
+	</div>
+</div>
+<hr style="margin-top:8px;margin-bottom:8px;">

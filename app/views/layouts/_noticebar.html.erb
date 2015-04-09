@@ -3,13 +3,16 @@
     <a href="./page-notifications.html" class="dropdown-toggle" data-toggle="dropdown">
       <i class="fa fa-bell"></i>
       <span class="navbar-visible-collapsed">&nbsp;Notifications&nbsp;</span>
+			<% if @new_notifications_count != 0 %>
+				<span class="badge"><%= @new_notifications_count %></span>
+			<% end %>
 			<!-- 
 			<span class="badge">3</span>
 			 -->
       
     </a>
 
-    <ul class="dropdown-menu noticebar-menu" role="menu">
+    <ul class="dropdown-menu noticebar-menu" role="menu" style="max-height:400px; overflow:scroll;">
       <li class="nav-header">
         <div class="pull-left">
           Notifications
@@ -20,45 +23,68 @@
         </div>
 				 -->
       </li>
-			
-			<li class="noticebar-empty">                  
-        <h4 class="noticebar-empty-title">No notifications here.</h4>
-        <p class="noticebar-empty-text">Check back later!</p>                
-      </li>
-			
-			<!-- 
-			<li>
-        <a href="./page-notifications.html" class="noticebar-item">
-          <span class="noticebar-item-image">
-            <i class="fa fa-cloud-upload text-success"></i>
-          </span>
-          <span class="noticebar-item-body">
-            <strong class="noticebar-item-title">Templates Synced</strong>
-            <span class="noticebar-item-text">20 Templates have been synced to the Mashon Demo instance.</span>
-            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> 12 minutes ago</span>
-          </span>
-        </a>
-      </li>
+			<% if current_user.notifications.unviewed.any? %>
+				<% current_user.notifications.unviewed.each do |notification| %>
+					<% case notification.trigger_code %>
+					<% when "O" %>
+						<% user = notification.notificationable %>
+						<li>
+			        <a href="<%= user_path(user) %>" class="noticebar-item">
+			          <span class="noticebar-item-image">
+									<%= user_image(user) %>
+			          </span>
 
-      <li>
-        <a href="./page-notifications.html" class="noticebar-item">
-          <span class="noticebar-item-image">
-            <i class="fa fa-ban text-danger"></i>
-          </span>
-          <span class="noticebar-item-body">
-            <strong class="noticebar-item-title">Sync Error</strong>
-            <span class="noticebar-item-text">5 Designs have been failed to be synced to the Mashon Demo instance.</span>
-            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> 20 minutes ago</span>
-          </span>
-        </a>
-      </li>
-			 -->
+			          <span class="noticebar-item-body">
+			            <strong class="noticebar-item-title"><%= user.full_name %></strong>
+			            <span class="noticebar-item-text">has followed one of your trips.</span>
+			            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(notification.created_at) %> ago</span>
+			          </span>
+			        </a>
+			      </li>
+					<% when "H" %>
+						<% join_request = notification.notificationable %>
+						<li>
+			        <a href="<%= trip_path(join_request.trip) %>" class="noticebar-item">
+			          <span class="noticebar-item-image">
+			            <i class="fa fa-suitcase salmon"></i>
+			          </span>
+			          <span class="noticebar-item-body">
+			            <strong class="noticebar-item-title">Join Request Accepted!</strong>
+			            <span class="noticebar-item-text">You have been accepted to join <%= join_request.trip.name %>.</span>
+			            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(notification.created_at) %> ago</span>
+			          </span>
+			        </a>
+			      </li>
+					<% when "Q" %>
+						<% user = notification.notificationable %>
+						<li>
+			        <a href="<%= user_path(user) %>" class="noticebar-item">
+			          <span class="noticebar-item-image">
+									<%= user_image(user) %>
+			          </span>
 
-			<!-- 
+			          <span class="noticebar-item-body">
+			            <strong class="noticebar-item-title"><%= user.full_name %></strong>
+			            <span class="noticebar-item-text">is now following you.</span>
+			            <span class="noticebar-item-time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(notification.created_at) %> ago</span>
+			          </span>
+			        </a>
+			      </li>
+					<% end %>
+				<% end %>
+			<% else %>
+				<li class="noticebar-empty">                  
+	        <h4 class="noticebar-empty-title">No notifications here.</h4>
+	        <p class="noticebar-empty-text">Check back later!</p>                
+	      </li>
+			<% end %>
+			
+
+			
 			<li class="noticebar-menu-view-all">
-        <a href="./page-notifications.html">View All Notifications</a>
+				<%= link_to "View All Notifications", user_notifications_path(current_user) %>
       </li>
-			 -->
+			
     </ul>
   </li>
 

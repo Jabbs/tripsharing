@@ -1,7 +1,5 @@
 class RelationshipsController < ApplicationController
   before_filter :signed_in_user
-  def show
-  end
   
   def create
     @user = User.friendly.find(params[:followed_id])
