@@ -9,6 +9,7 @@ class Message < ActiveRecord::Base
   
   # scopes
   scope :unviewed, ->() { where(viewed: false) }
+  scope :with_badges_unviewed, ->() { where(badge_viewed: false) }
   
   def view_message
     self.viewed = true

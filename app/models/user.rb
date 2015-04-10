@@ -247,8 +247,11 @@ class User < ActiveRecord::Base
   end
   
   def add_friend(user)
+    logger.debug "******FRIEND #{user.full_name}"
+    logger.debug "******USER #{self.full_name}"
     friending = self.friendings.new(friend_id: user.id)
     friending.save
+    logger.debug "******friending #{friending.errors}"
   end
   
   def remove_friend(user)

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :instantiate_new_trip
   before_filter :record_user_activity
   before_filter :instantiate_welcome_trips
-  before_filter :get_counts
+  before_filter :get_notifications
   before_filter :load_new_message
   # before_filter :set_airports
   protect_from_forgery
@@ -65,15 +65,16 @@ class ApplicationController < ActionController::Base
   
   private
   
-    def get_counts
+    def get_notifications
       if current_user
-        @join_requests_received = current_user.join_requests_received.where(state: "0")
-        @join_requests_received_count = current_user.join_requests_received.where(state: "0").size
-        @received_messages = current_user.received_messages.where(viewed: false)
-        @received_messages_count = current_user.received_messages.where(viewed: false).size
+        @join_requests_received = current_user.join_requests_received.where(state: "0").with_badges_unviewed
+        @join_requests_received_count = current_user.join_requests_received.where(state: "0").with_badges_unviewed.size
+        @received_messages = current_user.received_messages.where(viewed: false).with_badges_unviewed
+        @received_messages_count = current_user.received_messages.where(viewed: false).with_badges_unviewed.size
         @new_join_requests_and_messages = @join_requests_received + @received_messages
         @new_messages_count = @join_requests_received_count + @received_messages_count
-        @new_notifications_count = current_user.notifications.unviewed.size
+        @new_notifications = current_user.notifications.with_badges_unviewed
+        @new_notifications_count = current_user.notifications.with_badges_unviewed.size
       else
         @join_requests_received_count = 0
         @received_messages_count = 0

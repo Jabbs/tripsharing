@@ -4,6 +4,7 @@ class Notification < ActiveRecord::Base
   
   # scopes
   scope :unviewed, ->() { where(viewed: false) }
+  scope :with_badges_unviewed, ->() { where(badge_viewed: false) }
   
   validates :user_id, presence: true
   validates :trigger_code, presence: true

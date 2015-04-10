@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409003525) do
+ActiveRecord::Schema.define(version: 20150410215141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,14 +108,16 @@ ActiveRecord::Schema.define(version: 20150409003525) do
   add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
 
   create_table "join_requests", force: true do |t|
-    t.integer  "trip_id",                              null: false
-    t.integer  "user_id",                              null: false
-    t.text     "content",                              null: false
+    t.integer  "trip_id",                                null: false
+    t.integer  "user_id",                                null: false
+    t.text     "content",                                null: false
     t.string   "state",                  default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "new_email_sent_at"
     t.datetime "accepted_email_sent_at"
+    t.boolean  "badge_viewed",           default: false
+    t.boolean  "viewed",                 default: false
   end
 
   add_index "join_requests", ["trip_id"], name: "index_join_requests_on_trip_id", using: :btree
@@ -150,6 +152,7 @@ ActiveRecord::Schema.define(version: 20150409003525) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "email_sent_at"
+    t.boolean  "badge_viewed",               default: false
   end
 
   add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
@@ -164,6 +167,7 @@ ActiveRecord::Schema.define(version: 20150409003525) do
     t.string   "notificationable_type",                 null: false
     t.integer  "notificationable_id",                   null: false
     t.boolean  "viewed",                default: false
+    t.boolean  "badge_viewed",          default: false
   end
 
   add_index "notifications", ["notificationable_type", "notificationable_id"], name: "index_notifications_polymorphic", using: :btree

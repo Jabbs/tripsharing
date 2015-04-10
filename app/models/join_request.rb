@@ -2,6 +2,10 @@ class JoinRequest < ActiveRecord::Base
   belongs_to :trip
   belongs_to :user
   
+  # scopes
+  scope :unviewed, ->() { where(viewed: false) }
+  scope :with_badges_unviewed, ->() { where(badge_viewed: false) }
+  
   validates :user_id, presence: true, uniqueness: { scope: [:trip_id] }
   validates :trip_id, presence: true
   validates :content, presence: true
