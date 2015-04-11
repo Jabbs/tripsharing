@@ -8,19 +8,25 @@
 				<small>© <%= t('application.root.name') %> 2015</small>
 			</div>
 			<div class="col-md-4">
-			
-			</div>
-			<div class="col-md-3 pull-right">
-
-			</div>
-		</div>
-		<div class="row" style="margin-top:80px;">
-			<div class="col-md-12">
 				<div class="center">
 					<%= render "shared/social_media_links" %>
 				</div>
 			</div>
+			<div class="col-md-4">
+				<div class="">
+					<% query_param = request.path_parameters[:action] %>
+					<ul class="list-unstyled" style="padding-left:17px;">
+					  <li class="right"><%= link_to "About", about_path, class: "footer-link #{get_tab_class(query_param, "about")}" %></li>
+						<li class="right"><%= link_to "How it works", how_it_works_path, class: "footer-link #{get_tab_class(query_param, "how_it_works")}" %></li>
+						<li class="right"><%= link_to "Privacy Policy", privacy_path, class: "footer-link #{get_tab_class(query_param, "privacy")}" %></li>
+						<li class="right"><%= link_to "Terms of Service", terms_path, class: "footer-link #{get_tab_class(query_param, "terms")}" %></li>
+						<li class="right"><%= link_to "Contact Us", contact_us_path, class: "footer-link #{get_tab_class(query_param, "contact_us")}" %></li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
+
 	</div>
 </footer>
 

@@ -24,11 +24,13 @@ Rails.application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   
   # static pages
-  # match '/about', to: 'static_pages#about', via: :get
-  # match '/how_it_works', to: 'static_pages#how_it_works', via: :get
-  # match '/privacy', to: 'static_pages#privacy', via: :get
-  # match '/terms', to: 'static_pages#terms', via: :get
+  match '/contact_us', to: 'static_pages#contact_us', via: :get
+  match '/about', to: 'static_pages#about', via: :get
+  match '/how_it_works', to: 'static_pages#how_it_works', via: :get
+  match '/privacy', to: 'static_pages#privacy', via: :get
+  match '/terms', to: 'static_pages#terms', via: :get
   # match '/press', to: 'static_pages#press', via: :get
+  
   resources :relationships, only: [:create, :destroy]
   resources :users, path: "/members" do
     resources :messages

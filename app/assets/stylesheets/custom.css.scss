@@ -397,6 +397,11 @@ input[type="radio"].fancyradio-shell+span {
 	color: $grey_dark;
 }
 
+a.footer-link {
+	color: $grey;
+	text-decoration: none;
+	&:hover {color: darken($grey, 5%); text-decoration: none;}
+}
 a.fb-link {
 	color: $grey;
 	text-decoration: none;
@@ -502,7 +507,7 @@ h2.choice.inactive a {
 }
 #slogan {
 	color: #fff;
-	margin-top: 4em;
+	margin-top: 5em;
 	margin-bottom: .3em;
 }
 
@@ -963,7 +968,7 @@ footer {
 	background: image-url("tiles/noise_salmon.jpg");
 //	opacity: 1; // Leave this as 1
 //  background-color: rgba(0,0,0,0.6);
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 10px;
   color: $grey;
   a {color: $salmon;}

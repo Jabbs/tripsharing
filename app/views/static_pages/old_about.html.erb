@@ -1,0 +1,222 @@
+<div id="home">
+	<div id="home-background">
+		<div class="container">
+			<div class="row">
+				<!--
+			  <div class="col-md-5" style="padding-top:80px;">
+					<%= render 'layouts/globe_faces' %>
+			  </div>
+				-->
+			  <div class="col-md-10 col-md-offset-1">
+			    <div class="signup-well" style="padding-top:30px;">
+			      <div class="center" style="font-size: 200%;">
+							<%= link_to image_tag("globe-icon-planes-100.png"), root_url, style: "margin-left:5px;", id: "globe" %>
+	            <%= link_to "Tripsharing<span class='blue tiny'>beta</span>".html_safe, root_url, id: "logo" %>
+						</div>
+						<h1 class="center black" style="font-size: 150%; margin-bottom:10px;">
+							<%= t('application.root.slogan') %>
+						</h1>
+			      <hr/>
+						<%= render 'survey' %>
+			      <hr/>
+						
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<div id="home-background3">
+		<div class="row">
+			<div class="col-md-3 col-md-offset-1">
+				<div class="no-height" style="position:relative; top:20px; left:50px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/map.jpg" %>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-md-3 col-md-offset-2">
+
+			</div>
+			<div class="col-md-3">
+
+			</div>
+		</div>
+		<div class="row" style="margin-top:200px;">
+			<div class="col-md-5 col-md-offset-1">
+				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Pick travel interests.</h4>
+							<p>
+								I want to travel with other <span class="salmon">singles near my hometown</span>
+								to <span class="salmon">Hanoi, Vietnam</span>
+								for <span class="salmon">a full week</span>
+								this <span class="salmon">spring.</span>
+								I'm interested in <span class="salmon">exploring the city</span>, <span class="salmon">backpacking</span>,
+								<span class="salmon">food/wine</span>, and <span class="salmon">drinking with locals</span>.
+							</p>
+					</div>
+				<% end %>
+			</div>
+			<div class="col-md-1" style="padding-top:120px;">
+				<div class="center">
+					<%= scroll_reveal animation: 'enter wait 1.1s', class: "inline"  do %>
+						<i class="fa fa-circle white"></i>
+					<% end %>
+
+					<%= scroll_reveal animation: 'enter wait 1.2s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+					<%= scroll_reveal animation: 'enter wait 1.3s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<%= image_tag "screen.png", class: "img-responsive" %>
+				<% end %>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-3 col-md-offset-4">
+				<div class="no-height" style="position:relative; top:20px; left:-50px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/drink.jpeg" %>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<% 10.times do |n| %>
+					<div class="center">
+						<%= scroll_reveal animation: "enter wait 1.#{n}s", class: "inline"  do %>
+							<i class="fa fa-circle white" style="margin-bottom:10px;"></i>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		
+		<div class="row" style="margin-top:40px;">
+			<div class="col-md-5 col-md-offset-1">
+				<div class="right">
+					<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+						<%= image_tag "screen2.png", class: "img-responsive" %>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-md-1" style="padding-top:100px;">
+				<div class="center">
+					<%= scroll_reveal animation: 'enter wait 1.4s', class: "inline"  do %>
+						<i class="fa fa-circle white"></i>
+					<% end %>
+
+					<%= scroll_reveal animation: 'enter wait 1.3s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+					<%= scroll_reveal animation: 'enter wait 1.2s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Apply for trips.</h4>
+						<p>
+							I'd like to find an <span class="salmon">inexpensive</span> trip
+							with a group of <span class="salmon">6 to 10</span>
+							travelers who share 
+							<span class="salmon">facebook friends</span> with me.
+						</p>
+					</div>
+				<% end %>
+			</div>
+		</div>
+
+		
+		<div class="row">
+			<div class="col-md-5 col-md-offset-1">
+				<% 10.times do |n| %>
+					<div class="center">
+						<%= scroll_reveal animation: "enter wait 1.#{n}s", class: "inline"  do %>
+							<i class="fa fa-circle white" style="margin-bottom:10px;"></i>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+			<div class="col-md-3 col-md-offset-2">
+				<div class="no-height" style="position:relative; top:30px; left:140px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/lighthouse.jpeg" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row" style="margin-top:20px;">
+			<div class="col-md-5 col-md-offset-1">
+				<%= scroll_reveal animation: 'enter left and move 50px over 1s' do %>
+					<div class="box">
+						<h4>Meet new friends. Enjoy the adventure!</h4>
+						<p>
+							We shared a trip to <span class="salmon">Cartagena, Colombia</span> for
+							8 days. Many of us created a bond through the wonderful experiences we had.
+							<span class="salmon">13 of us friends</span>
+							still keep in touch and share stories of the good times!
+						</p>
+					</div>
+				<% end %>
+			</div>
+			<div class="col-md-1" style="padding-top:160px;">
+				<div class="center">
+					<%= scroll_reveal animation: 'enter wait 1.1s', class: "inline"  do %>
+						<i class="fa fa-circle white"></i>
+					<% end %>
+
+					<%= scroll_reveal animation: 'enter wait 1.2s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+					<%= scroll_reveal animation: 'enter wait 1.3s', class: "inline"  do %>
+						<i class="fa fa-circle white" style="margin-left:10px;"></i>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
+					<div class="no-height">
+						<%= image_tag "polaroid_blank.png", class: "img-responsive" %>
+					</div>
+					<%= image_tag "tripsharing_group_pic.jpg", class: "img-responsive slight-tilt-img" %>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="no-height" style="position:relative; top:30px; left:140px;">
+					<%= scroll_reveal animation: 'enter bottom and move 50px over 1s' do %>
+						<%= image_tag "shutterstock/suitcase.jpeg" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div style="min-height:300px;"></div>
+		
+	</div>
+	<div id="home-background4">
+		<div style="min-height:360px;"></div>
+		<%= scroll_reveal animation: 'enter top and move 50px over 2s' do %>
+			<div class="slogan-text">
+				"Travel is an experience you will always remember. It opens you up to meeting truly unique, interesting, and hilarious people."
+			</div>
+		<% end %>
+		<!-- <div class="slogan-text bottom">
+			Make your trip more than a destination and take a chance with new people, you might create a bond you never expected!
+		</div> -->
+		<div class="row" style="margin-top:30px;">
+			<div class="center">
+				<button class="btn btn-info btn-lg" id="go-to-top">I'M READ TO JOIN!</button>
+			</div>
+		</div>
+	</div>
+</div>

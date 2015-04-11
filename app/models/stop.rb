@@ -11,8 +11,8 @@ class Stop < ActiveRecord::Base
   def self.create_from_trip(trip)
     if !trip.stop_location.blank?
       stop = trip.stops.new(user_id: trip.user_id)
-      # stop.to_name = trip.stop_location
-      stop.to_name_dest = trip.stop_location
+      stop.to_name = trip.stop_location
+      # stop.to_name_dest = trip.stop_location
       stop.to_date = trip.departs_at if trip.departs_at
       stop.save
     end
