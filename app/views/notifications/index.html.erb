@@ -5,29 +5,14 @@
 				<div class="well well-messages">
 					<%= render "notifications/nav" %>
 				
-					<div class="row">
-						<div class="col-md-12">
-							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-						    <ul id="myTab" class="nav nav-tabs" role="tablist">
-						      <li role="presentation" class="active"><a href="#all" id="all-tab" role="tab" data-toggle="tab" aria-controls="all" aria-expanded="true">All</a></li>
-						    </ul>
-							  <div class="tab-content">
-						      <div role="tabpanel" class="tab-pane fade active in" id="all" aria-labelledby="all-tab">
-										<% if @notifications.any? %>
-						        	<% @notifications.each do |notification| %>
-												<%= render "notifications/notification", notification: notification %>
-											<% end %>
-											<%= will_paginate @notifications %>
-										<% else %>
-											<h3 class="grey">There are no notifications.</h3>
-										<% end %>
-						      </div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				
+					<% if @notifications.any? %>
+	        	<% @notifications.each do |notification| %>
+							<%= render "notifications/notification", notification: notification %>
+						<% end %>
+						<%= will_paginate @notifications %>
+					<% else %>
+						<h3 class="grey">There are no notifications.</h3>
+					<% end %>
 				
 				</div>
 			</div>
