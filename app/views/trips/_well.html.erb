@@ -67,7 +67,7 @@
 				<div class="col-xs-6">
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="pull-right">
+							<div class="pull-right" style="overflow:hidden; max-height:18px;" title="<%= Trip::REGIONS[trip.region] %>">
 								<%= Trip::REGIONS[trip.region] %>
 							</div>
 						</div>
@@ -103,8 +103,8 @@
 					<small>first stop:</small><br>
 					<div class="trip-departs-to">
 						<i class="fa fa-map-marker" style="margin-left:4px;margin-right:2px;"></i>
-						<% if trip.stop_location.present? %>
-							<%= trip.try(:stop_location) %>
+						<% if trip.stops.any? %>
+							<%= trip.stops.first.to_name_dest %>
 						<% else %>
 							Unknown
 						<% end %>

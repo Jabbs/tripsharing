@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # static pages
   match '/contact_us', to: 'static_pages#contact_us', via: :get
   match '/about', to: 'static_pages#about', via: :get
+  # match '/old_about', to: 'static_pages#old_about', via: :get
   match '/how_it_works', to: 'static_pages#how_it_works', via: :get
   match '/privacy', to: 'static_pages#privacy', via: :get
   match '/terms', to: 'static_pages#terms', via: :get

@@ -641,15 +641,15 @@ h2.choice.inactive a {
 
 .build-trip-well {
 	padding-top:0px;
-	margin-top:40px;
-	margin-bottom:60px;
+	margin-top:80px;
+	margin-bottom:160px;
 	label {font-size: 140%;}
 	hr.thick {margin-top:0px; border-top: 3px solid $turquoise_dark;}
 	h1 {
 		color: $turquoise_dark;
 		margin: 10px 0px 0px 20px;
-		font-family: 'Crafty Girls';
-		padding-bottom:20px;
+		line-height:140%;
+		padding-bottom:10px;
 		font-size:180%;
 	}
 	h3 {color: $salmon; margin-top:10px;}
@@ -667,6 +667,9 @@ h2.choice.inactive a {
 #welcome-img-2, #welcome-img-3, #welcome-img-4, #welcome-img-5, #welcome-img-6 {display: none;}
 .profile-pic {
 	border: 6px solid $white;
+//	-webkit-border-radius: 15em;
+//	-moz-border-radius: 15em;
+//	border-radius: 15em;
 }
 .show-trip {
 	margin-bottom:100px;
@@ -784,8 +787,8 @@ a.grey-very-dark-link {
 
 .slight-tilt-img {
 	position: relative;
-	top:71px;
-	left:75px;
+	top:66px;
+	left:72px;
 	-ms-transform: rotate(-5.3deg); /* IE 9 */
   -webkit-transform: rotate(-5.3deg); /* Chrome, Safari, Opera */
   transform: rotate(-5.3deg);

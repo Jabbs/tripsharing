@@ -15,6 +15,10 @@ class StaticPagesController < ApplicationController
   def about
   end
   
+  # def old_about
+  #   @fb_images_rand_5 = User.fb_image_random_5
+  # end
+  
   def how_it_works
   end
   

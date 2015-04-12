@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if @trip = Trip.find_by_id(cookies[:trip_id])
         connect_trip_to_user
         if current_user.welcome_complete?
-          redirect_to trip_path
+          redirect_to trip_path(@trip)
         else
           current_user.complete_welcome
           redirect_to trip_path(@trip, welcome: 1)
