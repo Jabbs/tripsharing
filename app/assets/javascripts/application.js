@@ -77,7 +77,7 @@ $('document').ready(function() {
 	// show the signup modal on trips show page if trip state = "7"
 	var pathArray = window.location.pathname.split( '/' );
 	var query = window.location.search.slice(1);
-	console.log(query);
+	// console.log(query);
 	if (pathArray[1] == "trips" && pathArray[3] != "details") {
 		$('#signinModal').modal('show'); 
 	};

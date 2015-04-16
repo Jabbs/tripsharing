@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
           redirect_to trip_path(@trip)
         else
           current_user.complete_welcome
-          redirect_to trip_path(@trip, welcome: 1)
+          redirect_to trip_path(@trip)
         end
       else
         if current_user.welcome_complete?

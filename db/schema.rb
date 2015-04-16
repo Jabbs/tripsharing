@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410215141) do
+ActiveRecord::Schema.define(version: 20150416015451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 20150410215141) do
     t.string   "stop_location"
     t.string   "user_occupation"
     t.string   "user_nationality"
-    t.text     "user_interest_blob"
+    t.text     "user_interest_blob",             default: ""
     t.datetime "new_email_sent_at"
   end
 
