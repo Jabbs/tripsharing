@@ -5,7 +5,7 @@
 		    <h3 class="panel-title">Travel Preferences</h3>
 		  </div>
 		  <div class="panel-body">
-				<% if user.interest_blob? %>
+
 					<% User::INTERESTS_ARRAY.each do |group| %>
 						<div class="row small-bottom-margin">
 							<div class="col-md-2">
@@ -24,7 +24,7 @@
 							</div>
 						</div>
 					<% end %>
-				<% end %>
+
 		  </div>
 		</div>
 	</div>

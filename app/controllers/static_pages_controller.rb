@@ -13,6 +13,7 @@ class StaticPagesController < ApplicationController
   end
   
   def about
+    redirect_to root_path
   end
   
   # def old_about
@@ -20,6 +21,7 @@ class StaticPagesController < ApplicationController
   # end
   
   def how_it_works
+    redirect_to root_path
   end
   
   def privacy
@@ -29,9 +31,11 @@ class StaticPagesController < ApplicationController
   end
   
   def press
+    redirect_to root_path
   end
   
   def contact_us
+    redirect_to root_path
   end
   
   def unsubscribed
