@@ -29,7 +29,15 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.order("created_at DESC")
+    @join_request_count = JoinRequest.count
+    @message_count = Message.count
+    @trip_count = Trip.where(state: "2").size
+    @user_count = User.count
+    @join_request_count_in_7_days = JoinRequest.where("created_at > ?", Date.today - 7.days).count
+    @message_count_in_7_days = Message.where("created_at > ?", Date.today - 7.days).count
+    @trip_count_in_7_days = Trip.where(state: "2").where("created_at > ?", Date.today - 7.days).size
+    @user_count_in_7_days = User.where("created_at > ?", Date.today - 7.days).count
+    @users = User.order("created_at DESC").paginate(page: params[:page], per_page: 50)
   end
   
   def join

@@ -1,9 +1,62 @@
-<div class="container focus">
-	<br>
-	<br>
-	<div class="row">
+<div class="container" style="margin-bottom:60px;">
+	<div class="row top-margin">
 		<div class="col-md-12">
-			<span class="white"><%= @users.size %> users</span>
+			V1.0 - 4/15/15
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-user"></i>
+				<%= @user_count %>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-plane"></i>
+				<%= @trip_count %>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-group"></i>
+				<%= @join_request_count %>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-comment"></i>
+				<%= @message_count %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">Last 7 days</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-user"></i>
+				<%= @user_count_in_7_days %>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-plane"></i>
+				<%= @trip_count_in_7_days  %>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-group"></i>
+				<%= @join_request_count_in_7_days  %>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="well huge">
+				<i class="fa fa-comment"></i>
+				<%= @message_count_in_7_days %>
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -11,38 +64,54 @@
 			<div class="well">
 				<table>
 					<thead>
-						<th>Locale</th>
-						<th>Created</th>
+						<th>Image</th>
 						<th>ID</th>
-						<th>FB-ID</th>
-						<th>Name</th>
+						<th>Created</th>
+						<th>Last On</th>
+						<th>Location</th>
+						<th>Contact</th>
+						<th>Bday</th>
+						<th>Bio?</th>
+						<th>FB?</th>
+						<th>Ver?</th>
+						<th>Airport?</th>
+						<th>Edu?</th>
+						<th>C/L/I</th>
 						<th>Email</th>
-						<th>Gender</th>
-						<th>Birthyear</th>
-						<th>Hometown</th>
-						<th>FB url</th>
-						<th>Tagline</th>
-						<th>Bio</th>
-						<th>Interests</th>
+						<th>Followings</th>
+						<th>Regions</th>
+						<th>Trips</th>
 					</thead>
 					<tbody>
 						<% @users.each do |user| %>
 							<tr>
-								<td><%= user.fb_locale %></td>
-								<td><%= user.created_at.strftime("%m/%e/%y %l:%M%P") %></td>
+								<td><%= link_to user_image(user), user %></td>
 								<td><%= user.id %></td>
-								<td><%= user.uid %></td>
-								<td><%= link_to "#{user.full_name}", user %></td>
-								<td><%= user.email %></td>
-								<td><%= user.gender %></td>
-								<td><%= user.birthday %></td>
-								<td><%= user.fb_hometown %></td>
-								<td><%= link_to "FB url", user.fb_url, target: "_blank" %></td>
-								<td><%= user.tag_line %></td>
-								<td><%= truncate(user.bio, length: 10) %></td>
-								<td><%= user.interests.where(has_it: true).size %></td>
+								<td><%= user.created_at.strftime("%-m/%e %l:%M%P") %></td>
+								<td><%= user.last_sign_in_at.strftime("%-m/%e %l:%M%P") if user.last_sign_in_at %></td>
+								<td><%= user.location %></td>
+								<td>
+									<%= link_to "#{user.full_name}", user %>
+									<br>
+									<%= user.email %>
+									<br>
+									<%= User::NATIONALITIES[user.nationality] %>,
+									<%= user.gender %>
+								</td>
+								<td><%= user.birthday.strftime("%-m/%-e/%y")  %></td>
+								<td><%= user.bio.length if user.bio? %></td>
+								<td><%= user.uid.present? ? link_to("Y", user.fb_url, target: "_blank") : "N" %></td>
+								<td><%= user.verified? ? "T" : "F" %></td>
+								<td><%= user.home_airport.present? ? "T" : "F" %></td>
+								<td><%= user.education.present? ? "T" : "F" %></td>
+								<td><%= user.country_blob.split(",").size %>/<%= user.language_blob.split(",").size %>/<%= user.interest_blob.split(",").size %></td>
+								<td><%= user.email_blob.split(",").size %></td>
+								<td><%= user.followings_count %></td>
+								<td><%= user.region_blob.split(",").size %></td>
+								<td><%= user.trips.size %></td>
 							</tr>
 						<% end %>
+						<%= will_paginate @users %>
 					</tbody>
 				</table>
 			</div>

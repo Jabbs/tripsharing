@@ -276,6 +276,12 @@ class User < ActiveRecord::Base
     self.save
   end
   
+  def activity_percentage
+    days_active = self.activity_trail.count("1")
+    days_inactive = self.activity_trail.count("0")
+    ((days_active.to_f / (days_inactive + days_active).to_f) * 100).round
+  end
+  
   def age
     now = Time.now.utc.to_date
     now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)

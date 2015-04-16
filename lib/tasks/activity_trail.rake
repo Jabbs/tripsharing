@@ -11,3 +11,9 @@ task :track_daily_activity => :environment do
   	user.save
   end
 end
+
+task :count_daily_active_users => :environment do
+  report = Report.new
+  report.daily_active_user_count = User.where("last_sign_in_at > ?", DateTime.now - 24.hours).count
+  report.save
+end
