@@ -112,7 +112,7 @@
 								<td><%= user.trips.size %></td>
 								<td>
 									<a href="#" data-toggle="modal" data-target="#newMessageModal<%= user.id %>" class="btn btn-default btn-sm pull-right"><i class='fa fa-comment'></i></a>
-									<%= render "messages/modals/new_message_modal", user: user %>
+									<%= render "messages/modals/admin_message_modal", user: user %>
 								</td>
 							</tr>
 						<% end %>
