@@ -70,7 +70,6 @@
 						<th>Last On</th>
 						<th>Location</th>
 						<th>Contact</th>
-						<th>Bday</th>
 						<th>Bio?</th>
 						<th>FB?</th>
 						<th>Ver?</th>
@@ -81,6 +80,7 @@
 						<th>Followings</th>
 						<th>Regions</th>
 						<th>Trips</th>
+						<th></th>
 					</thead>
 					<tbody>
 						<% @users.each do |user| %>
@@ -95,10 +95,11 @@
 									<br>
 									<%= user.email %>
 									<br>
-									<%= User::NATIONALITIES[user.nationality] %>,
-									<%= user.gender %>
+									<%= user.age %>, <%= user.gender.capitalize %>
+									<% if user.nationality %>
+										 (<%= User::NATIONALITIES[user.nationality] %>)
+									<% end %>
 								</td>
-								<td><%= user.birthday.strftime("%-m/%-e/%y")  %></td>
 								<td><%= user.bio.length if user.bio? %></td>
 								<td><%= user.uid.present? ? link_to("Y", user.fb_url, target: "_blank") : "N" %></td>
 								<td><%= user.verified? ? "T" : "F" %></td>
@@ -109,6 +110,10 @@
 								<td><%= user.followings_count %></td>
 								<td><%= user.region_blob.split(",").size %></td>
 								<td><%= user.trips.size %></td>
+								<td>
+									<a href="#" data-toggle="modal" data-target="#newMessageModal<%= user.id %>" class="btn btn-default btn-sm pull-right"><i class='fa fa-comment'></i></a>
+									<%= render "messages/modals/new_message_modal", user: user %>
+								</td>
 							</tr>
 						<% end %>
 						<%= will_paginate @users %>
