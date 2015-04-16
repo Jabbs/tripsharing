@@ -4,7 +4,11 @@
 	<div class="row">
 		<%= render 'users/form' %>
 	</div>
+	<div>
+			<small>By signing up you confirm that you accept our <%= link_to "terms of service", terms_path %> and <%= link_to "privacy policy", privacy_path %>.</small>
+	</div>
 	<hr>
+
 	<% if @trip && @trip.userless? %>
 		<div class="row">
 			<div class="col-md-12">
