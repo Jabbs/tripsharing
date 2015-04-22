@@ -131,7 +131,7 @@ class Trip < ActiveRecord::Base
   end
   
   def add_first_companion
-    self.companionings.create!(user_id: self.user.id)
+    self.companionings.create!(user_id: self.user.id) unless self.companionings.any?
   end
   
   def add_default_image
