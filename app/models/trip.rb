@@ -24,7 +24,7 @@ class Trip < ActiveRecord::Base
   
   after_save :create_first_stop
   after_create :add_default_image
-  after_commit :add_first_companion
+  after_commit :add_first_companion, on: :create
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress", "7" => "no user"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
