@@ -93,9 +93,9 @@ class TripsController < ApplicationController
     @trip = Trip.friendly.find(params[:id])
     @trip.slug = nil
     referrer = request.referer.split('/').last
-    create_tags if params["interest_tags"]
     fix_date_month_order
     if @trip.update_attributes(trip_params)
+      create_tags if params["interest_tags"]
       update_user_interest_blob
       if referrer == "details"
         if current_user
@@ -186,7 +186,7 @@ class TripsController < ApplicationController
           else
             t = Tag.create!(name: name)
           end
-          @trip.taggings.build(tag_id: t.id)
+          @trip.taggings.create(tag_id: t.id)
         end
       end
     end
