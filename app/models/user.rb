@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   EMAILS_ARRAY = [
     ["General", "1", [["Announcements - Tripsharing updates", "B"], ["Announcements - Travel news, Tips, etc.", "C"]] ],
     ["Trips", "2", [["Newsletter - daily", "D"], ["Newsletter - weekly", "E"], ["Trip creation - info", "F"], ["Trip - Requests to join", "G"],
-                    ["Trip - New travel companion accepted","H"],["Trip - Departing updates","J"],["Trip - Updates during trip","K"],["Trip - Completion","L"],["Trip - Time changes","N"]] ],
+                    ["Trip - New travel companion accepted", "H"],["Trip - Departing updates", "J"],["Trip - Updates during trip", "K"],["Trip - Completion", "L"],["Trip - Time changes", "N"]] ],
     ["Messaging", "3", [["New message emails", "P"]] ]
   ]
 
@@ -274,6 +274,19 @@ class User < ActiveRecord::Base
     end
     self.email_blob = x.join(",")
     self.save
+  end
+  
+  def subscribed_to?(email_type)
+    self.email_blob.include?(email_type) ? true : false
+  end
+  
+  def unsubscribe_from(email_type)
+    if self.email_blob.include?(email_type)
+      self.email_blob.sub! email_type, ""
+      array = self.email_blob.split(",") - ["", nil]
+      self.email_blob = array.join(",")
+      self.save
+    end
   end
   
   def activity_percentage

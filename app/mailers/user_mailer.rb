@@ -3,38 +3,50 @@ class UserMailer < ActionMailer::Base
   default content_type: "text/html"
   
   def join_request_accepted_email(user, join_request)
-    @join_request = join_request
-    unless @join_request.accepted_email_sent_at.present?
-      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a request to join your trip")
-      @join_request.accepted_email_sent_at = DateTime.now
-      @join_request.save!
+    @email_type = "H"; @user = user
+    if user.subscribed_to?(@email_type)
+      @join_request = join_request
+      unless @join_request.accepted_email_sent_at.present?
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a request to join your trip")
+        @join_request.accepted_email_sent_at = DateTime.now
+        @join_request.save!
+      end
     end
   end
   
   def join_request_new_email(user, join_request)
-    @join_request = join_request
-    unless @join_request.new_email_sent_at.present?
-      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a request to join your trip")
-      @join_request.new_email_sent_at = DateTime.now
-      @join_request.save!
+    @email_type = "G"; @user = user
+    if user.subscribed_to?(@email_type)
+      @join_request = join_request
+      unless @join_request.new_email_sent_at.present?
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a request to join your trip")
+        @join_request.new_email_sent_at = DateTime.now
+        @join_request.save!
+      end
     end
   end
   
   def message_new_email(user, message)
-    @message = message
-    unless @message.email_sent_at.present?
-      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a message")
-      @message.email_sent_at = DateTime.now
-      @message.save!
+    @email_type = "P"; @user = user
+    if user.subscribed_to?(@email_type)
+      @message = message
+      unless @message.email_sent_at.present?
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a message")
+        @message.email_sent_at = DateTime.now
+        @message.save!
+      end
     end
   end
   
   def trip_new_email(user, trip)
-    @trip = trip
-    unless @trip.new_email_sent_at.present?
-      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your new Trip on Tripsharing")
-      @trip.new_email_sent_at = DateTime.now
-      @trip.save!
+    @email_type = "F"; @user = user
+    if user.subscribed_to?(@email_type)
+      @trip = trip
+      unless @trip.new_email_sent_at.present?
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your new Trip on Tripsharing")
+        @trip.new_email_sent_at = DateTime.now
+        @trip.save!
+      end
     end
   end
   

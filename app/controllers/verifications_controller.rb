@@ -13,8 +13,8 @@ class VerificationsController < ApplicationController
   
   def unsubscribe
     if @user = User.find_by_verification_token(params[:unsubscribe_id].to_s)
-      @user.update_attribute(:subscribed, false)
-      redirect_to unsubscribed_path
+      @user.unsubscribe_from(params[:email_type])
+      redirect_to root_path, notice: "You have been unsubscribed from these types of emails."
     else
       redirect_to root_path, notice: "There was a problem unsubscribing your email. Please contact support@tripsharing.com 
                                      for more details."
