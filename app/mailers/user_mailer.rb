@@ -3,11 +3,11 @@ class UserMailer < ActionMailer::Base
   default content_type: "text/html"
   
   def join_request_accepted_email(user, join_request)
-    @email_type = "H"; @user = user
+    @email_type = "H"; @user_verification_token = user.verification_token
     if user.subscribed_to?(@email_type)
       @join_request = join_request
       unless @join_request.accepted_email_sent_at.present?
-        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a request to join your trip")
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "You have received a request to join your trip")
         @join_request.accepted_email_sent_at = DateTime.now
         @join_request.save!
       end
@@ -15,11 +15,11 @@ class UserMailer < ActionMailer::Base
   end
   
   def join_request_new_email(user, join_request)
-    @email_type = "G"; @user = user
+    @email_type = "G"; @user_verification_token = user.verification_token
     if user.subscribed_to?(@email_type)
       @join_request = join_request
       unless @join_request.new_email_sent_at.present?
-        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a request to join your trip")
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "You have received a request to join your trip")
         @join_request.new_email_sent_at = DateTime.now
         @join_request.save!
       end
@@ -27,11 +27,12 @@ class UserMailer < ActionMailer::Base
   end
   
   def message_new_email(user, message)
-    @email_type = "P"; @user = user
+    @email_type = "P"; @user_verification_token = user.verification_token
+    logger.debug "VERIFICATION TOKEN: #{@user_verification_token}"
     if user.subscribed_to?(@email_type)
       @message = message
       unless @message.email_sent_at.present?
-        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Your have received a message")
+        mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "You have received a message")
         @message.email_sent_at = DateTime.now
         @message.save!
       end
@@ -39,7 +40,7 @@ class UserMailer < ActionMailer::Base
   end
   
   def trip_new_email(user, trip)
-    @email_type = "F"; @user = user
+    @email_type = "F"; @user_verification_token = user.verification_token
     if user.subscribed_to?(@email_type)
       @trip = trip
       unless @trip.new_email_sent_at.present?

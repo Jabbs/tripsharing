@@ -16,7 +16,7 @@ class VerificationsController < ApplicationController
       @user.unsubscribe_from(params[:email_type])
       redirect_to root_path, notice: "You have been unsubscribed from these types of emails."
     else
-      redirect_to root_path, notice: "There was a problem unsubscribing your email. Please contact support@tripsharing.com 
+      redirect_to root_path, alert: "There was a problem unsubscribing your email. Please contact support@tripsharing.com 
                                      for more details."
     end
   end
