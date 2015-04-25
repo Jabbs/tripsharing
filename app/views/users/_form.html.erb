@@ -97,7 +97,7 @@
 		    <h4>Leave this field blank to prevent spam:</h4>
 		    <%= text_field_tag :blankey %>
 		  </div>
-			<%= f.submit "Create Account", data: { disable_with: "Submitting..." }, class: "btn btn-lg btn-salmon btn-block" %>
+			<%= f.button "Create Account", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Submitting..." }, class: "btn btn-lg btn-salmon btn-block" %>
 			<!-- 
 			<div class="row" style="margin-top:5px;">
 				<div class="col-md-12">

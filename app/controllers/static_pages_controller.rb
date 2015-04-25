@@ -21,7 +21,6 @@ class StaticPagesController < ApplicationController
   # end
   
   def how_it_works
-    redirect_to root_path
   end
   
   def privacy

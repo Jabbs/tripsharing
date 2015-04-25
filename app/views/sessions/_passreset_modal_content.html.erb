@@ -11,7 +11,7 @@
 				  <span class="input-group-addon" id="sizing-addon2">@</span>
 				  <input type="text" class="form-control" placeholder="Email Address" id="email" name="email" aria-describedby="sizing-addon2" autocomplete="off" required>
 				</div>
-				<%= submit_tag 'Send Reset Link', class: "btn btn-default pull-right", style: "margin-top:10px; margin-bottom:20px;", data: { disable_with: "Submitting..." } %>
+				<button class="btn btn-default pull-right" data-disable-with="<i class='fa fa-spinner fa-spin'></i> Submitting..." name="button" type="submit" style="margin-top:10px; margin-bottom:20px;"> Send Reset Link</button>
 			<% end %>
 
 		</div>
