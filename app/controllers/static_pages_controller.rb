@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
   end
   
   def about
-    redirect_to root_path
+    @fb_images_rand_5 = User.fb_image_random_5
   end
   
   # def old_about

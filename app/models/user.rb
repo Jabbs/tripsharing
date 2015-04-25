@@ -227,7 +227,7 @@ class User < ActiveRecord::Base
   end
   
   def self.fb_image_random_5
-    self.pluck(:fb_image).shuffle.first(5)
+    self.where.not(fb_image: nil).pluck(:fb_image).shuffle.first(5)
   end
   
   # Follows a user.
