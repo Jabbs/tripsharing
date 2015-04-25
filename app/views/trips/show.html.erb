@@ -1,26 +1,25 @@
-<% unless @trip.solo_trip? %>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="trip-bar">
-				<h4 class="no-margin" style="line-height:200%;">
-					<% if @trip.active? || @trip.userless? %>
-						<div id="travel-text" class="inline">
-							<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="trip-bar">
+			<h4 class="no-margin" style="line-height:200%;">
+				<% if @trip.active? || @trip.userless? %>
+					<div id="travel-text" class="inline">
+						<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
+					</div>
+					<% if current_user && current_user == @trip.user %>
+						<div id="trip-travel-text-form" style="display:none;">
+							<%= render "trips/travel_text_form" %>
 						</div>
-						<% if current_user && current_user == @trip.user %>
-							<div id="trip-travel-text-form" style="display:none;">
-								<%= render "trips/travel_text_form" %>
-							</div>
-							<small><%= link_to "change", "#", id: "edit-travel-text", class: "grey-link" %></small>
-						<% end %>
-					<% else %>
-						THIS TRIP IS INACTIVE
+						<small><%= link_to "change", "#", id: "edit-travel-text", class: "grey-link" %></small>
 					<% end %>
-				</h4>
-			</div>
+				<% else %>
+					THIS TRIP IS INACTIVE
+				<% end %>
+			</h4>
 		</div>
 	</div>
-<% end %>
+</div>
+
 <% if current_user && current_user == @trip.user %>
 	<%= render "trips/trip_image_modal" %>
 	<%= render "trips/trip_edit_modal" %>

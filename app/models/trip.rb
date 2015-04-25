@@ -29,7 +29,7 @@ class Trip < ActiveRecord::Base
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress", "7" => "no user"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
   GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples", "5" => "Not Seeking Companions"}
-  GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"], ["solo travel", "5"]]
+  GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"]]
   GROUP_COUNT_ARRAY = [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6-10", "6"], ["11-15", "7"], 
                      ["16+", "8"], ["tbd", "9"]]
   GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd"}
@@ -167,10 +167,6 @@ class Trip < ActiveRecord::Base
   def deactivate
     self.state = "4"
     self.save!
-  end
-  
-  def solo_trip?
-    self.group_dynamics == "5" ? true : false
   end
   
   def incomplete?
