@@ -9,7 +9,7 @@ class JoinRequestsController < ApplicationController
     @join_request.user = current_user
     if @join_request.save
       @join_request.trip.user.add_friend(current_user)
-      UserMailer.delay.join_request_new_email(@join_request.trip.user, @join_request)
+      UserMailer.delay.join_request_new_email(@join_request.trip.user, @join_request.trip.user.verification_token, @join_request)
       redirect_to @trip, notice: "Your join request has been sent."
     else
       redirect_to @trip, alert: "There was an issue submitting your request to join this trip."
@@ -21,7 +21,7 @@ class JoinRequestsController < ApplicationController
     @join_request.change_to_accepted
     @join_request.user.add_friend(current_user)
     Notification.add_to(@join_request.user, "H", @join_request)
-    UserMailer.delay.join_request_accepted_email(@join_request.user, @join_request)
+    UserMailer.delay.join_request_accepted_email(@join_request.user, @join_request.user.verification_token, @join_request)
     redirect_to user_join_requests_path(current_user), notice: "This travel companion has been added to your trip."
   end
   

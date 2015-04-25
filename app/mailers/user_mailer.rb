@@ -2,8 +2,8 @@ class UserMailer < ActionMailer::Base
   default from: "#{ENV['APP_ROOT_NAME']} <no-reply@tripsharing.com>"
   default content_type: "text/html"
   
-  def join_request_accepted_email(user, join_request)
-    @email_type = "H"; @user_verification_token = user.verification_token
+  def join_request_accepted_email(user, user_verification_token, join_request)
+    @email_type = "H"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
       @join_request = join_request
       unless @join_request.accepted_email_sent_at.present?
@@ -14,8 +14,8 @@ class UserMailer < ActionMailer::Base
     end
   end
   
-  def join_request_new_email(user, join_request)
-    @email_type = "G"; @user_verification_token = user.verification_token
+  def join_request_new_email(user, user_verification_token, join_request)
+    @email_type = "G"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
       @join_request = join_request
       unless @join_request.new_email_sent_at.present?
@@ -26,8 +26,8 @@ class UserMailer < ActionMailer::Base
     end
   end
   
-  def message_new_email(user, message)
-    @email_type = "P"; @user_verification_token = user.verification_token
+  def message_new_email(user, user_verification_token, message)
+    @email_type = "P"; @user_verification_token = user_verification_token
     logger.debug "VERIFICATION TOKEN: #{@user_verification_token}"
     if user.subscribed_to?(@email_type)
       @message = message
@@ -39,8 +39,8 @@ class UserMailer < ActionMailer::Base
     end
   end
   
-  def trip_new_email(user, trip)
-    @email_type = "F"; @user_verification_token = user.verification_token
+  def trip_new_email(user, user_verification_token, trip)
+    @email_type = "F"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
       @trip = trip
       unless @trip.new_email_sent_at.present?
