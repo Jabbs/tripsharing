@@ -81,7 +81,7 @@
 								<br>	
 									Copyright © 2015 Tripsharing, All rights reserved.
 								<% if @email_type.present? %>
-									You are receiving this email because you opted in at our website. If you prefer not to receive emails from Tripsharing, you may
+									You are receiving this email because you opted in at our website. If you prefer not to receive emails of this type from Tripsharing, you may
 									<%= link_to 'unsubscribe', unsubscribe_url(unsubscribe_id: @user_verification_token, email_type: @email_type) %>.
 								<% end %>	
 								Please direct any inquiries to

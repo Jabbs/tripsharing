@@ -3,7 +3,7 @@
 	<br>
 	<textarea autocomplete="off" id="trip_tag_list" name="trip[tag_list]" placeholder="Tags separated by commas" rows="2" style="padding-left:3px;border-color: #DBDBDB; width:80%;margin-top:10px;"><%= @trip.tag_list %></textarea>
 	<br>
-  <%= f.submit "Save", data: { disable_with: "Saving..." }, class: "btn btn-salmon" %>
+  <%= f.button "Save", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." }, class: "btn btn-salmon" %>
 	<%= link_to "Cancel", "#", id: "cancel-name-tags" %>
 	<br>
 	<br>

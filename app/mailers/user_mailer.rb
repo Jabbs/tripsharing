@@ -51,6 +51,13 @@ class UserMailer < ActionMailer::Base
     end
   end
   
+  def announcements_update_1_email(user, user_verification_token)
+    @email_type = "B"; @user_verification_token = user_verification_token
+    if user.subscribed_to?(@email_type)
+      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Update: Tripsharing Version 1.0")
+    end
+  end
+  
   def user_password_reset_email(user)
     @user = user
     mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Reset your password")

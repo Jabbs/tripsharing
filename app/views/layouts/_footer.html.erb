@@ -17,7 +17,6 @@
 					<% query_param = request.path_parameters[:action] %>
 					<ul class="list-unstyled" style="padding-left:17px;">
 						<li class="right"><%= link_to "About", about_path, class: "footer-link #{get_tab_class(query_param, "about")}" %></li>
-
 						<li class="right"><%= link_to "Privacy Policy", privacy_path, class: "footer-link #{get_tab_class(query_param, "privacy")}" %></li>
 						<li class="right"><%= link_to "Terms of Service", terms_path, class: "footer-link #{get_tab_class(query_param, "terms")}" %></li>
 					</ul>
