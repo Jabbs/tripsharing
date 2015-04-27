@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   friendly_id :number_id, use: [:slugged, :history]
   has_secure_password
   
+  # Cohorts
+  # A = Do not disturb
+  
   # http://uifaces.com/api
   FACES = ["calebogden","adellecharles","pixeliris","boheme","michzen","madedigital","geeftvorm","jennyshen","alv",
     "chloepark","lovskogen","teylorfeliz","nickcouto","jobharmsen","hollowellme","heyjoyhey","zwitscherlise","visionarty","shibu_ravi",
@@ -202,7 +205,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.fb_location = auth.info.location
-      user.fb_hometown = auth.extra.raw_info.hometown.name if auth.extra.raw_info.hometown
+      user.fb_hometown = auth.extra.raw_info.hometown.name if auth.extra.raw_info.hometown && auth.extra.raw_info.hometown != nil
       user.fb_image = auth.info.image
       user.fb_url = auth.info.urls.Facebook
       user.fb_locale = auth.extra.raw_info.locale

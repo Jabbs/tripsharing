@@ -51,6 +51,7 @@ class UserMailer < ActionMailer::Base
     end
   end
   
+  # sent to users 1 to 102 (unless user.cohort_blob.include?("A")) 4/27/15 12:35pm
   def announcements_update_1_email(user, user_verification_token)
     @email_type = "B"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
