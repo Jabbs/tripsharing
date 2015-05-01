@@ -10,15 +10,15 @@ class UsersController < ApplicationController
     @shared_likes = []; @mutual_friends = []
     @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"]) if @user.oauth_token
     if @graph && current_user.uid
-      @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
+      # @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
     end
     @cu_graph = Koala::Facebook::API.new(current_user.oauth_token, ENV["FACEBOOK_SECRET"]) if current_user.oauth_token
-    if @cu_graph && @graph
-      @user_likes = @graph.get_connections("me", "likes")
-      @cu_likes = @cu_graph.get_connections("me", "likes")
-      @shared_likes = @user_likes + @cu_likes
-      @shared_likes = @shared_likes.select {|e| @shared_likes.count(e) > 1}.uniq
-    end
+    # if @cu_graph && @graph
+    #   @user_likes = @graph.get_connections("me", "likes")
+    #   @cu_likes = @cu_graph.get_connections("me", "likes")
+    #   @shared_likes = @user_likes + @cu_likes
+    #   @shared_likes = @shared_likes.select {|e| @shared_likes.count(e) > 1}.uniq
+    # end
     @activities = @user.activities
     @join_request = JoinRequest.new
   rescue Koala::Facebook::AuthenticationError
