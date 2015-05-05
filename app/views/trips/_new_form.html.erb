@@ -4,7 +4,20 @@
 		<label class="col-md-2 right">Region:</label>
 	  <%= f.select :region, Trip::REGIONS_ARRAY %>
 	</div>
-	
+	<!-- 
+	<select>
+      <optgroup label="Group 1">
+          <option>Item 1</option>
+          <option>Item 2</option>
+          <option>Item 3</option>
+      </optgroup>
+      <optgroup label="Group 2">
+          <option>Item 1</option>
+          <option>Item 2</option>
+          <option>Item 3</option>
+      </optgroup>
+  </select>
+	 -->
 	<div class="row" style="margin-top:10px;">
 		<label class="col-md-2 right">Trip Name:</label>
 	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
