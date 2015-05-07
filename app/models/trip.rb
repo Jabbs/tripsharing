@@ -30,9 +30,9 @@ class Trip < ActiveRecord::Base
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
   GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples", "5" => "Not Seeking Companions"}
   GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"]]
-  GROUP_COUNT_ARRAY = [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6-10", "6"], ["11-15", "7"], 
+  GROUP_COUNT_ARRAY = [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["1-5", "10"], ["6-10", "6"], ["11-15", "7"], 
                      ["16+", "8"], ["tbd", "9"]]
-  GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd"}
+  GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd", "10" => "1-5"}
   CURRENCIES = ["AUD","CAD","CHF","CNY","EUR","GBP","HKD","IDR","INR","JPY","MXN","NZD","RUB","SEK","SGD","THB","USD","ZAR"]
   IMAGE_REGION_DEFAULTS = {"1"=>["greece", "ireland", "spain", "rome"], "2"=>["animals", "cape_town", "mountains"], "3"=>["china", "great_wall", "temple"], "4"=>["himalayas", "rajasthan", "varanasi"], "5"=>["halong_bay", "kuala_lumpur", "singapore", "waikiki"], "6"=>["manpupuner"], "7"=>["chicago", "grand_canyon", "nyc", "pfeiffer_beach"], "8"=>["buenos_aires", "medellin", "rio"], "9"=>["cortina_falls", "panama"], "10"=>["new_zealand", "sydney"], "11"=>["dubai", "egypt"], "12"=>["moscow"], "13"=>["glacier"]}
   # http://www.maps.com/ref_map.aspx?pid=12873
@@ -42,8 +42,8 @@ class Trip < ActiveRecord::Base
   REGIONS_ARRAY = [["Europe", "1"], ["Africa", "2"], ["East Asia", "3"], ["South Asia", "4"], ["Southeast Asia", "5"], ["North Asia", "6"], ["N. America", "7"],
              ["S. America", "8"], ["Central America", "9"], ["Australia, South Pacific", "10"], ["Middle East", "11"], ["Russia, C. Asia, Transc.", "12"],
              ["Antarctica", "13"]]
-  DURATIONS = {"1" => "1-3 days", "2" => "4-14 days", "3" => "15-24 days", "4" => "25-44 days", "5" => "45+ days", "6" => "unknown" }
-  DURATIONS_ARRAY = [["(1-3 days) quick", "1"], ["(4-14 days) short", "2"], ["(15-24 days) avg", "3"], ["(25-44 days) long", "4"], ["(45+ days) extended", "5"], ["unknown", "6"]]
+  DURATIONS = {"1" => "1-3 days", "2" => "4-14 days", "3" => "15-24 days", "4" => "25-44 days", "5" => "45+ days", "6" => "unknown", "7" => "indefinitely" }
+  DURATIONS_ARRAY = [["1-3 days", "1"], ["4-14 days", "2"], ["15-24 days", "3"], ["25-44 days", "4"], ["45+ days", "5"], ["unknown", "6"], ["indefinitely", "7"]]
   DEPARTINGS_ARRAY = [["today", "1"], ["asap", "2"], ["this weekend", "3"], ["spring 2015", "4"], ["summer 2015", "5"], ["fall 2015", "6"], ["winter 2015", "7"],
                ["spring 2016", "8"], ["summer 2016", "9"], ["fall 2016", "10"], ["winter 2016", "11"]]
   DEPARTINGS = {"1" => "today", "2" => "asap", "3" => "this weekend", "4" => "spring 2015", "5" => "summer 2015", "6" => "fall 2015", "7" => "winter 2015",

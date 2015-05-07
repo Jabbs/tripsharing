@@ -32,8 +32,17 @@
 					<span class="big">INCOMPLETE</span>
 				<% else %>
 					<%= link_to trip, class: "grey-dark-link" do %>
-						<i class="fa fa-plus"></i>
-						<span class="big"><%= spot_count(trip.group_count) %></span>
+						SEEKING:
+						<% if trip.group_count == "5" %>
+							<span class="big">??? </span>
+						<% else %>
+							<span class="big"><%= Trip::GROUP_COUNT[trip.group_count] %> </span>
+						<% end %>
+						<% if trip.group_count == "1" %>
+							TRAVELER.
+						<% else %>
+							TRAVELERS.
+						<% end %>
 					<% end %>
 				<% end %>
 			</div>
@@ -50,7 +59,7 @@
 								<% elsif trip.departing_category.present? %>
 									<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
 								<% else %>
-									tbd
+									???
 								<% end %>
 							</div>
 						</div>
@@ -67,14 +76,14 @@
 				<div class="col-xs-6">
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="pull-right" style="overflow:hidden; max-height:18px;" title="<%= Trip::REGIONS[trip.region] %>">
+							<div class="pull-right regular" style="overflow:hidden; max-height:18px;" title="<%= Trip::REGIONS[trip.region] %>">
 								<%= Trip::REGIONS[trip.region] %>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="pull-right">
+							<div class="pull-right regular">
 								<% if trip.departs_at.present? && trip.returns_at.present? %>
 									<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
 								<% else %>
@@ -114,12 +123,7 @@
 			</div>
 			<div class="no-height">
 				<div style="position:relative; top:1em;">
-					<i class='fa fa-calendar' style="margin-left:2px;margin-right:1px;"></i>
-					<% if trip.departs_at.present? %>
-						<%= trip.departs_at.strftime('%-m/%d/%y') %>
-					<% else %>
-						tbd
-					<% end %>
+					<%= trip.created_at.strftime('%-m/%d/%y') %>
 				</div>
 			</div>
 			<div class="row">
