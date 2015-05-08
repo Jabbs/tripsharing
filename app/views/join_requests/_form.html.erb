@@ -1,6 +1,6 @@
 <%= form_for [trip, @join_request], html: { id: "join_req_form"} do |f| %>
 	<%= f.text_area :content, placeholder: "Your message here...", rows: 4, autocomplete: :off, style: "padding-left:3px;border-color: #DBDBDB; width:100%;", required: true, autofocus: true %>
-  <%= f.button "Send Request", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..." }, class: "btn btn-salmon pull-right" %>
+  <%= f.button "Send Request", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..." }, class: "btn btn-primary pull-right" %>
 <% end %>
 
 

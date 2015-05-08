@@ -5,12 +5,12 @@
 <% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
 
 <%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", style: 'text-decoration: none;', target: "_blank" do %>
-  <%= image_tag("social_icons/email_circle_color-38.png") %>
+	<i class="fa fa-envelope"></i>
 <% end %>
 <%= link_to fb_link, target: "_blank", style: 'text-decoration: none;' do %>
-  <%= image_tag("social_icons/facebook_circle_color-38.png") %>
+	<i class="fa fa-facebook"></i>
 <% end %>
 <%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
-  <%= image_tag("social_icons/twitter_circle_color-38.png") %>
+	<i class="fa fa-twitter"></i>
 <% end %>
 <div class="fb-like" data-href="<%= share_url %>" data-layout="button_count" data-send="false" data-show-faces="false" data-width="220"></div>

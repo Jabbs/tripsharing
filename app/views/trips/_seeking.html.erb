@@ -1,0 +1,15 @@
+<h4 class="no-margin" style="line-height:200%;margin-top:20px;">
+	<% if @trip.active? || @trip.userless? %>
+		<div id="travel-text" class="inline">
+			<%= travel_text(@trip.group_dynamics, @trip.group_nationality, @trip.group_count, @trip.group_age_min, @trip.group_age_max).html_safe %>
+		</div>
+		<% if current_user && current_user == @trip.user %>
+			<div id="trip-travel-text-form" style="display:none;">
+				<%= render "trips/travel_text_form" %>
+			</div>
+			<small><%= link_to "change", "#", id: "edit-travel-text", class: "grey-link" %></small>
+		<% end %>
+	<% else %>
+		THIS TRIP IS INACTIVE
+	<% end %>
+</h4>

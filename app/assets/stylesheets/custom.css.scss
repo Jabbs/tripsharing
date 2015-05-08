@@ -770,20 +770,24 @@ a.grey-very-dark-link {
 	padding:5px;
 	&:hover {cursor:pointer; background: $salmon; color: $white;}
 }
-.trip-bar {
-	text-align:center;
+.trip-action-bar {
 	background: $grey_light;
-	padding: 8px 0px;
+	padding: 8px 0px 8px 20px;
 	border-bottom: 1px dotted $grey_dark;
 }
 
+.trip-details-bar {
+	background: lighten($grey_light, 10%);
+}
+
 .tag {
-	background: $turquoise_dark; 
-	color: $white; 
+	display: inline;
 	@include rounded_borders; 
 	padding: 2px 6px 4px 6px;
-	font-size:80%;
+	font-size:100%;
 	line-height: 230%;
+	margin-right: 10px;
+	a { color: $white; }
 }
 
 .slight-tilt-img {

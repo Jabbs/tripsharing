@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="trip-details-bar">
+		<div class="row">
+			<div class="col-md-3" style="border-right:1px solid rgb(213, 215, 214); padding-top:10px;">
+				<%= render "trips/organizer" if @trip.user %>
+			</div>
+			<div class="col-md-9">
+				<%= render "trips/seeking" %>
+			</div>
+		</div>
+	</div>
+</div>

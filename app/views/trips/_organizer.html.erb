@@ -1,20 +1,15 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="center">
-			<h3>Organizer</h3>
-		</div>
+<div class="row bottom-margin">
+	<div class="col-md-3 col-md-offset-1">
+		<%= link_to @trip.user do %>
+			<%= user_image(@trip.user) %>
+		<% end %>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-4 col-centered">
-		<div class="well" style="padding-top:20px;">
-			<%= render "users/organizer_view", user: @trip.user %>
-			<hr>
-			<div class="row">
-				<div class="col-md-9 col-md-offset-3">
-					<%= render "users/travel_interests", user: @trip.user, small: true %>
-				</div>
-			</div>
+	<div class="col-md-8" style="padding-top:5px;">
+		<div class="smaller-bottom-margin">
+			<%= @trip.user.full_name %>
+		</div>
+		<div class="smaller-bottom-margin">
+			<%= @trip.user.age %>, <%= @trip.user.gender.capitalize %>
 		</div>
 	</div>
 </div>
