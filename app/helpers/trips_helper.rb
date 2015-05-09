@@ -8,12 +8,12 @@ module TripsHelper
     when "1"
       plural = false
       group_count_text = "<span class='dots'>#{Trip::GROUP_COUNT[group_count_id]}</span>"
-    when "2", "3", "4", "5", "6", "7", "8"
+    when "2", "3", "4", "5", "6", "7", "8", "10"
       plural = true
       group_count_text = "<span class='dots'>#{Trip::GROUP_COUNT[group_count_id]}</span>"
     when "9"
       plural = true
-      group_count_text = ""
+      group_count_text = "???"
     end
   
     nationality = User::NATIONALITIES[nationality_id].capitalize
@@ -36,8 +36,6 @@ module TripsHelper
       plural == true ? group_text = " <span class='dots'><i class='fa fa-mars'></i> males</span>" : group_text = " <span class='dots'><i class='fa fa-mars'></i> male</span>"
     when "4"
       plural == true ? group_text = " <span class='dots'><i class='fa fa-venus-mars'></i> couples</span>" : group_text = " <span class='dots'><i class='fa fa-venus-mars'></i> couple</span>"
-    when "5"
-      group_text = "solo"
     end
     
     if group_age_min == 0 && group_age_max == 0
@@ -73,25 +71,47 @@ module TripsHelper
     return age_text
   end
   
-  def spot_count(group_count_id)
-    # GROUP_COUNT = {"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", 
-    #   "6" => "6-10", "7" => "11-15", "8" => "16+", "9" => "tbd"}
-    
-    case group_count_id
+  def get_day_text(departing_category)
+    case departing_category
     when "1"
-      group_count_text = group_count_id + " SPOT"
-    when "2", "3", "4", "5"
-      group_count_text = group_count_id + " SPOTS"
-    when "6"
-      group_count_text = "10 SPOTS"
-    when "7"
-      group_count_text = "15 SPOTS"
-    when "8"
-      group_count_text = "UNLIMITTED"
-    when "9"
-      group_count_text = "TBD"
+      day = Date.today.strftime('%-d')
+    when "2"
+      day = departing_category
+    when "3"
+      day = "this"
+    else
+      day = Trip::DEPARTINGS[departing_category].split.first.capitalize
     end
-    return group_count_text
+    day = "<span style='font-size:65%;'>" + day + "</span>"
+    day
+  end
+  
+  def time_flexibility_text(time_flexibility)
+    case time_flexibility
+    when "1"
+      text = "No flexibility"
+    when "2"
+      text = "A little flexible"
+    when "3"
+      text = "Some flexibility"
+    when "4"
+      text = "Very flexible"
+    end
+    text
+  end
+  
+  def get_month_text(departing_category)
+    case departing_category
+    when "1"
+      month = Date.today.strftime('%B')
+    when "2"
+      month = ""
+    when "3"
+      month = "weekend"
+    else
+      month = Trip::DEPARTINGS[departing_category].split.last
+    end
+    month
   end
   
   def get_tab_class(query_param, link)
@@ -100,6 +120,11 @@ module TripsHelper
     else
       return ""
     end
+  end
+  
+  def trip_image_landscape_big
+    image_path = "trip_defaults/#{Trip::REGIONS[@trip.region].parameterize.tr("-", "_")}/" + @trip.default_image + ".jpg" 
+    return image_tag(image_path, class: "img-responsive", style: "min-height:80px;", title: @trip.name).to_s
   end
   
   def trip_image_landscape_small(trip)

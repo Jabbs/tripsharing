@@ -1,7 +1,7 @@
 <div id="<%= stop.id %>-stop">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="dots-white" style="padding-top:10px;padding-bottom:10px;margin-top:10px;">
+			<div class="dots-white big" style="padding-top:10px;padding-bottom:10px;margin-top:10px;">
 				
 				<% if stop.to_name.present? && stop.to_iata.present? && stop.from_iata.present? %>
 					<i class="fa fa-plane" style="margin-right:2px;"></i>
@@ -34,11 +34,9 @@
 				
 				<span class="pull-right">
 					<% if stop.to_date.present? %>
-						<%= stop.to_date.strftime('%-m/%d/%y') %>
-					<% else %>
-						tbd
+						<%= stop.to_date.strftime('%-m/%-d/%y') %>
+						<i class='fa fa-calendar' style="margin-left:3px;"></i>
 					<% end %>
-					<i class='fa fa-calendar' style="margin-left:3px;"></i>
 				</span>
 				
 			</div>

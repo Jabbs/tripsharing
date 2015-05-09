@@ -9,6 +9,7 @@ class StopsController < ApplicationController
     fix_date_month_order
     @stop = @trip.stops.build(stop_params)
     @stop.user = current_user
+    @stop.to_name = ""
     if fields_arent_blank && @stop.save
       respond_to do |format|
         format.js

@@ -1,16 +1,27 @@
-
 <% share_url = request.url.split('?').first %>
 <% share_text = "#{@trip.name}" %>
 <% tw_link = "https://twitter.com/share?url=#{u(share_url)}&text=#{u(share_text)}&via=#{t('application.root.twitter_name')}" %>
 <% fb_link = "https://www.facebook.com/sharer/sharer.php?u=#{u(share_url)}" %>
 
-<%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", style: 'text-decoration: none;', target: "_blank" do %>
-	<i class="fa fa-envelope"></i>
-<% end %>
-<%= link_to fb_link, target: "_blank", style: 'text-decoration: none;' do %>
-	<i class="fa fa-facebook"></i>
-<% end %>
-<%= link_to tw_link, target: "_blank", style: 'text-decoration: none;' do %>
-	<i class="fa fa-twitter"></i>
-<% end %>
-<div class="fb-like" data-href="<%= share_url %>" data-layout="button_count" data-send="false" data-show-faces="false" data-width="220"></div>
+<div class="pull-right" style="padding-right:20px;">
+	<div style="margin-top:-2px;">
+		<%= link_to "mailto: ?subject=#{u(@trip.name)}&body=#{u(share_url)}", class: "grey-dark-link small-right-margin", target: "_blank" do %>
+			<span class="fa-stack fa-lg" title="Share via Email">
+			  <i class="fa fa-square-o fa-stack-2x"></i>
+			  <i class="fa fa-envelope fa-stack-1x" style="font-size:80%; position:relative; top:-2px;"></i>
+			</span>
+		<% end %>
+		<%= link_to tw_link, target: "_blank", class: "grey-dark-link small-right-margin" do %>
+			<span class="fa-stack fa-lg" title="Share on Twitter">
+			  <i class="fa fa-square-o fa-stack-2x"></i>
+			  <i class="fa fa-twitter fa-stack-1x" style="position:relative; top:-1px;"></i>
+			</span>
+		<% end %>
+		<%= link_to fb_link, target: "_blank", class: "grey-dark-link" do %>
+			<span class="fa-stack fa-lg" title="Share on Facebook">
+			  <i class="fa fa-square-o fa-stack-2x"></i>
+			  <i class="fa fa-facebook fa-stack-1x"></i>
+			</span>
+		<% end %>
+	</div>
+</div>

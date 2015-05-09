@@ -1,0 +1,20 @@
+<% if current_user && current_user == @trip.user && @trip.active? %>
+	<div class="no-height">
+		<a href="#" type="button" class="grey-link bigger" style="font-family:inherit;" data-toggle="modal" data-target="#tripImageModal">
+			<span class="fa-stack" title="Edit images">
+			  <i class="fa fa-square-o fa-stack-2x"></i>
+			  <i id="trip-image-modal" class="fa fa-camera fa-stack-1x" style="font-size:80%; position:relative; top:-3px;"></i>
+			</span>
+		</a>
+	</div>
+<% end %>
+<div>
+	<% if @trip.image_attachments.count != 0 && @trip.image_attachments.first.image.landscape.file.exists? %>
+		<% img_path = @trip.image_attachments.first.image.url(:landscape).to_s %>
+	<% else %>
+		<% img_path = "trip_defaults/#{Trip::REGIONS[@trip.region].parameterize.tr("-", "_")}/" + @trip.default_image + ".jpg" %>
+	<% end %>
+	<%= image_tag img_path, class: "img-responsive trip-pic", title: "cover photo" %>
+</div>
+
+<h1><%= @trip.name %></h1>

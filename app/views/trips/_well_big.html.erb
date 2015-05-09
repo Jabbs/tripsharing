@@ -7,13 +7,6 @@
 				<%= Trip::DURATIONS[@trip.duration] %>,
 			<% end %>
 			<%= Trip::REGIONS[@trip.region] %>
-			<small style="font-size:60%;">
-				<% if current_user && current_user == @trip.user && @trip.active? %>
-					<a href="#" type="button" class="grey-link" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
-					 change
-					</a>
-				<% end %>
-			</small>
 			<span class="pull-right">
 				Leaving:
 				<% if @trip.departs_at.present? %>

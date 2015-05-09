@@ -11,11 +11,77 @@
 <div class="container-fluid trip-background">
 	<div class="show-trip">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-5 col-md-offset-1">
+				<div class="trip-well" style="margin-top:10px;">
+					<div class="row">
+						<div class="col-md-12">
+							<%= render "trips/header_image", trip: @trip %>
+						</div>
+					</div>
+					<hr class="grey-hr">
+					<%= render "trips/description" %>
+					<hr class="grey-hr">
+					<div style="padding:10px;">
+						<strong><%= Trip::REGIONS[@trip.region ] %></strong>
+						<%= render "trips/itinerary" %>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pull-right">
+								<div style="margin-right:10px;margin-bottom:5px;">Created: <%= @trip.created_at.strftime('%-m/%-d/%y') %></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
 			</div>
-			<div class="col-md-8">
-				<%= render "trips/well_big" %>
+			<div class="col-md-5">
+				<div class="row">
+					<div class="col-md-5 col-md-offset-1">
+						<%= render "trips/calendar" %>
+					</div>
+					<div class="col-md-6">
+						<ul class="list-unstyled big" style="padding-top:10px; line-height:150%;">
+							<li><i class="fa fa-globe fa-fw"></i>&nbsp; <%= Trip::REGIONS[@trip.region ] %></li>
+							<li><i class="fa fa-group fa-fw"></i>&nbsp; Ages: <%= age_text(@trip.group_age_min, @trip.group_age_max) %></li>
+						  <li><i class="fa fa-plane fa-fw"></i>&nbsp;
+								<% if @trip.group_count == "5" %>
+									???
+								<% else %>
+									<%= Trip::GROUP_COUNT[@trip.group_count] %>
+								<% end %>
+								<% if @trip.group_count == "1" %>
+									spot
+								<% else %>
+									spots
+								<% end %>
+								available.
+							</li>
+							<li><i class="fa fa-clock-o fa-fw"></i>&nbsp; <%= time_flexibility_text(@trip.time_flexibility) %></li>
+						</ul>
+					</div>
+				</div>
+				
 			</div>
 		</div>
+		<div class="row top-margin">
+			<div class="col-md-10 col-md-offset-1">
+				<hr class="grey-hr">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<% if @trip.tags.any? %>
+					<% @trip.tags.each do |t| %>
+						<div class="tag">
+							<%= link_to "#{t.name}", "/trips?search=true&tag=#{t.name}" %>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		
 	</div>
 </div>

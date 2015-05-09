@@ -4,6 +4,15 @@
 	
 $('document').ready(function() {
 	
+	$(".fa-stack").mouseenter(function() {
+		$(this).children('.fa-square-o').addClass("fa-square").removeClass("fa-square-o")
+		$(this).children('.fa-stack-1x').addClass("fa-inverse");
+	});
+	$(".fa-stack").mouseleave(function() {
+		$(this).children('.fa-square').addClass("fa-square-o").removeClass("fa-square")
+		$(this).children('.fa-stack-1x').removeClass("fa-inverse");
+	});
+	
 	$('input[type="checkbox"]').click(function(){
 		if($(this).prop("checked") == true){
 			$(this).siblings('img').addClass("highlight");
@@ -20,17 +29,6 @@ $('document').ready(function() {
 	};
 	
 	var fadeInSpeed = 400;
-
-	$(".trip-pic").mouseenter(function() {
-		$("#trip-image-modal").show();
-	});
-	$(".trip-pic").mouseleave(function() {
-		$("#trip-image-modal").hide();
-	});
-
-	$(".trip-pic").click(function() {
-		$("#trip-image-modal").click();
-	});
 
 	$("#edit-travel-text").click(function (e) {
 		e.preventDefault();

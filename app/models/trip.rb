@@ -25,10 +25,11 @@ class Trip < ActiveRecord::Base
   after_save :create_first_stop
   after_create :add_default_image
   after_commit :add_first_companion, on: :create
+  after_commit :check_today_or_weekend_departing
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress", "7" => "no user"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
-  GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples", "5" => "Not Seeking Companions"}
+  GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples" }
   GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"]]
   GROUP_COUNT_ARRAY = [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["1-5", "10"], ["6-10", "6"], ["11-15", "7"], 
                      ["16+", "8"], ["tbd", "9"]]
@@ -127,6 +128,29 @@ class Trip < ActiveRecord::Base
   def create_first_stop
     unless self.stops.any? && self.stop_location.present?
       Stop.create_from_trip(self)
+    end
+  end
+  
+  def check_today_or_weekend_departing
+    unless self.departs_at.present?
+      if self.departing_category == "1"
+        self.departs_at = Date.today
+        self.save
+      elsif self.departing_category == "3"
+        case Date.today.wday
+        when 5, 6, 0
+          self.departs_at = Date.today
+        when 1
+          self.departs_at = Date.today + 4.days
+        when 2
+          self.departs_at = Date.today + 3.days
+        when 3
+          self.departs_at = Date.today + 2.days
+        when 4
+          self.departs_at = Date.today + 1.days
+        end
+        self.save
+      end
     end
   end
   

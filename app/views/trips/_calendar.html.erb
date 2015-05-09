@@ -1,0 +1,26 @@
+<div id="trip-cal">
+	<div id="trip-cal-header">
+		<%= Trip::DURATIONS[@trip.duration] unless @trip.duration == "6" || @trip.duration == "7" %>
+	</div>
+	<div id="trip-cal-body">
+		<% if @trip.departs_at.present? %>
+			<div id="trip-cal-day">
+				<%= @trip.departs_at.strftime('%-d') %>
+			</div>
+			<div id="trip-cal-month">
+				<%= @trip.departs_at.strftime('%B') %>
+			</div>
+		<% elsif @trip.departing_category.present? %>
+			<div id="trip-cal-day">
+				<%= get_day_text(@trip.departing_category).html_safe %>
+			</div>
+			<div id="trip-cal-month">
+				<%= get_month_text(@trip.departing_category) %>
+			</div>
+		<% else %>
+			<div id="trip-cal-day">
+				???
+			</div>
+		<% end %>
+	</div>
+</div>

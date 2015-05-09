@@ -2,9 +2,9 @@
 	<% resource_class_name = resource.class.name.pluralize.downcase %>
 	<% resource_class_name = "members" if resource_class_name == "users" %>
 	<% if current_user.followed_trips.include?(resource) %>
-		<%= link_to "<i class='fa fa-check'></i> following".html_safe, "/#{resource_class_name}/#{resource.slug}/followings/#{resource.followings.where(user_id: current_user.id).first.id}", method: :delete, remote: true, id: "star_#{resource.id}", title: "Unfollow this", class: "btn btn-turquoise btn-sm" %>
+		<%= link_to "<i class='fa fa-check'></i> Following".html_safe, "/#{resource_class_name}/#{resource.slug}/followings/#{resource.followings.where(user_id: current_user.id).first.id}", method: :delete, remote: true, id: "star_#{resource.id}", title: "Unfollow this", class: "btn btn-turquoise btn-sm" %>
 	<% else %>
-		<%= link_to "follow", "/#{resource_class_name}/#{resource.slug}/followings", method: :post, remote: true, id: "star_#{resource.id}", title: 'Follow this', class: "btn btn-turquoise-hover btn-sm" %>
+		<%= link_to "Follow", "/#{resource_class_name}/#{resource.slug}/followings", method: :post, remote: true, id: "star_#{resource.id}", title: 'Follow this', class: "btn btn-turquoise-hover btn-sm" %>
 	<% end %>
 </span>
 

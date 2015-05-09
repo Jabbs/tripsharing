@@ -1,11 +1,16 @@
 <div class="row">
 	<div class="trip-action-bar">
+		<% if current_user && current_user == @trip.user && @trip.active? %>
+			<a href="#" type="button" class="btn btn-default btn-sm" style="font-family:inherit;" data-toggle="modal" data-target="#tripEditModal">
+			<i class="fa fa-pencil"></i> 
+			EDIT TRIP
+			</a>
+		<% end %>
 		<% if current_user && @trip.active? && !current_user?(@trip.user) %>
-			<%= render "join_requests/join_btn", trip: @trip, btn_size: "btn-sm", join_text: "JOIN REQUEST" %>
 			<%= render "followings/following_btn", resource: @trip %>
 		<% end %>
 		<% if @trip.public? && @trip.active? %>
-			<div class="pull-right" style="padding-right:20px;"><%= render "trips/social_media" %></div>
+			<%= render "trips/social_media" %>
 		<% end %>
 	</div>
 </div>

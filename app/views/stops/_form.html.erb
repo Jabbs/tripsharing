@@ -2,39 +2,27 @@
 	<%= form_for [@trip, @stop], remote: true do |f| %>
 		<div class="row small-top-margin">
 			<div class="col-md-12">
-				<div class="center"><lable>Pick a Destination Location or Airport...</lable></div>
+				<div class="center big salmon"><strong>Add a Stop to your Itinerary...</strong></div>
 			</div>
 		</div>
 		<hr>
 		<div class="row small-bottom-margin">
-			<div class="col-md-6 small-bottom-margin">
+			<div class="col-md-12 small-bottom-margin">
 				<div class="input-group">
 				  <span class="input-group-addon" id="sizing-addon1"><i class='fa fa-map-marker' style="padding-left:4px;padding-right:3px;"></i></span>
 					<input name="stop[to_name_dest]" aria-describedby="sizing-addon1" type="text" class="form-control add-geocomplete" id="stop_to_name_dest" placeholder="Location" style="width:100%;" autocomplete="off">
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div>
-					<div class="input-group">
-					  <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-plane" style="padding-left:2px;padding-right:2px;"></i></span>
-						<div class="prefetch">
-						  <input aria-describedby="sizing-addon2" class="form-control typeahead" type="text" id="stop_to_name" name="stop[to_name]" placeholder="Airport" autocomplete="off" style="width:280px;">
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="row small-bottom-margin">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-6">
 				<div class="input-group">
-				  <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-calendar"></i></span>					
-					<input aria-describedby="sizing-addon3" class="form-control datepicker" id="stop_to_date" placeholder="mm/dd/yyyy" name="stop[to_date]" data-date-format="mm/dd/yyyy" autocomplete="off">
+				  <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-calendar" style="padding-left:1px;padding-right:1px;"></i></span>					
+					<input aria-describedby="sizing-addon3" style="padding-left:12px;" class="form-control datepicker" id="stop_to_date" placeholder="mm/dd/yyyy" name="stop[to_date]" data-date-format="mm/dd/yyyy" autocomplete="off">
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<%= f.submit "ADD STOP", class: "btn btn-default", style: "width:100%" %>
+			<div class="col-md-6">
+				<%= f.submit "+ ADD STOP".html_safe, class: "btn btn-salmon", style: "width:100%" %>
 			</div>
 		</div>
 
