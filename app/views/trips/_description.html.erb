@@ -1,15 +1,17 @@
 <div style="padding:10px;">
 	<div style="padding:10px;">
 		<div id="trip-description-form" style="display:none;">
-			<%= render "trips/description_form" %>
+			<%= render "trips/description_form" if current_user && current_user == @trip.user && @trip.active? %>
 		</div>
 		<% if @trip.description.present? %>
 			<div class="description">
 				<%= simple_format(@trip.description) %>
 			</div>
-			<a href="#" id="edit-description" class="grey-dark-link pull-right" style="position:relative; top:-5px;">
-				edit
-			</a>
+			<% if current_user && current_user == @trip.user && @trip.active? %>
+				<a href="#" id="edit-description" class="grey-dark-link pull-right" style="position:relative; top:-5px;">
+					edit
+				</a>
+			<% end %>
 		<% elsif current_user && current_user == @trip.user && @trip.active? %>
 
 			<div class="row">
