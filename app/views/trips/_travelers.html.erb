@@ -1,0 +1,19 @@
+<div style="margin-top: 20px;">
+	<% @trip.companions.each do |user| %>
+		<div class="row bottom-margin">
+			<div class="col-md-2 col-md-offset-1">
+				<%= link_to user do %>
+					<%= user_image(user) %>
+				<% end %>
+			</div>
+			<div class="col-md-9" style="padding-top:5px;">
+				<div class="">
+					<%= user.full_name %>
+				</div>
+				<div class="">
+					<%= user.age %>, <%= user.gender.capitalize %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

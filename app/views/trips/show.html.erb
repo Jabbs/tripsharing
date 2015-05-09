@@ -38,31 +38,27 @@
 
 			</div>
 			<div class="col-md-5">
+				
 				<div class="row">
-					<div class="col-md-5 col-md-offset-1">
-						<%= render "trips/calendar" %>
-					</div>
-					<div class="col-md-6">
-						<ul class="list-unstyled big" style="padding-top:10px; line-height:150%;">
-							<li><i class="fa fa-globe fa-fw"></i>&nbsp; <%= Trip::REGIONS[@trip.region ] %></li>
-							<li><i class="fa fa-group fa-fw"></i>&nbsp; Ages: <%= age_text(@trip.group_age_min, @trip.group_age_max) %></li>
-						  <li><i class="fa fa-plane fa-fw"></i>&nbsp;
-								<% if @trip.group_count == "5" %>
-									???
-								<% else %>
-									<%= Trip::GROUP_COUNT[@trip.group_count] %>
-								<% end %>
-								<% if @trip.group_count == "1" %>
-									spot
-								<% else %>
-									spots
-								<% end %>
-								available.
-							</li>
-							<li><i class="fa fa-clock-o fa-fw"></i>&nbsp; <%= time_flexibility_text(@trip.time_flexibility) %></li>
-						</ul>
+					<div class="col-md-12">
+						<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					    <ul id="myTab" class="nav nav-tabs" role="tablist">
+					      <li role="presentation" class="active"><a href="#details" id="details-tab" role="tab" data-toggle="tab" aria-controls="details" aria-expanded="true">Details</a></li>
+					      <li role="presentation" class=""><a href="#travelers" role="tab" id="travelers-tab" data-toggle="tab" aria-controls="feed" aria-expanded="false">Travelers</a></li>
+					    </ul>
+						  <div class="tab-content">
+					      <div role="tabpanel" class="tab-pane fade active in" id="details" aria-labelledby="details-tab">
+					        <%= render 'trips/details' %>
+					      </div>
+					      <div role="tabpanel" class="tab-pane fade" id="travelers" aria-labelledby="travelers-tab">
+					        <%= render "trips/travelers" %>
+					      </div>
+							</div>
+						</div>
 					</div>
 				</div>
+				
+
 				
 			</div>
 		</div>

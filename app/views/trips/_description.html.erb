@@ -13,14 +13,13 @@
 		<% elsif current_user && current_user == @trip.user && @trip.active? %>
 
 			<div class="row">
-				<div class="col-md-4 col-md-offset-4">
-					<div class="center">
-						<a href="#" id="add-description" class="grey-link">
-						  <i class="fa fa-plus-circle" style="font-size:700%;"></i>
-							<h3 style="padding:0px;margin:0px;margin-bottom:10px;">Description</h3>
-						</a>
-					</div>
+				<div class="center">
+					<a href="#" id="add-description" class="grey-link">
+					  <i class="fa fa-plus-circle" style="font-size:700%;"></i>
+						<h3>Description</h3>
+					</a>
 				</div>
+
 			</div>
 		<% else %>
 			<div class="center grey">

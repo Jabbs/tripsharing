@@ -10,7 +10,7 @@
 			<div class="col-md-3" style="padding-top:16px;">
 				<% if current_user && @trip.active? && !current_user?(@trip.user) %>
 					<%= render "trips/modals/new_join_request_modal", trip: @trip %>
-					<div class="center">
+					<div class="center bottom-margin">
 						<%= render "join_requests/join_btn", trip: @trip, btn_size: "btn-lg", join_text: "JOIN REQUEST" %>
 					</div>
 				<% end %>
