@@ -603,6 +603,16 @@ h2.choice.inactive a {
 	color: #E4E3D8;
 	margin: 50px;
 }
+.stop {
+	margin-top:10px;
+	background: $grey;
+	color: darken($turquoise_dark, 10%);
+	border: 1px dotted $grey_dark;
+	padding:0px 6px 0px 6px;
+	font-size: 150%;
+	line-height: 200%;
+}
+
 .trip-well {
 	background: $white;
 	margin-bottom: 20px;

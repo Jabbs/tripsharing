@@ -71,6 +71,20 @@ module TripsHelper
     return age_text
   end
   
+  def time_flexibility_text(time_flexibility)
+    case time_flexibility
+    when "1"
+      text = "No flexibility"
+    when "2"
+      text = "A little flexible"
+    when "3"
+      text = "Some flexibility"
+    when "4"
+      text = "Very flexible"
+    end
+    text
+  end
+  
   def get_day_text(departing_category)
     case departing_category
     when "1"
@@ -84,20 +98,6 @@ module TripsHelper
     end
     day = "<span style='font-size:65%;'>" + day + "</span>"
     day
-  end
-  
-  def time_flexibility_text(time_flexibility)
-    case time_flexibility
-    when "1"
-      text = "No flexibility"
-    when "2"
-      text = "A little flexible"
-    when "3"
-      text = "Some flexibility"
-    when "4"
-      text = "Very flexible"
-    end
-    text
   end
   
   def get_month_text(departing_category)

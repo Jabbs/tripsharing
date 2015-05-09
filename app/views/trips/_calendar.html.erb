@@ -4,11 +4,14 @@
 	</div>
 	<div id="trip-cal-body">
 		<% if @trip.departs_at.present? %>
+			<div id="trip-cal-month">
+				<%= @trip.departs_at.strftime('%B') %>
+			</div>
 			<div id="trip-cal-day">
 				<%= @trip.departs_at.strftime('%-d') %>
 			</div>
-			<div id="trip-cal-month">
-				<%= @trip.departs_at.strftime('%B') %>
+			<div id="trip-cal-month" style="margin-top:3px;">
+				<%= @trip.departs_at.strftime('%Y') %>
 			</div>
 		<% elsif @trip.departing_category.present? %>
 			<div id="trip-cal-day">
