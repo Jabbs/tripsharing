@@ -41,7 +41,11 @@ class TripsController < ApplicationController
 
   def index
     @tags = Tag.all.limit(30)
-    @trips = Trip.where(state: "2").order("created_at DESC")
+    if params[:search]
+      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag])
+    else
+      @trips = Trip.where(state: "2").order("created_at DESC")
+    end
       
     # only show the user trips that fit their age
     unless current_user.admin?
