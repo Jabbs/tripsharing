@@ -33,7 +33,7 @@
 					<% else %>
 						<%= link_to trip, class: "grey-dark-link" do %>
 							SEEKING:
-							<% if trip.group_count == "5" %>
+							<% if trip.group_count == "9" %>
 								<span class="big">??? </span>
 							<% else %>
 								<span class="big"><%= Trip::GROUP_COUNT[trip.group_count] %> </span>
