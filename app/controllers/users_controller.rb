@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, except: [:create]
+  before_filter :signed_in_user, except: [:create, :show]
   before_filter :correct_user, only: [:profile, :join, :edit, :update, :account, :photos, :email_settings, :privacy, :apps, :remove_images]
   before_filter :admin_user, only: [:index]
   # before_filter :check_complete_interests, only: [:profile]
@@ -8,11 +8,11 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     set_trips_counts(@user)
     @shared_likes = []; @mutual_friends = []
-    @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"]) if @user.oauth_token
-    if @graph && current_user.uid
-      # @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
-    end
-    @cu_graph = Koala::Facebook::API.new(current_user.oauth_token, ENV["FACEBOOK_SECRET"]) if current_user.oauth_token
+    # @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"]) if @user.oauth_token
+    # if @graph && current_user.uid
+    #   # @mutual_friends = @graph.get_connections("me", "mutualfriends/#{current_user.uid}")
+    # end
+    # @cu_graph = Koala::Facebook::API.new(current_user.oauth_token, ENV["FACEBOOK_SECRET"]) if current_user.oauth_token
     # if @cu_graph && @graph
     #   @user_likes = @graph.get_connections("me", "likes")
     #   @cu_likes = @cu_graph.get_connections("me", "likes")
