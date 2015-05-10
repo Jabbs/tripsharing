@@ -1,27 +1,36 @@
-<div id="trip-cal">
-	<div id="trip-cal-header">
-		<%= Trip::DURATIONS[@trip.duration] unless @trip.duration == "6" || @trip.duration == "7" %>
+<% type == "small" ? cal_class = "trip-cal-sm" : cal_class = "trip-cal" %>
+<div class="<%= cal_class %>">
+	<div class="trip-cal-header">
+		<%= Trip::DURATIONS[trip.duration] unless trip.duration == "6" || trip.duration == "7" %>
 	</div>
-	<div id="trip-cal-body">
-		<% if @trip.departs_at.present? %>
-			<div id="trip-cal-month">
-				<%= @trip.departs_at.strftime('%B') %>
+	<div class="trip-cal-body" title="Departing date">
+		<% unless type == "small" %>
+			<div class="no-height left">
+				<div style="position:relative; top:-12px; left: -2px;"><small>Departing:</small></div>
 			</div>
-			<div id="trip-cal-day">
-				<%= @trip.departs_at.strftime('%-d') %>
+		<% end %>
+		<% if trip.departs_at.present? %>
+			<div class="trip-cal-month">
+				<%= trip.departs_at.strftime('%B') %>
 			</div>
-			<div id="trip-cal-month" style="margin-top:3px;">
-				<%= @trip.departs_at.strftime('%Y') %>
+			<div class="trip-cal-day">
+				<%= trip.departs_at.strftime('%-d') %>
 			</div>
-		<% elsif @trip.departing_category.present? %>
-			<div id="trip-cal-day">
-				<%= get_day_text(@trip.departing_category).html_safe %>
+			<% unless type == "small" %>
+				<div class="trip-cal-month" style="margin-top:3px;">
+					<%= trip.departs_at.strftime('%Y') %>
+				</div>
+			<% end %>
+		<% elsif trip.departing_category.present? %>
+			<div class="trip-cal-month">
+				<%= get_month_text(trip.departing_category) %>
 			</div>
-			<div id="trip-cal-month">
-				<%= get_month_text(@trip.departing_category) %>
+			<div class="trip-cal-day">
+				<%= get_day_text(trip.departing_category).html_safe %>
 			</div>
+
 		<% else %>
-			<div id="trip-cal-day">
+			<div class="trip-cal-day" style="margin-top: .3em;">
 				???
 			</div>
 		<% end %>

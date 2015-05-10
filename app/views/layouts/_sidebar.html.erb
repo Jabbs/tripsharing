@@ -12,22 +12,34 @@
 				</div>
 				<div class="row"><div class="col-md-12" style="margin-bottom:10px;">Departure Date:</div></div>
 				<div class="row bottom-margin-small">
-					<div class="col-md-2">From:</div>
+					<div class="col-md-2"><div style="padding-top:4px;"><small>After:</small></div></div>
 					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="departs_at" data-date-format="mm/dd/yyyy" value="<%= params[:departs_at] %>" style="width:95%;"></div>
 				</div>
 				<div class="row bottom-margin-small">
-					<div class="col-md-2">To:</div>
+					<div class="col-md-2"><div style="padding-top:4px;"><small>Before:</small></div></div>
 					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="returns_at" data-date-format="mm/dd/yyyy" value="<%= params[:returns_at] %>" style="width:95%;"></div>
 				</div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-12">
-						<button class="btn btn-default btn-sm" data-disable-with="Please wait..." style="margin-right:10px;">
-		          <i class="fa fa-search"></i> Find
-		        </button>
+						<%= button_tag "<i class='fa fa-search'></i> Find".html_safe, data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching..." }, class: "btn btn-default btn-sm", style: "margin-right: 5px;" %>
+						<small><%= link_to "reset", trips_path %></small>
 					</div>
 				</div>
 
 			<% end %>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div style="padding:5px;">
+				<small>
+					<% @tags.each do |tag| %>
+						<%= link_to "#{tag.name}", "/trips?search=true&tag=#{tag.name}" %>
+					<% end %>
+				</small>
+			</div>
+		</div>
+	</div>
+	<hr>
 </div>

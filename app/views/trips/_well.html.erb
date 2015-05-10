@@ -23,83 +23,54 @@
 	<div class="trip-well-body">
 		<div class="row">
 			<div class="col-md-12">
-				
-				<%= link_to trip.user, class: "no-decoration" do %>
-					<%= user_image(trip.user) %>
-				<% end %>
-				
-				<% if trip.incomplete? %>
-					<span class="big">INCOMPLETE</span>
-				<% else %>
-					<%= link_to trip, class: "grey-dark-link" do %>
-						SEEKING:
-						<% if trip.group_count == "5" %>
-							<span class="big">??? </span>
-						<% else %>
-							<span class="big"><%= Trip::GROUP_COUNT[trip.group_count] %> </span>
-						<% end %>
-						<% if trip.group_count == "1" %>
-							TRAVELER.
-						<% else %>
-							TRAVELERS.
+				<div style="height:50px; overflow:hidden;" class="heavy">
+					<%= link_to trip.user, class: "no-decoration" do %>
+						<%= user_image(trip.user) %>
+					<% end %>
+
+					<% if trip.incomplete? %>
+						<span class="big">INCOMPLETE</span>
+					<% else %>
+						<%= link_to trip, class: "grey-dark-link" do %>
+							SEEKING:
+							<% if trip.group_count == "5" %>
+								<span class="big">??? </span>
+							<% else %>
+								<span class="big"><%= Trip::GROUP_COUNT[trip.group_count] %> </span>
+							<% end %>
+							<% if trip.group_count == "1" %>
+								TRAVELER
+							<% else %>
+								TRAVELERS
+							<% end %>
 						<% end %>
 					<% end %>
-				<% end %>
+				</div>
 			</div>
 		</div>
-		<div style="height:90px; margin-top:10px; overflow:hidden;">
+		<div style="height:125px; margin-top:10px; overflow:hidden;">
 			<div class="row">
-				<div class="col-xs-6">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="regular">
-								<i class="fa fa-clock-o" style="margin-left:1px;margin-right:7px;"></i>
-								<% if trip.departs_at.present? %>
-									<%= time_ago_in_words(trip.departs_at)  %>
-								<% elsif trip.departing_category.present? %>
-									<%= Trip::DEPARTINGS[trip.departing_category].capitalize %>
-								<% else %>
-									???
-								<% end %>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="regular">
-								<i class="fa fa-group" style="margin-right:5px;"></i>
-								Ages <%= age_text(trip.group_age_min, trip.group_age_max) %>
-							</div>
-						</div>
-					</div>
+				<div class="col-xs-8">
+					<ul class="list-unstyled heavy" style="line-height: 150%; margin-top:10px;">
+						<li><i class="fa fa-group fa-fw"></i>&nbsp;&nbsp; Ages: <%= age_text(trip.group_age_min, trip.group_age_max) %></li>
+						<li><i class="fa fa-clock-o fa-fw"></i>&nbsp;&nbsp; <%= time_flexibility_text(trip.time_flexibility) %></li>
+					</ul>
 				</div>
-				<div class="col-xs-6">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="pull-right regular" style="overflow:hidden; max-height:18px;" title="<%= Trip::REGIONS[trip.region] %>">
-								<%= Trip::REGIONS[trip.region] %>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="pull-right regular">
-								<% if trip.departs_at.present? && trip.returns_at.present? %>
-									<%= trip.departs_at.strftime('%-m/%d/%y') %> - <%= trip.returns_at.strftime('%-m/%d/%y') %>
-								<% else %>
-									<%= Trip::DURATIONS[trip.duration] %>
-								<% end %>
-							</div>
-						</div>
-					</div>
+				<div class="col-xs-4">
+					<%= render "trips/calendar", trip: trip, type: "small" %>
 				</div>
 			</div>
-			<div class="row" style="margin-top:27px;">
+			<div class="row" style="margin-top:10px;">
 				<div class="col-md-12">
 					<div class="small" style="font-size:84%; line-height:130%;">
-						<% trip.tags.any? ? last_id = trip.tags.last.id : last_id = "" %>
-						<% trip.tags.each do |t| %>
-							<%= link_to "##{t.name}", "/trips?search=true&tag=#{t.name}" %><%= "," unless last_id == t.id %>
+						ACTIVITIES:
+						<% if trip.tags.any? %>
+							<% last_id = trip.tags.last.id %>
+							<% trip.tags.each do |t| %>
+								<%= link_to "#{t.name}", "/trips?search=true&tag=#{t.name}" %><%= "," unless last_id == t.id %>
+							<% end %>
+						<% else %>
+							n/a
 						<% end %>
 					</div>
 				</div>
@@ -109,7 +80,7 @@
 		<div class="trip-first-stop">
 			<div class="row">
 				<div class="col-md-12">
-					<small>first stop:</small><br>
+					<small><%= Trip::REGIONS[trip.region] %>:</small><br>
 					<div class="trip-departs-to">
 						<i class="fa fa-map-marker" style="margin-left:4px;margin-right:2px;"></i>
 						<% if trip.stops.any? %>
@@ -123,7 +94,7 @@
 			</div>
 			<div class="no-height">
 				<div style="position:relative; top:1em;">
-					<%= trip.created_at.strftime('%-m/%-d/%y') %>
+					<small><em>posted <%= time_ago_in_words(trip.created_at) %> ago</em></small>
 				</div>
 			</div>
 			<div class="row">

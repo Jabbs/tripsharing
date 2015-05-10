@@ -92,11 +92,11 @@ module TripsHelper
     when "2"
       day = departing_category
     when "3"
-      day = "this"
+      day = "weekend"
     else
       day = Trip::DEPARTINGS[departing_category].split.first.capitalize
     end
-    day = "<span style='font-size:65%;'>" + day + "</span>"
+    day = "<span style='font-size:80%; position:relative; top:-.2em;'>" + day + "</span>"
     day
   end
   
@@ -107,7 +107,7 @@ module TripsHelper
     when "2"
       month = ""
     when "3"
-      month = "weekend"
+      month = "this"
     else
       month = Trip::DEPARTINGS[departing_category].split.last
     end

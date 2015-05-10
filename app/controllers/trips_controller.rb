@@ -40,6 +40,7 @@ class TripsController < ApplicationController
   end
 
   def index
+    @tags = Tag.all.limit(30)
     if params[:search]
       @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag]).paginate(page: params[:page], per_page: 9)
     else

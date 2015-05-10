@@ -1,7 +1,5 @@
 <div class="row">
-	<div class="col-md-5">
-		<%= render "trips/calendar" %>
-	</div>
+
 	<div class="col-md-7">
 		<ul class="list-unstyled big" style="padding-top:10px; line-height:150%;">
 			<li><i class="fa fa-globe fa-fw"></i>&nbsp;&nbsp; <%= Trip::REGIONS[@trip.region ] %></li>
@@ -20,5 +18,11 @@
 			</li>
 			<li><i class="fa fa-clock-o fa-fw"></i>&nbsp;&nbsp; <%= time_flexibility_text(@trip.time_flexibility) %></li>
 		</ul>
+	</div>
+	<div class="col-md-5">
+		<div class="margin-top:10px;">
+			<%= render "trips/calendar", trip: @trip, type: "big" %>
+		</div>
+		
 	</div>
 </div>
