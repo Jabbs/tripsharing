@@ -2,31 +2,7 @@
 <div class="sidebar">
 	<div class="row" style="padding-left:4px;margin-top:10px;">
 		<div class="col-md-12">
-			<%= form_tag trips_path, :method => 'get' do %>
-				<%= hidden_field_tag :search, "true" %>
-				<div class="row"><div class="col-md-12">Region:</div></div>
-				<div class="row bottom-margin-small">
-					<div class="col-md-12">
-						<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "anywhere", style: "width:95%;" } %>
-					</div>
-				</div>
-				<div class="row"><div class="col-md-12" style="margin-bottom:10px;">Departure Date:</div></div>
-				<div class="row bottom-margin-small">
-					<div class="col-md-2"><div style="padding-top:4px;"><small>After:</small></div></div>
-					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="departs_at" data-date-format="mm/dd/yyyy" value="<%= params[:departs_at] %>" style="width:95%;"></div>
-				</div>
-				<div class="row bottom-margin-small">
-					<div class="col-md-2"><div style="padding-top:4px;"><small>Before:</small></div></div>
-					<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="returns_at" data-date-format="mm/dd/yyyy" value="<%= params[:returns_at] %>" style="width:95%;"></div>
-				</div>
-				<div class="row bottom-margin-small">
-					<div class="col-md-12">
-						<%= button_tag "<i class='fa fa-search'></i> Find".html_safe, data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching..." }, class: "btn btn-default btn-sm" %>
-						<%= link_to "Reset", trips_path, class: "btn btn-sm btn-default" %>
-					</div>
-				</div>
-
-			<% end %>
+			<%= render "trips/form_filter" %>
 		</div>
 	</div>
 
@@ -36,7 +12,7 @@
 				<small>
 					Tags:
 					<% @tags.each do |tag| %>
-						<%= link_to "#{tag.name}", "/trips?search=true&tag=#{tag.name}" %>
+						<%= link_to "#{tag.name}", "/trips/filter?search=true&tag=#{tag.name}", remote: true, method: :post, class: "trips-filter-form" %>
 					<% end %>
 				</small>
 			</div>

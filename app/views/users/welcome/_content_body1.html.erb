@@ -9,7 +9,7 @@
 			<% @welcome_trips.each do |trip| %>
 				<div class="col-md-4">
 					<div class="demo-trip">
-						<%= render "trips/well", trip: trip, joinable: false %>
+						<%= render "trips/trip", trip: trip, joinable: false %>
 					</div>
 				</div>
 			<% end %>

@@ -5,32 +5,18 @@
 		</div>
 	  <div class="col-md-10 dash-background">			
 			<% if @trips.any? %>
+				<div class='loading-spinner'><i class='fa fa-spinner fa-spin'></i></div>
 				<div class="row">
 					<div class="col-md-12">
-						<% @trips.each do |trip| %>
-							<div class="col-md-4">
-								<%= render "trips/well", trip: trip, joinable: true %>
-							</div>
-						<% end %>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="center"><%= will_paginate @trips, renderer: BootstrapPagination::Rails %></div>
-					</div>
-				</div>
-			<% else %>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="well" style="margin:20px; border: 2px solid grey;">
-							<div class="center grey">
-								<i class="fa fa-plane" style="font-size:1000%"></i>
-								<h3>No Trips Matched Your Search</h3>
-							</div>
+						<div id="trip-list">
+							<%= render "trips/trips", trips: @trips %>
 						</div>
 					</div>
 				</div>
 			<% end %>
+			<div id="trips-none-found">
+				<%= render "trips/none_found" %>
+			</div>
 	  </div>
 	</div>
 </div>

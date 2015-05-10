@@ -1,0 +1,5 @@
+<% trips.each do |trip| %>
+	<div class="col-md-4">
+		<%= render "trips/trip", trip: trip, joinable: true %>
+	</div>
+<% end %>

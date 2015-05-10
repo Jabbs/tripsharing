@@ -190,6 +190,13 @@ h4 { line-height: 1.2em; }
   filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 
+.loading-spinner {
+	display: none;
+	color: $white;
+	font-size: 800%;
+	text-align: center;
+}
+
 // OVERRIDES
 input[type="password"].form-control,
 input[type="email"].form-control,
@@ -614,6 +621,7 @@ h2.choice.inactive a {
 	line-height: 200%;
 }
 
+#trips-none-found { display: none; }
 .trip-well {
 	background: $white;
 	margin-bottom: 20px;

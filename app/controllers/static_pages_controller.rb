@@ -9,7 +9,6 @@ class StaticPagesController < ApplicationController
   end
   
   def home2
-    redirect_to trips_path if current_user
   end
   
   def about

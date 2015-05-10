@@ -4,6 +4,15 @@
 	
 $('document').ready(function() {
 	
+	$(".trips-filter-form").bind( 'ajax:before', function() {
+	  $('.loading-spinner').show();
+		$('#trip-list').hide();
+		$('#trips-none-found').hide();
+	}).bind( 'ajax:complete', function() {
+	  $('.loading-spinner').hide();
+		$('#trip-list').show();
+	});
+	
 	$(".fa-stack").mouseenter(function() {
 		$(this).children('.fa-square-o').addClass("fa-square").removeClass("fa-square-o")
 		$(this).children('.fa-stack-1x').addClass("fa-inverse");

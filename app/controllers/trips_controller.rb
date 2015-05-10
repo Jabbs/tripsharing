@@ -41,16 +41,32 @@ class TripsController < ApplicationController
 
   def index
     @tags = Tag.all.limit(30)
-    if params[:search]
-      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag]).paginate(page: params[:page], per_page: 9)
-    else
-      @trips = Trip.where(state: "2").order("created_at DESC").paginate(page: params[:page], per_page: 9)
-    end
+    @trips = Trip.where(state: "2").order("created_at DESC")
+      
     # only show the user trips that fit their age
     unless current_user.admin?
       @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age)
     end
     @join_request = JoinRequest.new
+  end
+  
+  def filter
+    @tags = Tag.all.limit(30)
+    if params[:search]
+      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag])
+    else
+      @trips = Trip.where(state: "2").order("created_at DESC")
+    end
+    
+    # only show the user trips that fit their age
+    unless current_user.admin?
+      @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age)
+    end
+    @join_request = JoinRequest.new
+    @trip_count = @trips.size
+    respond_to do |format|
+			format.js
+		end
   end
   
   def remove_images

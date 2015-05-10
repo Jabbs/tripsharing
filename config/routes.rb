@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   match 'viewed_notification_badges', to: 'view_badges#viewed_notification_badges', via: [:put]
   resources :surveys, only: [:create]
   resources :trips do
-    resources :followings, only: [:create, :destroy]
     get 'details'
+    resources :followings, only: [:create, :destroy]
     resources :stops
     resources :join_requests, only: [:create] do
       match 'accept', to: 'join_requests#accept', via: [:put]
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     end
     match 'remove_images', to: 'trips#remove_images', via: [:delete]
     match 'deactivate', to: 'trips#deactivate', via: [:delete]
+    collection do
+      post 'filter'
+    end
   end
   match 'lonelyplanet', to: 'trips#lonelyplanet', via: [:get]
   match 'airports', to: 'trips#airports', via: [:get]

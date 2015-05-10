@@ -1,0 +1,4 @@
+$("#trip-list").html("<%= escape_javascript(render partial:'trips/trips', locals: { trips: @trips } ) %>");
+<% if @trip_count == 0 %>
+	$("#trips-none-found").show();
+<% end %>
