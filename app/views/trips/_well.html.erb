@@ -92,24 +92,21 @@
 
 				</div>
 			</div>
-			<div class="pull-right">
-				<div class="no-height">
-					<div style="position:relative; top:1em;">
-						<small><em>posted <%= time_ago_in_words(trip.created_at) %> ago</em></small>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<% if current_user %>
 						<% if current_user?(trip.user) %>
-							<%= link_to "<i class='fa fa-check'></i> following".html_safe, "#", title: "Your trip", class: "btn btn-turquoise btn-sm", disabled: true %>
+							<div class="pull-right">
+								<%= link_to "<i class='fa fa-check'></i> following".html_safe, "#", title: "Your trip", class: "btn btn-turquoise btn-sm", disabled: true %>
+							</div>
 						<% else %>
 							<% if joinable == true %>
 								<%= render "join_requests/join_btn", trip: trip, btn_size: "btn-sm", join_text: "JOIN" %>
 								<%= render "trips/modals/new_join_request_modal", trip: trip %>
 							<% end %>
-							<%= render "followings/following_btn", resource: trip, btn_size: "btn-sm" %>
+							<div class="pull-right">
+								<%= render "followings/following_btn", resource: trip, btn_size: "btn-sm" %>
+							</div>
 						<% end %>
 					<% end %>
 				</div>

@@ -32,7 +32,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<div style="padding:5px;">
+			<div style="padding-left:5px;">
 				<small>
 					<% @tags.each do |tag| %>
 						<%= link_to "#{tag.name}", "/trips?search=true&tag=#{tag.name}" %>

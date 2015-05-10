@@ -642,7 +642,7 @@ h2.choice.inactive a {
 			padding-top:5px;
 			min-height: 80px;
 			border-top: 1px dotted $grey_dark;
-			.trip-departs-to {height:18px; overflow: hidden;margin-bottom:20px; color: darken($turquoise_dark, 10%); padding-top:5px;}
+			.trip-departs-to {height:22px; overflow: hidden; margin-bottom:20px; color: darken($turquoise_dark, 10%); padding-top:5px;}
 		}
 	}
 	box-shadow: 3px 3px 2px #888888;
@@ -708,7 +708,7 @@ h2.choice.inactive a {
 		padding: 10px 5px;
 		text-align: center;
 		min-height: 100px;
-		.trip-cal-day{ font-size: 360%; font-weight: bold; color: lighten($salmon, 10%); line-height: 100%; }
+		.trip-cal-day{ font-size: 330%; font-weight: bold; color: lighten($salmon, 10%); line-height: 100%; }
 		.trip-cal-month{ font-size: 120%; }
 	}
 }
