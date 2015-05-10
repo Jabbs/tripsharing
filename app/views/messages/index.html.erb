@@ -17,7 +17,7 @@
 						        	<% @received_messages.each do |message| %>
 												<%= render "messages/message", message: message, type: "received" %>
 											<% end %>
-											<%= will_paginate @received_messages %>
+											<%= will_paginate @received_messages, renderer: BootstrapPagination::Rails %>
 										<% else %>
 											<h3 class="grey">There are no messages.</h3>
 										<% end %>

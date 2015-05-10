@@ -9,7 +9,7 @@
 	        	<% @notifications.each do |notification| %>
 							<%= render "notifications/notification", notification: notification %>
 						<% end %>
-						<%= will_paginate @notifications %>
+						<%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
 					<% else %>
 						<h3 class="grey">There are no notifications.</h3>
 					<% end %>

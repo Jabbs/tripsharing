@@ -21,8 +21,8 @@
 				</div>
 				<div class="row bottom-margin-small">
 					<div class="col-md-12">
-						<%= button_tag "<i class='fa fa-search'></i> Find".html_safe, data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching..." }, class: "btn btn-default btn-sm", style: "margin-right: 5px;" %>
-						<small><%= link_to "reset", trips_path %></small>
+						<%= button_tag "<i class='fa fa-search'></i> Find".html_safe, data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching..." }, class: "btn btn-default btn-sm" %>
+						<%= link_to "Reset", trips_path, class: "btn btn-sm btn-default" %>
 					</div>
 				</div>
 
@@ -34,6 +34,7 @@
 		<div class="col-md-12">
 			<div style="padding-left:5px;">
 				<small>
+					Tags:
 					<% @tags.each do |tag| %>
 						<%= link_to "#{tag.name}", "/trips?search=true&tag=#{tag.name}" %>
 					<% end %>
