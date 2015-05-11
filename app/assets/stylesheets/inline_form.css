@@ -8,18 +8,17 @@ section {
 	line-height: 48px;
 	color: #686868;
 }
-.form-inline input,
-.form-inline textarea,
-.form-inline select {
+.form-inline2 input,
+.form-inline2 textarea,
+.form-inline2 select {
 	height: 40px;
 	overflow: hidden;
 	line-height: 40px;
-	background-color: transparent;
+	background-color: white;
 	border: none;
 	border-bottom: 1px dotted;
 	vertical-align: text-bottom;
 	padding-left:10px;
-	color: #4CAF7D;
 }
 
 /*Placeholder text*/
@@ -28,22 +27,22 @@ section {
 ::-moz-placeholder { /* Mozilla Firefox 19+ */ color:    #DFDFDF; opacity:  1; }
 :-ms-input-placeholder { /* Internet Explorer 10+ */ color:    #DFDFDF; }
 
-.form-inline textarea:focus,
-.form-inline input[type="text"]:focus,
-.form-inline input[type="password"]:focus,
-.form-inline input[type="datetime"]:focus,
-.form-inline input[type="datetime-local"]:focus,
-.form-inline input[type="date"]:focus,
-.form-inline input[type="month"]:focus,
-.form-inline input[type="time"]:focus,
-.form-inline input[type="week"]:focus,
-.form-inline input[type="number"]:focus,
-.form-inline input[type="email"]:focus,
-.form-inline input[type="url"]:focus,
-.form-inline input[type="search"]:focus,
-.form-inline input[type="tel"]:focus,
-.form-inline input[type="color"]:focus,
-.form-inline .uneditable-input:focus {   
+.form-inline2 textarea:focus,
+.form-inline2 input[type="text"]:focus,
+.form-inline2 input[type="password"]:focus,
+.form-inline2 input[type="datetime"]:focus,
+.form-inline2 input[type="datetime-local"]:focus,
+.form-inline2 input[type="date"]:focus,
+.form-inline2 input[type="month"]:focus,
+.form-inline2 input[type="time"]:focus,
+.form-inline2 input[type="week"]:focus,
+.form-inline2 input[type="number"]:focus,
+.form-inline2 input[type="email"]:focus,
+.form-inline2 input[type="url"]:focus,
+.form-inline2 input[type="search"]:focus,
+.form-inline2 input[type="tel"]:focus,
+.form-inline2 input[type="color"]:focus,
+.form-inline2 .uneditable-input:focus {   
   border-color: rgba(126, 239, 104, 0.8);
   box-shadow: none;
   outline: 0 none;

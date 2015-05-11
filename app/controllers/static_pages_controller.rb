@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
   end
   
   def home2
+    @remove_start_trip_button = true
   end
   
   def about

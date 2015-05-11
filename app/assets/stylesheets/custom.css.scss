@@ -510,6 +510,37 @@ h2.choice.inactive a {
 .trip-background {
 //	background: image-url("clouds.jpg");
 }
+
+.transparent_background {
+	width:100%;
+	height:66px;
+	position:relative;
+	padding:10px;
+	text-align: center;
+}
+.transparent_background:after {
+	content:'';
+	background: image-url("grey_block.png");
+	width:100%;
+	height:66px;
+	position:absolute;
+	top:0;
+	left:0;
+	opacity:0.7;
+	@include rounded_borders;
+}
+.transparent_background_child {
+	select, label, input, button {
+		position:relative;
+		z-index:1;
+	}
+	label {color: $white;}
+	::-webkit-input-placeholder { /* WebKit browsers */ color:    lighten($grey_dark, 20%); }
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */   color:    lighten($grey_dark, 20%); opacity:  1; }
+	::-moz-placeholder { /* Mozilla Firefox 19+ */			color:    lighten($grey_dark, 20%); opacity:  1; }
+	:-ms-input-placeholder { /* Internet Explorer 10+ */color:    lighten($grey_dark, 20%); }
+}
+
 .dash-background {
 	min-height:900px;
 	padding-right:0px;
@@ -525,8 +556,9 @@ h2.choice.inactive a {
 }
 #slogan {
 	color: #fff;
-	margin-top: 5em;
+	margin-top: 2em;
 	margin-bottom: .3em;
+	text-align: center;
 }
 
 #home-background { 
@@ -586,7 +618,6 @@ h2.choice.inactive a {
   z-index: -1;
   
   display: block;
-	background: image-url("home/288412.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

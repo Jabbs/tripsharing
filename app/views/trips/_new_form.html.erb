@@ -1,4 +1,4 @@
-<%= form_for @new_trip do |f| %>
+<%= form_for @new_trip, html: {class: "form-fancy"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
 	<div class="row">
 		<label class="col-md-2 right">Region:</label>
@@ -20,7 +20,7 @@
 	 -->
 	<div class="row" style="margin-top:10px;">
 		<label class="col-md-2 right">Trip Name:</label>
-	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;" %>
+	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;", required: true %>
 	</div>
 	<div class="row">
 		<div class="col-md-9 col-md-offset-2" style="padding-left:0px;">

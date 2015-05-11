@@ -3,17 +3,19 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<div class="center">
-						<h1 id="slogan"><%= t('application.root.slogan') %></h1>
-						<% unless current_user %>
-							<a href="#" type="button" data-toggle="modal" data-target="#signinModal" class="btn btn-lg btn-primary visible-sm-inline visible-md-inline visible-lg-inline">
-								START
-							</a>
-							<a href="/auth/facebook" id="sign_in" class="btn btn-facebook btn-lg visible-xs" style="width:100%;">
-								<i class='fa fa-facebook' style="padding-right:4px;"></i> Log in with Facebook
-							</a>
-						<% end %>
-					</div>
+					<h1 id="slogan"><%= t('application.root.slogan') %></h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<% unless current_user %>
+						<div class="visible-sm-inline visible-md-inline visible-lg-inline">
+							<%= render "trips/new_form2" %>
+						</div>
+						<a href="/auth/facebook" id="sign_in" class="btn btn-facebook btn-lg visible-xs" style="width:100%;">
+							<i class='fa fa-facebook' style="padding-right:4px;"></i> Log in with Facebook
+						</a>
+					<% end %>
 				</div>
 			</div>
 		</div>
