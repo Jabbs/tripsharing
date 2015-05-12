@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :signed_in_user, except: [:show, :details, :create, :update]
+  before_filter :signed_in_user, except: [:show, :details, :create, :update, :filter]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
   before_filter :correct_user, only: [:edit, :remove_images]
   before_filter :correct_user_update_if_user, only: [:update]
@@ -57,15 +57,21 @@ class TripsController < ApplicationController
   def filter
     @tags = Tag.all.limit(30)
     if params[:search]
-      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag])
+      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag], params[:departing_category])
     else
       @trips = Trip.where(state: "2").order("created_at DESC")
     end
     
     # only show the user trips that fit their age
-    unless current_user.admin?
-      @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age)
+    unless admin_user?
+      @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age) if current_user
     end
+    
+    if params[:limit]
+      limit = params[:limit]
+      @trips = @trips.last(limit.to_i)
+    end
+    
     @join_request = JoinRequest.new
     @trip_count = @trips.size
     respond_to do |format|

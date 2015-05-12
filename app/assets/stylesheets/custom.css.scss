@@ -1,8 +1,9 @@
 $linkColor: #686868;
 @import "bootstrap";
 @import url('//fonts.googleapis.com/css?family=Nunito:400,700');
-@import url('//fonts.googleapis.com/css?family=Slabo+27px');
+@import url('//fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('//fonts.googleapis.com/css?family=Crafty+Girls');
+
 //@import "bootstrap-responsive";
 
 /* MIXINS */
@@ -119,7 +120,7 @@ body {
 	background:$beige;
 //	background: image-url("plane_beige.png") 
 }
-h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito', sans-serif; }
+h1, h2, h3, h4, h5, h6, p { font-family: 'Nunito' }
 h1 { color: $dark_blue; }
 h4 { line-height: 1.2em; }
 .zero-height { height: 0px; }
@@ -507,14 +508,19 @@ h2.choice.inactive a {
 	margin-bottom:100px;
 }
 
+.home-trips {
+	background: $beige;
+}
+
 .trip-background {
 //	background: image-url("clouds.jpg");
 }
 
 .transparent_background {
 	width:100%;
-	height:66px;
+	height:64px;
 	position:relative;
+	z-index: 0;
 	padding:10px;
 	text-align: center;
 }
@@ -522,8 +528,9 @@ h2.choice.inactive a {
 	content:'';
 	background: image-url("grey_block.png");
 	width:100%;
-	height:66px;
+	height:64px;
 	position:absolute;
+	z-index:-1;
 	top:0;
 	left:0;
 	opacity:0.7;
@@ -532,7 +539,7 @@ h2.choice.inactive a {
 .transparent_background_child {
 	select, label, input, button {
 		position:relative;
-		z-index:1;
+		z-index:0;
 	}
 	label {color: $white;}
 	::-webkit-input-placeholder { /* WebKit browsers */ color:    lighten($grey_dark, 20%); }
@@ -555,10 +562,12 @@ h2.choice.inactive a {
 	border-left: 2px solid $grey_dark;
 }
 #slogan {
+	font-family: 'Roboto', sans-serif;
 	color: #fff;
-	margin-top: 2em;
+	margin-top: 3em;
 	margin-bottom: .3em;
 	text-align: center;
+	font-weight: 700;
 }
 
 #home-background { 
@@ -655,7 +664,7 @@ h2.choice.inactive a {
 #trips-none-found { display: none; }
 .trip-well {
 	background: $white;
-	margin-bottom: 20px;
+	margin-bottom: 60px;
 	font-size:90%;
 	 -webkit-border-top-right-radius: 15px;
 	    -moz-border-top-right-radius: 15px;
@@ -862,6 +871,15 @@ a.grey-very-dark-link {
 	@include rounded_borders;
 	padding:5px;
 	&:hover {cursor:pointer; background: $salmon; color: $white;}
+}
+
+.search-bar {
+	position:relative;
+	z-index:0;
+	box-shadow: 7px 5px 5px #888888;
+	margin-top: 200px;
+	min-height: 52px;
+	background: $salmon;
 }
 .trip-action-bar {
 	background: $grey_light;

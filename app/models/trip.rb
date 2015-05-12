@@ -26,6 +26,7 @@ class Trip < ActiveRecord::Base
   after_create :add_default_image
   after_commit :add_first_companion, on: :create
   after_commit :check_today_or_weekend_departing
+  after_commit :backfill_departing_category
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress", "7" => "no user"}
   STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
@@ -61,11 +62,14 @@ class Trip < ActiveRecord::Base
               "11" => "Skiing", "12" => "Trekking / Hiking", "13" => "Business / Networking", "14" => "Volunteering", "15" => "Wildlife / Ecology",
               "16" => "Food / Wine", "17" => "Drinking with locals", "18" => "Camping", "19" => "Museums", "20" => "Beaches",}
   
-  def self.search(region=nil, departs_at=nil, returns_at=nil, tag=nil)
+  def self.search(region=nil, departs_at=nil, returns_at=nil, tag=nil, departing_category=nil)
     trips = self.where(state: "2")
-
+    
+    unless departing_category.blank? || departing_category == nil
+      trips = trips.where(departing_category: departing_category)
+    end
     unless departs_at == nil || returns_at == nil || departs_at.blank? || returns_at.blank?
-      trips = trips.where(departs_at: ( departs_at..returns_at) )
+      trips = trips.where(departs_at: (departs_at..returns_at) )
     end
     unless region.blank? || region == nil
       trips = trips.where(region: region)
@@ -151,6 +155,39 @@ class Trip < ActiveRecord::Base
         end
         self.save
       end
+    end
+  end
+  
+  def backfill_departing_category
+    if self.departs_at.present? && !self.departing_category.present?
+      mar_2015_equinox = Date.strptime('3/20/2015','%m/%d/%Y')
+      jun_2015_equinox = Date.strptime('6/21/2015','%m/%d/%Y')
+      sep_2015_equinox = Date.strptime('9/23/2015','%m/%d/%Y')
+      dec_2015_equinox = Date.strptime('12/21/2015','%m/%d/%Y')
+      mar_2016_equinox = Date.strptime('3/19/2016','%m/%d/%Y')
+      jun_2016_equinox = Date.strptime('6/20/2016','%m/%d/%Y')
+      sep_2016_equinox = Date.strptime('9/22/2016','%m/%d/%Y')
+      dec_2016_equinox = Date.strptime('12/21/2016','%m/%d/%Y')
+      mar_2017_equinox = Date.strptime('3/20/2017','%m/%d/%Y')
+      
+      if (mar_2015_equinox..jun_2015_equinox).cover?(self.departs_at)
+        self.departing_category = "4"
+      elsif (jun_2015_equinox..sep_2015_equinox).cover?(self.departs_at)
+        self.departing_category = "5"
+      elsif (sep_2015_equinox..dec_2015_equinox).cover?(self.departs_at)
+        self.departing_category = "6"
+      elsif (dec_2015_equinox..mar_2016_equinox).cover?(self.departs_at)
+        self.departing_category = "7"
+      elsif (mar_2016_equinox..jun_2016_equinox).cover?(self.departs_at)
+        self.departing_category = "8"
+      elsif (jun_2016_equinox..sep_2016_equinox).cover?(self.departs_at)
+        self.departing_category = "9"
+      elsif (sep_2016_equinox..dec_2016_equinox).cover?(self.departs_at)
+        self.departing_category = "10"
+      elsif (dec_2016_equinox..mar_2017_equinox).cover?(self.departs_at)
+        self.departing_category = "11"
+      end
+      self.save
     end
   end
   

@@ -9,7 +9,8 @@ class StaticPagesController < ApplicationController
   end
   
   def home2
-    @remove_start_trip_button = true
+    @trips = Trip.where(state: "2").last(6)
+    @users = User.last(6)
   end
   
   def about

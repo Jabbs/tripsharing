@@ -1,5 +1,5 @@
 <div id="home">
-	<div id="home-background5" style="min-height:700px;">
+	<div id="home-background5" style="min-height:800px;">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
@@ -17,6 +17,44 @@
 						</a>
 					<% end %>
 				</div>
+			</div>
+		</div>
+		<div class="search-bar">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-9 col-centered">
+						<div class="pull-right" style="margin-left:16px;margin-top:6px;margin-right:16px">
+							<%= form_tag filter_trips_path, class: "trips-filter-form form-fancy", method: :post, remote: true do %>
+								<%= hidden_field_tag :search, "true" %>
+								<%= hidden_field_tag :limit, "6" %>
+								<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "Any Region", onchange: "$('.trips-filter-form').submit();" } %>
+								<%= select_tag :departing_category, options_for_select(Trip::DEPARTINGS_ARRAY.last(8), selected: params[:departing_category]), { prompt: "Any Time", onchange: "$('.trips-filter-form').submit();" } %>	
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="home-trips">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-9 col-centered">
+						<h3 style="margin-top:60px;margin-left:16px;">Seeking Travel Companions...</h3>
+					</div>
+				</div>
+				<div style="margin-top:40px; margin-bottom: 100px;">
+					<% if @trips.any? %>
+						<div class='loading-spinner'><i class='fa fa-spinner fa-spin'></i></div>
+						<div class="row">
+							<div class="col-md-9 col-centered ">
+								<div id="trip-list">
+									<%= render "trips/trips", trips: @trips %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+
 			</div>
 		</div>
 	</div>

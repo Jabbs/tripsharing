@@ -96,7 +96,7 @@ module TripsHelper
     else
       day = Trip::DEPARTINGS[departing_category].split.first.capitalize
     end
-    day = "<span style='font-size:80%; position:relative; top:-.2em;'>" + day + "</span>"
+    day = "<span style='font-size:60%; position:relative; top:-.4em; left: -.1em;'>" + day + "</span>"
     day
   end
   
