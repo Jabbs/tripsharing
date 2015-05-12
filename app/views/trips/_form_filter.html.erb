@@ -1,24 +1,30 @@
-<%= form_tag filter_trips_path, class: "trips-filter-form", method: :post, remote: true do %>
+<%= form_tag filter_trips_path, class: "trips-filter-form form-fancy", method: :post, remote: true do %>
 	<%= hidden_field_tag :search, "true" %>
-	<div class="row"><div class="col-md-12">Region:</div></div>
+	<%= hidden_field_tag :tag, params[:tag] %>
 	<div class="row bottom-margin-small">
 		<div class="col-md-12">
-			<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "Any", style: "width:95%;" } %>
+			<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "Any Region", style: "width:98%;", onchange: "$('.trips-filter-form').submit();" } %>
 		</div>
-	</div>
-	<div class="row"><div class="col-md-12" style="margin-bottom:10px;">Departure Date:</div></div>
-	<div class="row bottom-margin-small">
-		<div class="col-md-2"><div style="padding-top:4px;"><small>After:</small></div></div>
-		<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="departs_at" data-date-format="mm/dd/yyyy" value="<%= params[:departs_at] %>" style="width:95%;"></div>
-	</div>
-	<div class="row bottom-margin-small">
-		<div class="col-md-2"><div style="padding-top:4px;"><small>Before:</small></div></div>
-		<div class="col-md-10"><input class="datepicker" placeholder="mm/dd/yyyy" name="returns_at" data-date-format="mm/dd/yyyy" value="<%= params[:returns_at] %>" style="width:95%;"></div>
 	</div>
 	<div class="row bottom-margin-small">
 		<div class="col-md-12">
-			<%= button_tag "<i class='fa fa-search'></i> Find".html_safe, data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching..." }, class: "btn btn-default btn-sm" %>
-			<%= link_to "Reset", trips_path, class: "btn btn-sm btn-default" %>
+			<%= select_tag :departing_category, options_for_select(Trip::DEPARTINGS_ARRAY.last(8), selected: params[:departing_category]), { prompt: "Any Time", style: "width:98%;", onchange: "$('.trips-filter-form').submit();" } %>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			
+			<% @tags.each do |tag| %>
+				<div class="radio" style="margin-bottom:2px; display: inline;">
+				  <label style="padding-left:2px;">
+				    <input type="radio" name="tag" class="fancyradio" value="<%= tag.name %>" style="display:none;" onchange="$('.trips-filter-form').submit();">
+						<span><%= tag.name %></span>
+				  </label>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	
 <% end %>
+<%= link_to "clear", "/trips/filter?search=true", remote: true, method: :post, class: "trips-filter-form" %>

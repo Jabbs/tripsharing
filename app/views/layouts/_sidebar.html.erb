@@ -5,18 +5,5 @@
 			<%= render "trips/form_filter" %>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-md-12">
-			<div style="padding-left:5px;">
-				<small>
-					Tags:
-					<% @tags.each do |tag| %>
-						<%= link_to "#{tag.name}", "/trips/filter?search=true&tag=#{tag.name}", remote: true, method: :post, class: "trips-filter-form" %>
-					<% end %>
-				</small>
-			</div>
-		</div>
-	</div>
 	<hr>
 </div>

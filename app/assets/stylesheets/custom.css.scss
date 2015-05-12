@@ -905,6 +905,8 @@ a.grey-very-dark-link {
 	a:hover { text-decoration: none; }
 }
 
+a.active_tag { background: $salmon; @include rounded_borders; color: $white; }
+
 .slight-tilt-img {
 	position: relative;
 	top:66px;
