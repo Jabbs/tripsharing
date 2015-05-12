@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
   
   def home2
     @trips = Trip.where(state: "2").last(6)
-    @users = User.last(6)
+    # @users = User.last(6)
   end
   
   def about

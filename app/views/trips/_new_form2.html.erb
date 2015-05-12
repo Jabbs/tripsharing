@@ -5,7 +5,7 @@
 		<div class="transparent_background_child">
 			
 		  <div class="form-group">
-		    <%= f.select :region, Trip::REGIONS_ARRAY, {prompt: "-- REGION --"}, {required: true} %>
+		    <%= f.select :region, Trip::REGIONS_ARRAY, {prompt: "-- Select Region --"}, {required: true} %>
 		  </div>
 		  <div class="form-group">
 				<%= f.text_field :name, autocomplete: :off, style: "padding-left:3px; width: 24em;", placeholder: "Name (ex: Annual cities tour of Southeast Asia)", required: true %>
