@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
   
   def home2
     @trips = Trip.where(state: "2").where(featured: true).last(6)
+    @join_request = JoinRequest.new
     # @users = User.last(6)
   end
   
