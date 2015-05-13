@@ -742,12 +742,12 @@ h2.choice.inactive a {
 //	border-radius: 15em;
 }
 .trip-cal {
-	border: 1px solid lighten($salmon, 10%);
+	border: 1px solid $grey_dark;
 	min-height: 76px;
 	@include rounded_borders;
 	background: $white;
 	.trip-cal-header {
-		background: lighten($salmon, 10%);
+		background: $grey_dark;
 		color: $white;
 		padding: 2px 6px;
 		text-align: center;
@@ -763,11 +763,11 @@ h2.choice.inactive a {
 	}
 }
 .trip-cal-sm {
-	border: 1px solid lighten($salmon, 10%);
+	border: 1px solid $grey_dark;
 	@include rounded_borders;
 	background: $white;
 	.trip-cal-header {
-		background: lighten($salmon, 10%);
+		background: $grey_dark;
 		color: $white;
 		padding: 2px 6px;
 		text-align: center;
@@ -780,7 +780,7 @@ h2.choice.inactive a {
 		text-align: center;
 		height: 50px;
 		overflow: hidden;
-		.trip-cal-day{ font-size: 190%; font-weight: bold; color: lighten($salmon, 10%); line-height: 100%; }
+		.trip-cal-day{ font-size: 190%; font-weight: bold; color: $salmon; line-height: 100%; }
 		.trip-cal-month{ font-size: 90%; }
 	}
 }
