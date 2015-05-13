@@ -3,19 +3,19 @@
 	<%= hidden_field_tag :tag, params[:tag] %>
 	<div class="row bottom-margin-small">
 		<div class="col-md-12">
-			<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "Any Region", style: "width:98%;", onchange: "$('.trips-filter-form').submit();" } %>
+			<%= select_tag :region, options_for_select(Trip::REGIONS_ARRAY, selected: params[:region]), { prompt: "Any Region", style: "width:96%;margin-left:4px;", onchange: "$('.trips-filter-form').submit();" } %>
 		</div>
 	</div>
-	<div class="row bottom-margin-small">
+	<div class="row" style="margin-bottom:5px;">
 		<div class="col-md-12">
-			<%= select_tag :departing_category, options_for_select(Trip::DEPARTINGS_ARRAY.last(8), selected: params[:departing_category]), { prompt: "Any Time", style: "width:98%;", onchange: "$('.trips-filter-form').submit();" } %>
+			<%= select_tag :departing_category, options_for_select(Trip::DEPARTINGS_ARRAY.last(8), selected: params[:departing_category]), { prompt: "Any Time", style: "width:96%;margin-left:4px;", onchange: "$('.trips-filter-form').submit();" } %>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="col-md-12">
 			
-			<% @tags.each do |tag| %>
+			<% @tags.order(:name).each do |tag| %>
 				<div class="radio" style="margin-bottom:2px; display: inline;">
 				  <label style="padding-left:2px;">
 				    <input type="radio" name="tag" class="fancyradio" value="<%= tag.name %>" style="display:none;" onchange="$('.trips-filter-form').submit();">
@@ -27,4 +27,4 @@
 	</div>
 	
 <% end %>
-<%= link_to "clear", "/trips/filter?search=true", remote: true, method: :post, class: "trips-filter-form" %>
+<%= link_to "reset", trips_path, class: "btn btn-default btn-sm", style: "margin-left:10px;margin-top:5px;" %>

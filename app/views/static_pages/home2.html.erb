@@ -39,10 +39,10 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-9 col-centered">
-						<h3 style="margin-top:60px;margin-left:16px;">Seeking Travel Companions...</h3>
+						<h3 style="margin-top:60px;margin-left:16px;">Seeking Travel Companions</h3>
 					</div>
 				</div>
-				<div style="margin-top:40px; margin-bottom: 100px;">
+				<div style="margin-top:40px; min-height: 902px;">
 					<% if @trips.any? %>
 						<div class='loading-spinner'><i class='fa fa-spinner fa-spin'></i></div>
 						<div class="row">
@@ -58,6 +58,14 @@
 							<div class="col-md-9 col-centered ">
 								<%= render "trips/none_found" %>
 							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row top-margin">
+					<div class="col-md-9 col-centered">
+						<div class="center">
+							<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-salmon btn-lg" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Plan A Trip</a>
 						</div>
 					</div>
 				</div>

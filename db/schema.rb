@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427154710) do
+ActiveRecord::Schema.define(version: 20150513120720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 20150427154710) do
     t.string   "user_nationality"
     t.text     "user_interest_blob",             default: ""
     t.datetime "new_email_sent_at"
+    t.boolean  "featured",                       default: false
   end
 
   add_index "trips", ["name"], name: "index_trips_on_name", using: :btree
