@@ -371,4 +371,16 @@ class User < ActiveRecord::Base
     # save!
     # UserMailer.user_verification_email(self).deliver
   end
+  
+  def percent_of_days_active
+    ((self.activity_trail.count("1").to_f / self.activity_trail.length.to_f) * 100).round(1)
+  end
+  
+  def active_more_than?(percent)
+    if self.percent_of_days_active > percent
+      true
+    else
+      false
+    end
+  end
 end

@@ -15,5 +15,7 @@ end
 task :count_daily_active_users => :environment do
   report = Report.new
   report.daily_active_user_count = User.where("last_sign_in_at > ?", DateTime.now - 24.hours).count
+  report.monthly_active_user_count = User.where("last_sign_in_at > ?", DateTime.now - 30.days).count
+  report.user_count = User.count
   report.save
 end

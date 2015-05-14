@@ -26,6 +26,7 @@ class Notification < ActiveRecord::Base
   # T-Triggers (external)
   #   Types
   #     e=email
+  #     m=message
   #     n=notification
   #     f=feed-item
   #   Format
