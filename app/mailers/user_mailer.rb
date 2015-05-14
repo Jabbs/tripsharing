@@ -2,6 +2,14 @@ class UserMailer < ActionMailer::Base
   default from: "#{ENV['APP_ROOT_NAME']} <no-reply@tripsharing.com>"
   default content_type: "text/html"
   
+  # sent to users 1 to 102 (unless user.cohort_blob.include?("A")) 4/27/15 12:35pm
+  def announcements_update_1_email(user, user_verification_token)
+    @email_type = "B"; @user_verification_token = user_verification_token
+    if user.subscribed_to?(@email_type)
+      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Update: Tripsharing Version 1.0")
+    end
+  end
+  
   def join_request_accepted_email(user, user_verification_token, join_request)
     @email_type = "H"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
@@ -51,11 +59,11 @@ class UserMailer < ActionMailer::Base
     end
   end
   
-  # sent to users 1 to 102 (unless user.cohort_blob.include?("A")) 4/27/15 12:35pm
-  def announcements_update_1_email(user, user_verification_token)
-    @email_type = "B"; @user_verification_token = user_verification_token
+  def trips_weekly_newsletter(user, user_verification_token, trips)
+    @email_type = "E"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
-      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Update: Tripsharing Version 1.0")
+      @trips = trips
+      mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Weekly digest - Trips you may be interested in joining...")
     end
   end
   

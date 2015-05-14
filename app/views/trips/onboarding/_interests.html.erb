@@ -19,7 +19,9 @@
 					</div>
 				</div>
 			</div>
-			<hr>
+			<% unless User::INTERESTS_ARRAY.last == group %>
+				<hr>
+			<% end %>
 		<% end %>
 	</div>
 </div>
