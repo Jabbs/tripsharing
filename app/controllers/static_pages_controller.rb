@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
   end
   
   def home2
-    @trips = Trip.where(state: "2").where(featured: true).order("created_at DESC").last(6)
+    @trips = Trip.where(state: "2").where(featured: true).order("created_at DESC").first(6)
     @join_request = JoinRequest.new
     # @users = User.last(6)
   end
