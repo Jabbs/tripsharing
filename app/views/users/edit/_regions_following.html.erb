@@ -6,16 +6,7 @@
 		  </div>
 		  <div class="panel-body" style="max-height:300px; overflow-y:scroll;">
 				<div class="row">
-					<% Trip::REGIONS_ARRAY.each do |region| %>
-							<% user.region_blob.split(",").include?(region[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
-							<div class="col-md-3">
-								<div class="checkbox">
-							    <label>
-							      <input type="checkbox" name="region_tags[<%= region[1] %>]" <%= checked_or_no %>> <%= region[0] %>
-							    </label>
-								</div>
-							</div>
-					<% end %>
+					<%= render "users/region_blob", user: user %>
 				</div>
 		  </div>
 		</div>

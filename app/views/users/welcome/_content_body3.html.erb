@@ -1,10 +1,14 @@
 <div class="modal-body welcome-body">
-	<div class="row bottom-margin">
+	<div class="row">
 		<div class="col-md-12">
 			<h3>Follow regions of interest to you</h3>
 		</div>
 	</div>
-	<%= render "users/edit/regions_following", user: @welcome_user, f: f %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= render "users/region_blob", user: @welcome_user %>
+		</div>
+	</div>
 </div>
 <div class="modal-footer welcome-footer">
 	<div class="row">

@@ -1,9 +1,9 @@
 <% User::INTERESTS_ARRAY.each do |group| %>
 	<div class="row" style="margin-bottom: 20px;">
-		<div class="col-md-2" style="padding-top:10px;">
+		<div class="col-md-2" style="padding-top:7px;">
 			<div class="pull-right">
 				<i class="fa fa-fw fa-<%= User::INTERESTS[group[1]]["icon"] %>"></i>
-				<%= group[0].capitalize %>:
+				<span style="font-size:120%;"><%= group[0].capitalize %></span>:
 			</div>
 		</div>
 		<div class="radio" style="margin-top:0px;">
