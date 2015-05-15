@@ -296,10 +296,37 @@ input[type="color"]:focus,
 	border: 2px solid $white;
   box-shadow: 0 0 3px 3px $white;
 }
+label.highlight {
+	-webkit-filter:contrast(100%);    
+  -moz-filter:contrast(100%);
+  filter: url(#contrast);
+  filter:contrast(100%);
+}
+.region-image {
+	border: 2px solid transparent;
+  box-shadow: 0 0 3px 3px transparent;
+	-webkit-filter:contrast(50%);    
+  -moz-filter:contrast(50%);
+  filter: url(#contrast);
+  filter:contrast(50%);
+	&:hover {
+		border: 2px solid $salmon;
+	  box-shadow: 0 0 3px 3px $salmon;
+		-webkit-filter:contrast(100%);    
+    -moz-filter:contrast(100%);
+    filter: url(#contrast);
+    filter:contrast(100%);
+	}
+}
 .highlight {
 	border: 2px solid $salmon;
   box-shadow: 0 0 3px 3px $salmon;
+	-webkit-filter:contrast(100%);    
+  -moz-filter:contrast(100%);
+  filter: url(#contrast);
+  filter:contrast(100%);
 }
+
 .modal {z-index:5;}
 .alert { border-radius: 0; margin-bottom: 0px;}
 .modal-body label { font-weight:200; }
@@ -355,7 +382,7 @@ a.add-description {
 .welcome-body {
 	padding-bottom: 40px;
 	height: 400px;
-	h3 {margin:0px; padding-left: 20px; margin-bottom:10px;}
+	h3 {margin:0px; padding-left: 10px; margin-bottom:10px;}
 }
 .welcome-footer {
 	padding-top: 34px;

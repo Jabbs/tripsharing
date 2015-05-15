@@ -1,17 +1,20 @@
 <div style="max-height:360px; overflow-y:scroll; padding: 5px 0px;">
 	<% Trip::REGIONS_ARRAY.each do |region| %>
-		<% user.region_blob.split(",").include?(region[1]) ? checked_or_no = "checked highlight" : checked_or_no = "" %>
-		<div class="col-md-4" style="padding-left:0px;">
+		<% user.region_blob.split(",").include?(region[1]) ? checked_or_no = "checked" : checked_or_no = "" %>
+		<% user.region_blob.split(",").include?(region[1]) ? highlight_or_no = "highlight" : highlight_or_no = "" %>
+		<% user.region_blob.split(",").include?(region[1]) ? show_or_hide = "show-inline" : show_or_hide = "hide" %>
+		<div class="col-md-4" style="padding-left:8px;">
 			<div class="checkbox" style="margin:0px;">
-		    <label>
+		    <label style="padding-left:0px;">
 					<% image_path = "trip_defaults/#{Trip::REGIONS[region[1]].parameterize.tr("-", "_")}/" + Trip::IMAGE_REGION_DEFAULTS[region[1]].shuffle.first + "_small.jpg" %>
-					<%= image_tag(image_path, class: "img-responsive #{checked_or_no}", style: "min-height:80px;", title: region[0]).to_s  %>
-					<input type="checkbox" name="region_tags[<%= region[1] %>]" <%= checked_or_no %> style="display:none;">
-					<div class="no-height white" style="font-size: 150%; text-shadow: 1px 1px black">
-						<div style="position:relative; top:-28px; left: 5px;">
+					<%= image_tag(image_path, class: "img-responsive #{highlight_or_no} region-image", style: "min-height:80px;", title: region[0]).to_s  %>
+					<input type="checkbox" name="region_tags[<%= region[1] %>]" <%= checked_or_no %> style="display:none;" class="region-checkbox">
+					<span class="no-height white" style="font-size: 150%; text-shadow: 1px 1px black">
+						<span style="position:relative; top:-30px; left: 5px;">
 							<%= region[0] %>
-						</div>
-					</div>
+							<i class="fa fa-check <%= show_or_hide %>"></i>
+						</span>
+					</span>
 		    </label>
 			</div>
 		</div>

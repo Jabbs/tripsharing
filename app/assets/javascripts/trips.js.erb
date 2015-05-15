@@ -25,9 +25,13 @@ $('document').ready(function() {
 	$('input[type="checkbox"]').click(function(){
 		if($(this).prop("checked") == true){
 			$(this).siblings('img').addClass("highlight");
+			$(this).siblings('span').find('i').addClass("show-inline");
+			$(this).siblings('span').find('i').removeClass("hide");
 		}
 		else if($(this).prop("checked") == false){
 			$(this).siblings('img').removeClass("highlight");
+			$(this).siblings('span').find('i').addClass("hide");
+			$(this).siblings('span').find('i').removeClass("show-inline");
 		}
 	});
 	
