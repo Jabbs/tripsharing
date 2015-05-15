@@ -14,17 +14,17 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			
-			<% @tags.order(:name).each do |tag| %>
-				<div class="radio" style="margin-bottom:2px; display: inline;">
-				  <label style="padding-left:2px;">
-				    <input type="radio" name="tag" class="fancyradio" value="<%= tag.name %>" style="display:none;" onchange="$('.trips-filter-form').submit();">
-						<span><%= tag.name %></span>
-				  </label>
-				</div>
-			<% end %>
+			<div style="padding-left:5px;">
+				<% @tags.order(:name).each do |tag| %>
+					<div class="radio" style="margin-bottom:2px; display: inline;">
+					  <label style="padding-left:2px; margin-bottom:2px; font-size: 80%;">
+					    <input type="radio" name="tag" class="fancyradio" value="<%= tag.name %>" style="display:none;" onchange="$('.trips-filter-form').submit();">
+							<span><%= tag.name %></span>
+					  </label>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
-	
 <% end %>
-<%= link_to "reset", trips_path, class: "btn btn-default btn-sm", style: "margin-left:10px;margin-top:5px;" %>
+<%= link_to "reset", trips_path, class: "btn btn-default btn-sm", style: "margin-left:5px;margin-top:10px;" %>

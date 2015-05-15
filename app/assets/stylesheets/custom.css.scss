@@ -394,8 +394,7 @@ a.add-description {
 
 input[type="radio"].fancyradio+span {
 	padding:2px 8px 4px 8px;
-	margin:0px;
-	margin-right:5px;
+	margin-right:0px;
 	font-size: 90%;
 	color: $grey_dark;
 	border: 1px solid transparent;
@@ -414,6 +413,7 @@ input[type="radio"].fancyradio:checked+span{
 input[type="radio"].fancyradio-shell+span {
 	border: 1px solid #CCC;
 }
+
 .fancy-dark.btn.btn-lg {
 	font-size: 28px;
 	color: white;
