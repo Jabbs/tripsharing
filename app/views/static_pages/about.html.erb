@@ -6,22 +6,15 @@
 
 		<div class="col-md-9">
 			<div class="row">
-				<div class="col-md-6" style="padding-right:0px;">
-					<h3>The Story...</h3>
+				<div class="col-md-6" style="padding-right:0px; padding-top:80px; font-size: 120%;">
 					<p>
-						A few years ago some of my good friends decided to plan a trip. Those friends invited friends of their own and we had a long email list of people interested in the adventure.
+						We are a growing community of travelers and adventurers open to sharing travel, experiences, and new friendships.
 					</p>
 					<p>
-						Most of us had not met each other and we were only peripherally connected through mutual friends.
+						Travel brings people close together. It gives you the opportunity to be your true self and connect with others on a deeper level.
 					</p>
 					<p>
-						During the trip we shared lodging, enjoyed excursions, tours, dinners and in the end had an incredible experience. Many of us became friends after only two weeks. To this day we still keep in touch.
-					</p>
-					<p>
-						Travel brings people close together and traveling with people you've not previously met opens you up to new experiences.
-					</p>
-					<p>
-						Tripsharing was born to connect people (who have not previously met) abroad. Plan and share a new adventure!
+						Tripsharing was born to connect travelers together. Plan and share a new adventure!
 					</p>
 					<% unless current_user %>
 						<p>
@@ -43,16 +36,12 @@
 						<%= render 'layouts/globe_faces' %>
 					<% end %>	
 				</div>
-				<div class="col-md-6" style="margin-top:60px;">
-					<h3>Today...</h3>
+				<div class="col-md-6" style="margin-top:120px; font-size: 120%;">
 					<p>
-						We are a growing community of travelers and adventurers open to sharing travel, experiences, and new friendships.
+						Members have the opportunity to plan trips of which interested travel companions my apply.
 					</p>
 					<p>
-						Members have the opportunity to plan trips with specific preferences to be matched with ideal travel companions.
-					</p>
-					<p>
-						Interested travel companions can stay notified by following trips, regions, and other members.
+						You can follow trips, regions, and other members that interest you, or simply browse the active trips!
 					</p>
 					<% unless current_user %>
 						<p>
@@ -62,11 +51,7 @@
 
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<%= link_to "LEARN MORE <i class='fa fa-arrow-right'></i>".html_safe, how_it_works_path, class: "btn btn-primary pull-right", style: "margin-top: 40px;" %>
-				</div>
-			</div>
+
 		</div>
 
 	</div>
