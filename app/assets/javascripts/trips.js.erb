@@ -13,12 +13,19 @@ $('document').ready(function() {
 		$('#trip-list').show();
 	});
 	
+	$(".region-name").mouseenter(function() {
+		$(this).parent().prev().prev().addClass("highlight2");
+	});
+	$(".region-name").mouseleave(function() {
+		$(this).parent().prev().prev().removeClass("highlight2");
+	});
+	
 	$(".fa-stack").mouseenter(function() {
-		$(this).children('.fa-square-o').addClass("fa-square").removeClass("fa-square-o")
+		$(this).children('.fa-square-o').addClass("fa-square").removeClass("fa-square-o");
 		$(this).children('.fa-stack-1x').addClass("fa-inverse");
 	});
 	$(".fa-stack").mouseleave(function() {
-		$(this).children('.fa-square').addClass("fa-square-o").removeClass("fa-square")
+		$(this).children('.fa-square').addClass("fa-square-o").removeClass("fa-square");
 		$(this).children('.fa-stack-1x').removeClass("fa-inverse");
 	});
 	

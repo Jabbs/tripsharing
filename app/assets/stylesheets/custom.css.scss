@@ -318,7 +318,9 @@ label.highlight {
     filter:contrast(100%);
 	}
 }
-.highlight {
+
+// hightlight2 hack for region hover on welcome screen
+.highlight, .highlight2 {
 	border: 2px solid $salmon;
   box-shadow: 0 0 3px 3px $salmon;
 	-webkit-filter:contrast(100%);    

@@ -10,7 +10,7 @@
 					<%= image_tag(image_path, class: "img-responsive #{highlight_or_no} region-image", style: "min-height:80px;", title: region[0]).to_s  %>
 					<input type="checkbox" name="region_tags[<%= region[1] %>]" <%= checked_or_no %> style="display:none;" class="region-checkbox">
 					<span class="no-height white" style="font-size: 150%; text-shadow: 1px 1px black">
-						<span style="position:relative; top:-30px; left: 5px;">
+						<span class="region-name" style="position:relative; top:-30px; left: 5px;">
 							<%= region[0] %>
 							<i class="fa fa-check <%= show_or_hide %>"></i>
 						</span>
