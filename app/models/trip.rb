@@ -24,7 +24,7 @@ class Trip < ActiveRecord::Base
   
   after_save :create_first_stop
   after_create :add_default_image
-  after_commit :add_first_companion, on: :create
+  after_commit :add_first_companion
   after_commit :check_today_or_weekend_departing
   after_commit :backfill_departing_category
   
@@ -192,7 +192,9 @@ class Trip < ActiveRecord::Base
   end
   
   def add_first_companion
-    self.companionings.create!(user_id: self.user.id) unless self.companionings.any?
+    if self.user.present?
+      self.companionings.create!(user_id: self.user.id) unless self.companionings.any?
+    end
   end
   
   def add_default_image
