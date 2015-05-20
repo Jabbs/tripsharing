@@ -122,6 +122,15 @@ module TripsHelper
     end
   end
   
+  def trip_image_path(trip)
+    if trip.image_attachments.count != 0 && trip.image_attachments.first.image.landscape.file.exists?
+  		img_path = trip.image_attachments.first.image.url(:landscape).to_s
+  	else
+  		img_path = "trip_defaults/#{Trip::REGIONS[trip.region].parameterize.tr("-", "_")}/" + trip.default_image + ".jpg"
+  	end
+  	img_path
+  end
+  
   def trip_image_landscape_big
     image_path = "trip_defaults/#{Trip::REGIONS[@trip.region].parameterize.tr("-", "_")}/" + @trip.default_image + ".jpg" 
     return image_tag(image_path, class: "img-responsive", style: "min-height:80px;", title: @trip.name).to_s
