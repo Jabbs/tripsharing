@@ -67,7 +67,11 @@
 						<% if trip.tags.any? %>
 							<% last_id = trip.tags.last.id %>
 							<% trip.tags.each do |t| %>
-								<%= link_to "#{t.name}", "/trips?search=true&tag=#{t.name}" %><%= "," unless last_id == t.id %>
+								<% if current_user %>
+									<%= link_to "#{t.name}", "/trips?search=true&tag=#{t.name}" %><%= "," unless last_id == t.id %>
+								<% else %>
+									<a href="#" data-toggle="modal" data-target="#signinModal" class="signup-link"><%= t.name %></a>
+								<% end %>
 							<% end %>
 						<% else %>
 							n/a
