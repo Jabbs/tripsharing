@@ -13,6 +13,10 @@
 					<div class="center bottom-margin">
 						<%= render "join_requests/join_btn", trip: @trip, btn_size: "btn-lg", join_text: "JOIN REQUEST" %>
 					</div>
+				<% elsif !current_user.present? %>
+					<div class="center bottom-margin">
+						<%= render "join_requests/fake_join_btn", btn_size: "btn-lg", join_text: "<i class='fa fa-comment-o'></i> JOIN REQUEST" %>
+					</div>
 				<% end %>
 			</div>
 		</div>

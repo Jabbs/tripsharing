@@ -1,5 +1,4 @@
-<% controller_name == "trips" && action_name == "show" ? static_or_no = "static" : static_or_no = "true" %>
-<div class="modal fade" id="signinModal" data-backdrop="<%= static_or_no %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 400px;">
     <div class="modal-content" id="login-modal-content">
 			<%= render "sessions/login_modal_content" %>

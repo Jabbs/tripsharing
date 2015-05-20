@@ -80,9 +80,9 @@ $('document').ready(function() {
 	var pathArray = window.location.pathname.split( '/' );
 	var query = window.location.search.slice(1);
 	// console.log(query);
-	if (pathArray[1] == "trips" && pathArray[3] != "details") {
-		$('#signinModal').modal('show'); 
-	};
+	// if (pathArray[1] == "trips" && pathArray[3] != "details") {
+	// 	$('#signinModal').modal('show'); 
+	// };
 	if (query == "welcome=1") {
 		$('#welcomeModal').modal('show'); 
 	};
