@@ -1,3 +1,6 @@
+<%= content_for :title do %>
+	<%= t('application.root.title_with_tag_line', tag_line: "#{@user.full_name}") %>
+<% end %>
 <div class="container" style="margin-bottom:60px;">
 	<div class="row top-margin">
 		<div class="col-md-3">
