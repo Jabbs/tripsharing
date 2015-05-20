@@ -63,7 +63,11 @@
 				<% if @trip.tags.any? %>
 					<% @trip.tags.each do |t| %>
 						<div class="tag">
-							<%= link_to "#{t.name}", "/trips?search=true&tag=#{t.name}" %>
+							<% if current_user %>
+								<%= link_to "#{t.name}", "/trips?search=true&tag=#{t.name}" %>
+							<% else %>
+								<a href="#" data-toggle="modal" data-target="#signinModal" class="signup-link"><%= t.name %></a>
+							<% end %>
 						</div>
 					<% end %>
 				<% end %>
