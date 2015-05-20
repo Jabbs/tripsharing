@@ -16,13 +16,6 @@
 					<p>
 						Tripsharing was born to connect travelers together. Plan and share a new adventure!
 					</p>
-					<% unless current_user %>
-						<p>
-							<a href="#" type="button" data-toggle="modal" data-target="#signinModal">
-								Click here to JOIN
-							</a>
-						</p>
-					<% end %>
 				</div>
 				<div class="col-md-6" style="padding-left:0px;">
 					<%= scroll_reveal animation: 'enter right and move 50px over 1s' do %>
@@ -43,11 +36,6 @@
 					<p>
 						You can follow trips, regions, and other members that interest you, or simply browse the active trips!
 					</p>
-					<% unless current_user %>
-						<p>
-							<a href="" data-toggle="modal" data-target="#tripNewModal" href="#"> Get started by planing a Trip</a>
-						</p>
-					<% end %>
 
 				</div>
 			</div>

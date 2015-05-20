@@ -44,7 +44,7 @@
 				</div>
 				<div style="margin-top:40px; min-height: 902px;">
 					<% if @trips.any? %>
-						<div class='loading-spinner'><i class='fa fa-spinner fa-spin'></i></div>
+						<div class='loading-spinner'><i class='fa fa-spinner fa-spin grey-dark'></i></div>
 						<div class="row">
 							<div class="col-md-9 col-centered ">
 								<div id="trip-list">
@@ -66,9 +66,7 @@
 					<div class="col-md-9 col-centered">
 						<div class="center">
 							<% unless current_user %>
-								<a href="#" type="button" id="signup-link" data-toggle="modal" data-target="#signinModal" class="btn btn-primary btn-lg">
-									GET STARTED
-								</a>
+								<a href="" data-toggle="modal" data-target="#tripNewModal" class="btn btn-salmon btn-lg" href="#" role="button"><i class="fa fa-plane" style="margin-right:5px;"></i> Plan A Trip</a>
 							<% end %>
 						</div>
 					</div>

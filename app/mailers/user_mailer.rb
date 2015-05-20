@@ -59,10 +59,11 @@ class UserMailer < ActionMailer::Base
     end
   end
   
-  def trips_weekly_newsletter(user, user_verification_token, trips)
+  def trips_weekly_newsletter(user, user_verification_token, trip)
     @email_type = "E"; @user_verification_token = user_verification_token
     if user.subscribed_to?(@email_type)
-      @trips = trips
+      @trip = trip
+      @user = user
       mail(to: "#{user.first_name} #{user.last_name} <#{user.email}>", subject: "Weekly digest - Trips you may be interested in joining...")
     end
   end
