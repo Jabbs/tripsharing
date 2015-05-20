@@ -12,10 +12,12 @@
 //
 //= require placeholder
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap.min
 //= require scrollReveal
 //= require jquery.countdown
+//= require turbolinks
 //= require_tree .
 
 
@@ -57,17 +59,17 @@ $('document').ready(function() {
 		if (url) {window.location = url};
 	});
 	
-	$("#passreset-link").click(function() {
+	$(".passreset-link").click(function() {
 		$("#signup-modal-content").hide();
 		$("#login-modal-content").hide();
 		$("#passreset-modal-content").fadeIn(400); 
 	});      
-	$("#login-link ").click(function() {
+	$(".login-link").click(function() {
 		$("#login-modal-content").show();
 		$("#signup-modal-content").hide();
 		$("#passreset-modal-content").hide(); 
 	});
-	$("#signup-link ").click(function() {
+	$(".signup-link").click(function() {
 		$("#login-modal-content").hide();
 		$("#signup-modal-content").show();
 		$("#passreset-modal-content").hide(); 

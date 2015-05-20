@@ -40,6 +40,8 @@ gem 'autoscaler'
 gem 'jquery-countdown-rails'
 gem 'language_list', '~> 1.1.0'
 gem 'countries'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 group :development do
   gem 'letter_opener'
