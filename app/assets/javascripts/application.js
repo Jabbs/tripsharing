@@ -30,6 +30,7 @@ $('document').ready(function() {
 	$('#edit_user_password_form').parsley();
 	$('#pass_reset_email').parsley();
 	$('#join_req_form').parsley();
+	$('#new_invitation_form').parsley();
 	
 	// https://bootstrap-datepicker.readthedocs.org/en/release/
 	$('.datepicker').datepicker()

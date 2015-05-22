@@ -25,6 +25,7 @@
   	<li><%= link_to "Incomplete (#{@trips_incomplete_count})", user_trips_path(@user, incomplete: true), class: "grey-dark-link #{get_tab_class(query_param, "incomplete")}" %></li>
 	<% end %>
 	<li><%= link_to "Accepting Companions (#{@trips_active_count})", user_trips_path(@user, active: true), class: "grey-dark-link #{get_tab_class(query_param, "active")}" %></li>
+		<li><%= link_to "Private (#{@trips_private_count})", user_trips_path(@user, private: true), class: "grey-dark-link #{get_tab_class(query_param, "private")}" %></li>
 	<li><%= link_to "In Progress (#{@trips_in_progress_count})", user_trips_path(@user, in_progress: true), class: "grey-dark-link #{get_tab_class(query_param, "in_progress")}" %></li>
 	<li><%= link_to "Completed (#{@trips_complete_count})", user_trips_path(@user, completed: true), class: "grey-dark-link #{get_tab_class(query_param, "completed")}" %></li>
 	<% if current_user?(@user) %>

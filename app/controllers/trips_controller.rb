@@ -13,11 +13,13 @@ class TripsController < ApplicationController
       @trips = @user.trips.where(state: "1")
       redirect_to user_trips_path(@user) if !current_user?(@user)
     elsif params[:active]
-      @trips = @user.trips.where(state: "2")
+      @trips = @user.trips.where(state: "2").where(private: false)
+    elsif params[:private]
+      @trips = @user.trips.where(private: true)
     elsif params[:in_progress]
-      @trips = @user.trips.where(state: "6")
+      @trips = @user.trips.where(state: "6").where(private: false)
     elsif params[:completed]
-      @trips = @user.trips.where(state: "5")
+      @trips = @user.trips.where(state: "5").where(private: false)
     else
       @trips = @user.trips
     end
@@ -42,9 +44,9 @@ class TripsController < ApplicationController
   def index
     @tags = Tag.all.limit(30)
     if params[:search]
-      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag])
+      @trips = Trip.where(state: "2").where(private: false).order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag])
     else
-      @trips = Trip.where(state: "2").order("created_at DESC")
+      @trips = Trip.where(state: "2").where(private: false).order("created_at DESC")
     end
       
     # only show the user trips that fit their age
@@ -57,9 +59,9 @@ class TripsController < ApplicationController
   def filter
     @tags = Tag.all.limit(30)
     if params[:search]
-      @trips = Trip.where(state: "2").order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag], params[:departing_category])
+      @trips = Trip.where(state: "2").where(private: false).order("created_at DESC").search(params[:region], params[:departs_at], params[:returns_at], params[:tag], params[:departing_category])
     else
-      @trips = Trip.where(state: "2").order("created_at DESC")
+      @trips = Trip.where(state: "2").where(private: false).order("created_at DESC")
     end
     
     # only show the user trips that fit their age
@@ -104,6 +106,8 @@ class TripsController < ApplicationController
     @stop = Stop.new(trip_id: @trip.id)
     @stops = @trip.stops.order(:created_at)
     @first_stop = @trip.stops.where(order: 1).first
+    @invitation = Invitation.new(trip_id: @trip.id)
+    @invitations = @trip.invitations.order(:created_at)
         
     if request.path != trip_path(@trip)
       redirect_to @trip, status: :moved_permanently

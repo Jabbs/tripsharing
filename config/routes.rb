@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :surveys, only: [:create]
   resources :trips do
     get 'details'
+    resources :invitations
     resources :followings, only: [:create, :destroy]
     resources :stops
     resources :join_requests, only: [:create] do

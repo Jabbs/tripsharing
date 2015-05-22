@@ -1,7 +1,11 @@
 <%= form_for @new_trip, html: {class: "form-fancy"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
-	<div class="row">
-		<label class="col-md-2 right">Region:</label>
+	<div class="row small-bottom-margin">
+		<label class="col-md-2 right" style="margin-top:8px;">Type:</label>
+	  <%= f.select :state, Trip::STATES_ARRAY %>
+	</div>
+	<div class="row small-bottom-margin">
+		<label class="col-md-2 right" style="margin-top:8px;">Where?:</label>
 	  <%= f.select :region, Trip::REGIONS_ARRAY %>
 	</div>
 	<!-- 
@@ -18,8 +22,8 @@
       </optgroup>
   </select>
 	 -->
-	<div class="row" style="margin-top:10px;">
-		<label class="col-md-2 right">Trip Name:</label>
+	<div class="row">
+		<label class="col-md-2 right" style="margin-top:8px;">Trip Name:</label>
 	  <%= f.text_field :name, class: "col-md-9", autocomplete: :off, style: "padding-left:3px;", required: true %>
 	</div>
 	<div class="row">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514171441) do
+ActiveRecord::Schema.define(version: 20150522175329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,19 @@ ActiveRecord::Schema.define(version: 20150514171441) do
 
   add_index "interests", ["identifier"], name: "index_interests_on_identifier", using: :btree
   add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
+
+  create_table "invitations", force: true do |t|
+    t.string   "name",       null: false
+    t.string   "email",      null: false
+    t.integer  "trip_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["email"], name: "index_invitations_on_email", using: :btree
+  add_index "invitations", ["trip_id"], name: "index_invitations_on_trip_id", using: :btree
 
   create_table "join_requests", force: true do |t|
     t.integer  "trip_id",                                null: false

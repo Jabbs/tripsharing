@@ -3,7 +3,6 @@ class StopsController < ApplicationController
   before_filter :get_stops
   before_filter :signed_in_user
   before_filter :correct_user
-  respond_to :html, :js
   
   def create
     fix_date_month_order

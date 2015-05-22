@@ -20,6 +20,7 @@ module ApplicationHelper
     if user
     	@trips_incomplete_count = user.trips.where(state: "1").size
     	@trips_active_count = user.trips.where(state: "2").size
+    	@trips_private_count = user.trips.where(private: true).size
     	@trips_in_progress_count = user.trips.where(state: "6").size
     	@trips_complete_count = user.trips.where(state: "5").size
   	end

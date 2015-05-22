@@ -18,6 +18,10 @@
 	<%= render "trips/trip_edit_modal" %>
 <% end %>
 
+<% if @trip.private? %>
+	<%= render "invitations/new_modal" %>
+<% end %>
+
 <div class="container-fluid trip-background">
 	<div class="show-trip">
 		<div class="row">

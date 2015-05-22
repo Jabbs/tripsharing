@@ -9,6 +9,7 @@ class Trip < ActiveRecord::Base
   belongs_to :user
   has_many :join_requests, dependent: :destroy
   has_many :stops, dependent: :destroy
+  has_many :invitations, dependent: :destroy
   accepts_nested_attributes_for :stops, allow_destroy: true
   has_many :locations, as: :locationable, dependent: :destroy
   accepts_nested_attributes_for :locations, allow_destroy: true
@@ -27,9 +28,10 @@ class Trip < ActiveRecord::Base
   after_commit :add_first_companion
   after_commit :check_today_or_weekend_departing
   after_commit :backfill_departing_category
+  after_commit :check_privacy, on: :create
   
   STATES = {"1" => "incomplete", "2" => "accepting travelers", "3" => "private", "4" => "inactive", "5" => "complete", "6" => "in progress", "7" => "no user"}
-  STATES_ARRAY = [["seeking travel companions", "2"],["private trip (invite only)", "3"]]
+  STATES_ARRAY = [["Seeking travel companions", "2"],["Private trip (invite only)", "3"]]
   GROUP_DYNAMICS = {"1" => "Female Or Male Travel Companions", "2" => "Female Travel Companions", "3" => "Male Travel Companions", "4" => "Couples" }
   GROUP_DYNAMICS_ARRAY = [["travel companion(s)", "1"], ["female travel companion(s)", "2"], ["male travel companion(s)", "3"], ["traveling couple(s)", "4"]]
   GROUP_COUNT_ARRAY = [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["1-5", "10"], ["6-10", "6"], ["11-15", "7"], 
@@ -113,6 +115,13 @@ class Trip < ActiveRecord::Base
   def self.tag_counts
     Tag.select("tags.*, count(taggings.tag_id) as count").
       joins(:taggings).group("taggings.tag_id")
+  end
+  
+  def check_privacy
+    if self.state == "3"
+      self.private = true
+      self.save
+    end
   end
 
   def tag_list
@@ -246,10 +255,6 @@ class Trip < ActiveRecord::Base
   
   def public?
     self.state == "2" ? true : false
-  end
-  
-  def private?
-    self.state == "3" ? true : false
   end
   
   def inactive?

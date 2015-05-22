@@ -1,0 +1,23 @@
+<div class="modal fade" id="tripInvitationsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title" id="myModalLabel">Invite Friends To Join Your Trip</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div id="invitations">
+							<%= render @invitations %>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div id="invitation-form"><%= render "invitations/form" %></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+    </div>
+  </div>
+</div>

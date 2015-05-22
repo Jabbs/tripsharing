@@ -1,0 +1,28 @@
+<div class="dots-white" style="padding-top:10px;padding-bottom:10px; margin-top:10px;">
+	<%= form_for [@trip, @invitation], html: { id: "new_invitation_form"}, remote: true do |f| %>
+		<div class="row small-top-margin">
+			<div class="col-md-12">
+				<div class="center big salmon"><strong>Invite a friend...</strong></div>
+			</div>
+		</div>
+		<hr>
+		<div class="row small-bottom-margin">
+			<div class="col-md-5">
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2"><i class='fa fa-user' style="padding-left:2px;padding-right:1px;"></i></span>
+					<input name="invitation[name]" aria-describedby="sizing-addon1" type="text" class="form-control" id="invitation_name" placeholder="Jane Doe" style="width:100%;" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+				  <span class="input-group-addon" id="sizing-addon2"><span style="padding-left:2px;padding-right:1px;">@</span></span>					
+					<input type="email" aria-describedby="sizing-addon3" style="padding-left:12px;" class="form-control" id="invitation_email" placeholder="janedoe@gmail.com" name="invitation[email]" autocomplete="off" required>				  
+				</div>
+			</div>
+			<div class="col-md-1">
+				<%= f.submit "ADD".html_safe, class: "btn btn-salmon", style: "width:100%" %>
+			</div>
+		</div>
+
+	<% end %>
+</div>
