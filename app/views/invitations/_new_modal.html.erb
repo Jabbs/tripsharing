@@ -2,19 +2,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
 			<div class="modal-header">
-			  <h4 class="modal-title" id="myModalLabel">Invite Friends To Join Your Trip</h4>
+			  <h4 class="modal-title big" id="myModalLabel"><i class="fa fa-group"></i> Invite Friends!</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-12">
-						<div id="invitations">
-							<%= render @invitations %>
-						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div id="invitation-form"><%= render "invitations/form" %></div>
 							</div>
 						</div>
+						<div id="invitations">
+							<%= render @invitations %>
+						</div>
+					</div>
+				</div>
+				<div class="row top-margin">
+					<div class="col-md-12">
+						<%= link_to "<i class='fa fa-envelope'></i> Send Invitations".html_safe, "", class: "btn btn-lg btn-salmon btn-block" %>
 					</div>
 				</div>
 			</div>

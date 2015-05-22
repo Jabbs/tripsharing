@@ -1,18 +1,23 @@
 <div id="<%= invitation.id %>-invitation" class="invitation">
 	<div class="row">
-		<div class="col-md-2">
-			<%= invitation.name %>
-		</div>
-		<div class="col-md-5">
-			<%= invitation.email %>
-		</div>
-		<div class="col-md-4">
-			Status: <%= invitation.sent_at.nil? ? "unsent" : "<i class='fa fa-checkmark'></i> sent" %>
-		</div>
 		<div class="col-md-1">
-			<%= link_to [@trip, invitation], remote: true, method: :delete, class: "grey-link" do %>
-			  <i class='fa fa-trash'></i>
-			<% end %>
+			<%= user_image(invitation.user, "30x30") %>
+		</div>
+		<div class="col-md-1" style="margin-top:4px;">
+			<div class="center">
+				<i class="fa fa-arrow-right"></i>
+			</div>
+		</div>
+		<div class="col-md-8" style="margin-top:4px;">
+			<%= invitation.email %>
+			(<%= invitation.name %>)
+		</div>
+		<div class="col-md-2" style="margin-top:4px;">
+			<div class="pull-right">
+				<%= link_to [@trip, invitation], remote: true, method: :delete, class: "grey-link" do %>
+				  <i class='fa fa-trash'></i>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

@@ -30,7 +30,7 @@ module UsersHelper
     return image_tag(img_path, class: "profile-pic img-responsive", size: size, title: user.full_name).to_s
   end
   
-  def user_image(user)
+  def user_image(user, size="50x50")
     if user.image_attachments.count != 0 
       img_path = image_path(user.image_attachments.last.image.url(:thumb)).to_s 
     elsif user.fb_image.present? 
@@ -38,7 +38,7 @@ module UsersHelper
     else
       img_path = "default_profile_image.png"
 		end
-    return image_tag(img_path, class: "image", title: user.full_name, size: "50x50") 
+    return image_tag(img_path, class: "image", title: user.full_name, size: size) 
   end
   
   def user_details(user)
