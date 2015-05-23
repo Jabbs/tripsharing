@@ -4,7 +4,7 @@
 		<% when "O", "Q" %>
 			<% user = notification.notificationable %>
 			<%= link_to user do %>
-				<%= user_image(user) %>
+				<%= user_image(user, "50x50", user.full_name) %>
 			<% end %>
 		<% when "H" %>
 			<% join_request = notification.notificationable %>

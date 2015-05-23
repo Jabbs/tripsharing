@@ -2,26 +2,29 @@
   <div class="modal-dialog">
     <div class="modal-content">
 			<div class="modal-header">
-			  <h4 class="modal-title big" id="myModalLabel"><i class="fa fa-group"></i> Invite Friends!</h4>
+			  <h4 class="modal-title big" id="myModalLabel"><i class="fa fa-group"></i> Invitations to Join: <%= @trip.name %></h4>
 			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-12">
-								<div id="invitation-form"><%= render "invitations/form" %></div>
-							</div>
-						</div>
-						<div id="invitations">
-							<%= render @invitations %>
-						</div>
+			<div class="modal-body" style="padding-bottom:0px;">
+				
+				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+			    <ul id="myTab" class="nav nav-tabs" role="tablist">
+			      <li role="presentation" class="active"><a href="#new-invitations" id="new-invitations-tab" role="tab" data-toggle="tab" aria-controls="new-invitations" aria-expanded="true">New</a></li>
+			      <li role="presentation" class=""><a href="#sent-invitations" role="tab" id="sent-invitations-tab" data-toggle="tab" aria-controls="sent-invitations" aria-expanded="false">Sent</a></li>
+			    </ul>
+				  <div class="tab-content">
+			      <div role="tabpanel" class="tab-pane fade active in" id="new-invitations" aria-labelledby="new-invitations-tab">
+			        <%= render 'invitations/new' %>
+			      </div>
+			      <div role="tabpanel" class="tab-pane fade" id="sent-invitations" aria-labelledby="sent-invitations-tab">
+			        <%= render "invitations/sent" %>
+			      </div>
 					</div>
 				</div>
-				<div class="row top-margin">
-					<div class="col-md-12">
-						<%= link_to "<i class='fa fa-envelope'></i> Send Invitations".html_safe, "", class: "btn btn-lg btn-salmon btn-block" %>
-					</div>
-				</div>
+				
+			
+			
+			
+			
 			</div>
     </div>
   </div>

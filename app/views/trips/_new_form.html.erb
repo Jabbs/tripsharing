@@ -1,9 +1,6 @@
 <%= form_for @new_trip, html: {class: "form-fancy"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
-	<div class="row small-bottom-margin">
-		<label class="col-md-2 right" style="margin-top:8px;">Type:</label>
-	  <%= f.select :state, Trip::STATES_ARRAY %>
-	</div>
+
 	<div class="row small-bottom-margin">
 		<label class="col-md-2 right" style="margin-top:8px;">Where?:</label>
 	  <%= f.select :region, Trip::REGIONS_ARRAY %>

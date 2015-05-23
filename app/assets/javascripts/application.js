@@ -55,6 +55,13 @@ $('document').ready(function() {
 	  $(this).tab('show');
 	});
 	
+	$(".user-image").mouseenter(function() {
+		$(this).parent().siblings('.no-height').removeClass("hide");
+	});
+	$(".user-with-box").mouseleave(function() {
+		$(this).children('.no-height').addClass("hide");
+	});
+	
 	$(".sidebar_list_item").click(function() {
 		var url = $(this).find("a").attr('href');
 		if (url) {window.location = url};

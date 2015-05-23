@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-md-1">
 					<%= link_to join_request.user do %>
-						<%= user_image(join_request.user) %>
+						<%= user_image(join_request.user, "50x50", join_request.user.full_name) %>
 					<% end %>
 				</div>
 				<div class="col-md-3"><%= user_details(join_request.user) %></div>

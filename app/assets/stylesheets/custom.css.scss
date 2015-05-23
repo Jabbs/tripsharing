@@ -909,6 +909,18 @@ a.grey-very-dark-link {
 	padding:5px;
 	&:hover {cursor:pointer; background: $salmon; color: $white;}
 }
+.user-with-box {
+	width:120px;
+}
+.user-box {
+	position:relative;
+	z-index: 100;
+	width:120px; 
+	border: 1px solid $grey_dark; 
+	padding: 10px;
+	background: $white;
+	@include rounded_borders;
+}
 
 .search-bar {
 	position:relative;
@@ -928,6 +940,9 @@ a.grey-very-dark-link {
 
 .trip-details-bar {
 	background: lighten($grey_light, 10%);
+}
+.trip-private-bar {
+	background: $grey_light;
 }
 
 .tag {

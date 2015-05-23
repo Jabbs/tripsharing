@@ -10,7 +10,7 @@
 					<div class="col-md-2"><div class="pull-right">Organizer:</div></div>
 					<div class="col-md-1">
 						<%= link_to trip.user do %>
-							<%= user_image(trip.user) %>
+							<%= user_image(trip.user, "50x50", trip.user.full_name) %>
 						<% end %>
 					</div>
 					<div class="col-md-8"><%= user_details(trip.user) %></div>
@@ -42,7 +42,7 @@
 				<hr style="margin-bottom:20px;">
 				<div class="row">
 					<div class="col-md-2">
-						<div class="pull-right"><%= user_image(current_user) %></div>
+						<div class="pull-right"><%= user_image(current_user, "50x50", current_user.full_name) %></div>
 					</div>
 					<div class="col-md-9">
 						<%= render "join_requests/form", trip: trip %>

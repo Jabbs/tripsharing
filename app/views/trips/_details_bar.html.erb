@@ -5,15 +5,7 @@
 				<%= render "trips/organizer" if @trip.user %>
 			</div>
 			<div class="col-md-6" style="border-left:1px solid rgb(213, 215, 214); border-right:1px solid rgb(213, 215, 214); min-height:80px;">
-				<% if @trip.active? && @trip.private? %>
-					<div class="center" style="margin-top:16px;">
-						<a href="#" type="button" data-toggle="modal" data-target="#tripInvitationsModal" class="btn btn-default btn-lg btn-block">
-							<i class="fa fa-group" style="margin-right:5px;"></i> Invite Friends
-						</a>
-					</div>
-				<% else %>
-					<%= render "trips/seeking" %>
-				<% end %>
+				<%= render "trips/seeking" %>
 			</div>
 			<div class="col-md-3" style="padding-top:16px;">
 				<% if current_user && @trip.active? && !current_user?(@trip.user) %>

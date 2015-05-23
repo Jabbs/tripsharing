@@ -1,7 +1,7 @@
 <div class="row bottom-margin center">
 	<div class="col-md-3 col-md-offset-1">
 		<%= link_to @trip.user do %>
-			<%= user_image(@trip.user) %>
+			<%= user_image(@trip.user, "50x50", @trip.user.full_name) %>
 		<% end %>
 	</div>
 	<div class="col-md-7" style="padding-top:5px;">

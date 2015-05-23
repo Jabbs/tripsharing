@@ -2,11 +2,11 @@
 	<div class="col-md-1 col-sm-2">
 		<% if type == "sent" %>
 			<%= link_to message.receiver do %>
-				<%= user_image(message.receiver) %>
+				<%= user_image(message.receiver, "50x50", message.receiver.full_name) %>
 			<% end %>
 		<% else %>
 			<%= link_to message.sender do %>
-				<%= user_image(message.sender) %>
+				<%= user_image(message.sender, "50x50", message.sender.full_name) %>
 			<% end %>
 		<% end %>
 	</div>

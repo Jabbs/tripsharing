@@ -1,1 +1,4 @@
 $('#invitations').html("<%= j (render @invitations) %>");
+<% if @invitations.size == 0 %>
+	$("#send-invites").addClass("disabled");
+<% end %>

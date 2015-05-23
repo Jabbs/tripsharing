@@ -1,7 +1,7 @@
 <div id="<%= invitation.id %>-invitation" class="invitation">
 	<div class="row">
 		<div class="col-md-1">
-			<%= user_image(invitation.user, "30x30") %>
+			<%= user_image(invitation.user, "30x30", invitation.user.full_name) %>
 		</div>
 		<div class="col-md-1" style="margin-top:4px;">
 			<div class="center">

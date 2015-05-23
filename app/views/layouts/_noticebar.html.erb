@@ -31,7 +31,7 @@
 						<li>
 			        <a href="<%= user_path(user) %>" class="noticebar-item">
 			          <span class="noticebar-item-image">
-									<%= user_image(user) %>
+									<%= user_image(user, "50x50", user.full_name) %>
 			          </span>
 
 			          <span class="noticebar-item-body">
@@ -60,7 +60,7 @@
 						<li>
 			        <a href="<%= user_path(user) %>" class="noticebar-item">
 			          <span class="noticebar-item-image">
-									<%= user_image(user) %>
+									<%= user_image(user, "50x50", user.full_name) %>
 			          </span>
 
 			          <span class="noticebar-item-body">
@@ -124,7 +124,7 @@
 					<li>
 		        <a href="<%= path %>" class="noticebar-item">
 		          <span class="noticebar-item-image">
-								<%= user_image(new_item.user) %>
+								<%= user_image(new_item.user, "50x50", new_item.user.full_name) %>
 		          </span>
 
 		          <span class="noticebar-item-body">

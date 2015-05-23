@@ -9,8 +9,12 @@
 <% end %>
 
 <div class="container-fluid">
-	<%= render "trips/details_bar" %>
-	<%= render "trips/action_bar" %>
+	<% if @trip.private? %>
+		<%= render "trips/private_bar" %>
+	<% else %>
+		<%= render "trips/details_bar" %>
+		<%= render "trips/action_bar" %>
+	<% end %>
 </div>
 
 <% if current_user && current_user == @trip.user %>
