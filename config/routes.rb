@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   match 'viewed_notification_badges', to: 'view_badges#viewed_notification_badges', via: [:put]
   resources :surveys, only: [:create]
   resources :trips do
+    get 'user_signup'
     get 'details'
     resources :invitations
     resources :followings, only: [:create, :destroy]

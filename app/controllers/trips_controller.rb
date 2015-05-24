@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :signed_in_user, except: [:show, :details, :create, :update, :filter]
+  before_filter :signed_in_user, except: [:show, :details, :create, :update, :filter, :user_signup]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
   before_filter :correct_user, only: [:edit, :remove_images]
   before_filter :correct_user_update_if_user, only: [:update]
@@ -24,6 +24,12 @@ class TripsController < ApplicationController
       @trips = @user.trips
     end
     @join_request = JoinRequest.new
+  end
+  
+  def user_signup
+    @session_user = User.new
+    @user = User.new
+    @trip = Trip.friendly.find(cookies[:trip_id])
   end
   
   def lonelyplanet
@@ -135,11 +141,12 @@ class TripsController < ApplicationController
           @trip.switch_to_state("2")
           track_activity @trip, "activated"
           UserMailer.delay.trip_new_email(@trip.user, @trip.user.verification_token, @trip)
+          redirect_to @trip
         else
           cookies[:trip_id] = @trip.id
           @trip.switch_to_state("7")
+          redirect_to trip_user_signup_path(@trip)
         end
-        redirect_to @trip
       else
         redirect_to @trip, notice: 'Trip successfully updated.'
       end

@@ -24,8 +24,12 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div style="height:50px; overflow:hidden;" class="heavy">
-					<%= link_to trip.user, class: "no-decoration" do %>
-						<%= user_image(trip.user, "50x50", trip.user.full_name) %>
+					<% if trip.user.present? %>
+						<%= link_to trip.user, class: "no-decoration" do %>
+							<%= user_image(trip.user, "50x50", trip.user.full_name) %>
+						<% end %>
+					<% else %>
+						<%= image_tag("default_profile_image.png", class: "image user-image", size: "50x50") %>
 					<% end %>
 
 					<% if trip.incomplete? %>

@@ -8,10 +8,10 @@
 			</div>
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
+					<div class="visible-sm-inline visible-md-inline visible-lg-inline">
+						<%= render "trips/new_form2" %>
+					</div>
 					<% unless current_user %>
-						<div class="visible-sm-inline visible-md-inline visible-lg-inline">
-							<%= render "trips/new_form2" %>
-						</div>
 						<a href="/auth/facebook" id="sign_in" class="btn btn-facebook btn-lg visible-xs" style="width:100%;">
 							<i class='fa fa-facebook' style="padding-right:4px;"></i> Log in with Facebook
 						</a>

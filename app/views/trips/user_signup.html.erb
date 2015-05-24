@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<div class="row" style="margin-top:80px;">
+		<div class="col-md-3 col-md-offset-2">
+			<%= render "trips/trip", trip: @trip %>
+		</div>
+		<div class="col-md-3 col-md-offset-2">
+			<div class="center" style="margin-top:80px;margin-bottom:20px;font-size:150%;">to continue...</div>
+			<a href="/auth/facebook" id="sign_in" class="btn btn-facebook btn-lg" style="width:100%;">
+				<i class='fa fa-facebook' style="padding-right:4px;"></i> Sign up with Facebook
+			</a>
+			<div class="center" style="margin-top:10px;margin-bottom:10px; font-size:150%;">or</div>
+			<a href="#" type="button" data-toggle="modal" data-target="#signinModal" class="btn btn-lg btn-default signup-link btn-block">
+				Sign up
+			</a>
+
+		</div>
+	</div>
+</div>
