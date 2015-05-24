@@ -2,3 +2,14 @@ $("#trip-list").html("<%= escape_javascript(render partial:'trips/trips', locals
 <% if @trip_count == 0 %>
 	$("#trips-none-found").show();
 <% end %>
+
+// not sure why but this had to be re-rendered here
+// even though its already in application.js
+$(".user-with-box .user-image").mouseenter(function() {
+	$(this).parent().siblings('.no-height').removeClass("hide");
+	$(this).addClass("grey-image-border");
+});
+$(".user-with-box").mouseleave(function() {
+	$(this).children('.no-height').addClass("hide");
+	$(".user-image").removeClass("grey-image-border");
+});
