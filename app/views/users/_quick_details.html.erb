@@ -12,9 +12,9 @@
 					<%= user_profile_image(user, "large") %>
 				<% end %>
 			</div>
-			<h4 class="center"><%= user.first_name %></h4>
-			<div style="padding:20px 5px 10px 30px; font-size: 12px;">
-				<% if user.interest_blob.present? %>
+			<h4 class="center"><%= user.first_name %></h4>			
+			<% if user.interest_blob.present? %>
+				<div style="padding:20px 5px 10px 30px; font-size: 12px;">
 					<% user.interest_blob.split(",").each do |b| %>
 						<% i = b.split("-") %>
 						<% unless i[1] == "0" %>
@@ -25,12 +25,13 @@
 							</div>
 						<% end %>
 					<% end %>
-				<% else %>
-					<div class="center">
-						<em>no travel preferences.</em>
-					</div>
-				<% end %>
-			</div>
+				</div>
+			<% else %>
+				<div class="center" style="font-size: 12px; padding:20px 0px 10px 0px;">
+					<em>no travel preferences.</em>
+				</div>
+			<% end %>
+			
 
 			<% if current_user %>
 				<%= render "users/relationships/forms", user: user %>
