@@ -42,6 +42,7 @@ gem 'language_list', '~> 1.1.0'
 gem 'countries'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'nprogress-rails'
 
 group :development do
   gem 'letter_opener'

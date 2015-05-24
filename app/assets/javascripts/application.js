@@ -18,6 +18,8 @@
 //= require scrollReveal
 //= require jquery.countdown
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
 
 
@@ -146,3 +148,4 @@ function PreviewImage() {
     document.getElementById("uploadPreview").src = oFREvent.target.result;
   };
 };
+

@@ -10,5 +10,7 @@
  *
  *= require_self
  *= require bootstrap.min
+ *= require nprogress
+ *= require nprogress-bootstrap
  *= require_tree .
  */
