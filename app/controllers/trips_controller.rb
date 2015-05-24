@@ -60,6 +60,7 @@ class TripsController < ApplicationController
     unless current_user.admin?
       @trips = @trips.where("group_age_min <= ?", current_user.age).where("group_age_max >= ?", current_user.age)
     end
+    @trips = @trips.paginate(page: params[:page], per_page: 15)
     @join_request = JoinRequest.new
   end
   
@@ -81,6 +82,7 @@ class TripsController < ApplicationController
       @trips = @trips.last(limit.to_i)
     end
     
+    @trips = @trips.paginate(page: params[:page], per_page: 15)
     @join_request = JoinRequest.new
     @trip_count = @trips.size
     respond_to do |format|

@@ -8,6 +8,7 @@ $('document').ready(function() {
 	  $('.loading-spinner').show();
 		$('#trip-list').hide();
 		$('#trips-none-found').hide();
+		$('#trips-pagination').hide();
 	}).bind( 'ajax:complete', function() {
 	  $('.loading-spinner').hide();
 		$('#trip-list').show();
