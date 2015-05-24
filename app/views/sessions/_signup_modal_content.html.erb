@@ -9,20 +9,11 @@
 	</div>
 	<hr>
 
-	<% if @trip && @trip.userless? %>
-		<div class="row">
-			<div class="col-md-12">
-				<a href="/" class="btn btn-danger btn-lg" style="width:100%;">
-					<i class='fa fa-remove'></i> Cancel And Remove Trip
-				</a>
-			</div>
+	<div class="row">
+		<div class="col-md-12">
+			Already a member?
+			<%= link_to "Log in", "#", class: "login-link" %>
 		</div>
-	<% else %>
-		<div class="row">
-			<div class="col-md-12">
-				Already a member?
-				<%= link_to "Log in", "#", class: "login-link" %>
-			</div>
-		</div>
-	<% end %>
+	</div>
+
 </div>

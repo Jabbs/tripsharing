@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_filter :signed_in_user, except: [:show, :details, :create, :update, :filter, :user_signup]
+  before_filter :no_signed_in_users, only: [:user_signup]
   before_filter :admin_user, only: [:lonelyplanet, :airports]
   before_filter :correct_user, only: [:edit, :remove_images]
   before_filter :correct_user_update_if_user, only: [:update]
@@ -29,7 +30,7 @@ class TripsController < ApplicationController
   def user_signup
     @session_user = User.new
     @user = User.new
-    @trip = Trip.friendly.find(cookies[:trip_id])
+    @trip = Trip.friendly.find(params[:trip_id])
   end
   
   def lonelyplanet
@@ -247,6 +248,10 @@ class TripsController < ApplicationController
         @trip = Trip.friendly.find(id)
         redirect_to root_path unless current_user == @trip.user
       end
+    end
+    
+    def no_signed_in_users
+      redirect_to root_path if current_user
     end
     
     def redirect_inactive_trip

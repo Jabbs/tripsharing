@@ -1,7 +1,10 @@
 <div class="container-fluid">
-	<div class="row" style="margin-top:80px;">
+	<div class="row" style="margin-top:80px; margin-bottom:100px;">
 		<div class="col-md-3 col-md-offset-2">
 			<%= render "trips/trip", trip: @trip %>
+			<a href="/" class="btn btn-danger" style="width:100%; margin-top:0px; position:relative; top:-40px;">
+				<i class='fa fa-remove'></i> Cancel And Remove Trip
+			</a>
 		</div>
 		<div class="col-md-3 col-md-offset-2">
 			<div class="center" style="margin-top:80px;margin-bottom:20px;font-size:150%;">to activate your trip...</div>
@@ -12,7 +15,6 @@
 			<a href="#" type="button" data-toggle="modal" data-target="#signinModal" class="btn btn-lg btn-default signup-link btn-block">
 				Sign up
 			</a>
-
 		</div>
 	</div>
 </div>
