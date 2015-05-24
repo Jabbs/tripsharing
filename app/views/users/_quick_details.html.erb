@@ -1,0 +1,40 @@
+<div class="user-with-box">
+	<%= link_to user, class: "no-decoration" do %>
+		<%= user_image(user) %>
+	<% end %>
+	<div class="no-height hide">
+		<div class="user-box">
+			<div class="center no-height">
+				<%= image_tag("triangle.png", style: "position:relative; top:-39px;z-index:101;") %>
+			</div>
+			<div class="center">
+				<%= link_to user do %>
+					<%= user_profile_image(user, "large") %>
+				<% end %>
+			</div>
+			<h4 class="center"><%= user.first_name %></h4>
+			<div style="padding:5px;">
+				<% if user.interest_blob.present? %>
+					<% user.interest_blob.split(",").each do |b| %>
+						<% i = b.split("-") %>
+						<% unless i[1] == "0" %>
+							<% preference = User::INTERESTS[i[0]] %>
+							<% m = preference["margins"].split("-") %>
+							<div class="small-bottom-margin">
+								<i class="fa fa-<%= preference["icon"] %>" style="margin-left:<%= m[0] %>px;margin-right:<%= m[1] %>px;" title="<%= preference["name"] %>"></i> <%= preference["attrs"][i[1]] %>
+							</div>
+						<% end %>
+					<% end %>
+				<% end %>
+			</div>
+
+			<% if current_user %>
+				<%= render "users/relationships/forms", user: user %>
+			<% else %>
+				<%= render "join_requests/fake_join_btn", btn_size: "btn-primary btn-sm btn-block", join_text: "Follow" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>
+

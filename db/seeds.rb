@@ -87,7 +87,7 @@ end
   stop_date = departs_at
   rand(2..7).times do
     to_date = stop_date
-    trip.stops.create!(to_name: Faker::Address.city, to_name_dest: Faker::Address.city, to_date: to_date)
+    Stop.create!(trip_id: trip.id, to_name: Faker::Address.city, to_name_dest: Faker::Address.city, to_date: to_date)
     stop_date = stop_date + rand(1..3).days
   end
   

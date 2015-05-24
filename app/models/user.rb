@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     "2" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
     "3" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
     "4" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Often"}},
-    "5" => {"name" => "Budget", "icon" => "money", "margins" => "0-21", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}}
+    "5" => {"name" => "Budget", "icon" => "money", "margins" => "1-20", "attrs" => {"1" => "Budget: $", "2" => "Budget: $$", "3" => "Budget: $$$"}}
   }
   INTERESTS_ARRAY = [
     ["lodging", "1", [["hotels", "1"], ["hostels", "2"], ["with locals", "3"], ["any", "4"]] ],

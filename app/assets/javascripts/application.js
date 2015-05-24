@@ -59,9 +59,11 @@ $('document').ready(function() {
 	
 	$(".user-image").mouseenter(function() {
 		$(this).parent().siblings('.no-height').removeClass("hide");
+		$(this).addClass("grey-image-border");
 	});
 	$(".user-with-box").mouseleave(function() {
 		$(this).children('.no-height').addClass("hide");
+		$(".user-image").removeClass("grey-image-border");
 	});
 	
 	$(".sidebar_list_item").click(function() {

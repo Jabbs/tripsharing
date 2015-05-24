@@ -22,15 +22,15 @@
 	</div>
 	<div class="trip-well-body">
 		<div class="row">
-			<div class="col-md-12">
-				<div style="height:50px; overflow:hidden;" class="heavy">
-					<% if trip.user.present? %>
-						<%= link_to trip.user, class: "no-decoration" do %>
-							<%= user_image(trip.user, "50x50", trip.user.full_name) %>
-						<% end %>
-					<% else %>
-						<%= image_tag("default_profile_image.png", class: "image user-image", size: "50x50") %>
-					<% end %>
+			<div class="col-md-3" style="padding-left:18px;">
+				<% if trip.user.present? %>
+					<%= render "users/quick_details", user: trip.user %>
+				<% else %>
+					<%= image_tag("default_profile_image.png", class: "image user-image", size: "50x50") %>
+				<% end %>
+			</div>
+			<div class="col-md-9">
+				<div style="height:50px;" class="heavy">
 
 					<% if trip.incomplete? %>
 						<span class="big">INCOMPLETE</span>

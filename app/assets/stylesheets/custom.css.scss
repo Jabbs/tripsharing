@@ -6,23 +6,6 @@ $linkColor: #686868;
 
 //@import "bootstrap-responsive";
 
-/* MIXINS */
-
-@mixin rounded_borders {
-	 -webkit-border-radius: 5px;
-	    -moz-border-radius: 5px;
-	         border-radius: 5px;
-}
-
-@mixin rounded_top_borders {
-	 -webkit-border-top-right-radius: 15px;
-	    -moz-border-top-right-radius: 15px;
-	         border-top-right-radius: 15px;
-	 -webkit-border-top-left-radius: 15px;
-	    -moz-border-top-left-radius: 15px;
-	         border-top-left-radius: 15px;
-}
-
 /* Colors, Misc */
 
 $beige: #EFEDE2;
@@ -56,10 +39,26 @@ $dark_blue: #0f294a;
 $light_orange: #ffc62c;
 $body_grey: #4a4a4a;
 
+/* MIXINS */
+
+@mixin rounded_borders {
+	 -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
+	         border-radius: 5px;
+}
+
 @mixin rounded_border {
 	 -webkit-border-radius: 5px;
 	    -moz-border-radius: 5px;
 	         border-radius: 5px;
+}
+@mixin rounded_top_borders {
+	 -webkit-border-top-right-radius: 15px;
+	    -moz-border-top-right-radius: 15px;
+	         border-top-right-radius: 15px;
+	 -webkit-border-top-left-radius: 15px;
+	    -moz-border-top-left-radius: 15px;
+	         border-top-left-radius: 15px;
 }
 @mixin really_rounded_border {
 	 -webkit-border-radius: 15px;
@@ -73,6 +72,12 @@ $body_grey: #4a4a4a;
   -webkit-transition:.4s;
   /* ...and now for the proper property */
   transition:.4s;
+}
+
+@mixin box_shadow {
+	-moz-box-shadow: 3px 3px 2px $grey_dark;
+  -webkit-box-shadow: 3px 3px 2px $grey_dark;
+	box-shadow: 3px 3px 2px $grey_dark;
 }
 
 .beige { color: $beige;}
@@ -910,16 +915,20 @@ a.grey-very-dark-link {
 	&:hover {cursor:pointer; background: $salmon; color: $white;}
 }
 .user-with-box {
-	width:120px;
+	width:50px;
 }
 .user-box {
+	h4 {margin-top:0px;}
 	position:relative;
 	z-index: 100;
-	width:120px; 
-	border: 1px solid $grey_dark; 
+	top: 14px;
+	left: -75px;
+	width: 200px;
 	padding: 10px;
 	background: $white;
+	border: 1px solid $grey_dark;
 	@include rounded_borders;
+	@include box_shadow;
 }
 
 .search-bar {
@@ -986,6 +995,8 @@ a.active_tag { background: $salmon; @include rounded_borders; color: $white; }
 	-moz-border-radius: 5em;
 	border-radius: 5em;
 }
+.grey-image-border {border: 2px solid $grey_dark;}
+
 i.social-circle {
   display: inline-block;
 	font-size: 200%;

@@ -1,1 +1,1 @@
-$("#follow_form").html("<%= escape_javascript(render('users/relationships/follow')) %>")
+$("#follow_form").html("<%= escape_javascript(render('users/relationships/follow', user: @user)) %>")

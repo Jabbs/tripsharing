@@ -6,7 +6,7 @@
 </div>
 <div style="margin-bottom:15px;">
 	<% if current_user %>
-		<%= render "users/relationships/forms" %>
+		<%= render "users/relationships/forms", user: @user %>
 	<% else %>
 		<%= render "join_requests/fake_join_btn", btn_size: "btn-primary btn-sm btn-block", join_text: "Follow" %>
 	<% end %>
