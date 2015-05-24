@@ -918,9 +918,9 @@ a.grey-very-dark-link {
 	width:50px;
 }
 .user-box {
-	h4 {margin-top:0px;}
+	h4 {margin-bottom:0px;margin-top:10px;}
 	position:relative;
-	z-index: 100;
+	z-index: 10;
 	top: 14px;
 	left: -75px;
 	width: 200px;

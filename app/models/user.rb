@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   #   find and replace "monkey" with: "
   
   INTERESTS = {
-    "1" => {"name" => "Lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "Staying With Locals", "4" => "Any"}},
+    "1" => {"name" => "Lodging", "icon" => "building", "margins" => "2-22", "attrs" => {"1" => "Hotels", "2" => "Hostels", "3" => "With Locals", "4" => "Any"}},
     "2" => {"name" => "Rooming", "icon" => "hotel", "margins" => "0-20", "attrs" => {"1" => "Own Room", "2" => "Open to Sharing", "3" => "Prefer Sharing", "4" => "Any"}},
     "3" => {"name" => "Food", "icon" => "cutlery", "margins" => "2-23", "attrs" => {"1" => "Picky", "2" => "Typical Eating", "3" => "Adventerous"}},
     "4" => {"name" => "Drinking", "icon" => "glass", "margins" => "1-21", "attrs" => {"1" => "Never", "2" => "Rarely", "3" => "Socially", "4" => "Often"}},

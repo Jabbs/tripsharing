@@ -7,13 +7,13 @@
 			<div class="center no-height">
 				<%= image_tag("triangle.png", style: "position:relative; top:-39px;z-index:101;") %>
 			</div>
-			<div class="center">
+			<div class="col-centered col-md-12">
 				<%= link_to user do %>
 					<%= user_profile_image(user, "large") %>
 				<% end %>
 			</div>
 			<h4 class="center"><%= user.first_name %></h4>
-			<div style="padding:5px;">
+			<div style="padding:20px 5px 10px 30px; font-size: 12px;">
 				<% if user.interest_blob.present? %>
 					<% user.interest_blob.split(",").each do |b| %>
 						<% i = b.split("-") %>
@@ -25,6 +25,10 @@
 							</div>
 						<% end %>
 					<% end %>
+				<% else %>
+					<div class="center">
+						<em>no travel preferences.</em>
+					</div>
 				<% end %>
 			</div>
 

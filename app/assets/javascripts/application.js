@@ -57,7 +57,7 @@ $('document').ready(function() {
 	  $(this).tab('show');
 	});
 	
-	$(".user-image").mouseenter(function() {
+	$(".user-with-box .user-image").mouseenter(function() {
 		$(this).parent().siblings('.no-height').removeClass("hide");
 		$(this).addClass("grey-image-border");
 	});

@@ -8,7 +8,7 @@ module UsersHelper
   	end
   end
   
-  def user_profile_image(user, size)
+  def user_profile_image(user, size, title=nil)
     case size
     when "normal"
       size = "110x110"
@@ -27,7 +27,7 @@ module UsersHelper
     else 
       img_path = "default_profile_image.png" 
     end 
-    return image_tag(img_path, class: "profile-pic img-responsive", size: size, title: user.full_name).to_s
+    return image_tag(img_path, class: "profile-pic img-responsive", size: size, title: title).to_s
   end
   
   def user_image(user, size="50x50", title=nil)
