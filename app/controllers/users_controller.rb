@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # before_filter :check_complete_interests, only: [:profile]
   
   def show
-    @user = User.friendly.find(params[:id].to_s)
+    @user = User.find_by_number_id(params[:id].to_s)
     set_trips_counts(@user)
     @shared_likes = []; @mutual_friends = []
     # @graph = Koala::Facebook::API.new(@user.oauth_token, ENV["FACEBOOK_SECRET"]) if @user.oauth_token
