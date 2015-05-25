@@ -25,7 +25,7 @@ module UsersHelper
     elsif user.fb_image.present? 
       img_path = "#{user.fb_image}" + "?type=#{fb_type}" 
     else 
-      img_path = "default_profile_image.png" 
+      img_path = "default_profile_image.png"
     end 
     return image_tag(img_path, class: "profile-pic img-responsive", size: size, title: title).to_s
   end

@@ -33,7 +33,7 @@ $('document').ready(function() {
 		templates: {
         suggestion: function (user) {
 					if (user.fb_image == "null") {
-						var src = '/assets/default_profile_image.png';
+						var src = "<%= image_path('default_profile_image.png') %>";
 					} else {
 						var src = user.fb_image;
 					};
