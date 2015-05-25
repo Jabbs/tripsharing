@@ -206,6 +206,10 @@ class Trip < ActiveRecord::Base
     end
   end
   
+  def add_companion(user)
+    self.companionings.create!(user_id: user.id, role: "1")
+  end
+  
   def add_default_image
     self.default_image = Trip::IMAGE_REGION_DEFAULTS[region].shuffle.first
     self.save

@@ -1,0 +1,45 @@
+$('document').ready(function() {
+
+	var user_objects = <%= User.all.to_json %>
+
+	var user_strings = [];
+	for(var i = 0; i < user_objects.length; i++) {
+    var name = user_objects[i].first_name + " " + user_objects[i].last_name;
+		var number_id = user_objects[i].number_id;
+		var fb_image = user_objects[i].fb_image;
+		string = name + "-" + number_id + "|" + fb_image
+	  user_strings.push(string);
+	}
+
+	var users = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  limit: 10,
+	  local: $.map(user_strings, function(user) { return { name: user.split("|")[0].split("-")[0], number_id: user.split("|")[0].split("-")[1], fb_image: user.split("|")[1] }; })
+	});
+
+	// kicks off the loading/processing of `local` and `prefetch`
+	users.initialize();
+
+	// passing in `null` for the `options` arguments will result in the default
+	// options being used
+	$('.prefetch .user-typeahead').typeahead(null, {
+	  name: 'users',
+	  displayKey: 'name',
+	  // `ttAdapter` wraps the suggestion engine in an adapter that
+	  // is compatible with the typeahead jQuery plugin
+	  source: users.ttAdapter(),
+
+		templates: {
+        suggestion: function (user) {
+					if (user.fb_image == "null") {
+						var src = '/assets/default_profile_image.png';
+					} else {
+						var src = user.fb_image;
+					};
+          return "<a class='grey-dark-link' href='/members/" + user.number_id + "'><img style='margin-right:10px;' height='30' width='30' src=" + src + "></img>" + user.name + '</a>';
+        }
+    }
+	});
+
+});

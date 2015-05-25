@@ -73247,7 +73247,7 @@ $('document').ready(function() {
 
 	// passing in `null` for the `options` arguments will result in the default
 	// options being used
-	$('.prefetch .typeahead').typeahead(null, {
+	$('.prefetch .airport-typeahead').typeahead(null, {
 	  name: 'airports',
 	  displayKey: 'name',
 	  // `ttAdapter` wraps the suggestion engine in an adapter that

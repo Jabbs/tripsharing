@@ -45,7 +45,15 @@
 					<%= render "trips/trip_new_modal" %>
 				<% end %>
 				<% if current_user %>
+
 					<%= link_to "<i class='fa fa-list' style='margin-right:4px;'></i> Browse".html_safe, trips_path, class: "btn btn-default",  style: "margin-top:10px;margin-left:10px; border:none;" %>
+
+					<div class="col-md-3 pull-right" style="padding-top:7px;">
+
+						<div class="prefetch">
+							<input class="user-typeahead" type="text" style="width:300px;" name="search" placeholder="Search Members" autocomplete="off">
+						</div>
+					</div>
 				<% end %>
 				
 	    </div><!-- /.navbar-collapse -->

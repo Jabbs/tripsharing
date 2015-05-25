@@ -117,6 +117,7 @@ class TripsController < ApplicationController
     @first_stop = @trip.stops.where(order: 1).first
     @invitation = Invitation.new(trip_id: @trip.id)
     @invitations = @trip.invitations.order(:created_at)
+    @companions = @trip.companions.order(:created_at)
         
     if request.path != trip_path(@trip)
       redirect_to @trip, status: :moved_permanently

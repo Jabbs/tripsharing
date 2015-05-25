@@ -12,6 +12,6 @@
 </div>
 <div class="row top-margin">
 	<div class="col-md-12">
-		<%= link_to "<i class='fa fa-envelope'></i> Send Invites".html_safe, "", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..." }, class: "btn btn-lg btn-salmon btn-block no-bottom-margin #{@invitations.size == 0 ? "disabled" : ""}", id: "send-invites" %>
+		<%= link_to "<i class='fa fa-envelope'></i> Send".html_safe, "", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..." }, class: "btn btn-lg btn-salmon btn-block no-bottom-margin #{@invitations.size == 0 ? "disabled" : ""}", id: "send-invites" %>
 	</div>
 </div>
