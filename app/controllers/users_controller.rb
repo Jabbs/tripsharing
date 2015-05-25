@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   # before_filter :check_complete_interests, only: [:profile]
   
   def show
-    logger.debug(params)
     @user = User.friendly.find(params[:id].to_s)
     set_trips_counts(@user)
     @shared_likes = []; @mutual_friends = []
@@ -76,7 +75,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.friendly.find(params[:id])
+    @user = User.friendly.find(params[:id].to_s)
     @user.slug = nil
     fix_date_month_order
     if @user.update_attributes(user_params)
@@ -214,7 +213,7 @@ class UsersController < ApplicationController
     end
     
     def correct_user
-      params[:user_id]? id = params[:user_id] : id = params[:id]
+      params[:user_id]? id = params[:user_id] : id = params[:id].to_s
       @user = User.friendly.find(id)
       redirect_to root_path unless current_user?(@user) || admin_user?
     end
