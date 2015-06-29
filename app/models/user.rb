@@ -366,10 +366,10 @@ class User < ActiveRecord::Base
   end
   
   def send_user_verification_email
-    VerificationWorker.perform_async(self.id)
-    # generate_token(:verification_token)
-    # save!
-    # UserMailer.user_verification_email(self).deliver
+    # VerificationWorker.perform_async(self.id)
+    generate_token(:verification_token)
+    save!
+    UserMailer.user_verification_email(self).deliver
   end
   
   def percent_of_days_active

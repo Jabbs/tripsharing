@@ -109,7 +109,7 @@ class Trip < ActiveRecord::Base
   end
   
   def self.tagged_with(name)
-    Tag.find_by_name(name).projects if Tag.find_by_name(name)
+    Tag.find_by_name(name).trips if Tag.find_by_name(name)
   end
 
   def self.tag_counts
