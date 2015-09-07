@@ -222,8 +222,10 @@ class User < ActiveRecord::Base
           user.fb_occupation = employer.position.name unless employer.end_date.present?
         end
       end
-      user.newsletter = true
-      user.password = SecureRandom.urlsafe_base64
+      if user.new_record?
+        user.password = SecureRandom.urlsafe_base64
+        user.newsletter = true
+      end
       logger.debug "%%%%%%%%%%% AUTH: #{auth}"
       user.save!
     end
